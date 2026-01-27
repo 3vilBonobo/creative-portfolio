@@ -1,10 +1,13 @@
 <script setup>
 import { computed } from "vue";
+import { getWindowScene } from "../config/windowScenes";
 
 const props = defineProps({
   timeOfDay: { type: String, default: "night" }, // dawn | day | dusk | night
   weather: { type: String, default: "clear" }, // clear | clouds | rain | fog
 });
+const scene = computed(() => getWindowScene(props.timeOfDay, props.weather));
+const fx = computed(() => scene.value.fx || []);
 
 /**
  * We fake the "city" with gradients + shapes for now.
@@ -50,19 +53,20 @@ const weatherOverlay = computed(() => {
       <!-- Sky -->
       <div class="absolute inset-0" :class="skyGradient"></div>
 
-      <!-- City silhouette (placeholder) -->
-      <div class="absolute inset-x-0 bottom-0 h-[55%] opacity-70">
+      <!-- City layer (image-ready) -->
+      <div class="absolute inset-0">
+        <!-- Base city image (placeholder now, AI later) -->
+        <img
+          :src="scene.cityImageUrl"
+          alt="Cyberpunk city view"
+          class="absolute inset-0 h-full w-full object-cover opacity-80"
+          draggable="false" />
+
+        <!-- Darken lower area for contrast -->
         <div
-          class="absolute inset-x-0 bottom-0 h-[70%] bg-gradient-to-t from-black via-neutral-950 to-transparent"></div>
+          class="absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-black via-neutral-950/70 to-transparent"></div>
 
-        <!-- Buildings -->
-        <div class="absolute bottom-0 left-[6%] h-[55%] w-[14%] bg-neutral-950/90"></div>
-        <div class="absolute bottom-0 left-[22%] h-[70%] w-[10%] bg-neutral-950/95"></div>
-        <div class="absolute bottom-0 left-[35%] h-[45%] w-[18%] bg-neutral-950/85"></div>
-        <div class="absolute bottom-0 left-[56%] h-[76%] w-[12%] bg-neutral-950/95"></div>
-        <div class="absolute bottom-0 left-[71%] h-[52%] w-[20%] bg-neutral-950/90"></div>
-
-        <!-- Neon hints -->
+        <!-- Neon hints (still fine on top of image) -->
         <div class="absolute bottom-[18%] left-[24%] h-1 w-10 rounded bg-emerald-400/30 blur-[1px]"></div>
         <div class="absolute bottom-[34%] left-[59%] h-1 w-12 rounded bg-cyan-400/25 blur-[1px]"></div>
         <div class="absolute bottom-[22%] left-[74%] h-1 w-16 rounded bg-fuchsia-400/20 blur-[1px]"></div>
@@ -72,14 +76,14 @@ const weatherOverlay = computed(() => {
       <div class="absolute inset-0 bg-gradient-to-b" :class="lightingOverlay"></div>
 
       <!-- Clouds overlay -->
-      <div v-if="weather === 'clouds'" class="absolute inset-0">
+      <div v-if="fx.includes('clouds')" class="absolute inset-0">
         <div class="absolute -top-10 left-10 h-40 w-72 rounded-full bg-white/6 blur-2xl"></div>
         <div class="absolute top-6 right-0 h-48 w-80 rounded-full bg-white/5 blur-3xl"></div>
         <div class="absolute top-24 left-40 h-40 w-96 rounded-full bg-white/4 blur-3xl"></div>
       </div>
 
       <!-- Fog overlay -->
-      <div v-if="weather === 'fog'" class="absolute inset-0">
+      <div v-if="fx.includes('fog')" class="absolute inset-0">
         <div
           class="absolute bottom-0 left-0 h-[60%] w-full bg-gradient-to-t from-white/10 via-white/6 to-transparent"></div>
         <div class="absolute inset-0 animate-fogMove opacity-60">
@@ -89,7 +93,7 @@ const weatherOverlay = computed(() => {
       </div>
 
       <!-- Rain overlay -->
-      <div v-if="weather === 'rain'" class="absolute inset-0">
+      <div v-if="fx.includes('rain')" class="absolute inset-0">
         <div class="absolute inset-0 bg-gradient-to-b from-cyan-400/6 via-transparent to-transparent"></div>
 
         <!-- Rain streaks (CSS animation) -->
