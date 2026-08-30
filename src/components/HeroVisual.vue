@@ -7,6 +7,8 @@ import { useEnvironment } from "../composables/useEnvironment";
 import WeatherEffects from "./WeatherEffects.vue";
 import HeroClock from "./HeroClock.vue";
 import HeroMonitorAnimations from "./HeroMonitorAnimations.vue";
+import AcropolisLightBeams from "./AcropolisLightBeams.vue";
+import MoonSky from "./MoonSky.vue";
 
 const { state, previewIntensity, heroCompositeMode, hiddenHeroLayers, showExteriorMask, showInteriorMask, tintHeroLayers, freezeParallax } = useEnvironment();
 const root = ref<HTMLElement>(); const compositeFailed = ref(false); const documentHidden = ref(document.visibilityState === "hidden");
@@ -60,6 +62,8 @@ onBeforeUnmount(() => { document.removeEventListener("visibilitychange", onVisib
     <picture class="hero-night" :style="{ opacity: nightOpacity }">
       <img src="/hero/athens-coder-loft-night.png" width="1536" height="1024" alt="" decoding="async">
     </picture>
+    <MoonSky :state="state" :paused="documentHidden" :style="{ opacity: nightOpacity }" />
+    <AcropolisLightBeams :visible="nightOpacity > 0" :paused="documentHidden" :style="{ opacity: nightOpacity }" />
     <div class="hero-night-clock" :style="{ opacity: nightOpacity }">
       <HeroClock />
     </div>

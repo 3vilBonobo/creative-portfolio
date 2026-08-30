@@ -11,6 +11,9 @@ importers:
       gsap:
         specifier: ^3.15.0
         version: 3.15.0
+      suncalc:
+        specifier: ^2.0.1
+        version: 2.0.1
       vue:
         specifier: ^3.5.26
         version: 3.5.42(typescript@5.9.3)
@@ -18,6 +21,9 @@ importers:
       '@openai/sites-vite-plugin':
         specifier: ^0.2.0
         version: 0.2.0(vite@7.3.6(jiti@1.21.7))
+      '@types/suncalc':
+        specifier: ^1.9.2
+        version: 1.9.2
       '@vitejs/plugin-vue':
         specifier: ^6.0.3
         version: 6.0.8(vite@7.3.6(jiti@1.21.7))(vue@3.5.42(typescript@5.9.3))
@@ -532,6 +538,9 @@ packages:
 
   '@types/estree@1.0.9':
     resolution: {integrity: sha512-GhdPgy1el4/ImP05X05Uw4cw2/M93BCUmnEvWZNStlCzEKME4Fkk+YpoA5OiHNQmoS7Cafb8Xa3Pya8m1Qrzeg==}
+
+  '@types/suncalc@1.9.2':
+    resolution: {integrity: sha512-ATAGBHHfA1TlE2tjfidLyTcysjoT2JHHEAmWRULh73SU9UTn++j5fqHEW16X6Y/2Li87jEQXzgu4R/OOdlDqzw==}
 
   '@vitejs/plugin-vue@6.0.8':
     resolution: {integrity: sha512-0ZjgOg7oO6farnNGup7yvoM/YXZV84OZxHAwtflItNa/6zzQyVb5LNxyea3FEKEX2XlagIKzrlH7wwxkKgtiew==}
@@ -1048,6 +1057,9 @@ packages:
     resolution: {integrity: sha512-DhuTmvZWux4H1UOnWMB3sk0sbaCVOoQZjv8u1rDoTV0HTdGem9hkAZtl4JZy8P2z4Bg0nT+YMeOFyVr4zcG5Tw==}
     engines: {node: '>=16 || 14 >=14.17'}
     hasBin: true
+
+  suncalc@2.0.1:
+    resolution: {integrity: sha512-wjujU+HpsP1TUvN3/9dFkVQQCsMZbk7PkdZsASRJR4jVPHCm9Qy0FVkFTqXfs70Ag2yheN7ZUavzCyOjhJDGxQ==}
 
   supports-preserve-symlinks-flag@1.0.0:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
@@ -1586,6 +1598,8 @@ snapshots:
 
   '@types/estree@1.0.9': {}
 
+  '@types/suncalc@1.9.2': {}
+
   '@vitejs/plugin-vue@6.0.8(vite@7.3.6(jiti@1.21.7))(vue@3.5.42(typescript@5.9.3))':
     dependencies:
       '@rolldown/pluginutils': 1.0.1
@@ -2110,6 +2124,8 @@ snapshots:
       pirates: 4.0.7
       tinyglobby: 0.2.17
       ts-interface-checker: 0.1.13
+
+  suncalc@2.0.1: {}
 
   supports-preserve-symlinks-flag@1.0.0: {}
 

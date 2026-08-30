@@ -18,7 +18,7 @@ export function provideEnvironment() {
   const source = ref<EnvironmentSource>("fallback"); const loading = ref(true); const error = ref<string | null>(null);
   const lastUpdated = ref(now.value); const previewTimePhase = ref<TimePhase | null>(null); const previewWeather = ref<WeatherCondition | null>(null);
   const previewIntensity = ref<EffectIntensity>("auto");
-  const heroCompositeMode = ref<HeroCompositeMode>("layers"); const hiddenHeroLayers = ref<HeroLayerId[]>([]);
+  const heroCompositeMode = ref<HeroCompositeMode>("reference"); const hiddenHeroLayers = ref<HeroLayerId[]>([]);
   const showExteriorMask = ref(false); const showInteriorMask = ref(false); const tintHeroLayers = ref(false); const freezeParallax = ref(false);
   let clockTimer: number | undefined; let refreshTimer: number | undefined; let controller: AbortController | undefined; let activeRequest: Promise<void> | null = null;
 
@@ -61,7 +61,7 @@ export function provideEnvironment() {
 
   onMounted(() => { initialize(); scheduleClockTick(); document.addEventListener("visibilitychange", onVisibilityChange); });
   onBeforeUnmount(() => { window.clearTimeout(clockTimer); window.clearTimeout(refreshTimer); controller?.abort(); document.removeEventListener("visibilitychange", onVisibilityChange); });
-  const context: EnvironmentContext = { state: readonly(state), timePhases: TIME_PHASES, weatherConditions: WEATHER_CONDITIONS, heroLayerIds: HERO_LAYER_IDS, previewTimePhase, previewWeather, previewIntensity, heroCompositeMode, hiddenHeroLayers, showExteriorMask, showInteriorMask, tintHeroLayers, freezeParallax, resetPreview: () => { previewTimePhase.value = null; previewWeather.value = null; previewIntensity.value = "auto"; heroCompositeMode.value = "layers"; hiddenHeroLayers.value = []; showExteriorMask.value = false; showInteriorMask.value = false; tintHeroLayers.value = false; freezeParallax.value = false; } };
+  const context: EnvironmentContext = { state: readonly(state), timePhases: TIME_PHASES, weatherConditions: WEATHER_CONDITIONS, heroLayerIds: HERO_LAYER_IDS, previewTimePhase, previewWeather, previewIntensity, heroCompositeMode, hiddenHeroLayers, showExteriorMask, showInteriorMask, tintHeroLayers, freezeParallax, resetPreview: () => { previewTimePhase.value = null; previewWeather.value = null; previewIntensity.value = "auto"; heroCompositeMode.value = "reference"; hiddenHeroLayers.value = []; showExteriorMask.value = false; showInteriorMask.value = false; tintHeroLayers.value = false; freezeParallax.value = false; } };
   provide(environmentKey, context); return context;
 }
 
