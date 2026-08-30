@@ -1,11 +1,11 @@
-import { onMounted, onBeforeUnmount, ref } from "vue";
+import { onMounted, onBeforeUnmount, ref, type Ref } from "vue";
 
-export function useActiveFloor(ids = []) {
-  const activeFloor = ref(ids[0] ?? null);
-  let observer = null;
+export function useActiveFloor(ids: readonly string[]): { activeFloor: Ref<string> } {
+  const activeFloor = ref(ids[0] ?? "");
+  let observer: IntersectionObserver | null = null;
 
   onMounted(() => {
-    const elements = ids.map((id) => document.getElementById(id)).filter(Boolean);
+    const elements = ids.map((id) => document.getElementById(id)).filter((element): element is HTMLElement => Boolean(element));
 
     if (!elements.length) return;
 
@@ -25,7 +25,7 @@ export function useActiveFloor(ids = []) {
       },
     );
 
-    elements.forEach((el) => observer.observe(el));
+    elements.forEach((el) => observer?.observe(el));
   });
 
   onBeforeUnmount(() => {

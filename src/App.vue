@@ -1,48 +1,32 @@
-<script setup>
-import ElevatorNav from "./components/ElevatorNav.vue";
-
-import Lobby from "./sections/Lobby.vue";
-import Projects from "./sections/Projects.vue";
-import About from "./sections/About.vue";
-import Exit from "./sections/Exit.vue";
-
+<script setup lang="ts">
+import AppShell from "./components/AppShell.vue";
+import FloorNavigator from "./components/FloorNavigator.vue";
+import SiteNavigation from "./components/SiteNavigation.vue";
+import FloorTransition from "./components/FloorTransition.vue";
+import OfficeHero from "./sections/OfficeHero.vue";
+import AboutSection from "./sections/AboutSection.vue";
+import ProjectsSection from "./sections/ProjectsSection.vue";
+import ExperienceSection from "./sections/ExperienceSection.vue";
+import ContactSection from "./sections/ContactSection.vue";
 import { useActiveFloor } from "./composables/useActiveFloor";
 
 const floors = [
-  { id: "lobby", label: "01 Lobby" },
-  { id: "projects", label: "02 Projects" },
-  { id: "about", label: "03 About" },
-  { id: "exit", label: "04 Exit" },
-];
-
-const { activeFloor } = useActiveFloor(floors.map((f) => f.id));
-
-function scrollToFloor(id) {
-  document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
-}
+  { id: "office", number: "05", label: "Office" }, { id: "about", number: "04", label: "About" },
+  { id: "projects", number: "03", label: "Projects" }, { id: "experience", number: "02", label: "Experience" },
+  { id: "street", number: "01", label: "Street" },
+] as const;
+const { activeFloor } = useActiveFloor(floors.map(({ id }) => id));
 </script>
 
 <template>
-  <div class="min-h-screen bg-neutral-950 text-neutral-100">
-    <ElevatorNav :floors="floors" :activeFloor="activeFloor" @go="scrollToFloor" />
-
-    <!-- Floors -->
-    <main class="snap-y snap-mandatory">
-      <section id="lobby" class="min-h-screen snap-start">
-        <Lobby />
-      </section>
-
-      <section id="projects" class="min-h-screen snap-start">
-        <Projects />
-      </section>
-
-      <section id="about" class="min-h-screen snap-start">
-        <About />
-      </section>
-
-      <section id="exit" class="min-h-screen snap-start">
-        <Exit />
-      </section>
+  <AppShell>
+    <a class="skip-link" href="#main-content">Skip to content</a><SiteNavigation />
+    <FloorNavigator :floors="floors" :active-floor="activeFloor" />
+    <main id="main-content">
+      <OfficeHero /><FloorTransition label="Descending to floor 04" /><AboutSection />
+      <FloorTransition label="Descending to floor 03" variant="cables" /><ProjectsSection />
+      <FloorTransition label="Descending to floor 02" /><ExperienceSection />
+      <FloorTransition label="Street level approaching" variant="cables" /><ContactSection />
     </main>
-  </div>
+  </AppShell>
 </template>

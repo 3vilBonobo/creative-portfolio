@@ -1,0 +1,2 @@
+<script setup lang="ts">import type { Experience } from "../types/content"; defineProps<{ entries: Experience[] }>();</script>
+<template><ol class="timeline"><li v-for="entry in entries" :key="entry.id"><span class="timeline__node" aria-hidden="true"></span><div class="timeline__date">{{ entry.startDate }} — {{ entry.endDate }}</div><div><h3>{{ entry.role }}</h3><p class="timeline__company">{{ entry.company }}</p><p>{{ entry.description }}</p><ul class="tags"><li v-for="technology in entry.technologies" :key="technology">{{ technology }}</li></ul></div></li></ol></template>

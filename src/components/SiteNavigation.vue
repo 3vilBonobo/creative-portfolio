@@ -1,0 +1,1 @@
+<template><header class="site-header"><a class="wordmark" href="#office" aria-label="Return to office">PORTFOLIO <span>/ ATHENS</span></a><a class="availability" href="#street"><span aria-hidden="true"></span> Contact</a></header></template>
