@@ -4,5 +4,5 @@ export interface Principle { title: string; description: string }
 export interface ToolkitGroup { label: string; items: string[] }
 export interface AboutContent {
   eyebrow: string; title: string; introduction: string; backgroundParagraphs: string[];
-  currentFocus: string; principles: Principle[]; toolkitGroups: ToolkitGroup[]; cvUrl?: string;
+  currentFocus: string; backgroundSummary: string; principles: Principle[]; toolkitGroups: ToolkitGroup[]; cvUrl?: string;
 }
