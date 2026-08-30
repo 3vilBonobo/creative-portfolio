@@ -16,8 +16,8 @@ function collapseIntroduction() { if (showIntroduction.value) showIntroduction.v
     <div class="hero-copy-drawer" :class="{ 'hero-copy-drawer--closed': !showIntroduction }">
       <div id="hero-introduction" class="hero__content hero__plate" data-parallax="-2" :aria-hidden="!showIntroduction" :inert="!showIntroduction">
         <p class="eyebrow">Level 05 · Rooftop office · Athens</p>
-        <h1 id="hero-title"><span>Name placeholder</span>Frontend developer.</h1>
-        <p class="hero__lede">Temporary introduction — add what you build, who you help, and what makes your approach distinct.</p>
+        <h1 id="hero-title"><span>Irene Boutsika</span>Frontend developer.</h1>
+        <p class="hero__lede">I build clear, dependable interfaces for complex workflows—combining thoughtful frontend engineering with an evidence-led, human-centred approach.</p>
         <div class="hero__status" aria-label="Current Athens time and weather">
           <span><b>Athens</b><time :datetime="state.lastUpdated.toISOString()">{{ state.localTime }}</time></span>
           <span><b>Weather · {{ sourceLabel }}</b>{{ Math.round(state.temperature) }}°C · {{ weatherLabel }}</span>

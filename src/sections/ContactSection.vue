@@ -48,8 +48,8 @@ onBeforeUnmount(() => { document.removeEventListener("visibilitychange", onVisib
           <button class="contact-panel__title" type="button" aria-controls="contact-socials" @click="openContactChannels">
             <span id="contact-title">Contact</span><svg viewBox="0 0 44 20" aria-hidden="true"><path d="M1 10h38M31 2l8 8-8 8" /></svg>
           </button>
-          <p class="contact-panel__copy">Have a project in mind? Choose a channel and say hello.</p>
-          <p class="contact-panel__note">Email address awaiting confirmation.</p>
+          <p class="contact-panel__copy">Have a frontend project, product challenge or collaboration in mind? Choose a channel and say hello.</p>
+          <p class="contact-panel__note">Based in Athens · Open to thoughtful conversations about the web.</p>
           <nav id="contact-socials" class="contact-socials" aria-label="Irene's social profiles">
             <a ref="firstSocial" href="https://x.com/Irinella_b" target="_blank" rel="noopener noreferrer" aria-label="Visit Irene on X"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.7 2H22l-7.2 8.2L23.3 22h-6.7l-5.2-6.8L5.4 22H2l7.8-8.9L1.6 2h6.9l4.7 6.2L18.7 2Zm-1.2 17.9h1.8L7.5 4H5.6l11.9 15.9Z" /></svg><span>X</span></a>
             <a href="https://www.instagram.com/irinella_b/" target="_blank" rel="noopener noreferrer" aria-label="Visit Irene on Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.1"/><circle class="fill" cx="17.5" cy="6.5" r="1"/></svg><span>Instagram</span></a>

@@ -29,6 +29,11 @@ export function provideEnvironment() {
   });
 
   function scheduleRefresh(delay = WEATHER_CACHE_TTL_MS) { window.clearTimeout(refreshTimer); refreshTimer = window.setTimeout(() => void refreshWeather(), Math.max(1_000, delay)); }
+  function scheduleClockTick() {
+    window.clearTimeout(clockTimer);
+    const delayToNextMinute = 60_000 - (Date.now() % 60_000) + 50;
+    clockTimer = window.setTimeout(() => { now.value = new Date(); scheduleClockTick(); }, delayToNextMinute);
+  }
   async function refreshWeather() {
     if (activeRequest) return activeRequest;
     controller = new AbortController(); loading.value = true; error.value = null;
@@ -52,10 +57,10 @@ export function provideEnvironment() {
     if (cached) { data.value = cached.data; lastUpdated.value = new Date(cached.savedAt); source.value = cached.fresh ? "cache" : "staleCache"; loading.value = !cached.fresh; }
     if (cached?.fresh) scheduleRefresh(WEATHER_CACHE_TTL_MS - (Date.now() - cached.savedAt)); else void refreshWeather();
   }
-  function onVisibilityChange() { if (document.visibilityState !== "visible") return; const cached = readWeatherCache(localStorage); if (!cached?.fresh) void refreshWeather(); }
+  function onVisibilityChange() { if (document.visibilityState !== "visible") return; now.value = new Date(); scheduleClockTick(); const cached = readWeatherCache(localStorage); if (!cached?.fresh) void refreshWeather(); }
 
-  onMounted(() => { initialize(); clockTimer = window.setInterval(() => { now.value = new Date(); }, 30_000); document.addEventListener("visibilitychange", onVisibilityChange); });
-  onBeforeUnmount(() => { window.clearInterval(clockTimer); window.clearTimeout(refreshTimer); controller?.abort(); document.removeEventListener("visibilitychange", onVisibilityChange); });
+  onMounted(() => { initialize(); scheduleClockTick(); document.addEventListener("visibilitychange", onVisibilityChange); });
+  onBeforeUnmount(() => { window.clearTimeout(clockTimer); window.clearTimeout(refreshTimer); controller?.abort(); document.removeEventListener("visibilitychange", onVisibilityChange); });
   const context: EnvironmentContext = { state: readonly(state), timePhases: TIME_PHASES, weatherConditions: WEATHER_CONDITIONS, heroLayerIds: HERO_LAYER_IDS, previewTimePhase, previewWeather, previewIntensity, heroCompositeMode, hiddenHeroLayers, showExteriorMask, showInteriorMask, tintHeroLayers, freezeParallax, resetPreview: () => { previewTimePhase.value = null; previewWeather.value = null; previewIntensity.value = "auto"; heroCompositeMode.value = "layers"; hiddenHeroLayers.value = []; showExteriorMask.value = false; showInteriorMask.value = false; tintHeroLayers.value = false; freezeParallax.value = false; } };
   provide(environmentKey, context); return context;
 }

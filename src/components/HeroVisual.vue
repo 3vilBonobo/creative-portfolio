@@ -6,6 +6,7 @@ import { getHeroLayers, HERO_REFERENCE, type HeroLayerDefinition } from "../conf
 import { useEnvironment } from "../composables/useEnvironment";
 import WeatherEffects from "./WeatherEffects.vue";
 import HeroClock from "./HeroClock.vue";
+import HeroMonitorAnimations from "./HeroMonitorAnimations.vue";
 
 const { state, previewIntensity, heroCompositeMode, hiddenHeroLayers, showExteriorMask, showInteriorMask, tintHeroLayers, freezeParallax } = useEnvironment();
 const root = ref<HTMLElement>(); const compositeFailed = ref(false); const documentHidden = ref(document.visibilityState === "hidden");
@@ -49,6 +50,7 @@ onBeforeUnmount(() => { document.removeEventListener("visibilitychange", onVisib
         <div v-if="!isHidden(layer)" class="hero-composite__layer" :class="[`hero-composite__layer--${layer.id}`]" :style="styleFor(layer)" :data-layer-id="layer.id" :data-parallax="layer.parallax">
           <img v-if="layer.kind === 'raster' || layer.kind === 'lighting'" :src="layer.desktop!" width="1536" height="1024" alt="" @error="onAssetError">
           <HeroClock v-if="layer.id === 'workstationForeground'" />
+          <HeroMonitorAnimations v-if="layer.id === 'workstationForeground'" :paused="documentHidden" />
           <WeatherEffects v-else-if="layer.kind === 'weather'" :mode="layer.id === 'exteriorAtmosphere' ? 'atmosphere' : 'precipitation'" :state="state" :intensity="previewIntensity" :paused="documentHidden" />
           <div v-else class="hero-window-glass" />
         </div>
@@ -58,8 +60,11 @@ onBeforeUnmount(() => { document.removeEventListener("visibilitychange", onVisib
     <picture class="hero-night" :style="{ opacity: nightOpacity }">
       <img src="/hero/athens-coder-loft-night.png" width="1536" height="1024" alt="" decoding="async">
     </picture>
-    <div class="hero-night-clock" :style="{ opacity: nightOpacity }" data-parallax="6.5">
+    <div class="hero-night-clock" :style="{ opacity: nightOpacity }">
       <HeroClock />
+    </div>
+    <div class="hero-night-monitors" :style="{ opacity: nightOpacity }">
+      <HeroMonitorAnimations :paused="documentHidden" />
     </div>
   </div>
 </template>
