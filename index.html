@@ -7,9 +7,38 @@
     <meta name="description" content="Frontend developer portfolio foundation — a vertical industrial building in Athens.">
     <link rel="preload" as="image" href="/hero/athens-coder-loft-day.webp" imagesrcset="/hero/athens-coder-loft-mobile.webp 768w, /hero/athens-coder-loft-day.webp 1536w" imagesizes="100vw">
     <title>Frontend Developer Portfolio — Athens</title>
+    <style>
+      .page-reveal {
+        position: fixed;
+        z-index: 9999;
+        inset: 0;
+        background: #050505;
+        opacity: 1;
+        pointer-events: none;
+        transition: opacity 320ms ease-out, visibility 0s linear 320ms;
+      }
+
+      .page-reveal.is-finished {
+        visibility: hidden;
+        opacity: 0;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .page-reveal { transition: none; }
+      }
+    </style>
   </head>
   <body>
+    <div id="page-reveal" class="page-reveal" aria-hidden="true"></div>
     <div id="app"></div>
     <script type="module" src="/src/main.ts"></script>
+    <script>
+      window.addEventListener("load", function () {
+        window.setTimeout(function () {
+          var reveal = document.getElementById("page-reveal");
+          if (reveal) reveal.classList.add("is-finished");
+        }, 80);
+      }, { once: true });
+    </script>
   </body>
 </html>

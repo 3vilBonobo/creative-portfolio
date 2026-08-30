@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 import HeroVisual from "../components/HeroVisual.vue";
+import TelescopeExperience from "../components/TelescopeExperience.vue";
 import { useEnvironment } from "../composables/useEnvironment";
 
 const { state } = useEnvironment();
@@ -13,6 +14,7 @@ function collapseIntroduction() { if (showIntroduction.value) showIntroduction.v
 <template>
   <section id="office" class="hero floor-section" aria-labelledby="hero-title" @click="collapseIntroduction">
     <HeroVisual />
+    <TelescopeExperience />
     <div class="hero-copy-drawer" :class="{ 'hero-copy-drawer--closed': !showIntroduction }">
       <div id="hero-introduction" class="hero__content hero__plate" data-parallax="-2" :aria-hidden="!showIntroduction" :inert="!showIntroduction">
         <p class="eyebrow">Level 05 · Rooftop office · Athens</p>
