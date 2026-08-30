@@ -5,11 +5,13 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { getHeroLayers, HERO_REFERENCE, type HeroLayerDefinition } from "../config/heroLayers";
 import { useEnvironment } from "../composables/useEnvironment";
 import WeatherEffects from "./WeatherEffects.vue";
+import HeroClock from "./HeroClock.vue";
 
 const { state, previewIntensity, heroCompositeMode, hiddenHeroLayers, showExteriorMask, showInteriorMask, tintHeroLayers, freezeParallax } = useEnvironment();
 const root = ref<HTMLElement>(); const compositeFailed = ref(false); const documentHidden = ref(document.visibilityState === "hidden");
 const layers = computed(() => getHeroLayers(state.value.timePhase));
 const showReference = computed(() => heroCompositeMode.value === "reference" || compositeFailed.value);
+const nightOpacity = computed(() => ({ dawn: 0, day: 0, goldenHour: 0, dusk: .68, night: 1 } as const)[state.value.timePhase]);
 const isHidden = (layer: HeroLayerDefinition) => hiddenHeroLayers.value.includes(layer.id);
 const styleFor = (layer: HeroLayerDefinition) => ({ zIndex: layer.order, "--layer-overscan": `${layer.overscan}%` });
 let context: gsap.Context | undefined; const triggers: ScrollTrigger[] = []; let motionQuery: MediaQueryList | undefined;
@@ -46,11 +48,18 @@ onBeforeUnmount(() => { document.removeEventListener("visibilitychange", onVisib
       <template v-for="layer in layers" :key="layer.id">
         <div v-if="!isHidden(layer)" class="hero-composite__layer" :class="[`hero-composite__layer--${layer.id}`]" :style="styleFor(layer)" :data-layer-id="layer.id" :data-parallax="layer.parallax">
           <img v-if="layer.kind === 'raster' || layer.kind === 'lighting'" :src="layer.desktop!" width="1536" height="1024" alt="" @error="onAssetError">
+          <HeroClock v-if="layer.id === 'workstationForeground'" />
           <WeatherEffects v-else-if="layer.kind === 'weather'" :mode="layer.id === 'exteriorAtmosphere' ? 'atmosphere' : 'precipitation'" :state="state" :intensity="previewIntensity" :paused="documentHidden" />
           <div v-else class="hero-window-glass" />
         </div>
       </template>
       <div v-if="showExteriorMask" class="hero-debug-mask hero-debug-mask--exterior" /><div v-if="showInteriorMask" class="hero-debug-mask hero-debug-mask--interior" />
+    </div>
+    <picture class="hero-night" :style="{ opacity: nightOpacity }">
+      <img src="/hero/athens-coder-loft-night.png" width="1536" height="1024" alt="" decoding="async">
+    </picture>
+    <div class="hero-night-clock" :style="{ opacity: nightOpacity }" data-parallax="6.5">
+      <HeroClock />
     </div>
   </div>
 </template>

@@ -1,10 +1,15 @@
 <script setup lang="ts">
+import { ref } from "vue";
 import { useEnvironment } from "../composables/useEnvironment";
 const { timePhases, weatherConditions, heroLayerIds, previewTimePhase, previewWeather, previewIntensity, heroCompositeMode, hiddenHeroLayers, showExteriorMask, showInteriorMask, tintHeroLayers, freezeParallax, resetPreview } = useEnvironment();
+const isOpen = ref(false);
 </script>
 
 <template>
-  <aside class="environment-preview" aria-label="Environment preview controls">
+  <button class="environment-preview-toggle" type="button" :aria-expanded="isOpen" aria-controls="environment-preview-panel" @click="isOpen = !isOpen">
+    <span aria-hidden="true">{{ isOpen ? '×' : '◐' }}</span>{{ isOpen ? 'Hide scene preview' : 'Scene preview' }}
+  </button>
+  <aside v-show="isOpen" id="environment-preview-panel" class="environment-preview" aria-label="Environment preview controls">
     <p>Scene preview</p>
     <label>Time
       <select v-model="previewTimePhase">

@@ -1,5 +1,63 @@
-import type { Experience } from "../types/content";
-export const experience: Experience[] = [
-  { id: "role-01", role: "Role placeholder", company: "Company placeholder", startDate: "Start", endDate: "Present", description: "Add a short description of your responsibilities and impact.", highlights: ["Achievement placeholder"], technologies: ["Technology", "Technology"] },
-  { id: "role-02", role: "Role placeholder", company: "Company placeholder", startDate: "Start", endDate: "End", description: "Add a short description of your responsibilities and impact.", highlights: ["Achievement placeholder"], technologies: ["Technology", "Technology"] },
+import type { ExperienceEntry } from "../types/content";
+
+// Profile-informed mockup copy. Public sources confirm Agritrack SA,
+// freeCodeCamp (2020–2021), Irene's frontend focus, and the named projects.
+// Exact employment titles and dates still require Irene's confirmation.
+export const experience: ExperienceEntry[] = [
+  {
+    id: "agritrack-frontend",
+    role: "Frontend Developer",
+    company: "Agritrack SA",
+    startDate: "Date to confirm",
+    endDate: "Present",
+    dateLabel: "Current chapter",
+    summary: "Building clear, dependable interfaces for complex agricultural traceability workflows and operational data.",
+    highlights: ["Translate detailed requirements into usable interface flows", "Develop responsive components for data-heavy workflows"],
+    technologies: ["Vue", "TypeScript", "REST APIs"],
+    current: true,
+    category: "development",
+    temporary: true,
+  },
+  {
+    id: "independent-projects",
+    role: "Frontend & Creative Web Projects",
+    company: "Independent portfolio work",
+    startDate: "Date to confirm",
+    endDate: "Date to confirm",
+    dateLabel: "Selected project work",
+    summary: "Designed and built interactive web experiences combining responsive frontend development, API integrations and custom animation.",
+    highlights: ["Created the Orthobyron practice website", "Built live-data and SVG animation projects"],
+    technologies: ["React", "JavaScript", "GSAP", "SVG"],
+    current: false,
+    category: "consulting",
+    temporary: true,
+  },
+  {
+    id: "freecodecamp-study",
+    role: "Frontend Development Studies",
+    company: "freeCodeCamp",
+    startDate: "2020",
+    endDate: "2021",
+    dateLabel: "2020 — 2021",
+    summary: "Completed a developer certification representing approximately 300 hours of structured coursework and practical exercises.",
+    highlights: ["Strengthened responsive web-development foundations", "Applied learning through practical interface projects"],
+    technologies: ["HTML", "CSS", "JavaScript"],
+    current: false,
+    category: "education",
+    temporary: true,
+  },
+  {
+    id: "legal-criminology-foundation",
+    role: "Legal & Criminology Foundations",
+    company: "Earlier professional chapter",
+    startDate: "Dates to confirm",
+    endDate: "Dates to confirm",
+    dateLabel: "Earlier chapter",
+    summary: "Developed an evidence-led approach to complex information, human context and edge cases before transitioning into software development.",
+    highlights: ["Built a disciplined approach to research and evidence", "Carried analytical and human-centred thinking into interface work"],
+    technologies: [],
+    current: false,
+    category: "legal",
+    temporary: true,
+  },
 ];
