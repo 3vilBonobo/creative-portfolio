@@ -29,11 +29,8 @@ onBeforeUnmount(() => window.clearInterval(timer));
   <div class="moon-sky" :class="{ 'moon-sky--paused': paused }" :style="style">
     <svg class="moon-sky__moon" viewBox="0 0 100 100" role="img" :aria-label="moon.label">
       <defs>
-        <clipPath id="moon-disc"><circle cx="50" cy="50" r="49"/></clipPath>
         <clipPath id="moon-phase"><path :d="moon.path"/></clipPath>
       </defs>
-      <circle class="moon-sky__glow" cx="50" cy="50" r="48"/>
-      <circle cx="50" cy="50" r="49" fill="#101725"/>
       <image href="/moon-realistic-warm.png" x="1" y="1" width="98" height="98" preserveAspectRatio="xMidYMid slice" clip-path="url(#moon-phase)"/>
     </svg>
     <div class="moon-sky__cloud moon-sky__cloud--far"/><div class="moon-sky__cloud moon-sky__cloud--near"/>
