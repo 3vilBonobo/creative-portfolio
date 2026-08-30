@@ -6,8 +6,8 @@ import { getMoonAppearance } from "../services/moonMath";
 const props = defineProps<{ state: EnvironmentState; paused?: boolean }>();
 const now = ref(new Date());
 const moon = computed(() => getMoonAppearance(now.value));
-const arcX = computed(() => 21 + moon.value.progress * 48);
-const arcY = computed(() => 31 - Math.sin(moon.value.progress * Math.PI) * 12);
+const arcX = computed(() => 21 + moon.value.progress * 39.8);
+const arcY = computed(() => 37 - Math.sin(moon.value.progress * Math.PI) * 18);
 const cloudiness = computed(() => Math.min(1, Math.max(0, props.state.cloudCover / 100)));
 const moonOpacity = computed(() => {
   if (!moon.value.visible || (props.state.timePhase !== "night" && props.state.timePhase !== "dusk")) return 0;
