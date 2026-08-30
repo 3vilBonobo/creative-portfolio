@@ -3,18 +3,34 @@ export const WEATHER_CONDITIONS = ["clear", "partlyCloudy", "cloudy", "fog", "ra
 
 export type TimePhase = (typeof TIME_PHASES)[number];
 export type WeatherCondition = (typeof WEATHER_CONDITIONS)[number];
+export type EnvironmentSource = "live" | "cache" | "staleCache" | "fallback" | "preview";
+
+export interface EnvironmentData {
+  weatherCondition: WeatherCondition;
+  temperature: number;
+  apparentTemperature: number;
+  cloudCover: number;
+  precipitation: number;
+  rain: number;
+  windSpeed: number;
+  isDay: boolean;
+  sunrise: string | null;
+  sunset: string | null;
+}
 
 export interface EnvironmentState {
   timePhase: TimePhase;
   weatherCondition: WeatherCondition;
   temperature: number;
+  apparentTemperature: number;
   cloudCover: number;
   precipitation: number;
+  rain: number;
   windSpeed: number;
   isDay: boolean;
   localTime: string;
   lastUpdated: Date;
-  source: "mock";
+  source: EnvironmentSource;
   loading: boolean;
   error: string | null;
 }

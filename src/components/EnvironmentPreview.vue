@@ -14,7 +14,7 @@ const { timePhases, weatherConditions, previewTimePhase, previewWeather, resetPr
     </label>
     <label>Weather
       <select v-model="previewWeather">
-        <option :value="null">Mock default</option>
+        <option :value="null">Live weather</option>
         <option v-for="weather in weatherConditions" :key="weather" :value="weather">{{ weather }}</option>
       </select>
     </label>
