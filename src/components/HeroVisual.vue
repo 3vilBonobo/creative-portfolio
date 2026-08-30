@@ -67,7 +67,7 @@ onBeforeUnmount(() => { document.removeEventListener("visibilitychange", onVisib
     <div class="hero-night-clock" :style="{ opacity: nightOpacity }">
       <HeroClock />
     </div>
-    <div class="hero-night-monitors" :style="{ opacity: nightOpacity }">
+    <div class="hero-monitor-overlay">
       <HeroMonitorAnimations :paused="documentHidden" />
     </div>
   </div>

@@ -6,7 +6,6 @@ export interface MoonAppearance {
   progress: number;
   illumination: number;
   phase: number;
-  waxing: boolean;
   path: string;
   label: string;
 }
@@ -26,11 +25,10 @@ function phaseLabel(phase: number) {
 
 function moonPath(phase: number) {
   const waxing = phase < .5;
-  const controlX = waxing
-    ? 50 + 100 * Math.cos(phase * Math.PI * 2)
-    : 50 - 100 * Math.cos(phase * Math.PI * 2);
+  const radiusX = Math.max(.01, Math.abs(Math.cos(phase * Math.PI * 2)) * 49);
   const outerSweep = waxing ? 1 : 0;
-  return `M 50 0 A 50 50 0 0 ${outerSweep} 50 100 Q ${controlX.toFixed(2)} 50 50 0 Z`;
+  const terminatorSweep = waxing ? (phase < .25 ? 0 : 1) : (phase < .75 ? 0 : 1);
+  return `M 50 1 A 49 49 0 0 ${outerSweep} 50 99 A ${radiusX.toFixed(2)} 49 0 0 ${terminatorSweep} 50 1 Z`;
 }
 
 function nearestMoonArc(now: Date) {
@@ -59,7 +57,6 @@ export function getMoonAppearance(now: Date): MoonAppearance {
     progress: progress ?? .5,
     illumination: clamp(illumination.fraction),
     phase,
-    waxing: phase < .5,
     path: moonPath(phase),
     label: phaseLabel(phase),
   };

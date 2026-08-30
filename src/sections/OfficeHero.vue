@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed, onBeforeUnmount, onMounted, ref } from "vue";
 import HeroVisual from "../components/HeroVisual.vue";
 import TelescopeExperience from "../components/TelescopeExperience.vue";
 import { useEnvironment } from "../composables/useEnvironment";
@@ -9,6 +9,37 @@ const showIntroduction = ref(true);
 const weatherLabel = computed(() => state.value.weatherCondition.replace(/([A-Z])/g, " $1").toLowerCase());
 const sourceLabel = computed(() => ({ live: "Live", cache: "Cached", staleCache: "Cached", fallback: "Unavailable", preview: "Preview" }[state.value.source]));
 function collapseIntroduction() { if (showIntroduction.value) showIntroduction.value = false; }
+
+let previousScrollY = 0;
+let downwardTravel = 0;
+
+function toggleIntroduction() {
+  showIntroduction.value = !showIntroduction.value;
+  downwardTravel = 0;
+  previousScrollY = window.scrollY;
+}
+
+function handleScroll() {
+  const scrollY = Math.max(0, window.scrollY);
+  const movement = scrollY - previousScrollY;
+
+  if (movement > 0) downwardTravel += movement;
+  else if (movement < 0) downwardTravel = 0;
+
+  // Keep the introduction visible through the first couple of wheel movements.
+  // Using travelled distance also keeps this consistent for trackpads, keyboard
+  // scrolling, and scrollbar dragging without intercepting native scroll input.
+  if (showIntroduction.value && downwardTravel >= 280) collapseIntroduction();
+
+  previousScrollY = scrollY;
+}
+
+onMounted(() => {
+  previousScrollY = window.scrollY;
+  window.addEventListener("scroll", handleScroll, { passive: true });
+});
+
+onBeforeUnmount(() => window.removeEventListener("scroll", handleScroll));
 </script>
 
 <template>
@@ -26,7 +57,7 @@ function collapseIntroduction() { if (showIntroduction.value) showIntroduction.v
         </div>
         <div class="actions"><a class="button button--primary" href="#projects">View selected work <span>↓</span></a><a class="button button--ghost" href="#about">About the developer</a></div>
       </div>
-      <button class="hero-copy-toggle" type="button" :aria-expanded="showIntroduction" aria-controls="hero-introduction" @click.stop="showIntroduction = !showIntroduction">
+      <button class="hero-copy-toggle" type="button" :aria-expanded="showIntroduction" aria-controls="hero-introduction" @click.stop="toggleIntroduction">
         <span aria-hidden="true">{{ showIntroduction ? '‹' : '›' }}</span><b>{{ showIntroduction ? 'Hide intro' : 'Show intro' }}</b>
       </button>
     </div>
