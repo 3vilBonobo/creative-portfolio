@@ -35,7 +35,7 @@ export async function fetchAthensWeather(signal: AbortSignal): Promise<Environme
   });
   let response: Response;
   try { response = await fetch(`${WEATHER_API_ENDPOINT}?${params}`, { signal }); }
-  catch (error) { if (signal.aborted) throw error; throw new Error("Athens weather is temporarily unavailable.", { cause: error }); }
+  catch (error) { if (signal.aborted) throw error; throw new Error("Athens weather is temporarily unavailable."); }
   if (!response.ok) throw new Error(`Athens weather request failed (${response.status}).`);
   return normalizeWeatherResponse(await response.json());
 }

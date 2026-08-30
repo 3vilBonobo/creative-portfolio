@@ -11,7 +11,7 @@ const sourceLabel = computed(() => ({ live: "Live", cache: "Cached", staleCache:
 <template>
   <section id="office" class="hero floor-section" aria-labelledby="hero-title">
     <HeroVisual />
-    <div class="hero__content">
+    <div class="hero__content hero__plate" data-parallax="-2">
       <p class="eyebrow">Level 05 · Rooftop office · Athens</p>
       <h1 id="hero-title"><span>Name placeholder</span>Frontend developer.</h1>
       <p class="hero__lede">Temporary introduction — add what you build, who you help, and what makes your approach distinct.</p>
@@ -22,5 +22,9 @@ const sourceLabel = computed(() => ({ live: "Live", cache: "Cached", staleCache:
       <div class="actions"><a class="button button--primary" href="#projects">View selected work <span>↓</span></a><a class="button button--ghost" href="#about">About the developer</a></div>
     </div>
     <div class="scroll-cue" aria-hidden="true">Scroll to descend <span>↓</span></div>
+    <div class="hero-threshold" data-parallax="-7" aria-hidden="true">
+      <i class="hero-threshold__pipe" /><i class="hero-threshold__conduit" />
+      <span><b>04</b> About · Floor below</span>
+    </div>
   </section>
 </template>

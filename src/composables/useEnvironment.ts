@@ -4,16 +4,22 @@ import { TIME_PHASES, WEATHER_CONDITIONS, type EnvironmentData, type Environment
 import { deriveTimePhase, formatAthensTime } from "../services/environmentMath";
 import { fetchAthensWeather } from "../services/weatherService";
 import { readWeatherCache, writeWeatherCache } from "../services/weatherCache";
+import type { EffectIntensity } from "../services/weatherEffects";
+import { HERO_LAYER_IDS, type HeroLayerId } from "../config/heroLayers";
 
 const FALLBACK_DATA: EnvironmentData = { weatherCondition: "partlyCloudy", temperature: 27, apparentTemperature: 27, cloudCover: 35, precipitation: 0, rain: 0, windSpeed: 9, isDay: true, sunrise: null, sunset: null };
 
-interface EnvironmentContext { state: Readonly<Ref<EnvironmentState>>; timePhases: typeof TIME_PHASES; weatherConditions: typeof WEATHER_CONDITIONS; previewTimePhase: Ref<TimePhase | null>; previewWeather: Ref<WeatherCondition | null>; resetPreview: () => void }
+export type HeroCompositeMode = "layers" | "reference";
+interface EnvironmentContext { state: Readonly<Ref<EnvironmentState>>; timePhases: typeof TIME_PHASES; weatherConditions: typeof WEATHER_CONDITIONS; heroLayerIds: typeof HERO_LAYER_IDS; previewTimePhase: Ref<TimePhase | null>; previewWeather: Ref<WeatherCondition | null>; previewIntensity: Ref<EffectIntensity>; heroCompositeMode: Ref<HeroCompositeMode>; hiddenHeroLayers: Ref<HeroLayerId[]>; showExteriorMask: Ref<boolean>; showInteriorMask: Ref<boolean>; tintHeroLayers: Ref<boolean>; freezeParallax: Ref<boolean>; resetPreview: () => void }
 const environmentKey: InjectionKey<EnvironmentContext> = Symbol("environment");
 
 export function provideEnvironment() {
   const now = ref(new Date()); const data = ref<EnvironmentData>(FALLBACK_DATA);
   const source = ref<EnvironmentSource>("fallback"); const loading = ref(true); const error = ref<string | null>(null);
   const lastUpdated = ref(now.value); const previewTimePhase = ref<TimePhase | null>(null); const previewWeather = ref<WeatherCondition | null>(null);
+  const previewIntensity = ref<EffectIntensity>("auto");
+  const heroCompositeMode = ref<HeroCompositeMode>("layers"); const hiddenHeroLayers = ref<HeroLayerId[]>([]);
+  const showExteriorMask = ref(false); const showInteriorMask = ref(false); const tintHeroLayers = ref(false); const freezeParallax = ref(false);
   let clockTimer: number | undefined; let refreshTimer: number | undefined; let controller: AbortController | undefined; let activeRequest: Promise<void> | null = null;
 
   const state = computed<EnvironmentState>(() => {
@@ -50,7 +56,7 @@ export function provideEnvironment() {
 
   onMounted(() => { initialize(); clockTimer = window.setInterval(() => { now.value = new Date(); }, 30_000); document.addEventListener("visibilitychange", onVisibilityChange); });
   onBeforeUnmount(() => { window.clearInterval(clockTimer); window.clearTimeout(refreshTimer); controller?.abort(); document.removeEventListener("visibilitychange", onVisibilityChange); });
-  const context: EnvironmentContext = { state: readonly(state), timePhases: TIME_PHASES, weatherConditions: WEATHER_CONDITIONS, previewTimePhase, previewWeather, resetPreview: () => { previewTimePhase.value = null; previewWeather.value = null; } };
+  const context: EnvironmentContext = { state: readonly(state), timePhases: TIME_PHASES, weatherConditions: WEATHER_CONDITIONS, heroLayerIds: HERO_LAYER_IDS, previewTimePhase, previewWeather, previewIntensity, heroCompositeMode, hiddenHeroLayers, showExteriorMask, showInteriorMask, tintHeroLayers, freezeParallax, resetPreview: () => { previewTimePhase.value = null; previewWeather.value = null; previewIntensity.value = "auto"; heroCompositeMode.value = "layers"; hiddenHeroLayers.value = []; showExteriorMask.value = false; showInteriorMask.value = false; tintHeroLayers.value = false; freezeParallax.value = false; } };
   provide(environmentKey, context); return context;
 }
 

@@ -1,21 +1,56 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref } from "vue";
-import gsap from "gsap"; import { ScrollTrigger } from "gsap/ScrollTrigger";
-const root = ref<HTMLElement>(); let context: gsap.Context | undefined;
-onMounted(() => { if (!root.value || matchMedia("(prefers-reduced-motion: reduce)").matches) return; gsap.registerPlugin(ScrollTrigger); context = gsap.context(() => { gsap.utils.toArray<HTMLElement>("[data-depth]").forEach((layer) => gsap.to(layer, { yPercent: Number(layer.dataset.depth ?? 0), ease: "none", scrollTrigger: { trigger: root.value, start: "top top", end: "bottom top", scrub: true } })); }, root.value); });
-onBeforeUnmount(() => context?.revert());
+import { computed, onBeforeUnmount, onMounted, ref, watch } from "vue";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { getHeroLayers, HERO_REFERENCE, type HeroLayerDefinition } from "../config/heroLayers";
+import { useEnvironment } from "../composables/useEnvironment";
+import WeatherEffects from "./WeatherEffects.vue";
+
+const { state, previewIntensity, heroCompositeMode, hiddenHeroLayers, showExteriorMask, showInteriorMask, tintHeroLayers, freezeParallax } = useEnvironment();
+const root = ref<HTMLElement>(); const compositeFailed = ref(false); const documentHidden = ref(document.visibilityState === "hidden");
+const layers = computed(() => getHeroLayers(state.value.timePhase));
+const showReference = computed(() => heroCompositeMode.value === "reference" || compositeFailed.value);
+const isHidden = (layer: HeroLayerDefinition) => hiddenHeroLayers.value.includes(layer.id);
+const styleFor = (layer: HeroLayerDefinition) => ({ zIndex: layer.order, "--layer-overscan": `${layer.overscan}%` });
+let context: gsap.Context | undefined; const triggers: ScrollTrigger[] = []; let motionQuery: MediaQueryList | undefined;
+
+function onAssetError() { compositeFailed.value = true; }
+function onVisibilityChange() { documentHidden.value = document.visibilityState === "hidden"; }
+function teardownParallax() { context?.revert(); context = undefined; triggers.length = 0; }
+function syncParallax() {
+  teardownParallax();
+  const hero = root.value?.closest<HTMLElement>(".hero");
+  if (!hero || !motionQuery?.matches) return;
+  context = gsap.context(() => {
+    gsap.utils.toArray<HTMLElement>("[data-parallax]", hero).forEach((element) => {
+      const tween = gsap.to(element, { yPercent: Number(element.dataset.parallax ?? 0), ease: "none", scrollTrigger: { trigger: hero, start: "top top", end: "bottom top", scrub: .55 } });
+      if (tween.scrollTrigger) triggers.push(tween.scrollTrigger);
+    });
+  }, hero);
+}
+watch(freezeParallax, (frozen) => triggers.forEach((trigger) => frozen ? trigger.disable() : trigger.enable()));
+watch(() => state.value.timePhase, () => { compositeFailed.value = false; });
+
+onMounted(() => {
+  document.addEventListener("visibilitychange", onVisibilityChange);
+  gsap.registerPlugin(ScrollTrigger);
+  motionQuery = matchMedia("(min-width: 761px) and (prefers-reduced-motion: no-preference)"); motionQuery.addEventListener("change", syncParallax); syncParallax();
+});
+onBeforeUnmount(() => { document.removeEventListener("visibilitychange", onVisibilityChange); motionQuery?.removeEventListener("change", syncParallax); teardownParallax(); });
 </script>
+
 <template>
-  <div ref="root" class="hero-visual" role="img" aria-label="Layered placeholder scene of a developer's rooftop office overlooking Athens">
-    <div class="hero-layer hero-layer--sky" data-depth="3" aria-hidden="true" />
-    <div class="hero-layer hero-layer--athens" data-depth="8" aria-hidden="true"><i class="acropolis-placeholder" /></div>
-    <div class="hero-layer hero-layer--haze" aria-hidden="true" />
-    <div class="hero-layer hero-layer--rooftops" data-depth="14" aria-hidden="true" />
-    <div class="hero-layer hero-layer--frame" aria-hidden="true" />
-    <div class="hero-layer hero-layer--office" data-depth="4" aria-hidden="true"><i class="practical-light" /><i class="shelf" /></div>
-    <div class="hero-layer hero-layer--desk" data-depth="7" aria-hidden="true"><i class="monitor monitor--one" /><i class="monitor monitor--two" /><i class="desk-lamp" /></div>
-    <div class="hero-layer hero-layer--developer" data-depth="10" aria-hidden="true" />
-    <div class="hero-layer hero-layer--weather" aria-hidden="true" />
-    <div class="hero-layer hero-layer--lighting" aria-hidden="true" />
+  <div ref="root" class="hero-visual" :class="{ 'hero-visual--debug-tints': tintHeroLayers, 'hero-visual--frozen': freezeParallax }" aria-hidden="true">
+    <picture v-if="showReference" class="hero-reference"><source media="(max-width: 760px)" :srcset="HERO_REFERENCE.mobile"><img :src="HERO_REFERENCE.desktop" :width="HERO_REFERENCE.width" :height="HERO_REFERENCE.height" alt="" fetchpriority="high"></picture>
+    <div v-else class="hero-composite">
+      <template v-for="layer in layers" :key="layer.id">
+        <div v-if="!isHidden(layer)" class="hero-composite__layer" :class="[`hero-composite__layer--${layer.id}`]" :style="styleFor(layer)" :data-layer-id="layer.id" :data-parallax="layer.parallax">
+          <img v-if="layer.kind === 'raster' || layer.kind === 'lighting'" :src="layer.desktop!" width="1536" height="1024" alt="" @error="onAssetError">
+          <WeatherEffects v-else-if="layer.kind === 'weather'" :mode="layer.id === 'exteriorAtmosphere' ? 'atmosphere' : 'precipitation'" :state="state" :intensity="previewIntensity" :paused="documentHidden" />
+          <div v-else class="hero-window-glass" />
+        </div>
+      </template>
+      <div v-if="showExteriorMask" class="hero-debug-mask hero-debug-mask--exterior" /><div v-if="showInteriorMask" class="hero-debug-mask hero-debug-mask--interior" />
+    </div>
   </div>
 </template>

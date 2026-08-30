@@ -1,5 +1,5 @@
 export const TIME_PHASES = ["dawn", "day", "goldenHour", "dusk", "night"] as const;
-export const WEATHER_CONDITIONS = ["clear", "partlyCloudy", "cloudy", "fog", "rain", "storm"] as const;
+export const WEATHER_CONDITIONS = ["clear", "partlyCloudy", "cloudy", "fog", "rain", "storm", "snow"] as const;
 
 export type TimePhase = (typeof TIME_PHASES)[number];
 export type WeatherCondition = (typeof WEATHER_CONDITIONS)[number];

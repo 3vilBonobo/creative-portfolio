@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1536 1024">
+  <mask id="interior"><rect width="1536" height="1024" fill="white"/><g fill="black"><polygon points="278,168 544,168 544,516 278,516"/><polygon points="553,168 690,168 690,516 553,516"/><polygon points="699,168 839,168 839,516 699,516"/><polygon points="848,168 981,168 981,516 848,516"/><polygon points="990,168 1100,168 1100,516 990,516"/><polygon points="1109,168 1202,168 1202,516 1109,516"/></g><g fill="white"><polygon points="368,474 1115,474 1130,704 1010,718 990,654 770,650 750,875 550,895 545,690 370,688"/><polygon points="580,440 780,440 800,690 555,690"/><polygon points="800,420 1055,420 1060,690 790,690"/><polygon points="520,535 780,535 820,905 535,915"/><polygon points="330,455 430,455 450,630 315,640"/><polygon points="1060,480 1160,480 1180,700 1045,700"/></g></mask>
+  <rect width="1536" height="1024" fill="white" mask="url(#interior)"/>
+</svg>
