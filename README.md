@@ -1,4 +1,4 @@
-# .
+# Creative Portfolio
 
 This template should help get you started developing with Vue 3 in Vite.
 
@@ -36,3 +36,25 @@ npm run dev
 ```sh
 npm run build
 ```
+
+## Deploy to Netlify
+
+The repository includes `netlify.toml`, so Netlify automatically uses Node 22,
+runs the Vite production build, and publishes the generated `dist` directory.
+
+1. Push this repository to GitHub, GitLab, or Bitbucket.
+2. Sign in to [Netlify](https://app.netlify.com/) and select **Add new project**,
+   then **Import an existing project**.
+3. Connect the Git provider and select this repository.
+4. Leave the detected build settings as they are:
+   - Build command: `npm run build`
+   - Publish directory: `dist`
+5. Select **Deploy**.
+
+Netlify enables continuous deployment for an imported Git repository. Every
+push to the production branch (usually `main`) triggers a new production build
+and updates the live site. Pushes to other branches and pull requests can create
+Deploy Previews without replacing the production site.
+
+To use a custom domain, open the site in Netlify and go to **Domain management**,
+then choose **Add a domain** and follow the DNS instructions.
