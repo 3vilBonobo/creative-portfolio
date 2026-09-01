@@ -46,7 +46,10 @@ onBeforeUnmount(() => { document.removeEventListener("visibilitychange", onVisib
 
 <template>
   <div ref="root" class="hero-visual" :class="{ 'hero-visual--debug-tints': tintHeroLayers, 'hero-visual--frozen': freezeParallax }" aria-hidden="true">
-    <picture v-if="showReference" class="hero-reference"><source media="(max-width: 760px)" :srcset="HERO_REFERENCE.mobile"><img :src="HERO_REFERENCE.desktop" :width="HERO_REFERENCE.width" :height="HERO_REFERENCE.height" alt="" fetchpriority="high"></picture>
+    <template v-if="showReference">
+      <picture class="hero-reference"><source media="(max-width: 760px)" :srcset="HERO_REFERENCE.mobile"><img :src="HERO_REFERENCE.desktop" :width="HERO_REFERENCE.width" :height="HERO_REFERENCE.height" alt="" fetchpriority="high"></picture>
+      <div class="hero-reference-clock"><HeroClock responsive-reference /></div>
+    </template>
     <div v-else class="hero-composite">
       <template v-for="layer in layers" :key="layer.id">
         <div v-if="!isHidden(layer)" class="hero-composite__layer" :class="[`hero-composite__layer--${layer.id}`]" :style="styleFor(layer)" :data-layer-id="layer.id" :data-parallax="layer.parallax">

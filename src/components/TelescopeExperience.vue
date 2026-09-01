@@ -117,7 +117,25 @@ onBeforeUnmount(() => { window.removeEventListener("keydown", onKeydown); cancel
 </script>
 
 <template>
-  <button class="telescope-hotspot" type="button" aria-label="Look through the telescope" title="Look through the telescope" @click.stop="showTelescope"><span>Open telescope</span></button>
+  <svg v-if="!open" class="telescope-hotspot-map" viewBox="0 0 1536 1024" preserveAspectRatio="xMidYMid meet" aria-hidden="false">
+    <defs>
+      <radialGradient id="telescope-outer-halo">
+        <stop offset="0%" stop-color="#efad3f" stop-opacity="0" />
+        <stop offset="79%" stop-color="#efad3f" stop-opacity="0" />
+        <stop offset="86%" stop-color="#efad3f" stop-opacity=".34" />
+        <stop offset="100%" stop-color="#efad3f" stop-opacity="0" />
+      </radialGradient>
+    </defs>
+    <g class="telescope-hotspot-target" role="button" tabindex="0" aria-label="Look through the telescope" @click.stop="showTelescope" @keydown.enter.prevent.stop="showTelescope" @keydown.space.prevent.stop="showTelescope">
+      <title>Look through the telescope</title>
+      <circle class="telescope-hotspot-target__halo" cx="374" cy="520" r="80" />
+      <circle class="telescope-hotspot-target__shape" cx="374" cy="520" r="64" />
+      <g class="telescope-hotspot-target__label">
+        <rect x="314" y="594" width="120" height="28" />
+        <text x="374" y="612" text-anchor="middle">Open telescope</text>
+      </g>
+    </g>
+  </svg>
   <Teleport to="body">
     <Transition name="telescope-reveal">
       <div v-if="open" class="telescope-app" role="dialog" aria-modal="true" aria-label="Telescope view" :data-time-phase="state.timePhase">
