@@ -3,6 +3,7 @@ import { computed, onBeforeUnmount, onMounted, ref } from "vue";
 import HeroVisual from "../components/HeroVisual.vue";
 import TelescopeExperience from "../components/TelescopeExperience.vue";
 import DailyPuzzleBook from "../components/DailyPuzzleBook.vue";
+import AquariumExperience from "../components/AquariumExperience.vue";
 import { useEnvironment } from "../composables/useEnvironment";
 
 const { state } = useEnvironment();
@@ -48,6 +49,7 @@ onBeforeUnmount(() => window.removeEventListener("scroll", handleScroll));
     <HeroVisual />
     <TelescopeExperience />
     <DailyPuzzleBook />
+    <AquariumExperience />
     <div class="hero-copy-drawer" :class="{ 'hero-copy-drawer--closed': !showIntroduction }">
       <div id="hero-introduction" class="hero__content hero__plate" data-parallax="-2" :aria-hidden="!showIntroduction" :inert="!showIntroduction">
         <p class="eyebrow">Level 05 · Rooftop office · Athens</p>
