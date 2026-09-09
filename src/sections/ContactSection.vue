@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, nextTick, onBeforeUnmount, onMounted, ref } from "vue";
 import AlleyFooter from "../components/AlleyFooter.vue";
+import MouseEasterEgg from "../components/MouseEasterEgg.vue";
 import SceneEnvironment from "../components/SceneEnvironment.vue";
 import WeatherEffects from "../components/WeatherEffects.vue";
 import { useEnvironment } from "../composables/useEnvironment";
@@ -64,6 +65,7 @@ onBeforeUnmount(() => { document.removeEventListener("visibilitychange", onVisib
           <span class="contact-rail__location"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.2 7-12A7 7 0 1 0 5 9c0 5.8 7 12 7 12Z"/><circle cx="12" cy="9" r="2.3"/></svg><span>Athens, Greece</span></span>
           <i aria-hidden="true">→</i>
         </nav>
+        <MouseEasterEgg />
         <button class="exit-door" type="button" aria-label="Enter the building and return to the rooftop" @click="returnToRooftop"><span>Enter</span><svg viewBox="0 0 44 20" aria-hidden="true"><path d="M1 10h38M31 2l8 8-8 8" /></svg></button>
       </div>
     </div>
