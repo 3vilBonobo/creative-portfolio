@@ -1,6 +1,6 @@
 import type { AboutContent } from "../types/content";
 
-// TEMPORARY COPY: replace with Irene's approved biography, focus, toolkit and CV URL.
+// TEMPORARY COPY: replace with Irinella's approved biography, focus, toolkit and CV URL.
 // The themes below come only from the approved About-section brief.
 export const aboutContent: AboutContent = {
   eyebrow: "Level 04 · About",

@@ -53,10 +53,10 @@ onBeforeUnmount(() => { document.removeEventListener("visibilitychange", onVisib
           </button>
           <p class="contact-panel__copy">Have a frontend project, product challenge or collaboration in mind? Choose a channel and say hello.</p>
           <p class="contact-panel__note">Based in Athens · Open to thoughtful conversations about the web.</p>
-          <nav id="contact-socials" class="contact-socials" aria-label="Irene's social profiles">
-            <a ref="firstSocial" href="https://x.com/Irinella_b" target="_blank" rel="noopener noreferrer" aria-label="Visit Irene on X"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.7 2H22l-7.2 8.2L23.3 22h-6.7l-5.2-6.8L5.4 22H2l7.8-8.9L1.6 2h6.9l4.7 6.2L18.7 2Zm-1.2 17.9h1.8L7.5 4H5.6l11.9 15.9Z" /></svg><span>X</span></a>
-            <a href="https://www.instagram.com/irinella_b/" target="_blank" rel="noopener noreferrer" aria-label="Visit Irene on Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.1"/><circle class="fill" cx="17.5" cy="6.5" r="1"/></svg><span>Instagram</span></a>
-            <a href="https://www.linkedin.com/in/irinella-boutsika/" target="_blank" rel="noopener noreferrer" aria-label="Visit Irene on LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 8.5V19M6.5 5.2v.1M10.5 19V8.5m0 4.6c0-2.6 1.5-4.7 4.1-4.7 3 0 3.9 2 3.9 5V19"/><circle cx="6.5" cy="5.2" r="1.2"/></svg><span>LinkedIn</span></a>
+          <nav id="contact-socials" class="contact-socials" aria-label="Irinella's social profiles">
+            <a ref="firstSocial" href="https://x.com/Irinella_b" target="_blank" rel="noopener noreferrer" aria-label="Visit Irinella on X"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.7 2H22l-7.2 8.2L23.3 22h-6.7l-5.2-6.8L5.4 22H2l7.8-8.9L1.6 2h6.9l4.7 6.2L18.7 2Zm-1.2 17.9h1.8L7.5 4H5.6l11.9 15.9Z" /></svg><span>X</span></a>
+            <a href="https://www.instagram.com/irinella_b/" target="_blank" rel="noopener noreferrer" aria-label="Visit Irinella on Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.1"/><circle class="fill" cx="17.5" cy="6.5" r="1"/></svg><span>Instagram</span></a>
+            <a href="https://www.linkedin.com/in/irinella-boutsika/" target="_blank" rel="noopener noreferrer" aria-label="Visit Irinella on LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 8.5V19M6.5 5.2v.1M10.5 19V8.5m0 4.6c0-2.6 1.5-4.7 4.1-4.7 3 0 3.9 2 3.9 5V19"/><circle cx="6.5" cy="5.2" r="1.2"/></svg><span>LinkedIn</span></a>
           </nav>
         </div>
         <nav class="contact-rail" aria-label="Contact shortcuts">

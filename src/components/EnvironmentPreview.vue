@@ -68,7 +68,8 @@ function selectMoonPhase() {
           </select>
         </label>
         <span class="cat-preview__status" aria-live="polite">{{ catScene.spot.label }} · {{ catScene.pose }}</span>
-        <span class="cat-preview__hint">Choose a location and pose, then click the cat in the hero to pet him. Sleeping cats purr; too many pets may annoy him. Automatic changes hourly.</span>
+        <span class="cat-preview__hint">Choose a location and pose, then click the cat in the hero to pet him. Awake cats randomly meow or purr. Sleeping cats purr, but repeated pets may annoy him; leave him alone for 12 seconds to calm down. Automatic changes hourly.</span>
+        <a class="cat-preview__hint" href="/audio/cat/credits.html" target="_blank" rel="noopener">Cat sound credits</a>
       </div>
     </fieldset>
     <div class="environment-preview__checks">

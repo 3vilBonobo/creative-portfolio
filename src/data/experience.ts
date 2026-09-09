@@ -1,8 +1,8 @@
 import type { ExperienceEntry } from "../types/content";
 
 // Profile-informed mockup copy. Public sources confirm Agritrack SA,
-// freeCodeCamp (2020–2021), Irene's frontend focus, and the named projects.
-// Exact employment titles and dates still require Irene's confirmation.
+// freeCodeCamp (2020–2021), Irinella's frontend focus, and the named projects.
+// Exact employment titles and dates still require Irinella's confirmation.
 export const experience: ExperienceEntry[] = [
   {
     id: "agritrack-frontend",

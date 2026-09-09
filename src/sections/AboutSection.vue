@@ -53,7 +53,7 @@ onBeforeUnmount(() => context?.revert());
       <aside class="about__rail" aria-label="Level 04"><span>Level</span><strong>04</strong><small>About</small><div class="about__floor-dots" aria-hidden="true"><i></i><i></i><i class="active"></i><i></i><i></i></div></aside>
       <div class="about__narrative">
         <div class="about__identity">
-          <figure class="about__portrait"><picture><source srcset="/about/irene-portrait.webp" type="image/webp"><img src="/about/irene-portrait.jpg" width="799" height="730" alt="Portrait of Irene" loading="lazy"></picture></figure>
+          <figure class="about__portrait"><picture><source srcset="/about/irene-portrait.webp" type="image/webp"><img src="/about/irene-portrait.jpg" width="799" height="730" alt="Portrait of Irinella" loading="lazy"></picture></figure>
           <div class="about__headline"><p class="eyebrow">{{ aboutContent.eyebrow }}</p><h2 id="about-title" class="about__heading">{{ aboutContent.title }}</h2></div>
           <p class="about__introduction">{{ aboutContent.introduction }}</p>
         </div>
@@ -61,7 +61,7 @@ onBeforeUnmount(() => context?.revert());
         <a v-if="aboutContent.cvUrl" class="button about__cv" :href="aboutContent.cvUrl">View CV <span>↗</span></a>
       </div>
       <div class="about__secondary">
-        <div class="about__tabs" role="tablist" aria-label="More about Irene">
+        <div class="about__tabs" role="tablist" aria-label="More about Irinella">
           <button v-for="(tab, index) in tabs" :id="`about-tab-${tab.id}`" :key="tab.id" :ref="(el) => { if (el) tabButtons[index] = el as HTMLButtonElement }" type="button" role="tab" :aria-selected="activeTab === tab.id" :aria-controls="`about-panel-${tab.id}`" :tabindex="activeTab === tab.id ? 0 : -1" @click="selectTab(tab.id)" @keydown="handleTabKeydown($event, index)">{{ tab.label }} <span aria-hidden="true">→</span></button>
         </div>
         <div class="about__panels">

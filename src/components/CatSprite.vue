@@ -51,7 +51,7 @@ const id = `cat-sprite-${useId().replace(/:/g, "")}`;
 .sprite-head { transform-origin: 275px 315px; animation: sprite-head 9s ease-in-out infinite; }
 .sprite-blink { opacity: 0; animation: sprite-blink 5.3s infinite; }
 .sprite-sleep-breathe { transform-origin: 1300px 813px; animation: sprite-sleep-breathe 3.8s ease-in-out infinite; }
-.sprite--purr .sprite-sleep-breathe { animation: sprite-purr 1.2s ease-in-out infinite; }
+.sprite--purr .sprite-chest, .sprite--purr .sprite-sleep-breathe { animation: sprite-purr 1.2s ease-in-out infinite; }
 .sprite--annoyed { animation: sprite-grumble .15s ease-in-out 5; }
 .sprite-mouth { transform-origin: 277px 239px; animation: sprite-mouth .8s ease-in-out both; }
 @keyframes sprite-tail { 0%, 100% { transform: rotate(-1deg); } 50% { transform: rotate(-13deg); } }

@@ -7,7 +7,7 @@ const condition = computed(() => state.value.weatherCondition.replace(/([A-Z])/g
 </script>
 <template>
   <footer class="alley-footer">
-    <p>© {{ year }} Irene Boutsika</p>
+    <p>© {{ year }} Irinella Boutsika</p>
     <p class="alley-footer__environment"><span class="sr-only">Athens conditions: </span>{{ state.localTime }} · {{ Math.round(state.temperature) }}°C · {{ condition }}</p>
     <p>Athens, Greece · Level 01</p>
   </footer>

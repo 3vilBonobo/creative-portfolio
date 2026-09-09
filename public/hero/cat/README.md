@@ -6,4 +6,4 @@ Use case: photorealistic-natural. Create a production transparent PNG sprite atl
 
 CatSprite.vue crops the atlas at render time without modifying its alpha channel. The sitting tail is separately clipped for a small swish; HeroCat.vue applies gentle breathing with the contact point fixed. Scene positions use the hero's 1536 × 1024 coordinate system.
 
-Petting uses locally synthesized Web Audio voices (no sound download or autoplay). Sitting pets meow; sleeping pets purr until four pets occur within eight seconds, when the cat protests. Clicking, tapping, Enter/Space, and holding the pointer while stroking are supported. Reduced motion disables idle movement while retaining interaction feedback.
+Petting uses four downloaded real cat recordings; credits and licenses are in /audio/cat/credits.html. Awake pets randomly meow or purr. Sleeping pets purr until repeated petting causes irritation; 12 seconds without petting clears that mood. Recordings/excerpts avoid immediate repeats. Audio plays only after interaction, with one voice at a time.

@@ -69,7 +69,7 @@ onBeforeUnmount(() => window.removeEventListener("scroll", handleScroll));
         :aria-hidden="!showIntroduction"
         :inert="!showIntroduction">
         <p class="eyebrow">Level 05 · Rooftop office · Athens</p>
-        <h1 id="hero-title"><span>Irene Boutsika</span>Frontend developer.</h1>
+        <h1 id="hero-title"><span>Irinella Boutsika</span>Frontend developer.</h1>
         <p class="hero__lede">
           I build clear, dependable interfaces for complex workflows—combining thoughtful frontend engineering with an
           evidence-led, human-centred approach.

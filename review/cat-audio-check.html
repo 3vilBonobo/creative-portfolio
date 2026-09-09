@@ -1,0 +1,7 @@
+<!doctype html><html><title>Cat audio validation</title><button id="check">Check downloaded recordings</button><pre id="result"></pre><script type="module">
+const sources=['meow-silas.ogg','meow-pleading.oga','purr-hull.ogg','purr-whiskers.ogg'];
+document.querySelector('#check').onclick=async()=>{const ctx=new AudioContext();const results=[];for(const file of sources){try{const response=await fetch('/audio/cat/'+file);const buf=await ctx.decodeAudioData(await response.arrayBuffer());const samples=buf.getChannelData(0);const rms=[];for(let s=0;s<Math.min(buf.duration,12);s+=.5){let sum=0,count=0;for(let i=Math.floor(s*buf.sampleRate);i<Math.min(samples.length,(s+.5)*buf.sampleRate);i++){sum+=samples[i]*samples[i];count++;}rms.push([s,Math.sqrt(sum/count).toFixed(4)]);}results.push({file,duration:buf.duration,channels:buf.numberOfChannels,rms});}catch(e){results.push({file,error:String(e)});}}document.querySelector('#result').textContent=JSON.stringify(results,null,2);await ctx.close();};
+</script></html>
+<button id="purr">Test real purr playback</button><button id="meow">Test real meow playback</button><p id="playback"></p><script type="module">
+import {createCatVoice} from '/src/services/catInteraction.ts';const voice=createCatVoice();for(const kind of ['purr','meow'])document.getElementById(kind).onclick=()=>{document.getElementById('playback').textContent='Loading '+kind;void voice.play(kind,ms=>{document.getElementById('playback').textContent=kind+' playback started: '+Math.round(ms)+'ms';});};
+</script>

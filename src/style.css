@@ -3835,7 +3835,7 @@ button:focus-visible {
   }
 }
 
-/* Irene's supplied portrait is integrated as a subdued photographic wall layer. */
+/* Irinella's supplied portrait is integrated as a subdued photographic wall layer. */
 .about__portrait {
   position: absolute;
   z-index: 1;
@@ -6515,7 +6515,8 @@ button:focus-visible {
 }
 .hero-copy-drawer {
   position: relative;
-  z-index: 10;
+  /* Keep the introduction and its toggle above the interactive cat (12). */
+  z-index: 13;
   max-width: min(22rem, 26vw);
   will-change: transform;
   transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
