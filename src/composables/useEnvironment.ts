@@ -7,10 +7,12 @@ import { readWeatherCache, writeWeatherCache } from "../services/weatherCache";
 import type { EffectIntensity } from "../services/weatherEffects";
 import { HERO_LAYER_IDS, type HeroLayerId } from "../config/heroLayers";
 
+import { CAT_SPOTS, getHourlyCat, type CatSpot, type CatPose } from "../config/heroCat";
+
 const FALLBACK_DATA: EnvironmentData = { weatherCondition: "partlyCloudy", temperature: 27, apparentTemperature: 27, cloudCover: 35, precipitation: 0, rain: 0, windSpeed: 9, isDay: true, sunrise: null, sunset: null };
 
 export type HeroCompositeMode = "layers" | "reference";
-interface EnvironmentContext { state: Readonly<Ref<EnvironmentState>>; timePhases: typeof TIME_PHASES; weatherConditions: typeof WEATHER_CONDITIONS; heroLayerIds: typeof HERO_LAYER_IDS; previewTimePhase: Ref<TimePhase | null>; previewWeather: Ref<WeatherCondition | null>; previewMoonPhase: Ref<number | null>; previewMoonProgress: Ref<number>; previewIntensity: Ref<EffectIntensity>; heroCompositeMode: Ref<HeroCompositeMode>; hiddenHeroLayers: Ref<HeroLayerId[]>; showExteriorMask: Ref<boolean>; showInteriorMask: Ref<boolean>; tintHeroLayers: Ref<boolean>; freezeParallax: Ref<boolean>; resetPreview: () => void }
+interface EnvironmentContext { catScene: Readonly<Ref<ReturnType<typeof getHourlyCat>>>; previewCatSpot: Ref<CatSpot | null>; previewCatPose: Ref<CatPose | null>; state: Readonly<Ref<EnvironmentState>>; timePhases: typeof TIME_PHASES; weatherConditions: typeof WEATHER_CONDITIONS; heroLayerIds: typeof HERO_LAYER_IDS; previewTimePhase: Ref<TimePhase | null>; previewWeather: Ref<WeatherCondition | null>; previewMoonPhase: Ref<number | null>; previewMoonProgress: Ref<number>; previewIntensity: Ref<EffectIntensity>; heroCompositeMode: Ref<HeroCompositeMode>; hiddenHeroLayers: Ref<HeroLayerId[]>; showExteriorMask: Ref<boolean>; showInteriorMask: Ref<boolean>; tintHeroLayers: Ref<boolean>; freezeParallax: Ref<boolean>; resetPreview: () => void }
 const environmentKey: InjectionKey<EnvironmentContext> = Symbol("environment");
 
 export function provideEnvironment() {
@@ -18,6 +20,11 @@ export function provideEnvironment() {
   const source = ref<EnvironmentSource>("fallback"); const loading = ref(true); const error = ref<string | null>(null);
   const lastUpdated = ref(now.value); const previewTimePhase = ref<TimePhase | null>(null); const previewWeather = ref<WeatherCondition | null>(null);
   const previewMoonPhase = ref<number | null>(null); const previewMoonProgress = ref(.5);
+  const previewCatSpot = ref<CatSpot | null>(null); const previewCatPose = ref<CatPose | null>(null);
+  const catScene = computed(() => {
+    const live = getHourlyCat(now.value.getTime());
+    return { spot: CAT_SPOTS.find(spot => spot.id === previewCatSpot.value) ?? live.spot, pose: previewCatPose.value ?? live.pose };
+  });
   const previewIntensity = ref<EffectIntensity>("auto");
   const heroCompositeMode = ref<HeroCompositeMode>("reference"); const hiddenHeroLayers = ref<HeroLayerId[]>([]);
   const showExteriorMask = ref(false); const showInteriorMask = ref(false); const tintHeroLayers = ref(false); const freezeParallax = ref(false);
@@ -62,7 +69,7 @@ export function provideEnvironment() {
 
   onMounted(() => { initialize(); scheduleClockTick(); document.addEventListener("visibilitychange", onVisibilityChange); });
   onBeforeUnmount(() => { window.clearTimeout(clockTimer); window.clearTimeout(refreshTimer); controller?.abort(); document.removeEventListener("visibilitychange", onVisibilityChange); });
-  const context: EnvironmentContext = { state: readonly(state), timePhases: TIME_PHASES, weatherConditions: WEATHER_CONDITIONS, heroLayerIds: HERO_LAYER_IDS, previewTimePhase, previewWeather, previewMoonPhase, previewMoonProgress, previewIntensity, heroCompositeMode, hiddenHeroLayers, showExteriorMask, showInteriorMask, tintHeroLayers, freezeParallax, resetPreview: () => { previewTimePhase.value = null; previewWeather.value = null; previewMoonPhase.value = null; previewMoonProgress.value = .5; previewIntensity.value = "auto"; heroCompositeMode.value = "reference"; hiddenHeroLayers.value = []; showExteriorMask.value = false; showInteriorMask.value = false; tintHeroLayers.value = false; freezeParallax.value = false; } };
+  const context: EnvironmentContext = { catScene, previewCatSpot, previewCatPose, state: readonly(state), timePhases: TIME_PHASES, weatherConditions: WEATHER_CONDITIONS, heroLayerIds: HERO_LAYER_IDS, previewTimePhase, previewWeather, previewMoonPhase, previewMoonProgress, previewIntensity, heroCompositeMode, hiddenHeroLayers, showExteriorMask, showInteriorMask, tintHeroLayers, freezeParallax, resetPreview: () => { previewCatSpot.value = null; previewCatPose.value = null; previewTimePhase.value = null; previewWeather.value = null; previewMoonPhase.value = null; previewMoonProgress.value = .5; previewIntensity.value = "auto"; heroCompositeMode.value = "reference"; hiddenHeroLayers.value = []; showExteriorMask.value = false; showInteriorMask.value = false; tintHeroLayers.value = false; freezeParallax.value = false; } };
   provide(environmentKey, context); return context;
 }
 

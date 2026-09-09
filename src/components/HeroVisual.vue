@@ -5,6 +5,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { getHeroLayers, HERO_REFERENCE, type HeroLayerDefinition } from "../config/heroLayers";
 import { useEnvironment } from "../composables/useEnvironment";
 
+
 import HeroClock from "./HeroClock.vue";
 import HeroMonitorAnimations from "./HeroMonitorAnimations.vue";
 import AcropolisLightBeams from "./AcropolisLightBeams.vue";
@@ -71,6 +72,7 @@ onBeforeUnmount(() => { document.removeEventListener("visibilitychange", onVisib
     <div class="hero-night-clock" :style="{ opacity: nightOpacity }">
       <HeroClock />
     </div>
+
     <div class="hero-monitor-overlay">
       <HeroMonitorAnimations :paused="documentHidden" />
     </div>

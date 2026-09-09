@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, onMounted, ref } from "vue";
+import HeroCat from "../components/HeroCat.vue";
 import HeroVisual from "../components/HeroVisual.vue";
 import TelescopeExperience from "../components/TelescopeExperience.vue";
 import DailyPuzzleBook from "../components/DailyPuzzleBook.vue";
@@ -55,6 +56,7 @@ onBeforeUnmount(() => window.removeEventListener("scroll", handleScroll));
 <template>
   <section id="office" class="hero floor-section" aria-labelledby="hero-title" @click="collapseIntroduction">
     <HeroVisual />
+    <HeroCat />
     <TelescopeExperience />
     <DailyPuzzleBook />
     <DailyChessPuzzle />
