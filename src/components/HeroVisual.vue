@@ -4,13 +4,14 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { getHeroLayers, HERO_REFERENCE, type HeroLayerDefinition } from "../config/heroLayers";
 import { useEnvironment } from "../composables/useEnvironment";
-import WeatherEffects from "./WeatherEffects.vue";
+
 import HeroClock from "./HeroClock.vue";
 import HeroMonitorAnimations from "./HeroMonitorAnimations.vue";
 import AcropolisLightBeams from "./AcropolisLightBeams.vue";
 import MoonSky from "./MoonSky.vue";
+import SceneEnvironment from "./SceneEnvironment.vue";
 
-const { state, previewIntensity, heroCompositeMode, hiddenHeroLayers, showExteriorMask, showInteriorMask, tintHeroLayers, freezeParallax } = useEnvironment();
+const { state, previewMoonPhase, previewMoonProgress, previewIntensity, heroCompositeMode, hiddenHeroLayers, showExteriorMask, showInteriorMask, tintHeroLayers, freezeParallax } = useEnvironment();
 const root = ref<HTMLElement>(); const compositeFailed = ref(false); const documentHidden = ref(document.visibilityState === "hidden");
 const layers = computed(() => getHeroLayers(state.value.timePhase));
 const showReference = computed(() => heroCompositeMode.value === "reference" || compositeFailed.value);
@@ -47,17 +48,16 @@ onBeforeUnmount(() => { document.removeEventListener("visibilitychange", onVisib
 <template>
   <div ref="root" class="hero-visual" :class="{ 'hero-visual--debug-tints': tintHeroLayers, 'hero-visual--frozen': freezeParallax }" aria-hidden="true">
     <template v-if="showReference">
-      <picture class="hero-reference"><source media="(max-width: 760px)" :srcset="HERO_REFERENCE.mobile"><img :src="HERO_REFERENCE.desktop" :width="HERO_REFERENCE.width" :height="HERO_REFERENCE.height" alt="" fetchpriority="high"></picture>
+      <picture class="hero-reference"><img :src="HERO_REFERENCE.desktop" :width="HERO_REFERENCE.width" :height="HERO_REFERENCE.height" alt="" fetchpriority="high"></picture>
       <div class="hero-reference-clock"><HeroClock responsive-reference /></div>
     </template>
     <div v-else class="hero-composite">
       <template v-for="layer in layers" :key="layer.id">
-        <div v-if="!isHidden(layer)" class="hero-composite__layer" :class="[`hero-composite__layer--${layer.id}`]" :style="styleFor(layer)" :data-layer-id="layer.id" :data-parallax="layer.parallax">
+        <div v-if="!isHidden(layer) && layer.kind !== 'weather'" class="hero-composite__layer" :class="[`hero-composite__layer--${layer.id}`]" :style="styleFor(layer)" :data-layer-id="layer.id">
           <img v-if="layer.kind === 'raster' || layer.kind === 'lighting'" :src="layer.desktop!" width="1536" height="1024" alt="" @error="onAssetError">
           <HeroClock v-if="layer.id === 'workstationForeground'" />
           <HeroMonitorAnimations v-if="layer.id === 'workstationForeground'" :paused="documentHidden" />
-          <WeatherEffects v-else-if="layer.kind === 'weather'" :mode="layer.id === 'exteriorAtmosphere' ? 'atmosphere' : 'precipitation'" :state="state" :intensity="previewIntensity" :paused="documentHidden" />
-          <div v-else class="hero-window-glass" />
+          <div v-else-if="layer.kind === 'glass'" class="hero-window-glass" />
         </div>
       </template>
       <div v-if="showExteriorMask" class="hero-debug-mask hero-debug-mask--exterior" /><div v-if="showInteriorMask" class="hero-debug-mask hero-debug-mask--interior" />
@@ -65,7 +65,8 @@ onBeforeUnmount(() => { document.removeEventListener("visibilitychange", onVisib
     <picture class="hero-night" :style="{ opacity: nightOpacity }">
       <img src="/hero/athens-coder-loft-night.png" width="1536" height="1024" alt="" decoding="async">
     </picture>
-    <MoonSky :state="state" :paused="documentHidden" :style="{ opacity: nightOpacity }" />
+    <SceneEnvironment scene="hero" :state="state" :intensity="previewIntensity" :paused="documentHidden" />
+    <MoonSky :state="state" :preview-phase="previewMoonPhase" :preview-progress="previewMoonProgress" :paused="documentHidden" :style="{ opacity: nightOpacity }" />
     <AcropolisLightBeams :visible="nightOpacity > 0" :paused="documentHidden" :style="{ opacity: nightOpacity }" />
     <div class="hero-night-clock" :style="{ opacity: nightOpacity }">
       <HeroClock />

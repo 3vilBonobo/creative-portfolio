@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="300" viewBox="0 0 1200 300">
+  <defs>
+    <linearGradient id="cloud" x2="0" y2="1"><stop stop-color="#fffdf5"/><stop offset=".5" stop-color="#e6e9e8"/><stop offset="1" stop-color="#8395a4" stop-opacity=".2"/></linearGradient>
+    <filter id="soft" x="-20%" y="-40%" width="140%" height="180%"><feTurbulence type="fractalNoise" baseFrequency=".018" numOctaves="3" seed="12" result="noise"/><feDisplacementMap in="SourceGraphic" in2="noise" scale="18"/><feGaussianBlur stdDeviation="3"/></filter>
+  </defs>
+  <g fill="url(#cloud)" filter="url(#soft)">
+    <path d="M70 165Q48 135 90 126Q84 99 124 99Q127 60 168 84Q197 37 232 76Q275 72 277 114Q329 93 352 133Q401 125 415 163Q248 194 70 165Z"/>
+    <path d="M510 102Q505 82 542 78Q555 42 588 62Q613 10 651 48Q697 37 711 81Q757 64 779 108Q659 132 510 102Z"/>
+    <path d="M860 192Q839 162 890 157Q887 120 924 122Q960 64 996 113Q1042 97 1057 143Q1108 128 1134 178Q1032 221 860 192Z"/>
+  </g>
+</svg>

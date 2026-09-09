@@ -1,0 +1,67 @@
+/* All masks and effects use the source artwork's coordinate system. */
+.scene-environment { position: absolute; inset: 0; pointer-events: none; --scene-top: #70a9ce; --scene-horizon: #e3ddd0; --cloud-tint: 1; }
+.scene-environment[data-phase="dawn"] { --scene-top: #72869f; --scene-horizon: #f4bf9e; --cloud-tint: .88; }
+.scene-environment[data-phase="goldenHour"] { --scene-top: #7b9eaf; --scene-horizon: #f2ba77; --cloud-tint: .92; }
+.scene-environment[data-phase="dusk"] { --scene-top: #303e61; --scene-horizon: #ba8c91; --cloud-tint: .48; }
+.scene-environment[data-phase="night"] { --scene-top: #031426; --scene-horizon: #172e45; --cloud-tint: .24; }
+.scene-environment__sky, .scene-environment__exterior, .scene-clear-sky, .scene-environment__grade { position: absolute; inset: 0; }
+.scene-environment__sky { mask: var(--scene-sky-mask) center / 100% 100% no-repeat; }
+.scene-environment__exterior { mask: var(--scene-exterior-mask) center / 100% 100% no-repeat; }
+.scene-clear-sky { background: linear-gradient(var(--scene-top) 16%, var(--scene-horizon) 39%); }
+.scene-environment .weather-effects { inset: 0; clip-path: none; mask: none; }
+.scene-environment--hero { z-index: 56; --scene-sky-mask: url('/weather/hero-sky-day.svg'); --scene-exterior-mask: url('/weather/hero-exterior-day.svg'); }
+.scene-environment--hero[data-phase="night"], .scene-environment--hero[data-phase="dusk"] { --scene-sky-mask: url('/weather/hero-sky-night.svg'); --scene-exterior-mask: url('/weather/hero-exterior-night.svg'); }
+.scene-environment--alley { z-index: 3; --scene-sky-mask: url('/weather/alley-sky.svg'); --scene-exterior-mask: url('/weather/alley-exterior.svg'); }
+.scene-environment--alley .scene-clear-sky { background: linear-gradient(var(--scene-top), var(--scene-horizon) 36%); }
+.scene-environment[data-phase="dawn"] .scene-environment__grade { background: #c2a4b71a; }
+.scene-environment[data-phase="goldenHour"] .scene-environment__grade { background: #eeae6930; mix-blend-mode: multiply; }
+.scene-environment[data-phase="dusk"] .scene-environment__grade { background: #29395124; }
+.scene-environment[data-weather="cloudy"] .scene-environment__grade { background: #36435330; }
+.scene-environment[data-weather="rain"] .scene-environment__grade { background: #263b5050; }
+.scene-environment[data-weather="storm"] .scene-environment__grade { background: #14263b88; }
+.weather-clouds { position: absolute; inset: 15% 0 58%; opacity: var(--effect-cloud); filter: brightness(var(--cloud-tint)); }
+.weather-cloud-bank { position: absolute; width: 200%; height: 100%; background: url('/weather/cloud-bank.svg') 0 0 / 50% 100% repeat-x; animation: weather-cloud-transit var(--cloud-duration) linear infinite; animation-play-state: var(--cloud-play); }
+.weather-cloud-bank--far { top: 12%; opacity: .55; height: 70%; animation-duration: calc(var(--cloud-duration) * 1.65); animation-delay: -90s; }
+.weather-cloud-bank--near { animation-delay: -35s; }
+.weather-clouds--dense { inset: 12% 0 57%; background: linear-gradient(#4b5a6be6, #78838caa 64%, transparent); }
+.weather-clouds--dense .weather-cloud-bank { height: 150%; top: -15%; background-size: 25% 100%; }
+.scene-environment--alley .weather-clouds { inset: -3% 0 63%; }
+.scene-environment--alley .weather-cloud-bank { background-size: 25% 100%; }
+@keyframes weather-cloud-transit { to { transform: translateX(-50%); } }
+.scene-environment .weather-storm-light { background: radial-gradient(ellipse at 48% 23%, #e5eeffb0, #bbd5f930 40%, transparent 65%); animation: weather-lightning-flash 11s linear infinite; }
+.weather-lightning { position: absolute; left: 18%; top: 16%; width: 48%; height: 24%; fill: none; stroke: #e8f4ff; stroke-width: 2; filter: drop-shadow(0 0 4px #99c5ff); opacity: 0; animation: weather-lightning-flash 11s linear infinite; }
+.scene-environment--alley .weather-lightning { left: 16%; top: 0; width: 13%; height: 30%; }
+@keyframes weather-lightning-flash { 0%, 45%, 47.5%, 100% { opacity: 0; } 45.4% { opacity: .9; } 46% { opacity: .12; } 46.4% { opacity: .65; } }
+.scene-environment .weather-rain { background-image: repeating-linear-gradient(100deg, transparent 0 30px, #d8e8ef99 31px, transparent 32px 56px); }
+.scene-environment .weather-fog--far { top: 32%; }
+.scene-environment .weather-fog--near { top: 42%; }
+/* Use the same contained 3:2 canvas for both plates and their masks. */
+.hero-visual > .scene-environment, .hero-visual > .moon-sky { top: 50%; left: 50%; right: auto; bottom: auto; width: min(100cqw, 150cqh); height: auto; aspect-ratio: 3/2; transform: translate(-50%, -50%); }
+.hero-visual > .moon-sky { z-index: 57; mask-image: url('/weather/hero-sky-night.svg'); }
+.contact-scene__canvas { position: absolute; inset: 0; }
+.contact-scene__time-treatment { mask: url('/weather/alley-exterior.svg') center / 100% 100% no-repeat; }
+@media (max-width: 900px) {
+  .contact-scene__canvas { inset: 0 auto auto 23%; width: max(100%, 65.887rem); height: 34rem; transform: translateX(-23%); }
+  .contact-scene__canvas .contact-scene__plate { height: 100%; object-fit: fill; }
+}
+@media (max-width: 760px) {
+  .hero-visual > .hero-reference, .hero-visual > .hero-composite { top: 50%; left: 50%; right: auto; bottom: auto; width: min(100cqw, 150cqh); height: auto; aspect-ratio: 3/2; transform: translate(-50%, -50%); }
+  .hero-composite__layer { height: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scene-environment *, .scene-environment *::before { animation: none !important; transition: none !important; }
+  .weather-lightning, .scene-environment .weather-storm-light { display: none; }
+}
+/* Street depth fades toward the camera, without painting a polygon over the paving. */
+.scene-environment--alley .scene-environment__grade { background: none; }
+.scene-environment--alley .weather-rain { opacity: calc(var(--effect-strength) * .52); }
+.scene-environment--alley .weather-rain--far { opacity: calc(var(--effect-strength) * .3); }
+
+/* Precipitation uses independent particles with depth, motion blur and wind drift. */
+.weather-particles { display: block; position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+/* The entire street is outdoors. Only sky replacement needs a skyline mask. */
+.scene-environment--alley .scene-environment__exterior,
+.contact-scene__time-treatment { mask: none; }
+.contact-scene__stage > .contact-scene__precipitation {
+  position: absolute; inset: 0; z-index: 5; mask: none; clip-path: none; pointer-events: none;
+}

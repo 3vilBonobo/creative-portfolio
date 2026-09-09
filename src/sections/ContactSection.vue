@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, nextTick, onBeforeUnmount, onMounted, ref } from "vue";
 import AlleyFooter from "../components/AlleyFooter.vue";
+import SceneEnvironment from "../components/SceneEnvironment.vue";
 import WeatherEffects from "../components/WeatherEffects.vue";
 import { useEnvironment } from "../composables/useEnvironment";
 
@@ -34,13 +35,15 @@ onBeforeUnmount(() => { document.removeEventListener("visibilitychange", onVisib
   <section ref="section" id="street" class="floor-section contact-scene" :data-phase="state.timePhase" :data-weather="state.weatherCondition" aria-labelledby="contact-title">
     <div class="contact-scene__stage">
       <div class="contact-scene__art" aria-hidden="true">
+        <div class="contact-scene__canvas">
         <img class="contact-scene__plate contact-scene__plate--day" src="/contact/alley-day-extended.webp" width="1746" height="901" alt="" loading="lazy" decoding="async" @load="dayLoaded = true">
         <img class="contact-scene__plate contact-scene__plate--night" src="/contact/alley-night-extended.webp" width="1746" height="901" alt="" loading="lazy" decoding="async" :style="{ opacity: nightOpacity }" @load="nightLoaded = true">
         <div class="contact-scene__time-treatment" />
-        <WeatherEffects mode="atmosphere" :state="state" :intensity="previewIntensity" :paused="effectsPaused" />
-        <WeatherEffects mode="precipitation" :state="state" :intensity="previewIntensity" :paused="effectsPaused" />
+        <SceneEnvironment scene="alley" :precipitation="false" :state="state" :intensity="previewIntensity" :paused="effectsPaused" />
         <div class="contact-scene__wetness" /><div class="contact-scene__readability" />
+        </div>
       </div>
+      <WeatherEffects class="contact-scene__precipitation" mode="precipitation" :state="state" :intensity="previewIntensity" :paused="effectsPaused" />
       <div class="contact-scene__layout">
         <div class="contact-level" aria-label="Level 01, building entrance"><small>Level</small><strong>01</strong><span>Entrance</span><i aria-hidden="true">→</i></div>
         <div class="contact-panel">

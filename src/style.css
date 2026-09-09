@@ -2157,6 +2157,10 @@ button:focus-visible {
     top 58s linear,
     opacity 2.2s ease;
 }
+.moon-sky--preview,
+.moon-sky--preview .moon-sky__moon {
+  transition: none;
+}
 .moon-sky__cloud {
   position: absolute;
   z-index: 2;
@@ -6492,8 +6496,22 @@ button:focus-visible {
   color: var(--service);
   font-size: 0.9rem;
 }
+.environment-preview__moon {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: .4rem;
+  max-width: 26rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.environment-preview__moon input {
+  width: 100%;
+  accent-color: var(--service);
+}
 .environment-preview {
   bottom: 4rem;
+  max-height: calc(100svh - 5rem);
+  overflow-y: auto;
 }
 .hero-copy-drawer {
   position: relative;
