@@ -23,6 +23,7 @@ export interface ExperienceEntry {
   endDate: string;
   dateLabel: string;
   summary: string;
+  mobileSummary?: string;
   highlights: string[];
   technologies: string[];
   current: boolean;

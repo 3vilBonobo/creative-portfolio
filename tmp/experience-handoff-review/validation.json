@@ -1,0 +1,117 @@
+[
+  {
+    "file": "backgrounds/desktop/desktop-base-approved-earlier.webp",
+    "dimensions": [
+      1920,
+      1080
+    ],
+    "mode": "RGB",
+    "sha256_ok": true,
+    "alpha_extrema": null
+  },
+  {
+    "file": "backgrounds/desktop/desktop-candidate-a.png",
+    "dimensions": [
+      1672,
+      941
+    ],
+    "mode": "RGB",
+    "sha256_ok": true,
+    "alpha_extrema": null
+  },
+  {
+    "file": "backgrounds/desktop/desktop-candidate-b.png",
+    "dimensions": [
+      1672,
+      941
+    ],
+    "mode": "RGB",
+    "sha256_ok": true,
+    "alpha_extrema": null
+  },
+  {
+    "file": "backgrounds/tablet/tablet-environment.png",
+    "dimensions": [
+      1448,
+      1086
+    ],
+    "mode": "RGB",
+    "sha256_ok": true,
+    "alpha_extrema": null
+  },
+  {
+    "file": "backgrounds/mobile/mobile-environment.png",
+    "dimensions": [
+      941,
+      1672
+    ],
+    "mode": "RGB",
+    "sha256_ok": true,
+    "alpha_extrema": null
+  },
+  {
+    "file": "lighting/desktop/desktop-amber-overlay.png",
+    "dimensions": [
+      1672,
+      941
+    ],
+    "mode": "RGBA",
+    "sha256_ok": true,
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "file": "lighting/tablet/tablet-caged-lamp-overlay.png",
+    "dimensions": [
+      1448,
+      1086
+    ],
+    "mode": "RGBA",
+    "sha256_ok": true,
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "file": "lighting/tablet/tablet-amber-spill-overlay.png",
+    "dimensions": [
+      1448,
+      1086
+    ],
+    "mode": "RGBA",
+    "sha256_ok": true,
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "file": "lighting/mobile/mobile-caged-lamp-overlay.png",
+    "dimensions": [
+      941,
+      1672
+    ],
+    "mode": "RGBA",
+    "sha256_ok": true,
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "file": "lighting/mobile/mobile-amber-overhead-overlay.png",
+    "dimensions": [
+      941,
+      1672
+    ],
+    "mode": "RGBA",
+    "sha256_ok": true,
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  }
+]

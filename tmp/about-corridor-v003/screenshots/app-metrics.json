@@ -1,0 +1,362 @@
+[
+  {
+    "aboutOverflow": false,
+    "documentOverflow": false,
+    "photo": {
+      "bottom": 421.9506645202637,
+      "height": 389.6723327636719,
+      "left": 937.0466918945312,
+      "right": 1166.4177856445312,
+      "top": 32.2783317565918,
+      "width": 229.37109375,
+      "x": 937.0466918945312,
+      "y": 32.2783317565918
+    },
+    "profile": "desktop",
+    "selected": "about-tab-background",
+    "viewport": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "aboutOverflow": false,
+    "documentOverflow": false,
+    "photo": {
+      "bottom": 421.9506645202637,
+      "height": 389.6723327636719,
+      "left": 937.0466918945312,
+      "right": 1166.4177856445312,
+      "top": 32.2783317565918,
+      "width": 229.37109375,
+      "x": 937.0466918945312,
+      "y": 32.2783317565918
+    },
+    "profile": "desktop",
+    "selected": "about-tab-toolkit",
+    "viewport": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "aboutOverflow": false,
+    "documentOverflow": false,
+    "photo": {
+      "bottom": 421.9506645202637,
+      "height": 389.6723327636719,
+      "left": 937.0466918945312,
+      "right": 1166.4177856445312,
+      "top": 32.2783317565918,
+      "width": 229.37109375,
+      "x": 937.0466918945312,
+      "y": 32.2783317565918
+    },
+    "profile": "desktop",
+    "selected": "about-tab-approach",
+    "viewport": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "aboutOverflow": false,
+    "documentOverflow": false,
+    "photo": {
+      "bottom": 343.0256652832031,
+      "height": 389.6723327636719,
+      "left": 697.046630859375,
+      "right": 926.4177703857422,
+      "top": -46.64666748046875,
+      "width": 229.3711395263672,
+      "x": 697.046630859375,
+      "y": -46.64666748046875
+    },
+    "profile": "desktop",
+    "selected": "about-tab-background",
+    "viewport": [
+      1440,
+      900
+    ]
+  },
+  {
+    "aboutOverflow": false,
+    "documentOverflow": false,
+    "photo": {
+      "bottom": 343.0256652832031,
+      "height": 389.6723327636719,
+      "left": 697.046630859375,
+      "right": 926.4177703857422,
+      "top": -46.64666748046875,
+      "width": 229.3711395263672,
+      "x": 697.046630859375,
+      "y": -46.64666748046875
+    },
+    "profile": "desktop",
+    "selected": "about-tab-toolkit",
+    "viewport": [
+      1440,
+      900
+    ]
+  },
+  {
+    "aboutOverflow": false,
+    "documentOverflow": false,
+    "photo": {
+      "bottom": 343.0256652832031,
+      "height": 389.6723327636719,
+      "left": 697.046630859375,
+      "right": 926.4177703857422,
+      "top": -46.64666748046875,
+      "width": 229.3711395263672,
+      "x": 697.046630859375,
+      "y": -46.64666748046875
+    },
+    "profile": "desktop",
+    "selected": "about-tab-approach",
+    "viewport": [
+      1440,
+      900
+    ]
+  },
+  {
+    "aboutOverflow": false,
+    "documentOverflow": false,
+    "photo": {
+      "bottom": -43.115509033203125,
+      "height": 438.0940551757813,
+      "left": 477.439697265625,
+      "right": 735.3511352539062,
+      "top": -481.2095642089844,
+      "width": 257.91143798828125,
+      "x": 477.439697265625,
+      "y": -481.2095642089844
+    },
+    "profile": "tablet-landscape",
+    "selected": "about-tab-background",
+    "viewport": [
+      1180,
+      820
+    ]
+  },
+  {
+    "aboutOverflow": false,
+    "documentOverflow": false,
+    "photo": {
+      "bottom": -43.91552734375,
+      "height": 438.0940551757813,
+      "left": 477.439697265625,
+      "right": 735.3511352539062,
+      "top": -482.0095825195313,
+      "width": 257.91143798828125,
+      "x": 477.439697265625,
+      "y": -482.0095825195313
+    },
+    "profile": "tablet-landscape",
+    "selected": "about-tab-toolkit",
+    "viewport": [
+      1180,
+      820
+    ]
+  },
+  {
+    "aboutOverflow": false,
+    "documentOverflow": false,
+    "photo": {
+      "bottom": -43.115509033203125,
+      "height": 438.0940551757813,
+      "left": 477.439697265625,
+      "right": 735.3511352539062,
+      "top": -481.2095642089844,
+      "width": 257.91143798828125,
+      "x": 477.439697265625,
+      "y": -481.2095642089844
+    },
+    "profile": "tablet-landscape",
+    "selected": "about-tab-approach",
+    "viewport": [
+      1180,
+      820
+    ]
+  },
+  {
+    "aboutOverflow": false,
+    "documentOverflow": false,
+    "photo": {
+      "bottom": 177.41546630859375,
+      "height": 362.9701843261719,
+      "left": 395.5518493652344,
+      "right": 609.2099151611328,
+      "top": -185.55471801757812,
+      "width": 213.65806579589844,
+      "x": 395.5518493652344,
+      "y": -185.55471801757812
+    },
+    "profile": "tablet",
+    "selected": "about-tab-background",
+    "viewport": [
+      820,
+      1180
+    ]
+  },
+  {
+    "aboutOverflow": false,
+    "documentOverflow": false,
+    "photo": {
+      "bottom": 177.41546630859375,
+      "height": 362.9701843261719,
+      "left": 395.5518493652344,
+      "right": 609.2099151611328,
+      "top": -185.55471801757812,
+      "width": 213.65806579589844,
+      "x": 395.5518493652344,
+      "y": -185.55471801757812
+    },
+    "profile": "tablet",
+    "selected": "about-tab-toolkit",
+    "viewport": [
+      820,
+      1180
+    ]
+  },
+  {
+    "aboutOverflow": false,
+    "documentOverflow": false,
+    "photo": {
+      "bottom": 177.41546630859375,
+      "height": 362.9701843261719,
+      "left": 395.5518493652344,
+      "right": 609.2099151611328,
+      "top": -185.55471801757812,
+      "width": 213.65806579589844,
+      "x": 395.5518493652344,
+      "y": -185.55471801757812
+    },
+    "profile": "tablet",
+    "selected": "about-tab-approach",
+    "viewport": [
+      820,
+      1180
+    ]
+  },
+  {
+    "aboutOverflow": false,
+    "documentOverflow": false,
+    "photo": {
+      "bottom": -279.7279968261719,
+      "height": 258.0295715332031,
+      "left": 86.9456558227539,
+      "right": 238.81233978271484,
+      "top": -537.757568359375,
+      "width": 151.86668395996094,
+      "x": 86.9456558227539,
+      "y": -537.757568359375
+    },
+    "profile": "mobile",
+    "selected": "about-tab-background",
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "aboutOverflow": false,
+    "documentOverflow": false,
+    "photo": {
+      "bottom": -279.7279968261719,
+      "height": 258.0295715332031,
+      "left": 86.9456558227539,
+      "right": 238.81233978271484,
+      "top": -537.757568359375,
+      "width": 151.86668395996094,
+      "x": 86.9456558227539,
+      "y": -537.757568359375
+    },
+    "profile": "mobile",
+    "selected": "about-tab-toolkit",
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "aboutOverflow": false,
+    "documentOverflow": false,
+    "photo": {
+      "bottom": -327.7279968261719,
+      "height": 258.0295715332031,
+      "left": 86.9456558227539,
+      "right": 238.81233978271484,
+      "top": -585.757568359375,
+      "width": 151.86668395996094,
+      "x": 86.9456558227539,
+      "y": -585.757568359375
+    },
+    "profile": "mobile",
+    "selected": "about-tab-approach",
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "aboutOverflow": false,
+    "documentOverflow": false,
+    "photo": {
+      "bottom": -190.22772216796875,
+      "height": 311.7206726074219,
+      "left": 339.7167053222656,
+      "right": 523.2305755615234,
+      "top": -501.9483947753906,
+      "width": 183.5138702392578,
+      "x": 339.7167053222656,
+      "y": -501.9483947753906
+    },
+    "profile": "tablet-landscape",
+    "selected": "about-tab-background",
+    "viewport": [
+      844,
+      390
+    ]
+  },
+  {
+    "aboutOverflow": false,
+    "documentOverflow": false,
+    "photo": {
+      "bottom": -190.22772216796875,
+      "height": 311.7206726074219,
+      "left": 339.7167053222656,
+      "right": 523.2305755615234,
+      "top": -501.9483947753906,
+      "width": 183.5138702392578,
+      "x": 339.7167053222656,
+      "y": -501.9483947753906
+    },
+    "profile": "tablet-landscape",
+    "selected": "about-tab-toolkit",
+    "viewport": [
+      844,
+      390
+    ]
+  },
+  {
+    "aboutOverflow": false,
+    "documentOverflow": false,
+    "photo": {
+      "bottom": -190.22772216796875,
+      "height": 311.7206726074219,
+      "left": 339.7167053222656,
+      "right": 523.2305755615234,
+      "top": -501.9483947753906,
+      "width": 183.5138702392578,
+      "x": 339.7167053222656,
+      "y": -501.9483947753906
+    },
+    "profile": "tablet-landscape",
+    "selected": "about-tab-approach",
+    "viewport": [
+      844,
+      390
+    ]
+  }
+]

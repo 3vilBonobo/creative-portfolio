@@ -1,0 +1,307 @@
+{
+  "method": "Same-pixel attenuation of baked illumination; not physical OFF reconstruction",
+  "profiles": {
+    "desktop": {
+      "source": "backgrounds/desktop/desktop-candidate-a.png",
+      "source_sha256": "08a98fbc593a800088f0033f54531f82e90dcf03aac7dcfa07c9fd268b694e53",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "passes": [
+        {
+          "channel": "wall",
+          "kind": "emission",
+          "file": "floor-01-experience-wall-emission-desktop.png",
+          "bounds": [
+            186,
+            184,
+            255,
+            289
+          ],
+          "canvas": [
+            1672,
+            941
+          ]
+        },
+        {
+          "channel": "wall",
+          "kind": "spill",
+          "file": "floor-01-experience-wall-spill-desktop.png",
+          "bounds": [
+            97,
+            129,
+            340,
+            935
+          ],
+          "canvas": [
+            1672,
+            941
+          ]
+        },
+        {
+          "channel": "ceiling",
+          "kind": "emission",
+          "file": "floor-01-experience-ceiling-emission-desktop.png",
+          "bounds": [
+            994,
+            142,
+            1347,
+            183
+          ],
+          "canvas": [
+            1672,
+            941
+          ]
+        },
+        {
+          "channel": "ceiling",
+          "kind": "spill",
+          "file": "floor-01-experience-ceiling-spill-desktop.png",
+          "bounds": [
+            1006,
+            16,
+            1332,
+            931
+          ],
+          "canvas": [
+            1672,
+            941
+          ]
+        }
+      ]
+    },
+    "tablet": {
+      "source": "backgrounds/tablet/tablet-environment.png",
+      "source_sha256": "b79d5d2f16a2411bf08b74b84782762036fc6591c3fb25c1a2f8f4b96f52d863",
+      "dimensions": [
+        1448,
+        1086
+      ],
+      "passes": [
+        {
+          "channel": "wall",
+          "kind": "emission",
+          "file": "floor-01-experience-wall-emission-tablet.png",
+          "bounds": [
+            155,
+            200,
+            218,
+            303
+          ],
+          "canvas": [
+            1448,
+            1086
+          ]
+        },
+        {
+          "channel": "wall",
+          "kind": "spill",
+          "file": "floor-01-experience-wall-spill-tablet.png",
+          "bounds": [
+            80,
+            144,
+            292,
+            1040
+          ],
+          "canvas": [
+            1448,
+            1086
+          ]
+        },
+        {
+          "channel": "ceiling",
+          "kind": "emission",
+          "file": "floor-01-experience-ceiling-emission-tablet.png",
+          "bounds": [
+            873,
+            143,
+            1196,
+            184
+          ],
+          "canvas": [
+            1448,
+            1086
+          ]
+        },
+        {
+          "channel": "ceiling",
+          "kind": "spill",
+          "file": "floor-01-experience-ceiling-spill-tablet.png",
+          "bounds": [
+            885,
+            16,
+            1184,
+            1036
+          ],
+          "canvas": [
+            1448,
+            1086
+          ]
+        }
+      ]
+    },
+    "mobile": {
+      "source": "backgrounds/mobile/mobile-environment.png",
+      "source_sha256": "ebe0ea504f96e71485a724afa7794024c578460eba14f247aee8a8488a9270a1",
+      "dimensions": [
+        941,
+        1672
+      ],
+      "passes": [
+        {
+          "channel": "wall",
+          "kind": "emission",
+          "file": "floor-01-experience-wall-emission-mobile.png",
+          "bounds": [
+            127,
+            238,
+            186,
+            337
+          ],
+          "canvas": [
+            941,
+            1672
+          ]
+        },
+        {
+          "channel": "wall",
+          "kind": "spill",
+          "file": "floor-01-experience-wall-spill-mobile.png",
+          "bounds": [
+            53,
+            185,
+            241,
+            1611
+          ],
+          "canvas": [
+            941,
+            1672
+          ]
+        },
+        {
+          "channel": "ceiling",
+          "kind": "emission",
+          "file": "floor-01-experience-ceiling-emission-mobile.png",
+          "bounds": [
+            548,
+            208,
+            817,
+            249
+          ],
+          "canvas": [
+            941,
+            1672
+          ]
+        },
+        {
+          "channel": "ceiling",
+          "kind": "spill",
+          "file": "floor-01-experience-ceiling-spill-mobile.png",
+          "bounds": [
+            554,
+            95,
+            809,
+            1581
+          ],
+          "canvas": [
+            941,
+            1672
+          ]
+        }
+      ]
+    }
+  },
+  "exports": [
+    {
+      "file": "floor-01-experience-ceiling-emission-desktop.png",
+      "bytes": 1948,
+      "sha256": "0244d145d3ec9a8965eb1bb68892c6475448ef038d35c512f25709abf31c87b7"
+    },
+    {
+      "file": "floor-01-experience-ceiling-emission-mobile.png",
+      "bytes": 1682,
+      "sha256": "d2e7f0dd54405f495f459de289a239177796c6eaf17d515fe178e51d3e63ee8e"
+    },
+    {
+      "file": "floor-01-experience-ceiling-emission-tablet.png",
+      "bytes": 1892,
+      "sha256": "e61fa15aca2bb49e977bc4c5559d642e167c0946828f254a3d9cda37c107b8d8"
+    },
+    {
+      "file": "floor-01-experience-ceiling-spill-desktop.png",
+      "bytes": 35092,
+      "sha256": "826b9166d7ed718f6e99bbe587a36ea23083d5ad2de6652bb97db8fc872f9831"
+    },
+    {
+      "file": "floor-01-experience-ceiling-spill-mobile.png",
+      "bytes": 48853,
+      "sha256": "cde4b225be77c0a567d7d99e1c5e7a3c8394b8d49d809a0e0f28599d803f20d7"
+    },
+    {
+      "file": "floor-01-experience-ceiling-spill-tablet.png",
+      "bytes": 37613,
+      "sha256": "86888e666bc5eff69692503112875457ea8414b283a11a0bcca0e242ec27277f"
+    },
+    {
+      "file": "floor-01-experience-wall-base-desktop.webp",
+      "bytes": 318012,
+      "sha256": "3a1a8635cf7521a00986d8308fcae944d0e66c4458fb681d9fc80b8b4907407a"
+    },
+    {
+      "file": "floor-01-experience-wall-base-mobile.webp",
+      "bytes": 302790,
+      "sha256": "0cb65df54956bf071f5a93f2b5ea9b618e13395ba975f69d48106fe7d6698346"
+    },
+    {
+      "file": "floor-01-experience-wall-base-tablet.webp",
+      "bytes": 308646,
+      "sha256": "5e71d50174f66bf9f3bf13d5c5ff6fe8f7c0e5580b9227ac38ff576acf0913d5"
+    },
+    {
+      "file": "floor-01-experience-wall-continuation-desktop.webp",
+      "bytes": 1096,
+      "sha256": "4e5763b7417627048e4243a305b473b88c9493fbb699d48e31274259fe268935"
+    },
+    {
+      "file": "floor-01-experience-wall-continuation-mobile.webp",
+      "bytes": 798,
+      "sha256": "0bbaf561c589815de7681f479db9773166b3af9cf95dcb43f065dd6304c43d55"
+    },
+    {
+      "file": "floor-01-experience-wall-continuation-tablet.webp",
+      "bytes": 1028,
+      "sha256": "50dbd0933aa7b91f1dad03cd72f91505bec1ffdf335becfd78dbace7eb8d9930"
+    },
+    {
+      "file": "floor-01-experience-wall-emission-desktop.png",
+      "bytes": 2310,
+      "sha256": "26f82dd31f94afa7fa328b3765141763f8dcde73a00a247307d3706472c0f4f4"
+    },
+    {
+      "file": "floor-01-experience-wall-emission-mobile.png",
+      "bytes": 1974,
+      "sha256": "ca39a08b6e004c8305be3d03730a691ddcaebc3116f1f4e64dd2c6c089ee16ca"
+    },
+    {
+      "file": "floor-01-experience-wall-emission-tablet.png",
+      "bytes": 2174,
+      "sha256": "cfe0da678cff497cf3e778f1a96347cb60080235496f1e1e29d8c263d07a7910"
+    },
+    {
+      "file": "floor-01-experience-wall-spill-desktop.png",
+      "bytes": 30897,
+      "sha256": "0dd0f1dcae42c872fc8c2c175fe904378661ba776abc8419f8df0c05f2803d76"
+    },
+    {
+      "file": "floor-01-experience-wall-spill-mobile.png",
+      "bytes": 36997,
+      "sha256": "4c94eb8c3965fedaa37858b0619064e43e91836af221b3e7a958e85e778b4ac0"
+    },
+    {
+      "file": "floor-01-experience-wall-spill-tablet.png",
+      "bytes": 31368,
+      "sha256": "408ef2b8d4e5dd23fbcb1cc501b15e5dbfd0fb261bae05d7767925ad97bcb2da"
+    }
+  ]
+}

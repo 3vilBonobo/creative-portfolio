@@ -1,0 +1,173 @@
+/* Level 03 — corridor v003. Scene coordinates never depend on content height. */
+.about {
+  --about-cream: #f2e6d3;
+  --about-copy: #ddd5ca;
+  --about-cyan: #8ed8d0;
+  position: relative;
+  isolation: isolate;
+  min-height: var(--about-scene-height);
+  padding: 0;
+  color: var(--about-cream);
+  background: #171a19 url('/environments/floor-03-about-corridor/v003/floor-03-about-corridor-quiet-wall-tile.webp') top center / 512px 512px repeat;
+}
+.about::before, .about::after { display: none; }
+.about__scene {
+  position: absolute;
+  inset: 0 0 auto;
+  aspect-ratio: var(--about-scene-ratio);
+  pointer-events: none;
+}
+.about__scene::after {
+  content: "";
+  position: absolute;
+  inset: 80% 0 0;
+  background: linear-gradient(transparent, #171a19);
+}
+.about__scene-base { display: block; width: 100%; height: auto; }
+.about__scene-portrait {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  mask-size: 100% 100%;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+}
+.about__photo-plane {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 438px;
+  height: 730px;
+  overflow: hidden;
+  transform-origin: 0 0;
+}
+.about__photo-plane img {
+  position: absolute;
+  top: 0;
+  left: -204px;
+  width: 799px;
+  height: 730px;
+  max-width: none;
+}
+.about__scene-number {
+  position: absolute;
+  left: 70%;
+  top: 23.8%;
+  color: var(--about-cream);
+  font: 500 clamp(2.5rem, 5.6vw, 7rem)/1 "Barlow Condensed", sans-serif;
+  text-shadow: 0 2px 8px #0009;
+}
+.about__layout {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 1.5rem;
+  width: 32%;
+  max-width: none;
+  min-height: var(--about-scene-height);
+  margin: 0 0 0 8.5%;
+  padding: calc(var(--about-scene-height) * .15) 0 5rem;
+  overflow-wrap: anywhere;
+}
+.about__layout::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0 -2rem;
+  background: linear-gradient(90deg, transparent, #080b0bb8 1.5rem, #080b0bb8 calc(100% - 1.5rem), transparent);
+  pointer-events: none;
+}
+.about__narrative, .about__identity, .about__headline, .about__secondary { min-width: 0; }
+.about__narrative { align-self: start; }
+.about .eyebrow { color: var(--about-cyan); }
+.about__heading {
+  margin: .75rem 0 1.25rem;
+  max-width: none !important;
+  color: var(--about-cream);
+  font-size: clamp(3.25rem, 5vw, 6rem) !important;
+  line-height: 1.05 !important;
+  letter-spacing: .02em;
+}
+.about__introduction {
+  margin: 0;
+  color: #f0e8dc;
+  font-size: 1.125rem;
+  line-height: 1.65;
+}
+.about__background { margin: 1.5rem 0 0; }
+.about__background p { margin: 0 0 1.125rem; color: var(--about-copy); font-size: 1rem; line-height: 1.7; }
+.about__cv { margin-top: 1rem; }
+.about__secondary { align-self: start; }
+.about__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .25rem;
+  padding: .25rem;
+  border-bottom: 1px solid #eee1cd4a;
+}
+.about__tabs button {
+  flex: 1 1 7rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .5rem;
+  min-width: 0;
+  min-height: 2.75rem;
+  padding: .75rem .5rem;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: #11131066;
+  color: #d5cec3;
+  font: 500 .75rem/1.5 "IBM Plex Mono", monospace;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  overflow-wrap: anywhere;
+  text-align: left;
+  cursor: pointer;
+}
+.about__tabs button:hover { background: #111310bb; color: var(--about-cream); }
+.about__tabs button[aria-selected="true"] { color: var(--about-cream); border-bottom-color: var(--about-cyan); background: #111310dd; }
+.about__tabs button span { color: var(--about-cyan); }
+.about__tabs button:focus-visible, .about__panels [role="tabpanel"]:focus-visible { outline: 2px solid var(--about-cyan); outline-offset: 2px; }
+.about__panels { padding: 1.125rem; background: #111311b8; border-left: 1px solid #eee1cd2e; }
+.about__panels p:not(.about__label) { margin: .35rem 0 1rem; color: var(--about-copy); font-size: 1rem; line-height: 1.7; }
+.about__label { margin: 0 0 1rem; color: var(--about-cyan); font: 600 .75rem/1.5 "IBM Plex Mono", monospace; letter-spacing: .08em; text-transform: uppercase; }
+.about__toolkit { display: grid; gap: 1rem; margin: 0; }
+.about__toolkit > div { display: grid; grid-template-columns: minmax(0, 1fr); gap: .4rem; }
+.about__toolkit dt { color: var(--about-cyan); font: 500 .8rem/1.5 "IBM Plex Mono", monospace; }
+.about__toolkit dd { margin: 0; }
+.about__toolkit ul { display: flex; flex-wrap: wrap; gap: .35rem .75rem; list-style: none; margin: 0; padding: 0; }
+.about__toolkit li { color: var(--about-copy); font-size: 1rem; }
+.about__toolkit li:not(:last-child)::after { content: " /"; color: var(--service); }
+.about__principles { list-style: none; margin: 0; padding: 0; }
+.about__principle { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: .75rem; padding: .75rem 0; border-bottom: 1px solid #eee1cd24; }
+.about__principle > span { color: var(--service); font: 500 .8rem/1.6 "IBM Plex Mono", monospace; }
+.about__principle h3 { margin: 0 0 .35rem; color: var(--about-cream); font-size: 1.125rem; line-height: 1.4; }
+
+/* Reframed tablet scenes reserve a left intro; the full reading deck follows. */
+@media (min-width: 761px) and (max-width: 1300px) {
+  .about__layout { width: auto; margin: 0 7%; padding-top: calc(var(--about-scene-height) * .15); padding-bottom: 6rem; }
+  .about__narrative { display: contents; }
+  .about__identity { width: 34%; min-height: calc(var(--about-scene-height) * .85); padding-bottom: 2rem; }
+  .about__background { margin: 0; max-width: 48rem; }
+  .about__secondary { max-width: 48rem; }
+  .about__layout::before { background: linear-gradient(90deg, transparent, #080b0bb8 1.5rem, #080b0bb8 35%, transparent 40%); }
+  .about__scene-number { left: 69%; }
+  .about[data-artwork-profile="tablet"] .about__scene-number { left: 81%; font-size: 7vw; }
+  .about[data-artwork-profile="tablet"] .about__identity { width: 40%; }
+}
+@media (max-width: 760px) {
+  .about__scene { position: relative; }
+  .about__scene-number { left: 75%; top: 27%; font-size: 11vw; }
+  .about__layout { width: auto; min-height: 0; margin: 0 1.25rem; padding: 1.5rem 0 6rem; }
+  .about__layout::before { display: none; }
+  .about__heading { font-size: 3.5rem !important; }
+  .about__introduction { font-size: 1.125rem; }
+  .about__tabs button { flex-basis: 8rem; }
+  .about__panels { padding: 1rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .about__heading, .about__introduction, .about__background, .about__secondary { opacity: 1 !important; transform: none !important; }
+}
+

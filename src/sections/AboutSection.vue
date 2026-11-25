@@ -2,43 +2,70 @@
 import { computed, nextTick, onBeforeUnmount, onMounted, ref } from "vue";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { aboutContent } from "../data/about";
-import { FLOOR, FLOORS } from "../config/floors";
+import { aboutContent, aboutProfile } from "../data/about";
+import { FLOOR } from "../config/floors";
+import geometry from "../../public/environments/floor-03-about-corridor/v003/geometry.json";
+import desktopGeometry from "../../public/environments/floor-03-about-corridor/v004/geometry.json";
 
 const root = ref<HTMLElement>();
-const architecture = ref<HTMLElement>();
-const portraitArtworkQuery = "(max-width: 760px), (min-width: 761px) and (max-width: 1100px) and (orientation: portrait)";
-const portraitArtwork = ref(typeof window !== "undefined" && window.matchMedia(portraitArtworkQuery).matches);
-const architectureWidth = ref(0);
-const extendedWall = ref(false);
-const artwork = computed(() => portraitArtwork.value
-  ? { profile: "mobile", width: 848, height: 1855, cut: 1607, endcap: 248 }
-  : { profile: "desktop", width: 1956, height: 804, cut: 650, endcap: 154 });
-const architectureStyle = computed(() => {
-  const scale = architectureWidth.value / artwork.value.width;
-  return {
-    "--about-top-height": `${(extendedWall.value ? artwork.value.cut : artwork.value.height) * scale}px`,
-    "--about-endcap-height": `${artwork.value.endcap * scale}px`,
-  };
-});
-function artworkUrl(part: string) {
-  return `/environments/floor-03-about/floor-03-about-${part}-${artwork.value.profile}.${part.startsWith("light-") ? "png" : "webp"}`;
+type Profile = keyof typeof geometry.profiles;
+const scene = ref<HTMLElement>();
+const profileQueries = ["(max-width: 760px)", "(max-width: 1100px) and (orientation: portrait)", "(max-width: 1300px)"];
+let mediaQueries = typeof window === "undefined" ? [] : profileQueries.map(query => matchMedia(query));
+function currentProfile(): Profile {
+  return mediaQueries[0]?.matches ? "mobile" : mediaQueries[1]?.matches ? "tablet" : mediaQueries[2]?.matches ? "tablet-landscape" : "desktop";
 }
-let architectureObserver: ResizeObserver | undefined;
-let portraitQuery: MediaQueryList | undefined;
-function measureArchitecture() {
-  if (!architecture.value) return;
-  portraitArtwork.value = portraitQuery?.matches ?? false;
-  const { width, height } = architecture.value.getBoundingClientRect();
-  architectureWidth.value = width;
-  extendedWall.value = height > width * artwork.value.height / artwork.value.width;
+const profile = ref<Profile>(currentProfile());
+const sceneWidth = ref(0);
+const artwork = computed(() => profile.value === "desktop" ? desktopGeometry : geometry.profiles[profile.value]);
+const assetRoot = computed(() => `/environments/floor-03-about-corridor/${profile.value === "desktop" ? "v004" : "v003"}/`);
+const apertureUrl = computed(() => `${assetRoot.value}floor-03-about-corridor-portrait-aperture-${profile.value}.svg`);
+const sceneStyle = computed(() => ({
+  "--about-scene-width": `${sceneWidth.value}px`,
+  "--about-scene-ratio": `${artwork.value.export_size[0]} / ${artwork.value.export_size[1]}`,
+  "--about-scene-height": `${sceneWidth.value * artwork.value.export_size[1] / artwork.value.export_size[0]}px`,
+}));
+// Project the handoff's exact 438x730 source crop onto the measured frame quad.
+// Only presentation changes: the existing 799x730 portrait file remains untouched.
+const portraitTransform = computed(() => {
+  const scale = sceneWidth.value / artwork.value.export_size[0];
+  const corners = [[0, 0], [438, 0], [438, 730], [0, 730]];
+  const a: number[][] = [];
+  const b: number[] = [];
+  artwork.value.portrait_opening_px_clockwise_TL_TR_BR_BL.forEach(([u0, v0], i) => {
+    const [x, y] = corners[i]!;
+    const u = u0! * scale, v = v0! * scale;
+    a.push([x!, y!, 1, 0, 0, 0, -u * x!, -u * y!], [0, 0, 0, x!, y!, 1, -v * x!, -v * y!]);
+    b.push(u, v);
+  });
+  for (let i = 0; i < 8; i++) {
+    let pivot = i;
+    for (let j = i + 1; j < 8; j++) if (Math.abs(a[j]![i]!) > Math.abs(a[pivot]![i]!)) pivot = j;
+    [a[i], a[pivot]] = [a[pivot]!, a[i]!];
+    [b[i], b[pivot]] = [b[pivot]!, b[i]!];
+    const divisor = a[i]![i]!;
+    for (let k = i; k < 8; k++) a[i]![k] = a[i]![k]! / divisor;
+    b[i] = b[i]! / divisor;
+    for (let j = 0; j < 8; j++) if (j !== i) {
+      const factor = a[j]![i]!;
+      for (let k = i; k < 8; k++) a[j]![k] = a[j]![k]! - factor * a[i]![k]!;
+      b[j] = b[j]! - factor * b[i]!;
+    }
+  }
+  const [aa, c, e, bb, d, f, g, h] = b;
+  return `matrix3d(${aa},${bb},0,${g},${c},${d},0,${h},0,0,1,0,${e},${f},0,1)`;
+});
+let sceneObserver: ResizeObserver | undefined;
+function measureScene() {
+  profile.value = currentProfile();
+  sceneWidth.value = scene.value?.getBoundingClientRect().width ?? 0;
 }
 const activeTab = ref<"background" | "toolkit" | "approach">("background");
 const tabButtons = ref<HTMLButtonElement[]>([]);
 const tabs = [
-  { id: "background", label: "Background" },
-  { id: "toolkit", label: "Toolkit" },
-  { id: "approach", label: "Approach" },
+  { id: "background", label: "Background", symbol: "▤" },
+  { id: "toolkit", label: "Toolkit", symbol: "⌘" },
+  { id: "approach", label: "Approach", symbol: "◇" },
 ] as const;
 let context: gsap.Context | undefined;
 
@@ -58,58 +85,66 @@ function handleTabKeydown(event: KeyboardEvent, index: number) {
   selectTab(tabs[next].id, true);
 }
 onMounted(() => {
-  // Portrait tablets share the mobile room; short landscape viewports retain the wide room.
-  portraitQuery = matchMedia(portraitArtworkQuery);
-  portraitQuery.addEventListener("change", measureArchitecture);
-  measureArchitecture();
-  architectureObserver = new ResizeObserver(measureArchitecture);
-  if (architecture.value) architectureObserver.observe(architecture.value);
+  if (!mediaQueries.length) mediaQueries = profileQueries.map(query => matchMedia(query));
+  mediaQueries.forEach(query => query.addEventListener("change", measureScene));
+  measureScene();
+  sceneObserver = new ResizeObserver(measureScene);
+  if (scene.value) sceneObserver.observe(scene.value);
   if (!root.value || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   gsap.registerPlugin(ScrollTrigger);
   context = gsap.context(() => {
     gsap.timeline({ scrollTrigger: { trigger: root.value, start: "top 72%", once: true } })
       .from(".about__heading", { y: 24, opacity: 0, duration: .7, ease: "power2.out" })
-      .from(".about__narrative > *:not(.about__heading)", { y: 18, opacity: 0, duration: .55, stagger: .09, ease: "power2.out" }, "-=.38")
+      .from(".about__statement, .about__introduction, .about__background", { y: 18, opacity: 0, duration: .55, stagger: .09, ease: "power2.out" }, "-=.38")
       .from(".about__secondary", { y: 14, opacity: 0, duration: .45, ease: "power2.out" }, "-=.35");
   }, root.value);
 });
 onBeforeUnmount(() => {
-  architectureObserver?.disconnect();
-  portraitQuery?.removeEventListener("change", measureArchitecture);
+  sceneObserver?.disconnect();
+  mediaQueries.forEach(query => query.removeEventListener("change", measureScene));
   context?.revert();
 });
 </script>
 
 <template>
-  <section :id="FLOOR.about.id" ref="root" class="floor-section about" :data-floor-number="FLOOR.about.number" aria-labelledby="about-title">
-    <div ref="architecture" class="about__architecture" :class="{ 'about__architecture--extended': extendedWall }" :data-artwork-profile="artwork.profile" :style="architectureStyle" aria-hidden="true">
-      <div v-if="extendedWall" class="about__wall-continuation" :style="{ backgroundImage: `url('${artworkUrl('wall-continuation')}')` }"></div>
-      <div class="about__wall-top">
-        <img class="about__wall-base" :src="artworkUrl('wall-base')" :width="artwork.width" :height="artwork.height" alt="">
-      </div>
-      <img v-if="extendedWall" class="about__wall-endcap" :src="artworkUrl('wall-endcap')" :width="artwork.width" :height="artwork.endcap" alt="">
-      <img class="about__light about__light--emission" :src="artworkUrl('light-01-emission')" :width="artwork.width" :height="artwork.height" alt="">
-      <img class="about__light about__light--spill" :src="artworkUrl('light-01-spill')" :width="artwork.width" :height="artwork.height" alt="">
+  <section :id="FLOOR.about.id" ref="root" class="floor-section about" :data-floor-number="FLOOR.about.number" :data-artwork-profile="profile" :style="sceneStyle" aria-labelledby="about-title">
+    <div ref="scene" class="about__scene">
+      <img class="about__scene-base" :src="assetRoot + artwork.filename" :width="artwork.export_size[0]" :height="artwork.export_size[1]" alt="" aria-hidden="true">
+      <figure class="about__scene-portrait" :style="{ maskImage: `url('${apertureUrl}')`, WebkitMaskImage: `url('${apertureUrl}')` }">
+        <div class="about__photo-plane" :style="{ transform: portraitTransform }"><img src="/about/irene-portrait.webp" width="799" height="730" alt="Portrait of Irinella" loading="lazy"></div>
+      </figure>
     </div>
     <div class="about__layout">
-      <aside class="about__rail" :aria-label="`Level ${FLOOR.about.number}, ${FLOOR.about.label}`"><span>Level</span><strong>{{ FLOOR.about.number }}</strong><small>{{ FLOOR.about.label }}</small><div class="about__floor-dots" aria-hidden="true"><i v-for="floor in FLOORS" :key="floor.id" :class="{ active: floor.id === FLOOR.about.id }"></i></div></aside>
       <div class="about__narrative">
         <div class="about__identity">
-          <figure class="about__portrait"><picture><source srcset="/about/irene-portrait.webp" type="image/webp"><img src="/about/irene-portrait.jpg" width="799" height="730" alt="Portrait of Irinella" loading="lazy"></picture></figure>
-          <div class="about__headline"><p class="eyebrow">{{ aboutContent.eyebrow }}</p><h2 id="about-title" class="about__heading">{{ aboutContent.title }}</h2></div>
-          <p class="about__introduction">{{ aboutContent.introduction }}</p>
+          <div class="about__headline"><p class="eyebrow">{{ aboutContent.eyebrow }}</p><div class="about__title-line"><h2 id="about-title" class="about__heading">{{ aboutContent.title }}</h2><p class="about__name">{{ aboutProfile.name }}</p></div></div>
+          <p class="about__statement">{{ aboutContent.introduction }}</p>
+          <div class="about__introduction"><p v-for="paragraph in aboutContent.introductionParagraphs" :key="paragraph">{{ paragraph }}</p></div>
+          <dl class="about__facts"><div v-for="fact in aboutProfile.facts" :key="fact.label"><dt>{{ fact.label }}</dt><dd>{{ fact.value }}</dd></div></dl>
         </div>
-        <div class="about__background"><p v-for="paragraph in aboutContent.backgroundParagraphs" :key="paragraph">{{ paragraph }}</p></div>
+        <div class="about__background"><section v-for="section in aboutContent.sections" :key="section.title" class="about__story" :aria-label="section.title"><h3>{{ section.title }}</h3><p v-for="paragraph in section.paragraphs" :key="paragraph">{{ paragraph }}</p></section></div>
         <a v-if="aboutContent.cvUrl" class="button about__cv" :href="aboutContent.cvUrl">View CV <span>↗</span></a>
       </div>
       <div class="about__secondary">
         <div class="about__tabs" role="tablist" aria-label="More about Irinella">
-          <button v-for="(tab, index) in tabs" :id="`about-tab-${tab.id}`" :key="tab.id" :ref="(el) => { if (el) tabButtons[index] = el as HTMLButtonElement }" type="button" role="tab" :aria-selected="activeTab === tab.id" :aria-controls="`about-panel-${tab.id}`" :tabindex="activeTab === tab.id ? 0 : -1" @click="selectTab(tab.id)" @keydown="handleTabKeydown($event, index)">{{ tab.label }} <span aria-hidden="true">→</span></button>
+          <button v-for="(tab, index) in tabs" :id="`about-tab-${tab.id}`" :key="tab.id" :ref="(el) => { if (el) tabButtons[index] = el as HTMLButtonElement }" type="button" role="tab" :aria-selected="activeTab === tab.id" :aria-controls="`about-panel-${tab.id}`" :tabindex="activeTab === tab.id ? 0 : -1" @click="selectTab(tab.id)" @keydown="handleTabKeydown($event, index)"><span class="about__tab-symbol" aria-hidden="true">{{ tab.symbol }}</span><span class="about__tab-label">{{ tab.label }}</span><span class="about__tab-arrow" aria-hidden="true">→</span></button>
         </div>
         <div class="about__panels">
-          <section id="about-panel-background" v-show="activeTab === 'background'" role="tabpanel" aria-labelledby="about-tab-background" tabindex="0"><p class="about__label">From evidence to interfaces</p><p>{{ aboutContent.backgroundSummary }}</p><p>{{ aboutContent.currentFocus }}</p></section>
-          <section id="about-panel-toolkit" v-show="activeTab === 'toolkit'" role="tabpanel" aria-labelledby="about-tab-toolkit" tabindex="0"><p class="about__label">Selected toolkit</p><dl class="about__toolkit"><div v-for="group in aboutContent.toolkitGroups" :key="group.label"><dt>{{ group.label }}</dt><dd><ul><li v-for="item in group.items" :key="item">{{ item }}</li></ul></dd></div></dl></section>
-          <section id="about-panel-approach" v-show="activeTab === 'approach'" role="tabpanel" aria-labelledby="about-tab-approach" tabindex="0"><p class="about__label">Working principles</p><ol class="about__principles"><li v-for="(principle, index) in aboutContent.principles" :key="principle.title" class="about__principle"><span>0{{ index + 1 }}</span><div><h3>{{ principle.title }}</h3><p>{{ principle.description }}</p></div></li></ol></section>
+          <section id="about-panel-background" class="about__profile-panel" :class="{ 'is-active': activeTab === 'background' }" :inert="activeTab !== 'background'" :aria-hidden="activeTab !== 'background'" role="tabpanel" aria-labelledby="about-tab-background" tabindex="0">
+            <header class="about__panel-header"><p class="about__label">{{ aboutContent.panels.background.label }}</p><h3>{{ aboutContent.panels.background.title }}</h3></header>
+            <ol class="about__journey about__panel-body"><li v-for="(stage, index) in aboutContent.journey" :key="stage.title"><span aria-hidden="true">0{{ index + 1 }}</span><div><h4>{{ stage.title }}</h4><p>{{ stage.description }}</p></div></li></ol>
+            <p class="about__panel-closing">{{ aboutContent.panels.background.closing }}</p>
+          </section>
+          <section id="about-panel-toolkit" class="about__profile-panel" :class="{ 'is-active': activeTab === 'toolkit' }" :inert="activeTab !== 'toolkit'" :aria-hidden="activeTab !== 'toolkit'" role="tabpanel" aria-labelledby="about-tab-toolkit" tabindex="0">
+            <header class="about__panel-header"><p class="about__label">{{ aboutContent.panels.toolkit.label }}</p><h3>{{ aboutContent.panels.toolkit.title }}</h3></header>
+            <dl class="about__toolkit about__panel-body"><div v-for="group in aboutContent.toolkitGroups" :key="group.label"><dt>{{ group.label }}</dt><dd><ul><li v-for="item in group.items" :key="item">{{ item }}</li></ul><p v-if="group.label === 'Beyond the Frontend'" class="about__backend-note">{{ aboutContent.backendNote }}</p></dd></div></dl>
+            <p class="about__panel-closing">{{ aboutContent.panels.toolkit.closing }}</p>
+          </section>
+          <section id="about-panel-approach" class="about__profile-panel" :class="{ 'is-active': activeTab === 'approach' }" :inert="activeTab !== 'approach'" :aria-hidden="activeTab !== 'approach'" role="tabpanel" aria-labelledby="about-tab-approach" tabindex="0">
+            <header class="about__panel-header"><p class="about__label">{{ aboutContent.panels.approach.label }}</p><h3>{{ aboutContent.panels.approach.title }}</h3></header>
+            <ol class="about__principles about__panel-body"><li v-for="(principle, index) in aboutContent.principles" :key="principle.title" class="about__principle"><span aria-hidden="true">0{{ index + 1 }}</span><div><h4>{{ principle.title }}</h4><p>{{ principle.description }}</p></div></li></ol>
+            <p class="about__panel-closing">{{ aboutContent.panels.approach.closing }}</p>
+          </section>
         </div>
       </div>
     </div>

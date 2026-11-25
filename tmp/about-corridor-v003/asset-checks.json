@@ -1,0 +1,51 @@
+{
+  "assets": [
+    {
+      "path": "production/floor-03-about-corridor-base-desktop.webp",
+      "size": [
+        1920,
+        1080
+      ],
+      "mode": "RGB",
+      "bytes": 228278
+    },
+    {
+      "path": "production/floor-03-about-corridor-base-tablet-landscape.webp",
+      "size": [
+        1180,
+        820
+      ],
+      "mode": "RGB",
+      "bytes": 132020
+    },
+    {
+      "path": "production/floor-03-about-corridor-base-tablet.webp",
+      "size": [
+        1536,
+        1280
+      ],
+      "mode": "RGB",
+      "bytes": 182548
+    },
+    {
+      "path": "production/floor-03-about-corridor-base-mobile.webp",
+      "size": [
+        1080,
+        1296
+      ],
+      "mode": "RGB",
+      "bytes": 131250
+    },
+    {
+      "path": "production/floor-03-about-corridor-quiet-wall-tile.webp",
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGB",
+      "bytes": 2316
+    }
+  ],
+  "manifestHashes": "all nine PASS",
+  "portraitIdentical": true
+}

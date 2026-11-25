@@ -1,0 +1,85 @@
+{
+  "status": "CANDIDATE \u2014 measured guide fitted to visual frame, final edge occlusion not browser validated",
+  "size": [
+    1920,
+    1080
+  ],
+  "source_generated_native": [
+    1672,
+    941
+  ],
+  "desktop_aperture": {
+    "clockwise_points": [
+      [
+        936.969970703125,
+        183.22999572753906
+      ],
+      [
+        1281.02001953125,
+        206.97000122070312
+      ],
+      [
+        1280.0400390625,
+        737.0700073242188
+      ],
+      [
+        936.969970703125,
+        767.72998046875
+      ]
+    ],
+    "normalized": [
+      [
+        0.488005,
+        0.169657
+      ],
+      [
+        0.667198,
+        0.191639
+      ],
+      [
+        0.666688,
+        0.682472
+      ],
+      [
+        0.488005,
+        0.710861
+      ]
+    ],
+    "source_crop": {
+      "original_size": [
+        799,
+        730
+      ],
+      "crop_box": [
+        204,
+        0,
+        642,
+        730
+      ]
+    },
+    "inset_policy": "Candidate quad shrunk toward centre from Codex inner guide by 1.7% horizontally and 1.1% vertically; review 1px edge alignment in real browser."
+  },
+  "reading_region": {
+    "x": [
+      0.075,
+      0.395
+    ],
+    "y": [
+      0.15,
+      0.85
+    ],
+    "scrim": "feathered 0..48% alpha dark neutral within left column only"
+  },
+  "floor_03_label": {
+    "approx_normalized": [
+      0.7,
+      0.238,
+      0.08,
+      0.1
+    ],
+    "render_as": "accessible HTML/SVG; no floor digits in clean image"
+  },
+  "lighting": "baked in candidate scene, not an off-state; no light masks produced",
+  "long_content": "UNRESOLVED; requires artist-approved wall continuation and perspective-aware floor cut, not produced or implied by this proof",
+  "validation": "deterministic PIL comps only, not live browser render"
+}

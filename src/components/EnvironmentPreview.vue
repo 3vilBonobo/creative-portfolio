@@ -4,6 +4,7 @@ import { useEnvironment } from "../composables/useEnvironment";
 import { MOON_PHASES, getPreviewMoonAppearance } from "../services/moonMath";
 import CatSprite from "./CatSprite.vue";
 import { CAT_SPOTS } from "../config/heroCat";
+import { experienceManualLights, experienceWallPreview, experienceCeilingPreview, resetExperienceLightPreview } from "../composables/useExperienceLightPreview";
 const { previewCatSpot, previewCatPose, catScene, timePhases, weatherConditions, heroLayerIds, previewTimePhase, previewWeather, previewMoonPhase, previewMoonProgress, hiddenHeroLayers, showExteriorMask, showInteriorMask, tintHeroLayers, freezeParallax, resetPreview } = useEnvironment();
 const isOpen = ref(false);
 const previewMoon = computed(() => previewMoonPhase.value === null ? null : getPreviewMoonAppearance(previewMoonPhase.value, previewMoonProgress.value));
@@ -72,15 +73,33 @@ function selectMoonPhase() {
         <a class="cat-preview__hint" href="/audio/cat/credits.html" target="_blank" rel="noopener">Cat sound credits</a>
       </div>
     </fieldset>
+    <fieldset class="experience-light-preview">
+      <legend>Experience lighting</legend>
+      <label><input v-model="experienceManualLights" type="checkbox"> Manual Experience lights</label>
+      <label>Experience wall lamp
+        <select v-model.number="experienceWallPreview" :disabled="!experienceManualLights">
+          <option :value="1">Steady · 100%</option><option :value="0.5">Dim · 50%</option><option :value="0">Minimum · 0%</option>
+        </select>
+      </label>
+      <label>Experience ceiling light
+        <select v-model.number="experienceCeilingPreview" :disabled="!experienceManualLights">
+          <option :value="1">Steady · 100%</option><option :value="0.5">Dim · 50%</option><option :value="0">Minimum · 0%</option>
+        </select>
+      </label>
+      <small>Attenuation of baked lighting. Reduced motion keeps both fixtures steady.</small>
+    </fieldset>
     <div class="environment-preview__checks">
       <label><input v-model="showExteriorMask" type="checkbox"> Exterior mask</label><label><input v-model="showInteriorMask" type="checkbox"> Interior mask</label><label><input v-model="tintHeroLayers" type="checkbox"> Tint layers</label><label><input v-model="freezeParallax" type="checkbox"> Freeze parallax</label>
     </div>
     <details class="environment-preview__layers"><summary>Individual layers</summary><label v-for="layer in heroLayerIds" :key="layer"><input v-model="hiddenHeroLayers" type="checkbox" :value="layer"> Hide {{ layer }}</label></details>
-    <button type="button" @click="resetPreview">Reset to live</button>
+    <button type="button" @click="resetPreview(); resetExperienceLightPreview()">Reset to live</button>
   </aside>
 </template>
 
 <style scoped>
+.experience-light-preview { grid-column: 1 / -1; display: grid; gap: .6rem; padding: .85rem; border: 1px solid #ffffff25; }
+.experience-light-preview legend { padding-inline: .4rem; color: #c8ad7d; }
+.experience-light-preview small { color: #a4a6a2; }
 .cat-preview { grid-column: 1 / -1; display: grid; grid-template-columns: 125px minmax(0, 1fr); gap: 1rem; margin: .3rem 0; padding: .85rem; border: 1px solid #ffffff25; }
 .cat-preview legend { padding: 0 .4rem; color: #c8ad7d; font-size: .8rem; }
 .cat-preview__thumbnail { width: 100%; align-self: center; background: radial-gradient(ellipse, #53504a, #191b1b); border-radius: .3rem; }

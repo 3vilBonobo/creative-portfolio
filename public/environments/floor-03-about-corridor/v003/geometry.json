@@ -1,0 +1,258 @@
+{
+  "status": "ARTWORK EXPORT CANDIDATE — VISUAL ACCEPTANCE IN CODEX BROWSER REQUIRED",
+  "source": {
+    "file": "desktop clean approved composition",
+    "export_size": [
+      1920,
+      1080
+    ],
+    "native_generator_pixels": [
+      1672,
+      941
+    ],
+    "lighting": "warm lamps are baked; DO NOT stack previous unrelated light passes"
+  },
+  "profiles": {
+    "desktop": {
+      "filename": "floor-03-about-corridor-base-desktop.webp",
+      "crop_from_desktop_pixels": [
+        0,
+        0,
+        1920,
+        1080
+      ],
+      "export_size": [
+        1920,
+        1080
+      ],
+      "portrait_opening_px_clockwise_TL_TR_BR_BL": [
+        [
+          936.969970703125,
+          183.22999572753906
+        ],
+        [
+          1281.02001953125,
+          206.97000122070312
+        ],
+        [
+          1280.0400390625,
+          737.0700073242188
+        ],
+        [
+          936.969970703125,
+          767.72998046875
+        ]
+      ],
+      "portrait_opening_normalized": [
+        [
+          0.488005,
+          0.169657
+        ],
+        [
+          0.667198,
+          0.191639
+        ],
+        [
+          0.666688,
+          0.682472
+        ],
+        [
+          0.488005,
+          0.710861
+        ]
+      ],
+      "role": "Full desktop layout; text on left wall and portrait at right",
+      "bytes": 228278,
+      "quality": 89
+    },
+    "tablet-landscape": {
+      "filename": "floor-03-about-corridor-base-tablet-landscape.webp",
+      "crop_from_desktop_pixels": [
+        300,
+        0,
+        1854,
+        1080
+      ],
+      "export_size": [
+        1180,
+        820
+      ],
+      "portrait_opening_px_clockwise_TL_TR_BR_BL": [
+        [
+          483.6700134277344,
+          139.1199951171875
+        ],
+        [
+          744.9199829101562,
+          157.13999938964844
+        ],
+        [
+          744.1699829101562,
+          559.6300048828125
+        ],
+        [
+          483.6700134277344,
+          582.9099731445312
+        ]
+      ],
+      "portrait_opening_normalized": [
+        [
+          0.409891,
+          0.169657
+        ],
+        [
+          0.631287,
+          0.191639
+        ],
+        [
+          0.630656,
+          0.682472
+        ],
+        [
+          0.409891,
+          0.710861
+        ]
+      ],
+      "role": "Landscape tablet: quiet left reading wall, physical frame and corridor",
+      "bytes": 132020,
+      "quality": 89
+    },
+    "tablet": {
+      "filename": "floor-03-about-corridor-base-tablet.webp",
+      "crop_from_desktop_pixels": [
+        300,
+        0,
+        1596,
+        1080
+      ],
+      "export_size": [
+        1536,
+        1280
+      ],
+      "portrait_opening_px_clockwise_TL_TR_BR_BL": [
+        [
+          754.9299926757812,
+          217.16000366210938
+        ],
+        [
+          1162.68994140625,
+          245.3000030517578
+        ],
+        [
+          1161.530029296875,
+          873.5599975585938
+        ],
+        [
+          754.9299926757812,
+          909.9000244140625
+        ]
+      ],
+      "portrait_opening_normalized": [
+        [
+          0.491489,
+          0.169657
+        ],
+        [
+          0.75696,
+          0.191639
+        ],
+        [
+          0.756204,
+          0.682472
+        ],
+        [
+          0.491489,
+          0.710861
+        ]
+      ],
+      "role": "Portrait tablet upper scene; intro beside portrait, remaining copy in document flow",
+      "bytes": 182548,
+      "quality": 89
+    },
+    "mobile": {
+      "filename": "floor-03-about-corridor-base-mobile.webp",
+      "crop_from_desktop_pixels": [
+        740,
+        0,
+        1590,
+        1020
+      ],
+      "export_size": [
+        1080,
+        1296
+      ],
+      "portrait_opening_px_clockwise_TL_TR_BR_BL": [
+        [
+          250.27000427246094,
+          232.80999755859375
+        ],
+        [
+          687.4099731445312,
+          262.9700012207031
+        ],
+        [
+          686.1699829101562,
+          936.510009765625
+        ],
+        [
+          250.27000427246094,
+          975.469970703125
+        ]
+      ],
+      "portrait_opening_normalized": [
+        [
+          0.231729,
+          0.179637
+        ],
+        [
+          0.636494,
+          0.202912
+        ],
+        [
+          0.635341,
+          0.722618
+        ],
+        [
+          0.231729,
+          0.752676
+        ]
+      ],
+      "role": "Mobile upper scene; portrait and corridor only, reading copy below in document flow",
+      "bytes": 131250,
+      "quality": 89
+    }
+  },
+  "portrait_source": {
+    "existing_repo_path": "public/about/irene-portrait.webp",
+    "reference_copy": "reference/actual-site-portrait-DO-NOT-REGENERATE.webp",
+    "photo_crop_source_native": {
+      "original_size": [
+        799,
+        730
+      ],
+      "crop_box": [
+        204,
+        0,
+        642,
+        730
+      ]
+    },
+    "note": "Do not bake photo into environment, and do not independently use CSS cover on the mask and scene."
+  },
+  "floor_label": "03 — HTML/SVG, not baked in any background; normalized desktop label guide [0.70, 0.238, 0.08, 0.10]; determine tablet/mobile from available wall",
+  "content_strategy": {
+    "desktop": "text left and physical photo frame center-right; long Approach allowed to continue below scene without clipping",
+    "tablet-landscape": "intro and tabs arranged responsive, overflow scroll rather than shrink",
+    "tablet": "intro left beside frame upper scene; full biography and tabs below",
+    "mobile": "portrait scene first; ALL readable text below in normal document flow",
+    "long_content": "fade scene into shared quiet-wall texture; no duplicated doors/fixtures; do not scale scene vertically or pretend texture is perspective-correct wall"
+  },
+  "assets_do_not_include": [
+    "portrait pixels",
+    "portfolio text",
+    "tab labels",
+    "floor digits",
+    "navigation",
+    "new lighting overlays"
+  ]
+}

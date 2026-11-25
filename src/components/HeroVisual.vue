@@ -14,6 +14,9 @@ import SceneEnvironment from "./SceneEnvironment.vue";
 
 const { state, previewMoonPhase, previewMoonProgress, previewIntensity, heroCompositeMode, hiddenHeroLayers, showExteriorMask, showInteriorMask, tintHeroLayers, freezeParallax } = useEnvironment();
 const root = ref<HTMLElement>(); const compositeFailed = ref(false); const documentHidden = ref(document.visibilityState === "hidden");
+const nearViewport = ref(true);
+const effectsPaused = computed(() => documentHidden.value || !nearViewport.value);
+let sceneObserver: IntersectionObserver | undefined;
 const layers = computed(() => getHeroLayers(state.value.timePhase));
 const showReference = computed(() => heroCompositeMode.value === "reference" || compositeFailed.value);
 const nightOpacity = computed(() => ({ dawn: 0, day: 0, goldenHour: 0, dusk: .68, night: 1 } as const)[state.value.timePhase]);
@@ -40,10 +43,18 @@ watch(() => state.value.timePhase, () => { compositeFailed.value = false; });
 
 onMounted(() => {
   document.addEventListener("visibilitychange", onVisibilityChange);
+  // Resume just before the rooftop enters view, without doing decorative work
+  // while the visitor is browsing another floor. Keep the artwork mounted.
+  if (root.value && typeof IntersectionObserver !== "undefined") {
+    sceneObserver = new IntersectionObserver(([entry]) => {
+      if (entry) nearViewport.value = entry.isIntersecting;
+    }, { rootMargin: "160px 0px" });
+    sceneObserver.observe(root.value);
+  }
   gsap.registerPlugin(ScrollTrigger);
   motionQuery = matchMedia("(min-width: 761px) and (prefers-reduced-motion: no-preference)"); motionQuery.addEventListener("change", syncParallax); syncParallax();
 });
-onBeforeUnmount(() => { document.removeEventListener("visibilitychange", onVisibilityChange); motionQuery?.removeEventListener("change", syncParallax); teardownParallax(); });
+onBeforeUnmount(() => { sceneObserver?.disconnect(); document.removeEventListener("visibilitychange", onVisibilityChange); motionQuery?.removeEventListener("change", syncParallax); teardownParallax(); });
 </script>
 
 <template>
@@ -57,7 +68,7 @@ onBeforeUnmount(() => { document.removeEventListener("visibilitychange", onVisib
         <div v-if="!isHidden(layer) && layer.kind !== 'weather'" class="hero-composite__layer" :class="[`hero-composite__layer--${layer.id}`]" :style="styleFor(layer)" :data-layer-id="layer.id">
           <img v-if="layer.kind === 'raster' || layer.kind === 'lighting'" :src="layer.desktop!" width="1536" height="1024" alt="" @error="onAssetError">
           <HeroClock v-if="layer.id === 'workstationForeground'" />
-          <HeroMonitorAnimations v-if="layer.id === 'workstationForeground'" :paused="documentHidden" />
+          <HeroMonitorAnimations v-if="layer.id === 'workstationForeground'" :paused="effectsPaused" />
           <div v-else-if="layer.kind === 'glass'" class="hero-window-glass" />
         </div>
       </template>
@@ -66,15 +77,15 @@ onBeforeUnmount(() => { document.removeEventListener("visibilitychange", onVisib
     <picture class="hero-night" :style="{ opacity: nightOpacity }">
       <img src="/hero/athens-coder-loft-night.png" width="1536" height="1024" alt="" decoding="async">
     </picture>
-    <SceneEnvironment scene="hero" :state="state" :intensity="previewIntensity" :paused="documentHidden" />
-    <MoonSky :state="state" :preview-phase="previewMoonPhase" :preview-progress="previewMoonProgress" :paused="documentHidden" :style="{ opacity: nightOpacity }" />
-    <AcropolisLightBeams :visible="nightOpacity > 0" :paused="documentHidden" :style="{ opacity: nightOpacity }" />
+    <SceneEnvironment scene="hero" :state="state" :intensity="previewIntensity" :paused="effectsPaused" />
+    <MoonSky :state="state" :preview-phase="previewMoonPhase" :preview-progress="previewMoonProgress" :paused="effectsPaused" :style="{ opacity: nightOpacity }" />
+    <AcropolisLightBeams :visible="nightOpacity > 0" :paused="effectsPaused" :style="{ opacity: nightOpacity }" />
     <div class="hero-night-clock" :style="{ opacity: nightOpacity }">
       <HeroClock />
     </div>
 
     <div class="hero-monitor-overlay">
-      <HeroMonitorAnimations :paused="documentHidden" />
+      <HeroMonitorAnimations :paused="effectsPaused" />
     </div>
   </div>
 </template>

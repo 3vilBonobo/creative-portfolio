@@ -1,0 +1,206 @@
+{
+  "desktop": {
+    "dimensions": [
+      1672,
+      941
+    ],
+    "passes": [
+      {
+        "channel": "wall",
+        "kind": "emission",
+        "file": "floor-01-experience-wall-emission-desktop.png",
+        "bounds": [
+          186,
+          184,
+          255,
+          289
+        ],
+        "canvas": [
+          1672,
+          941
+        ]
+      },
+      {
+        "channel": "wall",
+        "kind": "spill",
+        "file": "floor-01-experience-wall-spill-desktop.png",
+        "bounds": [
+          97,
+          129,
+          340,
+          935
+        ],
+        "canvas": [
+          1672,
+          941
+        ]
+      },
+      {
+        "channel": "ceiling",
+        "kind": "emission",
+        "file": "floor-01-experience-ceiling-emission-desktop.png",
+        "bounds": [
+          994,
+          142,
+          1347,
+          183
+        ],
+        "canvas": [
+          1672,
+          941
+        ]
+      },
+      {
+        "channel": "ceiling",
+        "kind": "spill",
+        "file": "floor-01-experience-ceiling-spill-desktop.png",
+        "bounds": [
+          1006,
+          16,
+          1332,
+          931
+        ],
+        "canvas": [
+          1672,
+          941
+        ]
+      }
+    ]
+  },
+  "tablet": {
+    "dimensions": [
+      1448,
+      1086
+    ],
+    "passes": [
+      {
+        "channel": "wall",
+        "kind": "emission",
+        "file": "floor-01-experience-wall-emission-tablet.png",
+        "bounds": [
+          155,
+          200,
+          218,
+          303
+        ],
+        "canvas": [
+          1448,
+          1086
+        ]
+      },
+      {
+        "channel": "wall",
+        "kind": "spill",
+        "file": "floor-01-experience-wall-spill-tablet.png",
+        "bounds": [
+          80,
+          144,
+          292,
+          1040
+        ],
+        "canvas": [
+          1448,
+          1086
+        ]
+      },
+      {
+        "channel": "ceiling",
+        "kind": "emission",
+        "file": "floor-01-experience-ceiling-emission-tablet.png",
+        "bounds": [
+          873,
+          143,
+          1196,
+          184
+        ],
+        "canvas": [
+          1448,
+          1086
+        ]
+      },
+      {
+        "channel": "ceiling",
+        "kind": "spill",
+        "file": "floor-01-experience-ceiling-spill-tablet.png",
+        "bounds": [
+          885,
+          16,
+          1184,
+          1036
+        ],
+        "canvas": [
+          1448,
+          1086
+        ]
+      }
+    ]
+  },
+  "mobile": {
+    "dimensions": [
+      941,
+      1672
+    ],
+    "passes": [
+      {
+        "channel": "wall",
+        "kind": "emission",
+        "file": "floor-01-experience-wall-emission-mobile.png",
+        "bounds": [
+          127,
+          238,
+          186,
+          337
+        ],
+        "canvas": [
+          941,
+          1672
+        ]
+      },
+      {
+        "channel": "wall",
+        "kind": "spill",
+        "file": "floor-01-experience-wall-spill-mobile.png",
+        "bounds": [
+          53,
+          185,
+          241,
+          1611
+        ],
+        "canvas": [
+          941,
+          1672
+        ]
+      },
+      {
+        "channel": "ceiling",
+        "kind": "emission",
+        "file": "floor-01-experience-ceiling-emission-mobile.png",
+        "bounds": [
+          548,
+          208,
+          817,
+          249
+        ],
+        "canvas": [
+          941,
+          1672
+        ]
+      },
+      {
+        "channel": "ceiling",
+        "kind": "spill",
+        "file": "floor-01-experience-ceiling-spill-mobile.png",
+        "bounds": [
+          554,
+          95,
+          809,
+          1581
+        ],
+        "canvas": [
+          941,
+          1672
+        ]
+      }
+    ]
+  }
+}

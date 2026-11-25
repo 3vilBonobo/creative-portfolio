@@ -1,0 +1,27 @@
+{
+  "source": "Owner-supplied desktop image, 25 November 2026; supersedes desktop only.",
+  "aperture": "Measured from this image with approximately 2px inner-frame inset; browser visual acceptance pending.",
+  "encoding": "Lossless WebP; unchanged source retained.",
+  "assets": [
+    {
+      "path": "desktop-source.png",
+      "bytes": 2691564,
+      "sha256": "a8db77a7dd577af5c91c71ca72373ccca8bf3dd317766c82e9c5b3e0952c902c"
+    },
+    {
+      "path": "floor-03-about-corridor-base-desktop.webp",
+      "bytes": 1692864,
+      "sha256": "cbc67e237ca2bc797b9773ab2ab2eb26a96b3e2c7aab731e925252fcdb4513fe"
+    },
+    {
+      "path": "floor-03-about-corridor-portrait-aperture-desktop.svg",
+      "bytes": 167,
+      "sha256": "7d9ee5beffb1e1b493b770225347909340988926fa00da855338efb35927f39f"
+    },
+    {
+      "path": "geometry.json",
+      "bytes": 324,
+      "sha256": "f615d7e216aba564ea4cdb2f32bf4d98e6273be394a6c282da742ed9ba0d3ce3"
+    }
+  ]
+}

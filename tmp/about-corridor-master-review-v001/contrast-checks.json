@@ -1,0 +1,443 @@
+[
+  {
+    "viewport": [
+      1920,
+      1080
+    ],
+    "mode": "review-fit",
+    "tab": "Background \u03b2\u2020\u2019",
+    "wallText": [
+      {
+        "text": "I\u03b2\u20ac\u2122m a frontend developer focused on making compl",
+        "foreground": "rgb(240, 232, 220)",
+        "nativeBox": [
+          144,
+          311,
+          759,
+          372
+        ],
+        "minimum": 3.710521943560302,
+        "percentile1": 8.938676907110171,
+        "percentBelow4point5": 0.007996801279488205
+      },
+      {
+        "text": "My path into software began in law and criminology",
+        "foreground": "rgb(211, 203, 192)",
+        "nativeBox": [
+          144,
+          395,
+          759,
+          477
+        ],
+        "minimum": 3.7867622496718027,
+        "percentile1": 7.370577880609577,
+        "percentBelow4point5": 0.00396589331746976
+      },
+      {
+        "text": "That perspective now shapes how I build interfaces",
+        "foreground": "rgb(211, 203, 192)",
+        "nativeBox": [
+          144,
+          494,
+          759,
+          577
+        ],
+        "minimum": 2.3257529669662422,
+        "percentile1": 6.25346450758719,
+        "percentBelow4point5": 0.15280634734058182
+      }
+    ]
+  },
+  {
+    "viewport": [
+      1920,
+      1080
+    ],
+    "mode": "review-fit",
+    "tab": "Toolkit \u03b2\u2020\u2019",
+    "wallText": [
+      {
+        "text": "I\u03b2\u20ac\u2122m a frontend developer focused on making compl",
+        "foreground": "rgb(240, 232, 220)",
+        "nativeBox": [
+          144,
+          311,
+          759,
+          372
+        ],
+        "minimum": 3.710521943560302,
+        "percentile1": 8.938676907110171,
+        "percentBelow4point5": 0.007996801279488205
+      },
+      {
+        "text": "My path into software began in law and criminology",
+        "foreground": "rgb(211, 203, 192)",
+        "nativeBox": [
+          144,
+          395,
+          759,
+          477
+        ],
+        "minimum": 3.7867622496718027,
+        "percentile1": 7.370577880609577,
+        "percentBelow4point5": 0.00396589331746976
+      },
+      {
+        "text": "That perspective now shapes how I build interfaces",
+        "foreground": "rgb(211, 203, 192)",
+        "nativeBox": [
+          144,
+          494,
+          759,
+          577
+        ],
+        "minimum": 2.3257529669662422,
+        "percentile1": 6.25346450758719,
+        "percentBelow4point5": 0.15280634734058182
+      }
+    ]
+  },
+  {
+    "viewport": [
+      1920,
+      1080
+    ],
+    "mode": "review-fit",
+    "tab": "Approach \u03b2\u2020\u2019",
+    "wallText": [
+      {
+        "text": "I\u03b2\u20ac\u2122m a frontend developer focused on making compl",
+        "foreground": "rgb(240, 232, 220)",
+        "nativeBox": [
+          143,
+          312,
+          759,
+          373
+        ],
+        "minimum": 3.710521943560302,
+        "percentile1": 8.889034519396153,
+        "percentBelow4point5": 0.0053225463061528635
+      },
+      {
+        "text": "My path into software began in law and criminology",
+        "foreground": "rgb(211, 203, 192)",
+        "nativeBox": [
+          143,
+          397,
+          759,
+          480
+        ],
+        "minimum": 3.7867622496718027,
+        "percentile1": 7.482322529098967,
+        "percentBelow4point5": 0.003911750899702707
+      },
+      {
+        "text": "That perspective now shapes how I build interfaces",
+        "foreground": "rgb(211, 203, 192)",
+        "nativeBox": [
+          143,
+          497,
+          759,
+          580
+        ],
+        "minimum": 2.3257529669662422,
+        "percentile1": 6.25346450758719,
+        "percentBelow4point5": 0.1466906587388515
+      }
+    ]
+  },
+  {
+    "viewport": [
+      1440,
+      900
+    ],
+    "mode": "review-fit",
+    "tab": "Background \u03b2\u2020\u2019",
+    "wallText": [
+      {
+        "text": "I\u03b2\u20ac\u2122m a frontend developer focused on making compl",
+        "foreground": "rgb(240, 232, 220)",
+        "nativeBox": [
+          143,
+          331,
+          759,
+          452
+        ],
+        "minimum": 4.536153623852712,
+        "percentile1": 8.666008767174215,
+        "percentBelow4point5": 0.0
+      },
+      {
+        "text": "My path into software began in law and criminology",
+        "foreground": "rgb(211, 203, 192)",
+        "nativeBox": [
+          143,
+          483,
+          759,
+          594
+        ],
+        "minimum": 2.3257529669662422,
+        "percentile1": 6.425590912473617,
+        "percentBelow4point5": 0.12431262431262431
+      },
+      {
+        "text": "That perspective now shapes how I build interfaces",
+        "foreground": "rgb(211, 203, 192)",
+        "nativeBox": [
+          143,
+          618,
+          759,
+          729
+        ],
+        "minimum": 3.128171216576224,
+        "percentile1": 8.504294058269538,
+        "percentBelow4point5": 0.016087516087516088
+      }
+    ]
+  },
+  {
+    "viewport": [
+      1440,
+      900
+    ],
+    "mode": "review-fit",
+    "tab": "Toolkit \u03b2\u2020\u2019",
+    "wallText": [
+      {
+        "text": "I\u03b2\u20ac\u2122m a frontend developer focused on making compl",
+        "foreground": "rgb(240, 232, 220)",
+        "nativeBox": [
+          144,
+          329,
+          759,
+          449
+        ],
+        "minimum": 4.536153623852712,
+        "percentile1": 8.666008767174215,
+        "percentBelow4point5": 0.0
+      },
+      {
+        "text": "My path into software began in law and criminology",
+        "foreground": "rgb(211, 203, 192)",
+        "nativeBox": [
+          144,
+          480,
+          759,
+          590
+        ],
+        "minimum": 2.3257529669662422,
+        "percentile1": 6.425590912473617,
+        "percentBelow4point5": 0.1271249076127125
+      },
+      {
+        "text": "That perspective now shapes how I build interfaces",
+        "foreground": "rgb(211, 203, 192)",
+        "nativeBox": [
+          144,
+          613,
+          759,
+          723
+        ],
+        "minimum": 3.128171216576224,
+        "percentile1": 8.500380453113658,
+        "percentBelow4point5": 0.022172949002217293
+      }
+    ]
+  },
+  {
+    "viewport": [
+      1440,
+      900
+    ],
+    "mode": "review-fit",
+    "tab": "Approach \u03b2\u2020\u2019",
+    "wallText": [
+      {
+        "text": "I\u03b2\u20ac\u2122m a frontend developer focused on making compl",
+        "foreground": "rgb(240, 232, 220)",
+        "nativeBox": [
+          143,
+          331,
+          759,
+          452
+        ],
+        "minimum": 4.536153623852712,
+        "percentile1": 8.666008767174215,
+        "percentBelow4point5": 0.0
+      },
+      {
+        "text": "My path into software began in law and criminology",
+        "foreground": "rgb(211, 203, 192)",
+        "nativeBox": [
+          143,
+          483,
+          759,
+          594
+        ],
+        "minimum": 2.3257529669662422,
+        "percentile1": 6.425590912473617,
+        "percentBelow4point5": 0.12431262431262431
+      },
+      {
+        "text": "That perspective now shapes how I build interfaces",
+        "foreground": "rgb(211, 203, 192)",
+        "nativeBox": [
+          143,
+          618,
+          759,
+          729
+        ],
+        "minimum": 3.128171216576224,
+        "percentile1": 8.504294058269538,
+        "percentBelow4point5": 0.016087516087516088
+      }
+    ]
+  },
+  {
+    "viewport": [
+      1440,
+      900
+    ],
+    "mode": "review-fit review-wide",
+    "tab": "Background \u03b2\u2020\u2019",
+    "wallText": [
+      {
+        "text": "I\u03b2\u20ac\u2122m a frontend developer focused on making compl",
+        "foreground": "rgb(240, 232, 220)",
+        "nativeBox": [
+          143,
+          331,
+          836,
+          412
+        ],
+        "minimum": 3.689535449509784,
+        "percentile1": 7.25980917311422,
+        "percentBelow4point5": 0.024940765681506424
+      },
+      {
+        "text": "My path into software began in law and criminology",
+        "foreground": "rgb(211, 203, 192)",
+        "nativeBox": [
+          143,
+          443,
+          836,
+          554
+        ],
+        "minimum": 1.6237995276045516,
+        "percentile1": 5.31131544963907,
+        "percentBelow4point5": 0.312000312000312
+      },
+      {
+        "text": "That perspective now shapes how I build interfaces",
+        "foreground": "rgb(211, 203, 192)",
+        "nativeBox": [
+          143,
+          578,
+          836,
+          689
+        ],
+        "minimum": 2.8235464287773167,
+        "percentile1": 7.617368789852898,
+        "percentBelow4point5": 0.0429000429000429
+      }
+    ]
+  },
+  {
+    "viewport": [
+      1440,
+      900
+    ],
+    "mode": "review-fit review-wide",
+    "tab": "Toolkit \u03b2\u2020\u2019",
+    "wallText": [
+      {
+        "text": "I\u03b2\u20ac\u2122m a frontend developer focused on making compl",
+        "foreground": "rgb(240, 232, 220)",
+        "nativeBox": [
+          144,
+          329,
+          836,
+          409
+        ],
+        "minimum": 3.689535449509784,
+        "percentile1": 7.279619730694242,
+        "percentBelow4point5": 0.02528901734104046
+      },
+      {
+        "text": "My path into software began in law and criminology",
+        "foreground": "rgb(211, 203, 192)",
+        "nativeBox": [
+          144,
+          440,
+          836,
+          550
+        ],
+        "minimum": 1.6237995276045516,
+        "percentile1": 5.312172867657501,
+        "percentBelow4point5": 0.31003678402522333
+      },
+      {
+        "text": "That perspective now shapes how I build interfaces",
+        "foreground": "rgb(211, 203, 192)",
+        "nativeBox": [
+          144,
+          573,
+          836,
+          683
+        ],
+        "minimum": 2.2239255407267526,
+        "percentile1": 7.410803544159757,
+        "percentBelow4point5": 0.05780346820809249
+      }
+    ]
+  },
+  {
+    "viewport": [
+      1440,
+      900
+    ],
+    "mode": "review-fit review-wide",
+    "tab": "Approach \u03b2\u2020\u2019",
+    "wallText": [
+      {
+        "text": "I\u03b2\u20ac\u2122m a frontend developer focused on making compl",
+        "foreground": "rgb(240, 232, 220)",
+        "nativeBox": [
+          143,
+          331,
+          836,
+          412
+        ],
+        "minimum": 3.689535449509784,
+        "percentile1": 7.25980917311422,
+        "percentBelow4point5": 0.024940765681506424
+      },
+      {
+        "text": "My path into software began in law and criminology",
+        "foreground": "rgb(211, 203, 192)",
+        "nativeBox": [
+          143,
+          443,
+          836,
+          554
+        ],
+        "minimum": 1.6237995276045516,
+        "percentile1": 5.31131544963907,
+        "percentBelow4point5": 0.312000312000312
+      },
+      {
+        "text": "That perspective now shapes how I build interfaces",
+        "foreground": "rgb(211, 203, 192)",
+        "nativeBox": [
+          143,
+          578,
+          836,
+          689
+        ],
+        "minimum": 2.8235464287773167,
+        "percentile1": 7.617368789852898,
+        "percentBelow4point5": 0.0429000429000429
+      }
+    ]
+  }
+]

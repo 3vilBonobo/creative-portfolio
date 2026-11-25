@@ -1,0 +1,21 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>About corridor implementation QA</title></head><body><div id="app"></div><script type="module">
+const params = new URLSearchParams(location.search);
+if(params.has('reduce')) {
+ const realMatchMedia=window.matchMedia.bind(window);
+ window.matchMedia=query => query==='(prefers-reduced-motion: reduce)' ? {matches:true,media:query,addEventListener(){},removeEventListener(){},addListener(){},removeListener(){},dispatchEvent(){return true;},onchange:null} : realMatchMedia(query);
+}
+document.documentElement.dataset.qaReduced=String(window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+const [{createApp,h,nextTick}, {default:About}, {default:SiteNavigation}, {default:FloorNavigator}, {FLOORS}, {aboutContent}]=await Promise.all([import('vue'),import('/src/sections/AboutSection.vue'),import('/src/components/SiteNavigation.vue'),import('/src/components/FloorNavigator.vue'),import('/src/config/floors.ts'),import('/src/data/about.ts')]);
+await import('/src/style.css');
+if(params.get('text')==='200') document.documentElement.style.fontSize='200%';
+if(params.has('long')) aboutContent.sections[0].paragraphs=[...aboutContent.sections[0].paragraphs,...Array.from({length:8},(_,i)=>`${aboutContent.sections[0].paragraphs[0]} [Long-content check ${i+1}]`)];
+createApp({render:()=>h('div',{class:'app-shell','data-active-floor':'about','data-time-phase':'day'},[h(SiteNavigation),h(FloorNavigator,{floors:FLOORS,activeFloor:'about'}),h('main',{id:'main-content'},[h(About)])])}).mount('#app');
+await nextTick();
+if(params.get('text')==='exact200') {
+ await document.fonts.ready;
+ const sizes=Array.from(document.querySelectorAll('#about,#about *')).map(el=>[el,parseFloat(getComputedStyle(el).fontSize)]);
+ for(const [el,size] of sizes) el.style.setProperty('font-size',`${size*2}px`,'important');
+ document.documentElement.dataset.qaText='Every About element set to twice its computed font size before mutation';
+}
+if(params.has('failure')) document.querySelectorAll('.about__scene img').forEach(img=>{img.src='/intentional-about-qa-missing.webp';});
+</script></body></html>
