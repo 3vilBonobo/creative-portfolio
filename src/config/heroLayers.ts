@@ -1,4 +1,5 @@
 import type { TimePhase } from "../types/environment";
+import { HERO_SCENE } from "./heroScene";
 
 export const HERO_LAYER_IDS = ["sky", "distantTerrain", "acropolis", "backgroundCity", "nearBuildings", "exteriorAtmosphere", "exteriorPrecipitation", "windowGlass", "windowFrame", "officeShell", "workstationForeground", "interiorLighting"] as const;
 export type HeroLayerId = (typeof HERO_LAYER_IDS)[number];
@@ -37,5 +38,5 @@ export function getHeroLayers(phase: TimePhase): readonly HeroLayerDefinition[] 
   ];
 }
 
-export const HERO_REFERENCE = { desktop: "/hero/athens-coder-loft-day.webp", mobile: "/hero/athens-coder-loft-mobile.webp", width: 1536, height: 1024 } as const;
+export const HERO_REFERENCE = { desktop: HERO_SCENE.day, mobile: HERO_SCENE.day, width: HERO_SCENE.width, height: HERO_SCENE.height } as const;
 

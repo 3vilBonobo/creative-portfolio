@@ -1,0 +1,252 @@
+[
+  {
+    "overflow": false,
+    "transitions": [
+      {
+        "height": 173.3249969482422,
+        "id": "transition-04-to-03",
+        "loaded": true,
+        "nextGap": -0.0002899169921875,
+        "prevGap": 0,
+        "top": 1440,
+        "width": 2544.800048828125
+      },
+      {
+        "height": 173.3249969482422,
+        "id": "transition-03-to-02",
+        "loaded": true,
+        "nextGap": -0.0000457763671875,
+        "prevGap": 0.0003662109375,
+        "top": 2982.925048828125,
+        "width": 2544.800048828125
+      },
+      {
+        "height": 173.3249969482422,
+        "id": "transition-02-to-01",
+        "loaded": true,
+        "nextGap": -0.0000457763671875,
+        "prevGap": 0,
+        "top": 4597.25,
+        "width": 2544.800048828125
+      },
+      {
+        "height": 173.3249969482422,
+        "id": "transition-01-to-00",
+        "loaded": true,
+        "nextGap": 0.00000667572021484375,
+        "prevGap": 0.0000457763671875,
+        "top": 6210.574996948242,
+        "width": 2544.800048828125
+      }
+    ],
+    "viewport": [
+      2560,
+      1440
+    ],
+    "document": {
+      "concrete": "40px",
+      "height": 7882,
+      "width": 2545
+    }
+  },
+  {
+    "overflow": false,
+    "transitions": [
+      {
+        "height": 173.3249969482422,
+        "id": "transition-04-to-03",
+        "loaded": true,
+        "nextGap": 0.0001983642578125,
+        "prevGap": 0,
+        "top": 1079.99951171875,
+        "width": 1904.800048828125
+      },
+      {
+        "height": 173.3249969482422,
+        "id": "transition-03-to-02",
+        "loaded": true,
+        "nextGap": -0.0000457763671875,
+        "prevGap": 0,
+        "top": 2615.51220703125,
+        "width": 1904.800048828125
+      },
+      {
+        "height": 173.3249969482422,
+        "id": "transition-02-to-01",
+        "loaded": true,
+        "nextGap": -0.0000457763671875,
+        "prevGap": 0.0001220703125,
+        "top": 3869.8372802734375,
+        "width": 1904.800048828125
+      },
+      {
+        "height": 173.3249969482422,
+        "id": "transition-01-to-00",
+        "loaded": true,
+        "nextGap": 0,
+        "prevGap": 0.0000762939453125,
+        "top": 5123.162307739258,
+        "width": 1904.800048828125
+      }
+    ],
+    "viewport": [
+      1920,
+      1080
+    ],
+    "document": {
+      "concrete": "40px",
+      "height": 6435,
+      "width": 1905
+    }
+  },
+  {
+    "overflow": false,
+    "transitions": [
+      {
+        "height": 160.8000030517578,
+        "id": "transition-04-to-03",
+        "loaded": true,
+        "nextGap": -0.0001983642578125,
+        "prevGap": 0,
+        "top": 900,
+        "width": 1424.800048828125
+      },
+      {
+        "height": 160.8000030517578,
+        "id": "transition-03-to-02",
+        "loaded": true,
+        "nextGap": 0.0000457763671875,
+        "prevGap": 0.000244140625,
+        "top": 2736.362548828125,
+        "width": 1424.800048828125
+      },
+      {
+        "height": 160.8000030517578,
+        "id": "transition-02-to-01",
+        "loaded": true,
+        "nextGap": 0.0000457763671875,
+        "prevGap": -0.00006103515625,
+        "top": 3797.012573242187,
+        "width": 1424.800048828125
+      },
+      {
+        "height": 160.8000030517578,
+        "id": "transition-01-to-00",
+        "loaded": true,
+        "nextGap": 0,
+        "prevGap": -0.00002288818359375,
+        "top": 5067.125099182129,
+        "width": 1424.800048828125
+      }
+    ],
+    "viewport": [
+      1440,
+      900
+    ],
+    "document": {
+      "concrete": "36px",
+      "height": 6097,
+      "width": 1425
+    }
+  },
+  {
+    "overflow": false,
+    "transitions": [
+      {
+        "height": 91.5625,
+        "id": "transition-04-to-03",
+        "loaded": true,
+        "nextGap": 0,
+        "prevGap": 0,
+        "top": 1180,
+        "width": 804.7999877929688
+      },
+      {
+        "height": 91.5625,
+        "id": "transition-03-to-02",
+        "loaded": true,
+        "nextGap": 0,
+        "prevGap": 0.0001220703125,
+        "top": 3324.6251220703125,
+        "width": 804.7999877929688
+      },
+      {
+        "height": 91.5625,
+        "id": "transition-02-to-01",
+        "loaded": true,
+        "nextGap": 0,
+        "prevGap": -0.0001220703125,
+        "top": 9235.47509765625,
+        "width": 804.7999877929688
+      },
+      {
+        "height": 91.5625,
+        "id": "transition-01-to-00",
+        "loaded": true,
+        "nextGap": 0,
+        "prevGap": 0.0001220703125,
+        "top": 10726.8251953125,
+        "width": 804.7999877929688
+      }
+    ],
+    "viewport": [
+      820,
+      1180
+    ],
+    "document": {
+      "concrete": "20.5px",
+      "height": 12062,
+      "width": 805
+    }
+  },
+  {
+    "overflow": false,
+    "transitions": [
+      {
+        "height": 89.32500457763672,
+        "id": "transition-04-to-03",
+        "loaded": true,
+        "nextGap": 0.00019073486328125,
+        "prevGap": -0.0001220703125,
+        "top": 964.83740234375,
+        "width": 375.2000122070313
+      },
+      {
+        "height": 89.32500457763672,
+        "id": "transition-03-to-02",
+        "loaded": true,
+        "nextGap": -0.00005340576171875,
+        "prevGap": 0.0001220703125,
+        "top": 3773.7252197265625,
+        "width": 375.2000122070313
+      },
+      {
+        "height": 89.32500457763672,
+        "id": "transition-02-to-01",
+        "loaded": true,
+        "nextGap": 0.00019073486328125,
+        "prevGap": 0.0001220703125,
+        "top": 13171.11279296875,
+        "width": 375.2000122070313
+      },
+      {
+        "height": 89.32500457763672,
+        "id": "transition-01-to-00",
+        "loaded": true,
+        "nextGap": 0.00019073486328125,
+        "prevGap": -0.00048828125,
+        "top": 14629.8125,
+        "width": 375.2000122070313
+      }
+    ],
+    "viewport": [
+      390,
+      844
+    ],
+    "document": {
+      "concrete": "20px",
+      "height": 16074,
+      "width": 375
+    }
+  }
+]

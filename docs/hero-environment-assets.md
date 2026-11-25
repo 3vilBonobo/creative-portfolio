@@ -1,4 +1,14 @@
-# Layered hero prototype assets
+# Wide hero runtime assets
+
+The current hero uses the owner's expanded studio image at `public/hero/loft-v2/day.png` (1672×941), with a complete regenerated dark night plate at `public/hero/loft-v2/night.png` (1671×941). `src/config/heroScene.ts` defines the shared 1672×941 coordinate system. Both plates fill the same scene frame; the one-pixel night size difference is scaled into that frame. Mobile contains the same full composition.
+
+Day/night blending uses complete images. No polygon cuts through the developer's face, hair, earring or body. Weather and sky masks clip atmosphere only; `scripts/prepare_wide_hero_masks.py` regenerates those two SVGs without altering artwork. Weather stops above the workstation.
+
+Moon, Acropolis lighting, live clock, screen activity and interaction hotspots share the scene frame. The left monitor types code, the centre uses slow orbital motion, and the vertical monitor shows independently timed telemetry. There is no shared descending scan. Paused and reduced-motion behavior remains supported. Cloud movement follows weather/wind and pauses when wind is zero.
+
+See `docs/art-production/floor-04-wide-hero.md` for night-image provenance, prompt and verification. Original assets below are retained for comparison and rollback; the wide hero does not load their layered compositor.
+
+## Legacy layered prototype
 
 All generated raster assets use the canonical 1536×1024 coordinate system. Mobile uses the same stack and a shared portrait viewport crop; no layer is independently cropped.
 

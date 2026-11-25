@@ -16,7 +16,7 @@ function clearTimer() {
   timer = undefined;
 }
 
-function schedule(delay = between(6_000, 14_000)) {
+function schedule(delay = between(1_200, 3_000)) {
   clearTimer();
   if (!props.visible || props.paused) return;
   timer = window.setTimeout(playSequence, delay);
@@ -28,9 +28,9 @@ function playSequence() {
   const countRoll = Math.random();
   const count = countRoll < .48 ? 1 : countRoll < .82 ? 2 : 3;
   const pick = <T,>(items: T[]) => items[Math.floor(Math.random() * items.length)];
-  const left = [{ x: 38.8, y: 38.2 }, { x: 40.7, y: 36.7 }, { x: 42.5, y: 35.8 }];
-  const middle = [{ x: 45.2, y: 35.1 }, { x: 47.6, y: 34.8 }, { x: 49.2, y: 35.3 }];
-  const right = [{ x: 51.1, y: 36.2 }, { x: 52.8, y: 37.4 }, { x: 54.2, y: 38.4 }];
+  const left = [{ x: 43.4, y: 36.0 }, { x: 44.8, y: 35.2 }, { x: 46.1, y: 34.7 }];
+  const middle = [{ x: 47.2, y: 34.6 }, { x: 48.3, y: 34.4 }, { x: 49.3, y: 34.7 }];
+  const right = [{ x: 50.0, y: 35.0 }, { x: 50.6, y: 35.6 }, { x: 51.1, y: 36.3 }];
   const launchPoints = count === 1
     ? [pick([...left, ...middle, ...right])]
     : count === 2
@@ -42,11 +42,11 @@ function playSequence() {
     ...point,
     angle: count === 1 ? between(-15, 15) : index === 0 ? between(7, 16) : index === count - 1 ? between(-16, -7) : between(-4, 4),
     travel: (index % 2 === 0 ? 1 : -1) * between(3.5, 7.5),
-    width: between(2.5, 4.4),
-    height: between(43, 59),
-    intensity: between(.16, .3),
+    width: between(2.6, 4),
+    height: between(18, 25),
+    intensity: between(.45, .65),
     delay: index * between(.7, 1.5),
-    duration: between(15, 22),
+    duration: between(12, 18),
     hue: palette[Math.floor(Math.random() * palette.length)],
   }));
   sequence.value += 1;
@@ -54,7 +54,7 @@ function playSequence() {
   const performanceLength = Math.max(...beams.value.map((beam) => beam.delay + beam.duration)) * 1_000 + 750;
   timer = window.setTimeout(() => {
     beams.value = [];
-    schedule(between(9_000, 24_000));
+    schedule(between(4_000, 9_000));
   }, performanceLength);
 }
 

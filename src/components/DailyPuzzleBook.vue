@@ -133,7 +133,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <svg v-if="!open" class="puzzle-hotspot-map" viewBox="0 0 1536 1024" preserveAspectRatio="xMidYMid meet">
+  <svg v-if="!open" class="puzzle-hotspot-map" viewBox="0 0 1672 941" preserveAspectRatio="xMidYMid meet">
     <defs>
       <radialGradient id="puzzle-outer-halo">
         <stop offset="0%" stop-color="#55e7ff" stop-opacity="0" />
@@ -144,6 +144,7 @@ onBeforeUnmount(() => {
     </defs>
     <g
       class="puzzle-hotspot"
+      transform="translate(142 -40)"
       role="button"
       tabindex="0"
       aria-label="Open today's puzzle book"

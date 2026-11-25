@@ -11,15 +11,17 @@ export const FLOORS = [FLOOR.office, FLOOR.about, FLOOR.projects, FLOOR.experien
 export type Floor = (typeof FLOORS)[number];
 
 export const FLOOR_TRANSITIONS = [
-  { from: FLOOR.office, to: FLOOR.about, variant: "pipes" },
-  { from: FLOOR.about, to: FLOOR.projects, variant: "cables" },
-  { from: FLOOR.projects, to: FLOOR.experience, variant: "pipes" },
-  { from: FLOOR.experience, to: FLOOR.street, variant: "cables" },
-].map(({ from, to, variant }) => ({
+  { from: FLOOR.office, to: FLOOR.about, variant: "upper", light: { x: 1100, y: 40 } },
+  { from: FLOOR.about, to: FLOOR.projects, variant: "data", light: { x: 1130, y: 24 } },
+  { from: FLOOR.projects, to: FLOOR.experience, variant: "power", light: { x: 740, y: 110 } },
+  { from: FLOOR.experience, to: FLOOR.street, variant: "lower", light: { x: 1190, y: 24 } },
+].map(({ from, to, variant, light }) => ({
   id: `${from.number}-to-${to.number}`,
   from,
   to,
-  variant: variant as "pipes" | "cables",
+  variant,
+  artwork: `/environments/transitions/transition-${from.number}-to-${to.number}-universal.webp`,
+  light,
 }));
 
 export type FloorTransition = (typeof FLOOR_TRANSITIONS)[number];

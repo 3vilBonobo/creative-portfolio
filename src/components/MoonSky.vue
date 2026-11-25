@@ -7,13 +7,13 @@ import { getMoonAppearance, getPreviewMoonAppearance } from "../services/moonMat
 const props = defineProps<{ state: EnvironmentState; paused?: boolean; previewPhase?: number | null; previewProgress?: number }>();
 const now = ref(new Date());
 const moon = computed(() => props.previewPhase != null ? getPreviewMoonAppearance(props.previewPhase, props.previewProgress) : getMoonAppearance(now.value));
-const arcX = computed(() => 21 + moon.value.progress * 39.8);
-// Put the entire disc below the skyline at both ends, preserving the 19% apex.
-const arcY = computed(() => 40 - Math.sin(moon.value.progress * Math.PI) * 21);
+const arcX = computed(() => 20.5 + moon.value.progress * 40.5);
+// The wide scene's glass starts at 19.5%; keep the apex below the frame.
+const arcY = computed(() => 42 - Math.sin(moon.value.progress * Math.PI) * 17);
 const cloudiness = computed(() => getWeatherEffectValues(props.state).cloud);
 const moonOpacity = computed(() => {
   if (!moon.value.visible || (props.state.timePhase !== "night" && props.state.timePhase !== "dusk")) return 0;
-  return Math.max(.1, 1 - cloudiness.value * .7);
+  return Math.max(.42, 1 - cloudiness.value * .45);
 });
 const style = computed(() => ({
   "--moon-x": `${arcX.value}%`, "--moon-y": `${arcY.value}%`,

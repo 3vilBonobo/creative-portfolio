@@ -1,0 +1,596 @@
+{
+  "desktop": [
+    {
+      "size": [
+        1920,
+        1080
+      ],
+      "states": [
+        {
+          "footer": 476.2125854492187,
+          "header": 0,
+          "height": 535.9125366210938,
+          "inactive": false,
+          "overflow": false,
+          "section": 1362.1875,
+          "tab": "about-panel-background",
+          "width": 429.5874938964844
+        },
+        {
+          "footer": 476.2125854492187,
+          "header": 0,
+          "height": 535.9125366210938,
+          "inactive": false,
+          "overflow": false,
+          "section": 1362.1875,
+          "tab": "about-panel-toolkit",
+          "width": 429.5874938964844
+        },
+        {
+          "footer": 476.2125854492187,
+          "header": 0,
+          "height": 535.9125366210938,
+          "inactive": false,
+          "overflow": false,
+          "section": 1362.1875,
+          "tab": "about-panel-approach",
+          "width": 429.5874938964844
+        }
+      ]
+    },
+    {
+      "size": [
+        1440,
+        900
+      ],
+      "states": [
+        {
+          "footer": 361.0624694824219,
+          "header": 0,
+          "height": 399.3125,
+          "inactive": false,
+          "overflow": false,
+          "section": 1675.5625,
+          "tab": "about-panel-background",
+          "width": 642.2999877929688
+        },
+        {
+          "footer": 361.0624694824219,
+          "header": 0,
+          "height": 399.3125,
+          "inactive": false,
+          "overflow": false,
+          "section": 1675.5625,
+          "tab": "about-panel-toolkit",
+          "width": 642.2999877929688
+        },
+        {
+          "footer": 361.0624694824219,
+          "header": 0,
+          "height": 399.3125,
+          "inactive": false,
+          "overflow": false,
+          "section": 1675.5625,
+          "tab": "about-panel-approach",
+          "width": 642.2999877929688
+        }
+      ]
+    },
+    {
+      "size": [
+        1180,
+        820
+      ],
+      "states": [
+        {
+          "footer": 354.1625061035156,
+          "header": 0,
+          "height": 392.4125061035156,
+          "inactive": false,
+          "overflow": false,
+          "section": 1925.0750732421875,
+          "tab": "about-panel-background",
+          "width": 726.4000244140625
+        },
+        {
+          "footer": 354.1625061035156,
+          "header": 0,
+          "height": 392.4125061035156,
+          "inactive": false,
+          "overflow": false,
+          "section": 1925.0750732421875,
+          "tab": "about-panel-toolkit",
+          "width": 726.4000244140625
+        },
+        {
+          "footer": 354.1625061035156,
+          "header": 0,
+          "height": 392.4125061035156,
+          "inactive": false,
+          "overflow": false,
+          "section": 1925.0750732421875,
+          "tab": "about-panel-approach",
+          "width": 726.4000244140625
+        }
+      ]
+    }
+  ],
+  "responsive": [
+    {
+      "size": [
+        820,
+        1180
+      ],
+      "states": [
+        {
+          "clipped": 0,
+          "hidden": true,
+          "overflow": false,
+          "tab": "about-panel-background"
+        },
+        {
+          "clipped": 0,
+          "hidden": true,
+          "overflow": false,
+          "tab": "about-panel-toolkit"
+        },
+        {
+          "clipped": 0,
+          "hidden": true,
+          "overflow": false,
+          "tab": "about-panel-approach"
+        }
+      ]
+    },
+    {
+      "size": [
+        390,
+        844
+      ],
+      "states": [
+        {
+          "clipped": 0,
+          "hidden": true,
+          "overflow": false,
+          "tab": "about-panel-background"
+        },
+        {
+          "clipped": 0,
+          "hidden": true,
+          "overflow": false,
+          "tab": "about-panel-toolkit"
+        },
+        {
+          "clipped": 0,
+          "hidden": true,
+          "overflow": false,
+          "tab": "about-panel-approach"
+        }
+      ]
+    },
+    {
+      "size": [
+        844,
+        390
+      ],
+      "states": [
+        {
+          "clipped": 0,
+          "hidden": true,
+          "overflow": false,
+          "tab": "about-panel-background"
+        },
+        {
+          "clipped": 0,
+          "hidden": true,
+          "overflow": false,
+          "tab": "about-panel-toolkit"
+        },
+        {
+          "clipped": 0,
+          "hidden": true,
+          "overflow": false,
+          "tab": "about-panel-approach"
+        }
+      ]
+    }
+  ],
+  "stress": [
+    {
+      "clipped": 0,
+      "height": 3251.16259765625,
+      "mode": "text=exact200",
+      "name": "Background",
+      "overflow": false,
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "clipped": 0,
+      "height": 3251.16259765625,
+      "mode": "text=exact200",
+      "name": "Toolkit",
+      "overflow": false,
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "clipped": 0,
+      "height": 3251.16259765625,
+      "mode": "text=exact200",
+      "name": "Approach",
+      "overflow": false,
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "clipped": 0,
+      "height": 3919.637451171875,
+      "mode": "text=exact200",
+      "name": "Background",
+      "overflow": false,
+      "size": [
+        1440,
+        900
+      ]
+    },
+    {
+      "clipped": 0,
+      "height": 3919.637451171875,
+      "mode": "text=exact200",
+      "name": "Toolkit",
+      "overflow": false,
+      "size": [
+        1440,
+        900
+      ]
+    },
+    {
+      "clipped": 0,
+      "height": 3919.637451171875,
+      "mode": "text=exact200",
+      "name": "Approach",
+      "overflow": false,
+      "size": [
+        1440,
+        900
+      ]
+    },
+    {
+      "clipped": 0,
+      "height": 4638.60009765625,
+      "mode": "text=exact200",
+      "name": "Background",
+      "overflow": false,
+      "size": [
+        1180,
+        820
+      ]
+    },
+    {
+      "clipped": 0,
+      "height": 4638.60009765625,
+      "mode": "text=exact200",
+      "name": "Toolkit",
+      "overflow": false,
+      "size": [
+        1180,
+        820
+      ]
+    },
+    {
+      "clipped": 0,
+      "height": 4638.60009765625,
+      "mode": "text=exact200",
+      "name": "Approach",
+      "overflow": false,
+      "size": [
+        1180,
+        820
+      ]
+    },
+    {
+      "clipped": 0,
+      "height": 4818.7001953125,
+      "mode": "text=exact200",
+      "name": "Background",
+      "overflow": false,
+      "size": [
+        820,
+        1180
+      ]
+    },
+    {
+      "clipped": 0,
+      "height": 4947.36279296875,
+      "mode": "text=exact200",
+      "name": "Toolkit",
+      "overflow": false,
+      "size": [
+        820,
+        1180
+      ]
+    },
+    {
+      "clipped": 0,
+      "height": 5225.0625,
+      "mode": "text=exact200",
+      "name": "Approach",
+      "overflow": false,
+      "size": [
+        820,
+        1180
+      ]
+    },
+    {
+      "clipped": 0,
+      "height": 7216.60009765625,
+      "mode": "text=exact200",
+      "name": "Background",
+      "overflow": false,
+      "size": [
+        390,
+        844
+      ]
+    },
+    {
+      "clipped": 0,
+      "height": 7000.8251953125,
+      "mode": "text=exact200",
+      "name": "Toolkit",
+      "overflow": false,
+      "size": [
+        390,
+        844
+      ]
+    },
+    {
+      "clipped": 0,
+      "height": 7660.86279296875,
+      "mode": "text=exact200",
+      "name": "Approach",
+      "overflow": false,
+      "size": [
+        390,
+        844
+      ]
+    },
+    {
+      "clipped": 0,
+      "height": 5023.48779296875,
+      "mode": "text=exact200",
+      "name": "Background",
+      "overflow": false,
+      "size": [
+        844,
+        390
+      ]
+    },
+    {
+      "clipped": 0,
+      "height": 5102.64990234375,
+      "mode": "text=exact200",
+      "name": "Toolkit",
+      "overflow": false,
+      "size": [
+        844,
+        390
+      ]
+    },
+    {
+      "clipped": 0,
+      "height": 5380.35009765625,
+      "mode": "text=exact200",
+      "name": "Approach",
+      "overflow": false,
+      "size": [
+        844,
+        390
+      ]
+    },
+    {
+      "clipped": 0,
+      "height": 2547.875,
+      "mode": "long=1",
+      "name": "Background",
+      "overflow": false,
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "clipped": 0,
+      "height": 2547.875,
+      "mode": "long=1",
+      "name": "Toolkit",
+      "overflow": false,
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "clipped": 0,
+      "height": 2547.875,
+      "mode": "long=1",
+      "name": "Approach",
+      "overflow": false,
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "clipped": 0,
+      "height": 2456.362548828125,
+      "mode": "long=1",
+      "name": "Background",
+      "overflow": false,
+      "size": [
+        1440,
+        900
+      ]
+    },
+    {
+      "clipped": 0,
+      "height": 2456.362548828125,
+      "mode": "long=1",
+      "name": "Toolkit",
+      "overflow": false,
+      "size": [
+        1440,
+        900
+      ]
+    },
+    {
+      "clipped": 0,
+      "height": 2456.362548828125,
+      "mode": "long=1",
+      "name": "Approach",
+      "overflow": false,
+      "size": [
+        1440,
+        900
+      ]
+    },
+    {
+      "clipped": 0,
+      "height": 2705.875,
+      "mode": "long=1",
+      "name": "Background",
+      "overflow": false,
+      "size": [
+        1180,
+        820
+      ]
+    },
+    {
+      "clipped": 0,
+      "height": 2705.875,
+      "mode": "long=1",
+      "name": "Toolkit",
+      "overflow": false,
+      "size": [
+        1180,
+        820
+      ]
+    },
+    {
+      "clipped": 0,
+      "height": 2705.875,
+      "mode": "long=1",
+      "name": "Approach",
+      "overflow": false,
+      "size": [
+        1180,
+        820
+      ]
+    },
+    {
+      "clipped": 0,
+      "height": 2833.862548828125,
+      "mode": "long=1",
+      "name": "Background",
+      "overflow": false,
+      "size": [
+        820,
+        1180
+      ]
+    },
+    {
+      "clipped": 0,
+      "height": 2816.012451171875,
+      "mode": "long=1",
+      "name": "Toolkit",
+      "overflow": false,
+      "size": [
+        820,
+        1180
+      ]
+    },
+    {
+      "clipped": 0,
+      "height": 2832.16259765625,
+      "mode": "long=1",
+      "name": "Approach",
+      "overflow": false,
+      "size": [
+        820,
+        1180
+      ]
+    },
+    {
+      "clipped": 0,
+      "height": 4153.16259765625,
+      "mode": "long=1",
+      "name": "Background",
+      "overflow": false,
+      "size": [
+        390,
+        844
+      ]
+    },
+    {
+      "clipped": 0,
+      "height": 4210.2001953125,
+      "mode": "long=1",
+      "name": "Toolkit",
+      "overflow": false,
+      "size": [
+        390,
+        844
+      ]
+    },
+    {
+      "clipped": 0,
+      "height": 4303.36279296875,
+      "mode": "long=1",
+      "name": "Approach",
+      "overflow": false,
+      "size": [
+        390,
+        844
+      ]
+    },
+    {
+      "clipped": 0,
+      "height": 2847.650146484375,
+      "mode": "long=1",
+      "name": "Background",
+      "overflow": false,
+      "size": [
+        844,
+        390
+      ]
+    },
+    {
+      "clipped": 0,
+      "height": 2829.800048828125,
+      "mode": "long=1",
+      "name": "Toolkit",
+      "overflow": false,
+      "size": [
+        844,
+        390
+      ]
+    },
+    {
+      "clipped": 0,
+      "height": 2845.949951171875,
+      "mode": "long=1",
+      "name": "Approach",
+      "overflow": false,
+      "size": [
+        844,
+        390
+      ]
+    }
+  ]
+}

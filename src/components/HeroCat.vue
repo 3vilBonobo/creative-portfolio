@@ -104,7 +104,7 @@ onBeforeUnmount(() => {
       'hero-cat--paused': paused || hidden,
       'hero-cat--night': state.timePhase === 'night' || state.timePhase === 'dusk',
     }"
-    viewBox="0 0 1536 1024"
+    viewBox="0 0 1672 941"
     preserveAspectRatio="xMidYMid meet"
     :data-cat-spot="catScene.spot.id"
     :data-cat-pose="catScene.pose"

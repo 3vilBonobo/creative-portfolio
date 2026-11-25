@@ -1,0 +1,98 @@
+{
+  "project": "Athens Cyberpunk — Inter-Floor Infrastructure",
+  "status": "Visual references, not verified production assets",
+  "floor_order_intended": [
+    "04 Rooftop/Hero",
+    "03 About",
+    "02 Projects",
+    "01 Experience",
+    "00 Contact"
+  ],
+  "transition_count": 4,
+  "assets": [
+    {
+      "id": "REF_01_shallow_baseline",
+      "original_filename": "a_cinematic_ultra_wide_narrow_slice_view_of_a.png",
+      "path": "references/preferred/REF_01_shallow_baseline.png",
+      "width": 2172,
+      "height": 724,
+      "kind": "preferred",
+      "suggested_use": "04->03 (candidate)",
+      "notes": "Simple recessed half-meter service cutaway; leaner first transition",
+      "sha256": "79f15c047f5fef11a80995833edaf6936f36eedd9d54161be4f8d92f3cfb6462",
+      "optimized_preview": "webp_previews/REF_01_shallow_baseline.webp"
+    },
+    {
+      "id": "REF_02_complex_distribution",
+      "original_filename": "a_widescreen_ultra_detailed_cyberpunk_industrial.png",
+      "path": "references/preferred/REF_02_complex_distribution.png",
+      "width": 2172,
+      "height": 724,
+      "kind": "preferred",
+      "suggested_use": "03->02 (candidate)",
+      "notes": "Dense, varied cable routing and junction modules",
+      "sha256": "cf0faab731e7677d985127339924ea0b12e2b644ce22efc601c85c726e8bac61",
+      "optimized_preview": "webp_previews/REF_02_complex_distribution.webp"
+    },
+    {
+      "id": "REF_03_low_light",
+      "original_filename": "a_cinematic_ultra_detailed_cyberpunk_industrial_s.png",
+      "path": "references/preferred/REF_03_low_light.png",
+      "width": 2172,
+      "height": 724,
+      "kind": "preferred",
+      "suggested_use": "01->00 (candidate)",
+      "notes": "Low illumination, cable-heavy; dim amber lamp and few status LEDs",
+      "sha256": "c3926c62b0a687b8b2431d609def2399bd20b1109ac63e94cdee7d84b25a2468",
+      "optimized_preview": "webp_previews/REF_03_low_light.webp"
+    },
+    {
+      "id": "REF_04_ducts_and_power",
+      "original_filename": "a_highly_detailed_cinematic_sci_fi_industrial_util.png",
+      "path": "references/preferred/REF_04_ducts_and_power.png",
+      "width": 2172,
+      "height": 724,
+      "kind": "preferred",
+      "suggested_use": "03->02 or 02->01 (candidate)",
+      "notes": "Angular service duct, electrical cabinet, ventilation and layered cables",
+      "sha256": "1efe6ddb5642ffbd661e5c3e5df975728feed61db3c5ff94da5e465b4afa01e8",
+      "optimized_preview": "webp_previews/REF_04_ducts_and_power.webp"
+    },
+    {
+      "id": "REF_05_dense_cooling_and_wiring",
+      "original_filename": "a_highly_detailed_ultra_realistic_cyberpunk_indus.png",
+      "path": "references/preferred/REF_05_dense_cooling_and_wiring.png",
+      "width": 2172,
+      "height": 724,
+      "kind": "preferred",
+      "suggested_use": "02->01 (candidate)",
+      "notes": "More complex cooling, conduit networks, multilayer cable runs",
+      "sha256": "f10cad311e214c07b712b58530d9dad94c41a490aab5628829436d952481a305",
+      "optimized_preview": "webp_previews/REF_05_dense_cooling_and_wiring.webp"
+    },
+    {
+      "id": "ARCHIVE_01_oversized_service_bay",
+      "original_filename": "athens_megastructure_service_bay.png",
+      "path": "references/early_exploration/ARCHIVE_01_oversized_service_bay.png",
+      "width": 1916,
+      "height": 821,
+      "kind": "early_exploration",
+      "suggested_use": "Not recommended as transition",
+      "notes": "Earlier oversized, overly decorative concept; materials reference only",
+      "sha256": "816b725ff300dca5d1d898e30aac1b7e5bd5243592a1c56ff2de8e3b49691dc2",
+      "optimized_preview": null
+    },
+    {
+      "id": "ARCHIVE_02_tall_service_wall",
+      "original_filename": "a_wide_cinematic_ultra_detailed_industrial_cyber.png",
+      "path": "references/early_exploration/ARCHIVE_02_tall_service_wall.png",
+      "width": 2172,
+      "height": 724,
+      "kind": "early_exploration",
+      "suggested_use": "Not recommended as transition",
+      "notes": "Earlier tall wall/corridor-scale concept; materials reference only",
+      "sha256": "35158a4f77a049652b1d911d541a05b4d188692368ff982372d794037a4a92f7",
+      "optimized_preview": null
+    }
+  ]
+}

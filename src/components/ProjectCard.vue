@@ -34,7 +34,7 @@ const image = computed(() => props.project.cover ?? props.project.preview);
 </template>
 
 <style scoped>
-.work-panel { --work-accent: #ffa929; position: relative; min-width: 0; overflow: hidden; border: 1px solid #827668; border-radius: 14px 4px 14px 4px; background: linear-gradient(135deg, #252426, #111316 40%, #161616); box-shadow: inset 0 1px 0 #ffffff16, 0 10px 25px #0005; color: #f7eee2; transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease; }
+.work-panel { --work-accent: #ffa929; position: relative; min-width: 0; overflow: hidden; border: 1px solid #827668; border-radius: 14px 4px 14px 4px; background: #000; box-shadow: inset 0 1px 0 #ffffff16, 0 10px 25px #0005; color: #f7eee2; transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease; }
 .work-panel::after { content: ''; position: absolute; inset: auto 0 0; height: 2px; background: linear-gradient(90deg, var(--work-accent), transparent 70%); pointer-events: none; }
 .work-panel__development-status { position: absolute; z-index: 1; top: .8rem; right: .8rem; background: #101619eb; margin: 0; padding: .25rem .5rem; border: 1px solid #bbb18b66; border-radius: 3px; color: #d1c79f; font: .7rem/1.5 "IBM Plex Mono", monospace; }
 .work-panel--nerve-ending { --work-accent: #bdc88d; }
@@ -79,7 +79,7 @@ const image = computed(() => props.project.cover ?? props.project.preview);
 
 /* A consistent supporting-card rhythm; full project copy remains in Details. */
 .work-panel:not(.work-panel--featured) { display: flex; flex-direction: column; height: 100%; }
-.work-panel:not(.work-panel--featured) .work-panel__content { flex: 1; min-height: 31rem; padding: 1rem; gap: .65rem; }
+.work-panel:not(.work-panel--featured) .work-panel__content { flex: 1; min-height: 31rem; padding: 1rem 1rem 1.5rem; gap: .65rem; }
 .work-panel:not(.work-panel--featured) .work-panel__eyebrow { min-height: 3em; }
 .work-panel:not(.work-panel--featured) h3 { min-height: 2.2em; }
 .work-panel:not(.work-panel--featured) .work-panel__description { height: 4.95em; flex-shrink: 0; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; }

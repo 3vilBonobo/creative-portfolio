@@ -5,7 +5,7 @@ import { MOON_PHASES, getPreviewMoonAppearance } from "../services/moonMath";
 import CatSprite from "./CatSprite.vue";
 import { CAT_SPOTS } from "../config/heroCat";
 import { experienceManualLights, experienceWallPreview, experienceCeilingPreview, resetExperienceLightPreview } from "../composables/useExperienceLightPreview";
-const { previewCatSpot, previewCatPose, catScene, timePhases, weatherConditions, heroLayerIds, previewTimePhase, previewWeather, previewMoonPhase, previewMoonProgress, hiddenHeroLayers, showExteriorMask, showInteriorMask, tintHeroLayers, freezeParallax, resetPreview } = useEnvironment();
+const { previewCatSpot, previewCatPose, catScene, timePhases, weatherConditions, previewTimePhase, previewWeather, previewMoonPhase, previewMoonProgress, hiddenHeroLayers, showExteriorMask, showInteriorMask, freezeParallax, resetPreview } = useEnvironment();
 const isOpen = ref(false);
 const previewMoon = computed(() => previewMoonPhase.value === null ? null : getPreviewMoonAppearance(previewMoonPhase.value, previewMoonProgress.value));
 const customMoonPhase = computed(() => previewMoonPhase.value !== null && !MOON_PHASES.some(phase => phase.value === previewMoonPhase.value));
@@ -89,9 +89,9 @@ function selectMoonPhase() {
       <small>Attenuation of baked lighting. Reduced motion keeps both fixtures steady.</small>
     </fieldset>
     <div class="environment-preview__checks">
-      <label><input v-model="showExteriorMask" type="checkbox"> Exterior mask</label><label><input v-model="showInteriorMask" type="checkbox"> Interior mask</label><label><input v-model="tintHeroLayers" type="checkbox"> Tint layers</label><label><input v-model="freezeParallax" type="checkbox"> Freeze parallax</label>
+      <label><input v-model="showExteriorMask" type="checkbox"> Weather mask</label><label><input v-model="showInteriorMask" type="checkbox"> Sky mask</label><label><input v-model="freezeParallax" type="checkbox"> Freeze parallax</label>
     </div>
-    <details class="environment-preview__layers"><summary>Individual layers</summary><label v-for="layer in heroLayerIds" :key="layer"><input v-model="hiddenHeroLayers" type="checkbox" :value="layer"> Hide {{ layer }}</label></details>
+    <details class="environment-preview__layers"><summary>Weather layer</summary><label><input v-model="hiddenHeroLayers" type="checkbox" value="exteriorPrecipitation"> Hide precipitation</label></details>
     <button type="button" @click="resetPreview(); resetExperienceLightPreview()">Reset to live</button>
   </aside>
 </template>

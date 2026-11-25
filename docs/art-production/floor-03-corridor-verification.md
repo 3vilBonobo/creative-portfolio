@@ -1,5 +1,24 @@
 # Floor 03 corridor verification
 
+## Current personal-profile content and interface
+
+The latest owner brief replaces the CV-style introduction and boxed biography with the supplied personal copy. About now presents curiosity, engineering and creative exploration, with no named employer. This iteration changes About data, markup and its CSS region only; the architecture, portrait source/projection and other floors remain untouched. Historical verification below records earlier iterations and is superseded by this section for information styling.
+
+Actual browser evidence: `profile-final-1920x1080.jpg`, `profile-final-1440x900.jpg`, `profile-final-1180x820.jpg`, `profile-final-820x1180.jpg`, `profile-final-390x844.jpg`, `profile-final-844x390.jpg`, `profile-final-2560x1440.jpg`, plus `profile-final-toolkit.jpg` and `profile-final-approach.jpg`, in `tmp/about-corridor-v003/screenshots/`. These import the actual About component, shared navigation, data and stylesheet in the isolated local harness. Full-page captures include fixed navigation at its viewport position.
+
+- PASS: all three tabs at six required sizes; mobile/tablet natural flow, no horizontal overflow or detected tab-text clipping. Ultrawide visual proof at 2560×1440.
+- PASS: at 1920, 1440 and 1180px widths, all three tab states have exactly equal measured panel dimensions, header/footer offsets and section heights. Heights are intrinsic, determined by the largest state. Approximate panel heights: 536, 399 and 392px respectively. No arbitrary fixed panel height or internal scrolling is used.
+- PASS: exact computed text sizes doubled for all About elements, all three states at all six sizes; no document overflow or detected tab-text clipping. Desktop section height remains invariant across states with enlarged text.
+- PASS: eight additional Engineering mindset paragraphs, all three states at all six sizes; section expands naturally without scaling the architectural plate vertically.
+- PASS: ArrowRight selects/focuses Toolkit with visible focus; End selects Approach; Tab reaches the active Approach panel; Home returns to Background. The accessibility snapshot exposes only the active panel. Inactive panels carry inert and aria-hidden attributes.
+- PASS: fresh complete-portfolio session, all 18 viewport/tab combinations, no document overflow or detected tab-text clipping, active content fully visible and all inactive panels inert/aria-hidden. Scene preview day/clear was exercised and reset to live afterwards. Fresh error/warning console sample was empty. Records: `profile-final-app-metrics.json`.
+- PASS: Node 22.13.1 build, separate vue-tsc type check and all 22 existing tests after this refinement. Existing bundle-size and installed npm/Node compatibility warnings remain; no dependencies or configuration were changed.
+- Reduced-motion startup is simulated by the harness and CSS disabling the panel animation is inspected. Native OS preference switching, native browser zoom, screen-reader operation and physical devices remain unverified. No formal glyph-level contrast certification is claimed.
+
+Raw measurements are `personal-regression.json`. Its desktop `inactive` property is not an accessibility failure: that first probe read the DOM inert property, which the read-only browser projection did not expose. Attribute checks and the accessibility snapshot subsequently verified the actual inert/aria-hidden state. Responsive records use attribute checks.
+
+Final visual acceptance remains with the owner. The longer exact copy extends below the scenic plate on some desktop widths and blends into the existing quiet reading deck; this is deliberate natural flow, not a new corridor continuation asset.
+
 25 November 2026. Implemented locally, pending owner visual acceptance. No dependencies installed and no Git mutation/deployment.
 
 ## Changed by this task

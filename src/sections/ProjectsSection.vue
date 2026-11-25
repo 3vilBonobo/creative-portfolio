@@ -65,7 +65,18 @@ const categories = computed(() => [
   { id: "professional" as const, label: "Professional Work", count: professionalProjects.value.length, symbol: "⌘" },
 ]);
 const visibleProjectCount = computed(() => categories.value.find(item => item.id === category.value)?.count ?? 0);
-const technologies = computed(() => [...new Set(projects.flatMap(project => project.technologies))].slice(0, 8));
+const technologyGroups = computed(() => {
+  const recorded = projects.flatMap(project => project.technologies);
+  const groups = [
+    { label: "Frontend", items: ["Angular", "Vue 3", "React", "TypeScript"] },
+    { label: "Motion & graphics", items: ["GSAP", "Three.js", "SVG"] },
+    { label: "Data & APIs", items: ["REST APIs", "SQL"] },
+  ];
+  return groups.map(group => ({ ...group, items: group.items.filter(name => recorded.some(technology =>
+    name === "Angular" ? /^Angular(?:\s|$)/.test(technology)
+      : name === "REST APIs" ? /^REST API/.test(technology) : technology === name,
+  )) })).filter(group => group.items.length);
+});
 async function openDetails(project: Project, trigger: HTMLElement) { selectedProject.value = project; triggerElement.value = trigger; await nextTick(); detailDialog.value?.showModal(); }
 function closeDetails() { detailDialog.value?.close(); }
 function onDialogClose() { selectedProject.value = null; triggerElement.value?.focus(); }
@@ -88,7 +99,14 @@ function onBackdropClick(event: MouseEvent) { if (event.target === detailDialog.
           <nav class="project-categories" aria-label="Project categories">
             <button v-for="item in categories" :key="item.id" type="button" :aria-pressed="category === item.id" aria-controls="projects-results" @click="category = item.id"><span class="project-categories__symbol" aria-hidden="true">{{ item.symbol }}</span><span>{{ item.label }}</span><b>{{ item.count }}</b></button>
           </nav>
-          <div class="projects-showcase__metadata"><p>Technology</p><ul aria-label="Selected project technologies"><li v-for="technology in technologies" :key="technology">{{ technology }}</li></ul></div>
+          <div class="projects-showcase__metadata">
+            <p>Technology overview</p>
+            <div v-for="group in technologyGroups" :key="group.label" class="projects-showcase__technology-group">
+              <h3>{{ group.label }}</h3>
+              <ul :aria-label="`${group.label} technologies across selected projects`"><li v-for="technology in group.items" :key="technology">{{ technology }}</li></ul>
+            </div>
+            <small>Across selected projects. Full stacks in Project Details.</small>
+          </div>
         </aside>
         <div id="projects-results" ref="projectResults" class="projects-showcase__results" role="region" aria-label="Project collection" :tabindex="windowed ? 0 : undefined" :aria-describedby="windowed ? 'projects-scroll-hint' : undefined">
           <p class="projects-showcase__count" role="status">{{ visibleProjectCount }} {{ visibleProjectCount === 1 ? 'project' : 'projects' }} / {{ categories.find(item => item.id === category)?.label }}</p>
@@ -170,7 +188,15 @@ function onBackdropClick(event: MouseEvent) { if (event.target === detailDialog.
 
 <style scoped>
 .projects { background: #10191b; }
-.projects::before { content: none; }
+.projects::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(90deg, #0008, #0004 45%, #0001 75%), linear-gradient(to bottom, #0001, #0003 70%, #0006);
+  mix-blend-mode: normal;
+}
 .project-development-status { display: inline-block; margin: 0 0 1rem; padding: .3rem .6rem; border: 1px solid #bbb18b66; color: #d1c79f; font: .75rem/1.5 "IBM Plex Mono", monospace; }
 .project-development { color: #d8d8cf; font-size: .95rem; line-height: 1.75; }
 .project-development section { margin: 1.5rem 0; }
@@ -200,8 +226,9 @@ function onBackdropClick(event: MouseEvent) { if (event.target === detailDialog.
 .project-dialog__preview--mockups img { width: 100%; height: auto; object-fit: contain; }
 .project-dialog__preview--mockups figcaption { margin-top: .5rem; color: #d0c7b8; font-size: .75rem; line-height: 1.5; }
 
-.projects-showcase { width: min(92rem, calc(100% - 2 * var(--space))); margin: 0 auto; padding-top: var(--projects-ui-clearance, 0px); }
+.projects-showcase { position: relative; z-index: 1; width: min(92rem, calc(100% - 2 * var(--space))); margin: 0 auto; padding-top: var(--projects-ui-clearance, 0px); }
 .projects-showcase__header { display: grid; grid-template-columns: max-content minmax(0, 1fr) minmax(12rem, .9fr); gap: 1.7rem; align-items: center; padding: 0 0 2rem; }
+.projects-showcase__level, .projects-showcase__title, .projects-showcase__intro { background: #000a; box-shadow: 0 0 22px 14px #000a; }
 .projects-showcase__level { display: grid; gap: .4rem; align-self: stretch; align-content: center; padding-right: 1rem; border-right: 1px solid #dbb28955; color: #ce8296; }
 .projects-showcase__level small { font: .65rem "IBM Plex Mono", monospace; text-transform: uppercase; }
 .projects-showcase__level strong { font-size: 2.8rem; line-height: 1; font-weight: 900; }
@@ -212,10 +239,10 @@ function onBackdropClick(event: MouseEvent) { if (event.target === detailDialog.
 .projects-showcase__intro { position: relative; margin: 0; padding: .3rem 2rem .3rem 1.2rem; border-left: 2px solid #ffae31; font-size: .85rem; line-height: 1.7; color: #e2dbd1; }
 .projects-showcase__intro > span { display: block; color: #d88d2c; font-size: 1.3rem; letter-spacing: .12em; font-weight: 900; margin-top: .8rem; }
 .projects-showcase__layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.5rem; align-items: start; }
-.projects-showcase__rail { min-width: 0; }
+.projects-showcase__rail { min-width: 0; padding: .75rem; border: 1px solid #c68a414d; border-radius: 3px; background: #000; }
 .projects-showcase__mobile-category { display: none; }
 .project-categories { display: flex; flex-wrap: wrap; gap: .55rem; }
-.project-categories button { display: flex; align-items: center; gap: .6rem; min-width: 0; min-height: 44px; padding: .65rem .8rem; border: 1px solid #afa18a77; border-radius: 7px 2px 7px 2px; background: #111417e8; color: #e9dfd0; font-size: .76rem; text-align: left; transition: background .2s, color .2s; }
+.project-categories button { display: flex; align-items: center; gap: .6rem; min-width: 0; min-height: 44px; padding: .65rem .8rem; border: 1px solid #afa18a77; border-radius: 7px 2px 7px 2px; background: #080808; color: #e9dfd0; font-size: .76rem; text-align: left; transition: background .2s, color .2s; }
 .project-categories button[aria-pressed="true"] { border-color: #ffb33c; background: linear-gradient(110deg, #ffbd48, #f59f20); color: #1b140b; box-shadow: 0 3px 14px #ffaf2422; }
 .project-categories button:hover { border-color: #ffbd48; }
 .project-categories button:focus-visible { outline: 3px solid #8fe5e6; outline-offset: 3px; }
@@ -223,19 +250,15 @@ function onBackdropClick(event: MouseEvent) { if (event.target === detailDialog.
 .project-categories__symbol { font-size: 1.2rem; }
 .project-categories button b { margin-left: auto; padding-left: .5rem; font-size: .72rem; }
 .projects-showcase__metadata { display: none; }
-.projects-showcase__results { min-width: 0; }
+.projects-showcase__results { min-width: 0; padding: .75rem .75rem 2rem; border: clamp(.75rem, 1.2vw, 1.25rem) solid #000; outline: 1px solid #c68a414d; border-radius: 3px; background: #000; }
 .projects--windowed .projects-showcase__rail { position: static; }
 .projects--windowed .projects-showcase__results {
   height: var(--projects-pane-height);
   overflow-y: auto;
   scrollbar-gutter: stable;
   scrollbar-color: #dc9f45 #10171a;
-  border: 1px solid #c68a414d;
-  border-radius: 3px;
-  padding: .75rem;
-  background: #080e111f;
-  box-shadow: inset 0 1px 12px #0004;
   scroll-padding-block: .75rem;
+  scroll-padding-block-end: 2rem;
 }
 .projects--windowed .projects-showcase__results:focus-visible {
   outline: 2px solid #8fe5e6;
@@ -252,14 +275,18 @@ function onBackdropClick(event: MouseEvent) { if (event.target === detailDialog.
 
 .projects-showcase__footer { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between; border-top: 1px solid #ac8d6755; margin-top: 2rem; padding-top: 1rem; color: #c7b8a3; font: .65rem/1.8 "IBM Plex Mono", monospace; text-transform: uppercase; letter-spacing: .08em; }
 @media (min-width: 1400px) {
-  .projects-showcase__layout { grid-template-columns: 11.5rem minmax(0, 1fr); gap: 1.5rem; }
-  .projects-showcase__rail { position: sticky; top: 6rem; }
+  .projects-showcase__layout { grid-template-columns: 11.5rem minmax(0, 1fr); gap: 0; }
+  .projects-showcase__rail { position: sticky; top: 6rem; border-right: 0; border-radius: 3px 0 0 3px; }
+  .projects-showcase__results { border-radius: 0 3px 3px 3px; outline: none; }
   .project-categories { display: grid; }
   .project-categories button { width: 100%; }
   .projects-showcase__metadata { display: block; margin-top: 1.7rem; border-top: 1px solid #ac8d6755; padding-top: 1rem; }
   .projects-showcase__metadata p { margin: 0 0 .7rem; color: #c7b8a3; font: .65rem "IBM Plex Mono", monospace; text-transform: uppercase; letter-spacing: .12em; }
   .projects-showcase__metadata ul { display: flex; flex-wrap: wrap; gap: .4rem; margin: 0; padding: 0; list-style: none; }
-  .projects-showcase__metadata li { max-width: 100%; padding: .3rem .5rem; border: 1px solid #8d847666; border-radius: 999px; background: #111417dc; font-size: .65rem; color: #ddd0bc; overflow-wrap: anywhere; }
+  .projects-showcase__metadata li { max-width: 100%; padding: .3rem .5rem; border: 1px solid #8d847666; border-radius: 999px; background: #101010; font-size: .65rem; color: #ddd0bc; overflow-wrap: anywhere; }
+  .projects-showcase__technology-group + .projects-showcase__technology-group { margin-top: .8rem; }
+  .projects-showcase__technology-group h3 { margin: 0 0 .4rem; color: #aebfc1; font-size: .65rem; font-weight: 500; }
+  .projects-showcase__metadata small { display: block; margin-top: .85rem; color: #b7b4aa; font-size: .62rem; line-height: 1.5; }
 }
 @media (max-width: 980px) {
   .projects-showcase__header { grid-template-columns: max-content minmax(0, 1fr); gap: 1.2rem; }

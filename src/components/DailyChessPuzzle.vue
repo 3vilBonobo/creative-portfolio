@@ -296,7 +296,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <svg class="chess-hotspot-map" viewBox="0 0 1536 1024" preserveAspectRatio="xMidYMid meet">
+  <svg class="chess-hotspot-map" viewBox="0 0 1672 941" preserveAspectRatio="xMidYMid meet">
     <defs>
       <radialGradient id="chess-outer-halo">
         <stop offset="0%" stop-color="#d5d7db" stop-opacity="0" />
@@ -307,6 +307,7 @@ onBeforeUnmount(() => {
     </defs>
     <g
       class="chess-hotspot"
+      transform="translate(36 -119)"
       role="button"
       tabindex="0"
       aria-label="Open daily chess puzzle"

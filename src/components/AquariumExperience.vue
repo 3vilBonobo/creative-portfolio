@@ -177,13 +177,13 @@ onBeforeUnmount(() => { cleanupScene?.(); window.removeEventListener("keydown", 
 </script>
 
 <template>
-  <svg v-if="!open" class="aquarium-ambient" viewBox="0 0 1536 1024" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+  <svg v-if="!open" class="aquarium-ambient" viewBox="0 0 1672 941" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
     <defs>
-      <clipPath id="hero-aquarium-glass"><path d="M1321 532 1485 535 1481 675 1321 651Z" /></clipPath>
+      <clipPath id="hero-aquarium-glass"><path d="M1328 452 1520 459 1520 576 1328 546Z" /></clipPath>
       <linearGradient id="hero-aquarium-wash" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#baffef" stop-opacity=".04"/><stop offset=".5" stop-color="#55e9bd" stop-opacity=".13"/><stop offset="1" stop-color="#0c604b" stop-opacity=".03"/></linearGradient>
       <filter id="hero-aquarium-blur"><feGaussianBlur stdDeviation="5" /></filter>
     </defs>
-    <g clip-path="url(#hero-aquarium-glass)">
+    <g clip-path="url(#hero-aquarium-glass)"><g transform="translate(-100 -78) scale(1.08 1)">
       <rect class="aquarium-ambient__wash" x="1284" y="510" width="216" height="207" fill="url(#hero-aquarium-wash)" />
       <g class="aquarium-ambient__caustics" fill="none" stroke="#b9ffe9" stroke-linecap="round" filter="url(#hero-aquarium-blur)">
         <path d="M1270 568c48-24 77 23 126 1s76 16 124-9" />
@@ -196,11 +196,11 @@ onBeforeUnmount(() => { cleanupScene?.(); window.removeEventListener("keydown", 
       <g class="aquarium-ambient__bubbles aquarium-ambient__bubbles--late" fill="#e5fff8">
         <circle cx="1308" cy="650" r="1.1"/><circle cx="1358" cy="690" r="1.6"/><circle cx="1404" cy="674" r="1.3"/><circle cx="1447" cy="638" r="1.4"/>
       </g>
-    </g>
+    </g></g>
   </svg>
-  <svg v-if="!open" class="aquarium-hotspot-map" viewBox="0 0 1536 1024" preserveAspectRatio="xMidYMid meet">
+  <svg v-if="!open" class="aquarium-hotspot-map" viewBox="0 0 1672 941" preserveAspectRatio="xMidYMid meet">
     <defs><radialGradient id="aquarium-outer-halo"><stop offset="0%" stop-color="#52ff9b" stop-opacity="0"/><stop offset="79%" stop-color="#52ff9b" stop-opacity="0"/><stop offset="86%" stop-color="#52ff9b" stop-opacity=".34"/><stop offset="100%" stop-color="#52ff9b" stop-opacity="0"/></radialGradient></defs>
-    <g class="aquarium-hotspot" role="button" tabindex="0" aria-label="Open the interactive aquarium" @click.stop="showAquarium" @keydown.enter.prevent.stop="showAquarium" @keydown.space.prevent.stop="showAquarium">
+    <g class="aquarium-hotspot" transform="translate(35 -105)" role="button" tabindex="0" aria-label="Open the interactive aquarium" @click.stop="showAquarium" @keydown.enter.prevent.stop="showAquarium" @keydown.space.prevent.stop="showAquarium">
       <circle class="aquarium-hotspot__halo" cx="1390" cy="620" r="80"/><circle class="aquarium-hotspot__outline" cx="1390" cy="620" r="64"/>
       <g class="aquarium-hotspot__label"><rect x="1330" y="694" width="120" height="28"/><text x="1390" y="712" text-anchor="middle">Open aquarium</text></g>
     </g>

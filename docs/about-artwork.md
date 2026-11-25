@@ -10,6 +10,14 @@ During implementation the owner requested a smaller portrait, then supplied a ne
 
 ## Rendering
 
+### Current personal-profile refinement
+
+The latest owner-supplied content brief supersedes the CV-style copy and information cards described in the historical notes below. `src/data/about.ts` now contains the supplied personal introduction, Engineering mindset, Beyond the code, journey, inventory and principles. The overview reads “~5 years”, “Frontend Engineering” and “Athens, Greece”; no employer is named in About. The opening statement is amber condensed type, descriptive copy is lighter, and cyan/magenta headings distinguish the two editorial sections without separate card backgrounds.
+
+Background, Toolkit and Approach share one restrained frame. At widths >=1101px, all three panels contribute intrinsic dimensions to overlapping grid tracks; CSS subgrid aligns their headers and closing microcopy. Only the active panel is visible; inactive panels are inert and aria-hidden. There is no fixed panel height or internal scrollbar. Smaller widths render only the active panel in natural document flow. Background uses a connected journey, Toolkit a two-column inventory and Approach four principles; mobile stacks the inventory/principles.
+
+Current evidence is `profile-final-*` under `tmp/about-corridor-v003/screenshots/`. The supplied longer copy makes the section taller where needed (approximately 1362px at 1920px and 1676px at 1440px in isolated checks). Earlier default-height figures and `about-ui-*` screenshots below describe superseded content. Artwork, portrait projection, responsive scene selection and inter-floor infrastructure were not changed in this refinement.
+
 | Selection in priority order | Profile | Source rectangle |
 | --- | --- | --- |
 | Width <=760px | v003 mobile | 1080×1296 |

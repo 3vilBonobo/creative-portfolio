@@ -1,0 +1,60 @@
+[
+  {
+    "overflow": false,
+    "transitions": [
+      {
+        "height": 124.8000030517578,
+        "id": "transition-04-to-03",
+        "src": "/transitions/service-void-pipes.png"
+      },
+      {
+        "height": 124.8000030517578,
+        "id": "transition-03-to-02",
+        "src": "/transitions/service-void-cables.png"
+      },
+      {
+        "height": 124.8000030517578,
+        "id": "transition-02-to-01",
+        "src": "/transitions/service-void-pipes.png"
+      },
+      {
+        "height": 124.8000030517578,
+        "id": "transition-01-to-00",
+        "src": "/transitions/service-void-cables.png"
+      }
+    ],
+    "viewport": [
+      1440,
+      900
+    ]
+  },
+  {
+    "overflow": false,
+    "transitions": [
+      {
+        "height": 69.32500457763672,
+        "id": "transition-04-to-03",
+        "src": "/transitions/service-void-pipes.png"
+      },
+      {
+        "height": 69.32500457763672,
+        "id": "transition-03-to-02",
+        "src": "/transitions/service-void-cables.png"
+      },
+      {
+        "height": 69.32500457763672,
+        "id": "transition-02-to-01",
+        "src": "/transitions/service-void-pipes.png"
+      },
+      {
+        "height": 69.32500457763672,
+        "id": "transition-01-to-00",
+        "src": "/transitions/service-void-cables.png"
+      }
+    ],
+    "viewport": [
+      390,
+      844
+    ]
+  }
+]

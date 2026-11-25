@@ -1,5 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import { FLOOR, FLOORS, FLOOR_TRANSITIONS } from '../src/config/floors.ts';
 import { findActiveFloor } from '../src/services/floorNavigation.ts';
 
@@ -9,6 +11,20 @@ test('canonical floors retain semantic anchors, ground zero and four adjacent tr
   ]);
   assert.equal(FLOOR.street.number, '00');
   assert.deepEqual(FLOOR_TRANSITIONS.map(({ id }) => id), ['04-to-03', '03-to-02', '02-to-01', '01-to-00']);
+});
+
+test('each connector ships distinct, bounded WebP artwork with an aligned light anchor', () => {
+  const artworkHashes = new Set();
+  for (const transition of FLOOR_TRANSITIONS) {
+    const bytes = readFileSync(new URL(`../public${transition.artwork}`, import.meta.url));
+    assert.equal(bytes.toString('ascii', 0, 4), 'RIFF');
+    assert.equal(bytes.toString('ascii', 8, 12), 'WEBP');
+    assert.ok(bytes.length <= 180 * 1024, `${transition.id} exceeds its image budget`);
+    artworkHashes.add(createHash('sha256').update(bytes).digest('hex'));
+    assert.ok(transition.light.x >= 0 && transition.light.x <= 2160);
+    assert.ok(transition.light.y >= 0 && transition.light.y <= 216);
+  }
+  assert.equal(artworkHashes.size, 4);
 });
 
 test('long sections and sticky scenes remain active until the next floor reaches the reference line', () => {

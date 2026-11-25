@@ -510,7 +510,7 @@ onBeforeUnmount(() => {
   <svg
     v-if="!open"
     class="telescope-hotspot-map"
-    viewBox="0 0 1536 1024"
+    viewBox="0 0 1672 941"
     preserveAspectRatio="xMidYMid meet"
     aria-hidden="false"
   >
@@ -525,6 +525,7 @@ onBeforeUnmount(() => {
     <g
       ref="trigger"
       class="telescope-hotspot-target"
+      transform="translate(81 -46)"
       role="button"
       tabindex="0"
       aria-label="Look through the telescope"

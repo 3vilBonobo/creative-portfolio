@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1916" height="821" viewBox="0 0 1916 821">
+  <!-- Distant open sky only; intentionally excludes wires, antennas and skyline. -->
+  <defs><radialGradient id="fade"><stop offset=".5" stop-color="white"/><stop offset="1" stop-color="white" stop-opacity="0"/></radialGradient></defs>
+  <ellipse cx="1450" cy="211" rx="112" ry="35" fill="url(#fade)"/>
+</svg>

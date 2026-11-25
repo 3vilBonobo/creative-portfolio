@@ -1,4 +1,5 @@
 import type { TimePhase } from "../types/environment";
+import { HERO_SCENE } from "./heroScene";
 
 export interface ResponsiveArtwork {
   desktop: string;
@@ -11,12 +12,12 @@ export interface ResponsiveArtwork {
 }
 
 const DAY_ART: ResponsiveArtwork = {
-  desktop: "/hero/athens-coder-loft-day.webp",
-  mobile: "/hero/athens-coder-loft-mobile.webp",
-  width: 1536,
-  height: 1024,
-  mobileWidth: 768,
-  mobileHeight: 1024,
+  desktop: HERO_SCENE.day,
+  mobile: HERO_SCENE.day,
+  width: HERO_SCENE.width,
+  height: HERO_SCENE.height,
+  mobileWidth: HERO_SCENE.width,
+  mobileHeight: HERO_SCENE.height,
   available: true,
 };
 
@@ -27,7 +28,7 @@ export const TIME_ARTWORK: Readonly<Record<TimePhase, ResponsiveArtwork>> = {
   day: DAY_ART,
   goldenHour: { ...DAY_ART, available: false },
   dusk: { ...DAY_ART, available: false },
-  night: { ...DAY_ART, available: false },
+  night: { ...DAY_ART, desktop: HERO_SCENE.night, mobile: HERO_SCENE.night },
 };
 
 export function getTimeArtwork(phase: TimePhase): ResponsiveArtwork {
