@@ -1,0 +1,27 @@
+[
+  {
+    "count": "6 projects / All Projects",
+    "links": [],
+    "mockupLabel": "Concept mockup",
+    "restored": "work-title-agritrack",
+    "width": 1440
+  },
+  {
+    "bodyOverflow": false,
+    "dialogOpen": true,
+    "dialogOverflow": false,
+    "images": [
+      {
+        "fit": "contain",
+        "src": "/projects/agritrack-mockup-dark.png",
+        "width": 1672
+      },
+      {
+        "fit": "contain",
+        "src": "/projects/agritrack-mockup-light.png",
+        "width": 1672
+      }
+    ],
+    "width": 390
+  }
+]

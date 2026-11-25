@@ -1,0 +1,1 @@
+import "/src/style.css"; import "/src/environment.css"; import { createApp } from "vue"; import App from "./baseline-App.vue"; createApp(App).mount("#app");

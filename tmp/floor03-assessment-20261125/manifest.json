@@ -1,0 +1,70 @@
+{
+  "package": "floor-03-about",
+  "revision": "v002-review-candidate",
+  "productionReady": false,
+  "desktopBase": "approved by user",
+  "mobileBase": "candidate awaiting visual approval; outpaint-style reconstruction with a lamp transplanted from the approved desktop. Not a strict pixel-preserving extension.",
+  "lighting": "first-pass procedural emission and spill; requires contrast and real HTML overlay testing",
+  "assets": [
+    {
+      "filename": "floor-03-about-wall-base-desktop.webp",
+      "dimensions": [
+        1956,
+        804
+      ],
+      "mode": "RGB",
+      "bytes": 216990,
+      "sha256": "4d68935dce19f69a15f2c586157787587df86b2fd001c84a8d1b9737e4d5b3e5"
+    },
+    {
+      "filename": "floor-03-about-wall-base-mobile.webp",
+      "dimensions": [
+        848,
+        1855
+      ],
+      "mode": "RGB",
+      "bytes": 91392,
+      "sha256": "e92aab30d872930b7ac2c30e0c42be2dac86eaad4d370dcf9402f14cddea586d"
+    },
+    {
+      "filename": "floor-03-about-light-01-emission-desktop.png",
+      "dimensions": [
+        1956,
+        804
+      ],
+      "mode": "RGBA",
+      "bytes": 13105,
+      "sha256": "bd05ef6bc0a4eb173cb7e5c364d62e9c21ba0fb62f957188c71dbcf70a903cbd"
+    },
+    {
+      "filename": "floor-03-about-light-01-spill-desktop.png",
+      "dimensions": [
+        1956,
+        804
+      ],
+      "mode": "RGBA",
+      "bytes": 47074,
+      "sha256": "e1ec8a9a432793eb451450133a4d235a649f2c1afa1dde530bb4af3bcd91469f"
+    },
+    {
+      "filename": "floor-03-about-light-01-emission-mobile.png",
+      "dimensions": [
+        848,
+        1855
+      ],
+      "mode": "RGBA",
+      "bytes": 13293,
+      "sha256": "aaf1a1d252e425e142996ce8b05496fbc0fe634fbc807daae468cf55afa300e1"
+    },
+    {
+      "filename": "floor-03-about-light-01-spill-mobile.png",
+      "dimensions": [
+        848,
+        1855
+      ],
+      "mode": "RGBA",
+      "bytes": 36619,
+      "sha256": "32ae9765b70657857f2a791353bbce36963a755d5a1ff4eef9d30d3bbfddf9de"
+    }
+  ]
+}

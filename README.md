@@ -37,6 +37,14 @@ npm run dev
 npm run build
 ```
 
+### Run the Logic Tests
+
+Use Node 22.12 or later in the Node 22 release line, matching `.nvmrc` and Netlify. The test runner uses Node's TypeScript type stripping for the mouse and weather suites.
+
+```sh
+npm test
+```
+
 ## Deploy to Netlify
 
 The repository includes `netlify.toml`, so Netlify automatically uses Node 22,

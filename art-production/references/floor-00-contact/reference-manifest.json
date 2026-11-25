@@ -1,0 +1,266 @@
+{
+  "type": "reference-only",
+  "revision": "v002",
+  "capturedDate": "2026-11-25",
+  "package": "floor-00-contact",
+  "sourceBrief": "docs/art-production/briefs/floor-00-contact.md",
+  "productionArtworkGenerated": false,
+  "screenshotCount": 18,
+  "files": [
+    {
+      "path": "artwork/alley-day-extended.webp",
+      "bytes": 318498,
+      "sha256": "d072990b42de91185a0542c7b7dab7ac79c285a844f386a1ddfcf43505db0628",
+      "imagePixels": [
+        1746,
+        901
+      ],
+      "originalSource": "public/contact/alley-day-extended.webp"
+    },
+    {
+      "path": "artwork/alley-exterior.svg",
+      "bytes": 584,
+      "sha256": "01f314a9658c00f5f40bf5b32ada983fdcffb94c34f6b89a12f0705bcdd30924",
+      "originalSource": "public/weather/alley-exterior.svg"
+    },
+    {
+      "path": "artwork/alley-night-extended.webp",
+      "bytes": 257190,
+      "sha256": "bd22e760a8897a6cc3911f749da5df5814920def9891b5ab266926683977f5b9",
+      "imagePixels": [
+        1746,
+        901
+      ],
+      "originalSource": "public/contact/alley-night-extended.webp"
+    },
+    {
+      "path": "artwork/alley-sky.svg",
+      "bytes": 558,
+      "sha256": "5252865bd43847f08924e4ed9fa03ac09249a1ca6588a2d7d47da1d52f1bc732",
+      "originalSource": "public/weather/alley-sky.svg"
+    },
+    {
+      "path": "brief.md",
+      "bytes": 12003,
+      "sha256": "d70d3f2c72b6287a387bd6e3678ae7362237db3c18d712137a7b8fe9b8e6ec80"
+    },
+    {
+      "path": "inventory.json",
+      "bytes": 21959,
+      "sha256": "200da048fd4cead7bac485f367c7809882920a14845c218b3a99b6050a3da37e"
+    },
+    {
+      "path": "layout-desktop-wide.json",
+      "bytes": 3044,
+      "sha256": "d30f216e18689f08507c0480f458f9c9cd44e0c0abb0ab2c1c7e013628bb441f"
+    },
+    {
+      "path": "layout-desktop.json",
+      "bytes": 2970,
+      "sha256": "6138f495ef7bb65e3f6fc54af73e51d9dd1986ff62c91edb854522760834e65c"
+    },
+    {
+      "path": "layout-mobile-landscape.json",
+      "bytes": 2938,
+      "sha256": "a9ae389be0fc15c71aa50acf1d6c67bf84cc97e2580f2b1aea240ed92d1ee12d"
+    },
+    {
+      "path": "layout-mobile.json",
+      "bytes": 2928,
+      "sha256": "b0c25bf836f9fe7e987f17bc5bda38a35232b0752bd5b6f177fba6000a43cb72"
+    },
+    {
+      "path": "layout-tablet-landscape.json",
+      "bytes": 2983,
+      "sha256": "2690ee33181930fe0d484fe6d764957f068cd64d09a97a711fb11667ac050bc3"
+    },
+    {
+      "path": "layout-tablet-portrait.json",
+      "bytes": 3011,
+      "sha256": "10502c858772112b8801133255ec36acefe60f7bcd211c48a845b00207c8e033"
+    },
+    {
+      "path": "proposed-layout-desktop.svg",
+      "bytes": 1840,
+      "sha256": "d424b3bb2a6e5eed3db4224d00564a34d790ee52aea98d75b77797a962d9dd6a"
+    },
+    {
+      "path": "proposed-layout-mobile.svg",
+      "bytes": 1745,
+      "sha256": "60595403bc60715371a4220aa8220f195df419ffedaba0b2b8ae5bf5a0c34be5"
+    },
+    {
+      "path": "proposed-layouts.json",
+      "bytes": 1067,
+      "sha256": "d2887485177fce09888859e3640ee2477303d692e18ad19952aafb421b5c1575"
+    },
+    {
+      "path": "README.md",
+      "bytes": 1412,
+      "sha256": "f87ecb781de26fc9f7d32868b7ed063712c7e6a549767e2e15cc391eeac626fc"
+    },
+    {
+      "path": "screenshots/desktop-1440x900-day-clear.jpg",
+      "bytes": 202959,
+      "sha256": "cdbd7140e14b527f157cf41c8de75efb39af9641631510d0c397727f2ab1cd6a",
+      "imagePixels": [
+        1425,
+        891
+      ]
+    },
+    {
+      "path": "screenshots/desktop-1440x900-day-rain.jpg",
+      "bytes": 172720,
+      "sha256": "b0d34c96051ced03951880b2c178d6348887c776468f376034074a86aa20c95d",
+      "imagePixels": [
+        1425,
+        891
+      ]
+    },
+    {
+      "path": "screenshots/desktop-1440x900-goldenHour-clear.jpg",
+      "bytes": 185192,
+      "sha256": "edcb3ba6aafe8b641a6e62e870aa7257ea7d4e4fcb62717fbc5b1270249c897c",
+      "imagePixels": [
+        1425,
+        891
+      ]
+    },
+    {
+      "path": "screenshots/desktop-1440x900-night-clear.jpg",
+      "bytes": 169035,
+      "sha256": "bddf340b7ecaffb3897e2413311638dccf14a0e96b7257391e6c5ee0eafe4b3f",
+      "imagePixels": [
+        1425,
+        891
+      ]
+    },
+    {
+      "path": "screenshots/desktop-wide-1920x1080-day-clear.jpg",
+      "bytes": 286048,
+      "sha256": "041ec65afd23d47754412dc62c846787498b6fb3844f28a03028ce51fd8497d8",
+      "imagePixels": [
+        1905,
+        1053
+      ]
+    },
+    {
+      "path": "screenshots/full-section-desktop-1440x900-day-clear.jpg",
+      "bytes": 202000,
+      "sha256": "b1baa692c8902ce2748e798262ab7c61ac64ecd668c7c1eae9a9a8f181c4c532",
+      "imagePixels": [
+        1424,
+        804
+      ]
+    },
+    {
+      "path": "screenshots/full-section-mobile-390x844-day-clear.jpg",
+      "bytes": 57871,
+      "sha256": "61b5cc8cfa5427dda9cbf495eef457610e1259c6a3f1823d183fcfbdd860aa8c",
+      "imagePixels": [
+        375,
+        1208
+      ]
+    },
+    {
+      "path": "screenshots/interaction-mouse-office.jpg",
+      "bytes": 13296,
+      "sha256": "db8fa9b149f7e102575d7eb03001998ad815b473773e123f9c128c4751ba584f",
+      "imagePixels": [
+        1440,
+        900
+      ]
+    },
+    {
+      "path": "screenshots/mobile-390x844-day-clear.jpg",
+      "bytes": 49284,
+      "sha256": "9791bf66671278e3f213cbfdfa25d42b0a66a80feefe99772088a174eeafdfd9",
+      "imagePixels": [
+        375,
+        811
+      ]
+    },
+    {
+      "path": "screenshots/mobile-390x844-day-rain.jpg",
+      "bytes": 44856,
+      "sha256": "33171750de63b16da46e12fb24966203ff1d1913980e87287bb603cf3d6431ba",
+      "imagePixels": [
+        375,
+        811
+      ]
+    },
+    {
+      "path": "screenshots/mobile-390x844-goldenHour-clear.jpg",
+      "bytes": 46591,
+      "sha256": "aba172484a9772e30a266d31de300f585d792be9bdb5c2f34869ae855d16e4e3",
+      "imagePixels": [
+        375,
+        811
+      ]
+    },
+    {
+      "path": "screenshots/mobile-390x844-night-clear.jpg",
+      "bytes": 43754,
+      "sha256": "751b110dfc3ce056f68867c6e545dc15c0a932f0d92035c6d0014a6866b26a97",
+      "imagePixels": [
+        375,
+        811
+      ]
+    },
+    {
+      "path": "screenshots/mobile-landscape-844x390-day-clear.jpg",
+      "bytes": 51659,
+      "sha256": "9e103c81fa0d2c6a107f25888651571e69104d095086ddc2cc22eab96885fa5d",
+      "imagePixels": [
+        829,
+        383
+      ]
+    },
+    {
+      "path": "screenshots/tablet-landscape-1180x820-day-clear.jpg",
+      "bytes": 157832,
+      "sha256": "4230d67180b6de5867ab1b70299c7c1f41f3c1f5e8ad27ec995ad67b34ea6a48",
+      "imagePixels": [
+        1165,
+        810
+      ]
+    },
+    {
+      "path": "screenshots/tablet-portrait-820x1180-day-clear.jpg",
+      "bytes": 94532,
+      "sha256": "1341c6dca04ffb9ac72a0f79a604585e2e496255eb08fe019c525db9827fa6fc",
+      "imagePixels": [
+        805,
+        1041
+      ]
+    },
+    {
+      "path": "screenshots/tablet-portrait-820x1180-day-rain.jpg",
+      "bytes": 85161,
+      "sha256": "df8a7bde8b39c09ed8d3231e6380ad803af07bca70b8862dbae629b01a61c398",
+      "imagePixels": [
+        805,
+        1041
+      ]
+    },
+    {
+      "path": "screenshots/tablet-portrait-820x1180-goldenHour-clear.jpg",
+      "bytes": 88753,
+      "sha256": "b46e1c2a464537e8c84c6839bd90a397b18b7b4ea2672b4f304bdb5bafe861b1",
+      "imagePixels": [
+        805,
+        1041
+      ]
+    },
+    {
+      "path": "screenshots/tablet-portrait-820x1180-night-clear.jpg",
+      "bytes": 79914,
+      "sha256": "cb927de105e63fb127ba0b6fd2eae5502379890998f619e3c645826a70ebd45a",
+      "imagePixels": [
+        805,
+        1041
+      ]
+    }
+  ],
+  "captureCaveat": "Filename dimensions are browser CSS viewports. Actual JPEG dimensions are recorded separately. Full-section clips include scroll runway where applicable."
+}

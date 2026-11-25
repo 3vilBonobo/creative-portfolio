@@ -1,0 +1,370 @@
+{
+  "date": "2026-11-25",
+  "navigationChecks": [
+    {
+      "action": "mobile-projects-page-down",
+      "active": "#projects",
+      "projectBottom": 3145.5376586914062,
+      "projectTop": -722.2374877929688
+    },
+    {
+      "action": "mobile-projects-page-down",
+      "active": "#projects",
+      "projectBottom": 2407.1375732421875,
+      "projectTop": -1460.6375732421875
+    },
+    {
+      "action": "mobile-projects-page-down",
+      "active": "#projects",
+      "projectBottom": 1668.737548828125,
+      "projectTop": -2199.03759765625
+    },
+    {
+      "action": "mobile-projects-page-up",
+      "active": "#projects"
+    },
+    {
+      "action": "mobile-direct-projects-anchor",
+      "active": "#projects",
+      "hash": "#projects"
+    },
+    {
+      "action": "history-back",
+      "active": "#projects",
+      "hash": "#projects"
+    },
+    {
+      "action": "history-forward",
+      "active": "#about",
+      "hash": "#about"
+    },
+    {
+      "action": "document-end-ground-floor",
+      "active": "#street",
+      "number": "00"
+    },
+    {
+      "action": "sticky-experience-PageDown",
+      "active": "#experience",
+      "record": "Frontend Development Studies"
+    },
+    {
+      "action": "sticky-experience-PageDown",
+      "active": "#experience",
+      "record": "Legal & Criminology Foundations"
+    },
+    {
+      "action": "sticky-experience-PageUp",
+      "active": "#experience",
+      "record": "Frontend Development Studies"
+    }
+  ],
+  "boundaryChecks": [
+    {
+      "clear": true,
+      "id": "about",
+      "navLeft": 910.4000244140624,
+      "overflow": false,
+      "right": 850.3250122070312,
+      "viewport": [
+        1102,
+        900
+      ]
+    },
+    {
+      "clear": true,
+      "id": "projects",
+      "navLeft": 910.4000244140624,
+      "overflow": false,
+      "right": 850.3250122070312,
+      "viewport": [
+        1102,
+        900
+      ]
+    },
+    {
+      "clear": true,
+      "id": "about",
+      "navLeft": 1110.4000244140625,
+      "overflow": false,
+      "right": 1042.3250122070312,
+      "viewport": [
+        1302,
+        900
+      ]
+    },
+    {
+      "clear": true,
+      "id": "projects",
+      "navLeft": 1110.4000244140625,
+      "overflow": false,
+      "right": 1042.3250122070312,
+      "viewport": [
+        1302,
+        900
+      ]
+    },
+    {
+      "clear": true,
+      "id": "experience",
+      "navLeft": 1110.4000244140625,
+      "overflow": false,
+      "right": 1062.3875122070312,
+      "viewport": [
+        1302,
+        900
+      ]
+    },
+    {
+      "clear": true,
+      "headingRight": 862.3875122070312,
+      "navLeft": 910.4000244140624,
+      "right": 862.3874969482422,
+      "viewport": [
+        1102,
+        900
+      ],
+      "id": "experience"
+    }
+  ],
+  "interactionChecks": [
+    {
+      "feature": "telescope",
+      "opened": true
+    },
+    {
+      "feature": "telescope-escape",
+      "closed": true
+    },
+    {
+      "feature": "puzzle-book",
+      "opened": true
+    },
+    {
+      "feature": "aquarium",
+      "opened": true,
+      "canvas": true,
+      "initialInput": "CDP dispatch timed out; dialog and canvas subsequently verified"
+    },
+    {
+      "feature": "chess",
+      "opened": true,
+      "text": "A COFFEE-TABLE CHALLENGE\n\nThe daily chess.\n×\n0 points\nNext puzzle in 12h 54m\na8\nb8\nc8\n♜\nd8\ne8\n♜\nf8\n♚\ng8\nh8\n♟\na7\n♟\nb7\n♟\nc7\nd7\n♟\ne7\nf7\ng7\n♟\nh7\na6\nb6\nc6\nd6\n♝\ne6\nf6\n♟\ng6\nh6\na5\n♟\nb5\n♟\nc5\nd5\ne5\n♟\nf5\ng5\nh5\na4\nb4\nc4\nd4\n♟\ne4\nf4\ng4\nh4\n♛\na3\nb3\n♝\nc3\nd3\n♟\ne3\nf3\ng3\nh3\na2\nb2\n♛\nc2\n♞\nd2\n♝\ne2\n♟\nf2\n♟\ng2\n♟\nh2\na1\n♜\nb1\nc1\nd1\ne1\n♜\nf1\n♚\ng1\nh1\nDaily puzzle · 1690\nWhite to move\n\nFind the best move.\n\n0 / 2\n♟\n\nSelect a piece, then its destination.\n\n☼ Get a hint\n\n+100 points on completion\nHints are free. Points are saved on"
+    },
+    {
+      "feature": "project-detail",
+      "opened": true
+    },
+    {
+      "feature": "mouse-office",
+      "opened": true
+    }
+  ],
+  "environmentStates": [
+    {
+      "active": "#office",
+      "file": "floor-04-hero/screenshots/desktop-1440x900-night-clear.jpg",
+      "phase": "night",
+      "streetPhase": "night",
+      "viewport": [
+        1440,
+        900
+      ],
+      "weather": "clear"
+    },
+    {
+      "active": "#street",
+      "file": "floor-00-contact/screenshots/desktop-1440x900-night-clear.jpg",
+      "phase": "night",
+      "streetPhase": "night",
+      "viewport": [
+        1440,
+        900
+      ],
+      "weather": "clear"
+    },
+    {
+      "active": "#office",
+      "file": "floor-04-hero/screenshots/desktop-1440x900-day-rain.jpg",
+      "phase": "day",
+      "streetPhase": "day",
+      "viewport": [
+        1440,
+        900
+      ],
+      "weather": "rain"
+    },
+    {
+      "active": "#street",
+      "file": "floor-00-contact/screenshots/desktop-1440x900-day-rain.jpg",
+      "phase": "day",
+      "streetPhase": "day",
+      "viewport": [
+        1440,
+        900
+      ],
+      "weather": "rain"
+    },
+    {
+      "active": "#office",
+      "file": "floor-04-hero/screenshots/desktop-1440x900-goldenHour-clear.jpg",
+      "phase": "goldenHour",
+      "streetPhase": "goldenHour",
+      "viewport": [
+        1440,
+        900
+      ],
+      "weather": "clear"
+    },
+    {
+      "active": "#street",
+      "file": "floor-00-contact/screenshots/desktop-1440x900-goldenHour-clear.jpg",
+      "phase": "goldenHour",
+      "streetPhase": "goldenHour",
+      "viewport": [
+        1440,
+        900
+      ],
+      "weather": "clear"
+    },
+    {
+      "active": "#office",
+      "file": "floor-04-hero/screenshots/tablet-portrait-820x1180-night-clear.jpg",
+      "phase": "night",
+      "streetPhase": "night",
+      "viewport": [
+        820,
+        1180
+      ],
+      "weather": "clear"
+    },
+    {
+      "active": "#street",
+      "file": "floor-00-contact/screenshots/tablet-portrait-820x1180-night-clear.jpg",
+      "phase": "night",
+      "streetPhase": "night",
+      "viewport": [
+        820,
+        1180
+      ],
+      "weather": "clear"
+    },
+    {
+      "active": "#office",
+      "file": "floor-04-hero/screenshots/tablet-portrait-820x1180-day-rain.jpg",
+      "phase": "day",
+      "streetPhase": "day",
+      "viewport": [
+        820,
+        1180
+      ],
+      "weather": "rain"
+    },
+    {
+      "active": "#street",
+      "file": "floor-00-contact/screenshots/tablet-portrait-820x1180-day-rain.jpg",
+      "phase": "day",
+      "streetPhase": "day",
+      "viewport": [
+        820,
+        1180
+      ],
+      "weather": "rain"
+    },
+    {
+      "active": "#office",
+      "file": "floor-04-hero/screenshots/tablet-portrait-820x1180-goldenHour-clear.jpg",
+      "phase": "goldenHour",
+      "streetPhase": "goldenHour",
+      "viewport": [
+        820,
+        1180
+      ],
+      "weather": "clear"
+    },
+    {
+      "active": "#street",
+      "file": "floor-00-contact/screenshots/tablet-portrait-820x1180-goldenHour-clear.jpg",
+      "phase": "goldenHour",
+      "streetPhase": "goldenHour",
+      "viewport": [
+        820,
+        1180
+      ],
+      "weather": "clear"
+    },
+    {
+      "active": "#office",
+      "file": "floor-04-hero/screenshots/mobile-390x844-night-clear.jpg",
+      "phase": "night",
+      "streetPhase": "night",
+      "viewport": [
+        390,
+        844
+      ],
+      "weather": "clear"
+    },
+    {
+      "active": "#street",
+      "file": "floor-00-contact/screenshots/mobile-390x844-night-clear.jpg",
+      "phase": "night",
+      "streetPhase": "night",
+      "viewport": [
+        390,
+        844
+      ],
+      "weather": "clear"
+    },
+    {
+      "active": "#office",
+      "file": "floor-04-hero/screenshots/mobile-390x844-day-rain.jpg",
+      "phase": "day",
+      "streetPhase": "day",
+      "viewport": [
+        390,
+        844
+      ],
+      "weather": "rain"
+    },
+    {
+      "active": "#street",
+      "file": "floor-00-contact/screenshots/mobile-390x844-day-rain.jpg",
+      "phase": "day",
+      "streetPhase": "day",
+      "viewport": [
+        390,
+        844
+      ],
+      "weather": "rain"
+    },
+    {
+      "active": "#office",
+      "file": "floor-04-hero/screenshots/mobile-390x844-goldenHour-clear.jpg",
+      "phase": "goldenHour",
+      "streetPhase": "goldenHour",
+      "viewport": [
+        390,
+        844
+      ],
+      "weather": "clear"
+    },
+    {
+      "active": "#street",
+      "file": "floor-00-contact/screenshots/mobile-390x844-goldenHour-clear.jpg",
+      "phase": "goldenHour",
+      "streetPhase": "goldenHour",
+      "viewport": [
+        390,
+        844
+      ],
+      "weather": "clear"
+    }
+  ],
+  "consoleErrorsAndWarnings": [],
+  "limitations": [
+    "Viewport sizes are simulated browser CSS dimensions. Saved JPEG pixel dimensions differ and are recorded in each layout JSON.",
+    "Reduced-motion system preference and physical devices were not exercised.",
+    "Uncaught runtime exception detection was not explicitly instrumented.",
+    "Telescope pan/pinch, puzzle solving, chess completion and aquarium GPU memory were not exhaustively tested."
+  ]
+}

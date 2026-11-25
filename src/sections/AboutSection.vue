@@ -1,10 +1,38 @@
 <script setup lang="ts">
-import { nextTick, onBeforeUnmount, onMounted, ref } from "vue";
+import { computed, nextTick, onBeforeUnmount, onMounted, ref } from "vue";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { aboutContent } from "../data/about";
+import { FLOOR, FLOORS } from "../config/floors";
 
 const root = ref<HTMLElement>();
+const architecture = ref<HTMLElement>();
+const portraitArtworkQuery = "(max-width: 760px), (min-width: 761px) and (max-width: 1100px) and (orientation: portrait)";
+const portraitArtwork = ref(typeof window !== "undefined" && window.matchMedia(portraitArtworkQuery).matches);
+const architectureWidth = ref(0);
+const extendedWall = ref(false);
+const artwork = computed(() => portraitArtwork.value
+  ? { profile: "mobile", width: 848, height: 1855, cut: 1607, endcap: 248 }
+  : { profile: "desktop", width: 1956, height: 804, cut: 650, endcap: 154 });
+const architectureStyle = computed(() => {
+  const scale = architectureWidth.value / artwork.value.width;
+  return {
+    "--about-top-height": `${(extendedWall.value ? artwork.value.cut : artwork.value.height) * scale}px`,
+    "--about-endcap-height": `${artwork.value.endcap * scale}px`,
+  };
+});
+function artworkUrl(part: string) {
+  return `/environments/floor-03-about/floor-03-about-${part}-${artwork.value.profile}.${part.startsWith("light-") ? "png" : "webp"}`;
+}
+let architectureObserver: ResizeObserver | undefined;
+let portraitQuery: MediaQueryList | undefined;
+function measureArchitecture() {
+  if (!architecture.value) return;
+  portraitArtwork.value = portraitQuery?.matches ?? false;
+  const { width, height } = architecture.value.getBoundingClientRect();
+  architectureWidth.value = width;
+  extendedWall.value = height > width * artwork.value.height / artwork.value.width;
+}
 const activeTab = ref<"background" | "toolkit" | "approach">("background");
 const tabButtons = ref<HTMLButtonElement[]>([]);
 const tabs = [
@@ -30,27 +58,41 @@ function handleTabKeydown(event: KeyboardEvent, index: number) {
   selectTab(tabs[next].id, true);
 }
 onMounted(() => {
+  // Portrait tablets share the mobile room; short landscape viewports retain the wide room.
+  portraitQuery = matchMedia(portraitArtworkQuery);
+  portraitQuery.addEventListener("change", measureArchitecture);
+  measureArchitecture();
+  architectureObserver = new ResizeObserver(measureArchitecture);
+  if (architecture.value) architectureObserver.observe(architecture.value);
   if (!root.value || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   gsap.registerPlugin(ScrollTrigger);
   context = gsap.context(() => {
     gsap.timeline({ scrollTrigger: { trigger: root.value, start: "top 72%", once: true } })
       .from(".about__heading", { y: 24, opacity: 0, duration: .7, ease: "power2.out" })
       .from(".about__narrative > *:not(.about__heading)", { y: 18, opacity: 0, duration: .55, stagger: .09, ease: "power2.out" }, "-=.38")
-      .from(".about__secondary", { y: 14, opacity: 0, duration: .45, ease: "power2.out" }, "-=.35")
-      .to(".about__conduit-pulse", { x: "290%", opacity: .9, duration: .75, ease: "power1.inOut" }, "-=.55");
+      .from(".about__secondary", { y: 14, opacity: 0, duration: .45, ease: "power2.out" }, "-=.35");
   }, root.value);
 });
-onBeforeUnmount(() => context?.revert());
+onBeforeUnmount(() => {
+  architectureObserver?.disconnect();
+  portraitQuery?.removeEventListener("change", measureArchitecture);
+  context?.revert();
+});
 </script>
 
 <template>
-  <section id="about" ref="root" class="floor-section about" aria-labelledby="about-title">
-    <div class="about__architecture" aria-hidden="true">
-      <picture class="about__art"><source media="(max-width: 760px)" srcset="/about/about-wall-mobile.webp" type="image/webp"><source media="(max-width: 760px)" srcset="/about/about-wall-mobile.jpg" type="image/jpeg"><source srcset="/about/about-wall.webp" type="image/webp"><img src="/about/about-wall.jpg" width="1956" height="804" alt=""></picture>
-      <div class="about__conduit"><i class="about__conduit-pulse"></i></div>
+  <section :id="FLOOR.about.id" ref="root" class="floor-section about" :data-floor-number="FLOOR.about.number" aria-labelledby="about-title">
+    <div ref="architecture" class="about__architecture" :class="{ 'about__architecture--extended': extendedWall }" :data-artwork-profile="artwork.profile" :style="architectureStyle" aria-hidden="true">
+      <div v-if="extendedWall" class="about__wall-continuation" :style="{ backgroundImage: `url('${artworkUrl('wall-continuation')}')` }"></div>
+      <div class="about__wall-top">
+        <img class="about__wall-base" :src="artworkUrl('wall-base')" :width="artwork.width" :height="artwork.height" alt="">
+      </div>
+      <img v-if="extendedWall" class="about__wall-endcap" :src="artworkUrl('wall-endcap')" :width="artwork.width" :height="artwork.endcap" alt="">
+      <img class="about__light about__light--emission" :src="artworkUrl('light-01-emission')" :width="artwork.width" :height="artwork.height" alt="">
+      <img class="about__light about__light--spill" :src="artworkUrl('light-01-spill')" :width="artwork.width" :height="artwork.height" alt="">
     </div>
     <div class="about__layout">
-      <aside class="about__rail" aria-label="Level 04"><span>Level</span><strong>04</strong><small>About</small><div class="about__floor-dots" aria-hidden="true"><i></i><i></i><i class="active"></i><i></i><i></i></div></aside>
+      <aside class="about__rail" :aria-label="`Level ${FLOOR.about.number}, ${FLOOR.about.label}`"><span>Level</span><strong>{{ FLOOR.about.number }}</strong><small>{{ FLOOR.about.label }}</small><div class="about__floor-dots" aria-hidden="true"><i v-for="floor in FLOORS" :key="floor.id" :class="{ active: floor.id === FLOOR.about.id }"></i></div></aside>
       <div class="about__narrative">
         <div class="about__identity">
           <figure class="about__portrait"><picture><source srcset="/about/irene-portrait.webp" type="image/webp"><img src="/about/irene-portrait.jpg" width="799" height="730" alt="Portrait of Irinella" loading="lazy"></picture></figure>

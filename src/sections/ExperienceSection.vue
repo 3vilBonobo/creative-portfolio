@@ -4,6 +4,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ExperienceTimeline from "../components/ExperienceTimeline.vue";
 import { experience } from "../data/experience";
+import { FLOOR } from "../config/floors";
 
 const root = ref<HTMLElement>();
 const activeIndex = ref(0);
@@ -71,11 +72,11 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <section id="experience" ref="root" class="floor-section experience" :style="sectionStyle" aria-labelledby="experience-title">
+  <section :id="FLOOR.experience.id" ref="root" class="floor-section experience" :data-floor-number="FLOOR.experience.number" :style="sectionStyle" aria-labelledby="experience-title">
     <div class="experience__scene">
       <div class="experience__shade" aria-hidden="true"></div>
-      <aside class="experience__level" aria-label="Level 02, Experience">
-        <small>Level</small><strong>02</strong><span>Experience</span>
+      <aside class="experience__level" :aria-label="`Level ${FLOOR.experience.number}, ${FLOOR.experience.label}`">
+        <small>Level</small><strong>{{ FLOOR.experience.number }}</strong><span>{{ FLOOR.experience.label }}</span>
         <div class="experience__level-progress" aria-hidden="true">
           <i v-for="(_, index) in experience" :key="index" :class="{ active: index <= activeIndex }"></i>
         </div>

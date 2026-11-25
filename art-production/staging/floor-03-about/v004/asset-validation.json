@@ -1,0 +1,114 @@
+[
+  {
+    "file": "floor-03-about-light-01-emission-desktop.png",
+    "dimensions": [
+      1956,
+      804
+    ],
+    "mode": "RGBA",
+    "bytes": 10615,
+    "alphaRange": [
+      0,
+      225
+    ]
+  },
+  {
+    "file": "floor-03-about-light-01-emission-mobile.png",
+    "dimensions": [
+      848,
+      1855
+    ],
+    "mode": "RGBA",
+    "bytes": 10933,
+    "alphaRange": [
+      0,
+      225
+    ]
+  },
+  {
+    "file": "floor-03-about-light-01-spill-desktop.png",
+    "dimensions": [
+      1956,
+      804
+    ],
+    "mode": "RGBA",
+    "bytes": 76126,
+    "alphaRange": [
+      0,
+      35
+    ]
+  },
+  {
+    "file": "floor-03-about-light-01-spill-mobile.png",
+    "dimensions": [
+      848,
+      1855
+    ],
+    "mode": "RGBA",
+    "bytes": 51200,
+    "alphaRange": [
+      0,
+      50
+    ]
+  },
+  {
+    "file": "floor-03-about-wall-base-desktop.webp",
+    "dimensions": [
+      1956,
+      804
+    ],
+    "mode": "RGB",
+    "bytes": 216990,
+    "alphaRange": null
+  },
+  {
+    "file": "floor-03-about-wall-base-mobile.webp",
+    "dimensions": [
+      848,
+      1855
+    ],
+    "mode": "RGB",
+    "bytes": 91392,
+    "alphaRange": null
+  },
+  {
+    "file": "floor-03-about-wall-continuation-desktop.webp",
+    "dimensions": [
+      1956,
+      1100
+    ],
+    "mode": "RGB",
+    "bytes": 72128,
+    "alphaRange": null
+  },
+  {
+    "file": "floor-03-about-wall-continuation-mobile.webp",
+    "dimensions": [
+      848,
+      1536
+    ],
+    "mode": "RGB",
+    "bytes": 30094,
+    "alphaRange": null
+  },
+  {
+    "file": "floor-03-about-wall-endcap-desktop.webp",
+    "dimensions": [
+      1956,
+      154
+    ],
+    "mode": "RGB",
+    "bytes": 188740,
+    "alphaRange": null
+  },
+  {
+    "file": "floor-03-about-wall-endcap-mobile.webp",
+    "dimensions": [
+      848,
+      248
+    ],
+    "mode": "RGB",
+    "bytes": 94312,
+    "alphaRange": null
+  }
+]

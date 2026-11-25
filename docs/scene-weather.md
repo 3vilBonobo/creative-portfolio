@@ -8,7 +8,7 @@ Alley sky masks use 1746 × 901 coordinates and preserve hanging wires. Atmosphe
 
 Cloud transit time is 2400 / windSpeed seconds (Open-Meteo km/h); the farther bank takes 1.65 times longer. This is an artistic perspective scale, not a physical distance simulation. Doubling wind speed doubles apparent movement. Zero wind pauses both banks. Clear conditions suppress clouds even if an old measurement reports cloud cover. Storms force an overcast bank and branch lightning with two brief pulses per 11-second cycle. Reduced-motion preferences disable animation and lightning.
 
-Validation: `node --test scripts/weather-effects.test.mjs`, `node node_modules/vue-tsc/bin/vue-tsc.js --noEmit`, and `npm run build`. Use Scene preview to inspect time/weather combinations in the browser.
+On Node 22, run `npm test` for the logic tests, including the weather suite. Run `node node_modules/vue-tsc/bin/vue-tsc.js --noEmit` and `npm run build` for type and build checks. Use Scene preview to inspect time/weather combinations in the browser.
 
 PrecipitationCanvas renders independent particles: rain uses velocity-aligned, tapered motion-blur streaks; snow uses soft flakes with varied depth, size, fall speed and sinusoidal drift. Both respond to wind. Density scales with area and intensity, with particle caps and a maximum 2× pixel ratio. ResizeObserver keeps the canvas sharp; animation pauses offscreen, in hidden tabs and under reduced-motion preferences. All observers and animation frames are released on unmount.
 

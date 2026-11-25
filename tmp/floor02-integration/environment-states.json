@@ -1,0 +1,422 @@
+[
+  {
+    "phase": "dawn",
+    "weather": "clear",
+    "viewport": "1440x900",
+    "same": true
+  },
+  {
+    "phase": "dawn",
+    "weather": "partlyCloudy",
+    "viewport": "1440x900",
+    "same": true
+  },
+  {
+    "phase": "dawn",
+    "weather": "cloudy",
+    "viewport": "1440x900",
+    "same": true
+  },
+  {
+    "phase": "dawn",
+    "weather": "fog",
+    "viewport": "1440x900",
+    "same": true
+  },
+  {
+    "phase": "dawn",
+    "weather": "rain",
+    "viewport": "1440x900",
+    "same": true
+  },
+  {
+    "phase": "dawn",
+    "weather": "storm",
+    "viewport": "1440x900",
+    "same": true
+  },
+  {
+    "phase": "dawn",
+    "weather": "snow",
+    "viewport": "1440x900",
+    "same": true
+  },
+  {
+    "phase": "day",
+    "weather": "clear",
+    "viewport": "1440x900",
+    "same": true
+  },
+  {
+    "phase": "day",
+    "weather": "partlyCloudy",
+    "viewport": "1440x900",
+    "same": true
+  },
+  {
+    "phase": "day",
+    "weather": "cloudy",
+    "viewport": "1440x900",
+    "same": true
+  },
+  {
+    "phase": "day",
+    "weather": "fog",
+    "viewport": "1440x900",
+    "same": true
+  },
+  {
+    "phase": "day",
+    "weather": "rain",
+    "viewport": "1440x900",
+    "same": true
+  },
+  {
+    "phase": "day",
+    "weather": "storm",
+    "viewport": "1440x900",
+    "same": true
+  },
+  {
+    "phase": "day",
+    "weather": "snow",
+    "viewport": "1440x900",
+    "same": true
+  },
+  {
+    "phase": "goldenHour",
+    "weather": "clear",
+    "viewport": "1440x900",
+    "same": true
+  },
+  {
+    "phase": "goldenHour",
+    "weather": "partlyCloudy",
+    "viewport": "1440x900",
+    "same": true
+  },
+  {
+    "phase": "goldenHour",
+    "weather": "cloudy",
+    "viewport": "1440x900",
+    "same": true
+  },
+  {
+    "phase": "goldenHour",
+    "weather": "fog",
+    "viewport": "1440x900",
+    "same": true
+  },
+  {
+    "phase": "goldenHour",
+    "weather": "rain",
+    "viewport": "1440x900",
+    "same": true
+  },
+  {
+    "phase": "goldenHour",
+    "weather": "storm",
+    "viewport": "1440x900",
+    "same": true
+  },
+  {
+    "phase": "goldenHour",
+    "weather": "snow",
+    "viewport": "1440x900",
+    "same": true
+  },
+  {
+    "phase": "dusk",
+    "weather": "clear",
+    "viewport": "1440x900",
+    "same": true
+  },
+  {
+    "phase": "dusk",
+    "weather": "partlyCloudy",
+    "viewport": "1440x900",
+    "same": true
+  },
+  {
+    "phase": "dusk",
+    "weather": "cloudy",
+    "viewport": "1440x900",
+    "same": true
+  },
+  {
+    "phase": "dusk",
+    "weather": "fog",
+    "viewport": "1440x900",
+    "same": true
+  },
+  {
+    "phase": "dusk",
+    "weather": "rain",
+    "viewport": "1440x900",
+    "same": true
+  },
+  {
+    "phase": "dusk",
+    "weather": "storm",
+    "viewport": "1440x900",
+    "same": true
+  },
+  {
+    "phase": "dusk",
+    "weather": "snow",
+    "viewport": "1440x900",
+    "same": true
+  },
+  {
+    "phase": "night",
+    "weather": "clear",
+    "viewport": "1440x900",
+    "same": true
+  },
+  {
+    "phase": "night",
+    "weather": "partlyCloudy",
+    "viewport": "1440x900",
+    "same": true
+  },
+  {
+    "phase": "night",
+    "weather": "cloudy",
+    "viewport": "1440x900",
+    "same": true
+  },
+  {
+    "phase": "night",
+    "weather": "fog",
+    "viewport": "1440x900",
+    "same": true
+  },
+  {
+    "phase": "night",
+    "weather": "rain",
+    "viewport": "1440x900",
+    "same": true
+  },
+  {
+    "phase": "night",
+    "weather": "storm",
+    "viewport": "1440x900",
+    "same": true
+  },
+  {
+    "phase": "night",
+    "weather": "snow",
+    "viewport": "1440x900",
+    "same": true
+  },
+  {
+    "phase": "dawn",
+    "weather": "clear",
+    "viewport": "390x844",
+    "same": true
+  },
+  {
+    "phase": "dawn",
+    "weather": "partlyCloudy",
+    "viewport": "390x844",
+    "same": true
+  },
+  {
+    "phase": "dawn",
+    "weather": "cloudy",
+    "viewport": "390x844",
+    "same": true
+  },
+  {
+    "phase": "dawn",
+    "weather": "fog",
+    "viewport": "390x844",
+    "same": true
+  },
+  {
+    "phase": "dawn",
+    "weather": "rain",
+    "viewport": "390x844",
+    "same": true
+  },
+  {
+    "phase": "dawn",
+    "weather": "storm",
+    "viewport": "390x844",
+    "same": true
+  },
+  {
+    "phase": "dawn",
+    "weather": "snow",
+    "viewport": "390x844",
+    "same": true
+  },
+  {
+    "phase": "day",
+    "weather": "clear",
+    "viewport": "390x844",
+    "same": true
+  },
+  {
+    "phase": "day",
+    "weather": "partlyCloudy",
+    "viewport": "390x844",
+    "same": true
+  },
+  {
+    "phase": "day",
+    "weather": "cloudy",
+    "viewport": "390x844",
+    "same": true
+  },
+  {
+    "phase": "day",
+    "weather": "fog",
+    "viewport": "390x844",
+    "same": true
+  },
+  {
+    "phase": "day",
+    "weather": "rain",
+    "viewport": "390x844",
+    "same": true
+  },
+  {
+    "phase": "day",
+    "weather": "storm",
+    "viewport": "390x844",
+    "same": true
+  },
+  {
+    "phase": "day",
+    "weather": "snow",
+    "viewport": "390x844",
+    "same": true
+  },
+  {
+    "phase": "goldenHour",
+    "weather": "clear",
+    "viewport": "390x844",
+    "same": true
+  },
+  {
+    "phase": "goldenHour",
+    "weather": "partlyCloudy",
+    "viewport": "390x844",
+    "same": true
+  },
+  {
+    "phase": "goldenHour",
+    "weather": "cloudy",
+    "viewport": "390x844",
+    "same": true
+  },
+  {
+    "phase": "goldenHour",
+    "weather": "fog",
+    "viewport": "390x844",
+    "same": true
+  },
+  {
+    "phase": "goldenHour",
+    "weather": "rain",
+    "viewport": "390x844",
+    "same": true
+  },
+  {
+    "phase": "goldenHour",
+    "weather": "storm",
+    "viewport": "390x844",
+    "same": true
+  },
+  {
+    "phase": "goldenHour",
+    "weather": "snow",
+    "viewport": "390x844",
+    "same": true
+  },
+  {
+    "phase": "dusk",
+    "weather": "clear",
+    "viewport": "390x844",
+    "same": true
+  },
+  {
+    "phase": "dusk",
+    "weather": "partlyCloudy",
+    "viewport": "390x844",
+    "same": true
+  },
+  {
+    "phase": "dusk",
+    "weather": "cloudy",
+    "viewport": "390x844",
+    "same": true
+  },
+  {
+    "phase": "dusk",
+    "weather": "fog",
+    "viewport": "390x844",
+    "same": true
+  },
+  {
+    "phase": "dusk",
+    "weather": "rain",
+    "viewport": "390x844",
+    "same": true
+  },
+  {
+    "phase": "dusk",
+    "weather": "storm",
+    "viewport": "390x844",
+    "same": true
+  },
+  {
+    "phase": "dusk",
+    "weather": "snow",
+    "viewport": "390x844",
+    "same": true
+  },
+  {
+    "phase": "night",
+    "weather": "clear",
+    "viewport": "390x844",
+    "same": true
+  },
+  {
+    "phase": "night",
+    "weather": "partlyCloudy",
+    "viewport": "390x844",
+    "same": true
+  },
+  {
+    "phase": "night",
+    "weather": "cloudy",
+    "viewport": "390x844",
+    "same": true
+  },
+  {
+    "phase": "night",
+    "weather": "fog",
+    "viewport": "390x844",
+    "same": true
+  },
+  {
+    "phase": "night",
+    "weather": "rain",
+    "viewport": "390x844",
+    "same": true
+  },
+  {
+    "phase": "night",
+    "weather": "storm",
+    "viewport": "390x844",
+    "same": true
+  },
+  {
+    "phase": "night",
+    "weather": "snow",
+    "viewport": "390x844",
+    "same": true
+  }
+]

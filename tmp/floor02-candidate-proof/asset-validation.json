@@ -1,0 +1,122 @@
+[
+  {
+    "id": "floor-02-projects.wall-base.desktop",
+    "checksum": true,
+    "bytes": 175972,
+    "budgetPass": true,
+    "alignmentGroup": "floor-02-projects-desktop-v002",
+    "width": 1370,
+    "height": 1148,
+    "format": "webp",
+    "alpha": false,
+    "dimensionsPass": true
+  },
+  {
+    "id": "floor-02-projects.light-01-emission.desktop",
+    "checksum": true,
+    "bytes": 6297,
+    "budgetPass": true,
+    "alignmentGroup": "floor-02-projects-desktop-v002",
+    "width": 1370,
+    "height": 1148,
+    "format": "png",
+    "rgba": true,
+    "crcPass": true,
+    "alphaMin": 0,
+    "alphaMax": 230,
+    "transparentPixels": 1570908,
+    "nontransparentPixels": 1852,
+    "rgbAboveAlpha": 1852,
+    "alphaBBox": [
+      992,
+      141,
+      1147,
+      152
+    ],
+    "dimensionsPass": true
+  },
+  {
+    "id": "floor-02-projects.light-01-spill.desktop",
+    "checksum": true,
+    "bytes": 21271,
+    "budgetPass": true,
+    "alignmentGroup": "floor-02-projects-desktop-v002",
+    "width": 1370,
+    "height": 1148,
+    "format": "png",
+    "rgba": true,
+    "crcPass": true,
+    "alphaMin": 0,
+    "alphaMax": 91,
+    "transparentPixels": 1457384,
+    "nontransparentPixels": 115376,
+    "rgbAboveAlpha": 115376,
+    "alphaBBox": [
+      824,
+      130,
+      1316,
+      365
+    ],
+    "dimensionsPass": true
+  },
+  {
+    "id": "floor-02-projects.wall-base.mobile",
+    "checksum": true,
+    "bytes": 97620,
+    "budgetPass": true,
+    "alignmentGroup": "floor-02-projects-mobile-v002",
+    "width": 768,
+    "height": 2048,
+    "format": "webp",
+    "alpha": false,
+    "dimensionsPass": true
+  },
+  {
+    "id": "floor-02-projects.light-01-emission.mobile",
+    "checksum": true,
+    "bytes": 6257,
+    "budgetPass": true,
+    "alignmentGroup": "floor-02-projects-mobile-v002",
+    "width": 768,
+    "height": 2048,
+    "format": "png",
+    "rgba": true,
+    "crcPass": true,
+    "alphaMin": 0,
+    "alphaMax": 230,
+    "transparentPixels": 1571988,
+    "nontransparentPixels": 876,
+    "rgbAboveAlpha": 876,
+    "alphaBBox": [
+      541,
+      87,
+      650,
+      94
+    ],
+    "dimensionsPass": true
+  },
+  {
+    "id": "floor-02-projects.light-01-spill.mobile",
+    "checksum": true,
+    "bytes": 16580,
+    "budgetPass": true,
+    "alignmentGroup": "floor-02-projects-mobile-v002",
+    "width": 768,
+    "height": 2048,
+    "format": "png",
+    "rgba": true,
+    "crcPass": true,
+    "alphaMin": 0,
+    "alphaMax": 91,
+    "transparentPixels": 1496322,
+    "nontransparentPixels": 76542,
+    "rgbAboveAlpha": 76542,
+    "alphaBBox": [
+      404,
+      74,
+      767,
+      285
+    ],
+    "dimensionsPass": true
+  }
+]

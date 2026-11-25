@@ -1,8 +1,11 @@
+<script setup lang="ts">
+import { FLOOR, FLOORS } from "../config/floors";
+</script>
 <template>
   <header class="site-header">
-    <a class="wordmark" href="#office" aria-label="Return to office">PORTFOLIO <span>/ ATHENS</span></a>
+    <a class="wordmark" :href="`#${FLOOR.office.id}`" aria-label="Return to office">PORTFOLIO <span>/ ATHENS</span></a>
     <nav class="site-nav" aria-label="Portfolio sections">
-      <a href="#about">About</a><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#street">Contact</a>
+      <a v-for="floor in FLOORS.slice(1)" :key="floor.id" :href="`#${floor.id}`">{{ floor.label }}</a>
     </nav>
   </header>
 </template>

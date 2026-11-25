@@ -1,0 +1,136 @@
+[
+  {
+    "file": "floor-03-about-wall-base-desktop.webp",
+    "format": "WEBP",
+    "size": [
+      1956,
+      804
+    ],
+    "mode": "RGB",
+    "bytes": 216990,
+    "budgetKiB": 350,
+    "budgetPass": true,
+    "shaMatches": true
+  },
+  {
+    "file": "floor-03-about-wall-base-mobile.webp",
+    "format": "WEBP",
+    "size": [
+      848,
+      1855
+    ],
+    "mode": "RGB",
+    "bytes": 91392,
+    "budgetKiB": 250,
+    "budgetPass": true,
+    "shaMatches": true
+  },
+  {
+    "file": "floor-03-about-light-01-emission-desktop.png",
+    "format": "PNG",
+    "size": [
+      1956,
+      804
+    ],
+    "mode": "RGBA",
+    "bytes": 13105,
+    "budgetKiB": 32,
+    "budgetPass": true,
+    "shaMatches": true,
+    "alphaMin": 0,
+    "alphaMax": 247,
+    "nonzero": 17999,
+    "opaque": 0,
+    "bbox": [
+      1465,
+      74,
+      1626,
+      217
+    ],
+    "centroid": [
+      1545.0,
+      145.0
+    ]
+  },
+  {
+    "file": "floor-03-about-light-01-spill-desktop.png",
+    "format": "PNG",
+    "size": [
+      1956,
+      804
+    ],
+    "mode": "RGBA",
+    "bytes": 47074,
+    "budgetKiB": 96,
+    "budgetPass": true,
+    "shaMatches": true,
+    "alphaMin": 0,
+    "alphaMax": 72,
+    "nonzero": 720825,
+    "opaque": 0,
+    "bbox": [
+      760,
+      0,
+      1956,
+      692
+    ],
+    "centroid": [
+      1482.9764436620842,
+      270.760987001029
+    ]
+  },
+  {
+    "file": "floor-03-about-light-01-emission-mobile.png",
+    "format": "PNG",
+    "size": [
+      848,
+      1855
+    ],
+    "mode": "RGBA",
+    "bytes": 13293,
+    "budgetKiB": 24,
+    "budgetPass": true,
+    "shaMatches": true,
+    "alphaMin": 0,
+    "alphaMax": 247,
+    "nonzero": 17999,
+    "opaque": 0,
+    "bbox": [
+      653,
+      172,
+      814,
+      315
+    ],
+    "centroid": [
+      733.0,
+      243.0
+    ]
+  },
+  {
+    "file": "floor-03-about-light-01-spill-mobile.png",
+    "format": "PNG",
+    "size": [
+      848,
+      1855
+    ],
+    "mode": "RGBA",
+    "bytes": 36619,
+    "budgetKiB": 80,
+    "budgetPass": true,
+    "shaMatches": true,
+    "alphaMin": 0,
+    "alphaMax": 72,
+    "nonzero": 467346,
+    "opaque": 0,
+    "bbox": [
+      279,
+      0,
+      848,
+      953
+    ],
+    "centroid": [
+      664.512264716225,
+      380.4431849865236
+    ]
+  }
+]

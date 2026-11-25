@@ -1,0 +1,2317 @@
+diff --git a/README.md b/README.md
+index 8621268..66917ab 100644
+--- a/README.md
++++ b/README.md
+@@ -37,6 +37,14 @@ npm run dev
+ npm run build
+ ```
+ 
++### Run the Logic Tests
++
++Use Node 22.12 or later in the Node 22 release line, matching `.nvmrc` and Netlify. The test runner uses Node's TypeScript type stripping for the mouse and weather suites.
++
++```sh
++npm test
++```
++
+ ## Deploy to Netlify
+ 
+ The repository includes `netlify.toml`, so Netlify automatically uses Node 22,
+diff --git a/docs/about-artwork.md b/docs/about-artwork.md
+index 1fa7cb6..6059bb9 100644
+--- a/docs/about-artwork.md
++++ b/docs/about-artwork.md
+@@ -1,9 +1,36 @@
+ # About wall artwork
+ 
+-The desktop `public/about/about-wall.webp` and mobile `public/about/about-wall-mobile.webp`, together with their JPEG fallbacks, are temporary generated environmental artwork based on Irene's supplied `about.png` composition.
++Floor 03 uses the owner-supplied `floor-03-about-production-v004.zip`, integrated for local visual review on 25 November 2026. The desktop base is approved; mobile framing, practical lighting and the continuation seam remain subject to final visual acceptance. This is only About's decorative environment. Inter-floor infrastructure and the other floors are unchanged.
+ 
+-The production plate contains no baked text, labels, numbers, icons, buttons, or navigation. All meaningful About content remains HTML. The source was generated with the built-in image-generation tool as a straight-on industrial concrete wall with left-side graphite pipework, an upper-right service lamp, a lower-right plant, a thin cyan conduit, and a quiet central content area.
++The original archive documents, previews and ten supplied images are preserved under `art-production/staging/floor-03-about/v004/`. Runtime copies live under `public/environments/floor-03-about/`; their manifest records exact filenames, dimensions, checksums, formats and alignment groups. No artwork was regenerated or re-encoded. Existing `public/about/about-wall*` files and their JPEG fallbacks remain available as legacy references, but the new decorative implementation does not select them.
+ 
+-Replace each WebP/JPEG pair together if final commissioned artwork becomes available. Intrinsic source dimensions: desktop 1956 × 804; mobile 848 × 1855.
++## Rendering
+ 
+-`irene-portrait.webp` and its JPEG fallback are optimized from Irene's supplied portrait. The photograph itself is not generatively altered; the layout applies only responsive cropping, tonal treatment, and a soft edge mask.
++`AboutSection.vue` selects desktop (1956×804) for wide layouts, including landscape phones/tablets. Phones at widths up to 760 CSS px, and portrait layouts from 761 through 1100 CSS px, select mobile (848×1855). All base/emission/spill images use the same profile, full-canvas origin, proportional width and top-center anchor. Only the active profile is requested; switching profile may retain previously fetched assets in browser cache.
++
++A resize observer measures the absolute architectural wrapper, including changes caused by tabs, fonts, viewport size or longer copy. It is disconnected on unmount; the profile media-query listener is also removed. Content stays in normal document flow.
++
++- When the section is no taller than its proportional plate, the full base is used and the wrapper clips excess artwork. On portrait tablet the authored floor can therefore lie below the visible short section, as specified by the handoff's short mode.
++- When taller, the top base is clipped at native Y650 desktop / Y1607 mobile. The matching quiet continuation fills the middle, using proportional width and vertical repeat only. The corresponding 154px / 248px endcap stays at the actual bottom, never halfway down the biography. Base/light geometry stays independent of content height.
++- Base, emission and spill remain decorative, `aria-hidden`, empty-alt and pointer-inert, with accessible HTML above. Existing contrast scrims and portrait/content styles remain. The obsolete CSS conduit and decorative pseudo-element are no longer composited over the new architecture.
++- `--about-light-intensity` controls both light passes (0 off, 1 on; clamped). Default is steady on. There is no new product switch or time/weather dependency. Reduced motion keeps a steady light; the existing entrance-animation guard remains.
++
++## Runtime inventory
++
++The prefix for every file is `floor-03-about-`:
++
++| Suffix | Desktop pixels | Mobile pixels | Use |
++|---|---|---|---|
++| `wall-base-{profile}.webp` | 1956×804 | 848×1855 | Always, active profile only |
++| `light-01-emission-{profile}.png` | 1956×804 | 848×1855 | Full-canvas alpha emission |
++| `light-01-spill-{profile}.png` | 1956×804 | 848×1855 | Full-canvas alpha spill |
++| `wall-continuation-{profile}.webp` | 1956×1100 | 848×1536 | Conditional tall-section wall |
++| `wall-endcap-{profile}.webp` | 1956×154 | 848×248 | Conditional tall-section floor edge |
++
++All six core files meet the original ceilings. The continuation/endcap files have no original budget. Do not trim alpha, independently transform lighting, stretch the architecture or repeat the whole room.
++
++`public/about/irene-portrait.webp` and its JPEG fallback are unchanged. The portrait, biography, tabs, keyboard behavior, navigation and numbering remain separate HTML content. No text or controls are baked into the new environment.
++
++## Review
++
++See `docs/art-production/floor-03-v004-verification.md` for browser evidence, tests, viewport results and outstanding acceptance issues. Screenshots are under `art-production/staging/floor-03-about/v004/browser/`. Temporary QA controls and evidence capture live under `tmp/` and are excluded from the production entry/build.
+diff --git a/docs/scene-weather.md b/docs/scene-weather.md
+index f2783e7..ff80f2b 100644
+--- a/docs/scene-weather.md
++++ b/docs/scene-weather.md
+@@ -8,7 +8,7 @@ Alley sky masks use 1746 × 901 coordinates and preserve hanging wires. Atmosphe
+ 
+ Cloud transit time is 2400 / windSpeed seconds (Open-Meteo km/h); the farther bank takes 1.65 times longer. This is an artistic perspective scale, not a physical distance simulation. Doubling wind speed doubles apparent movement. Zero wind pauses both banks. Clear conditions suppress clouds even if an old measurement reports cloud cover. Storms force an overcast bank and branch lightning with two brief pulses per 11-second cycle. Reduced-motion preferences disable animation and lightning.
+ 
+-Validation: `node --test scripts/weather-effects.test.mjs`, `node node_modules/vue-tsc/bin/vue-tsc.js --noEmit`, and `npm run build`. Use Scene preview to inspect time/weather combinations in the browser.
++On Node 22, run `npm test` for the logic tests, including the weather suite. Run `node node_modules/vue-tsc/bin/vue-tsc.js --noEmit` and `npm run build` for type and build checks. Use Scene preview to inspect time/weather combinations in the browser.
+ 
+ PrecipitationCanvas renders independent particles: rain uses velocity-aligned, tapered motion-blur streaks; snow uses soft flakes with varied depth, size, fall speed and sinusoidal drift. Both respond to wind. Density scales with area and intensity, with particle caps and a maximum 2× pixel ratio. ResizeObserver keeps the canvas sharp; animation pauses offscreen, in hidden tabs and under reduced-motion preferences. All observers and animation frames are released on unmount.
+ 
+diff --git a/package.json b/package.json
+index 5325306..a577e1d 100644
+--- a/package.json
++++ b/package.json
+@@ -6,7 +6,8 @@
+   "scripts": {
+     "dev": "vite",
+     "build": "vite build",
+-    "preview": "vite preview"
++    "preview": "vite preview",
++    "test": "node --experimental-strip-types --test scripts/chess-puzzle.test.mjs scripts/mouse-motion.test.mjs scripts/weather-effects.test.mjs scripts/floor-navigation.test.mjs"
+   },
+   "dependencies": {
+     "chess.js": "^1.4.0",
+diff --git a/scripts/mouse-motion.test.mjs b/scripts/mouse-motion.test.mjs
+index fe4d9b4..436798b 100644
+--- a/scripts/mouse-motion.test.mjs
++++ b/scripts/mouse-motion.test.mjs
+@@ -13,12 +13,19 @@ test('the approach cycles through all eight gait poses before turning', () => {
+ });
+ 
+ test('the mouse plants its feet, turns away, then alternates rear paws', () => {
+-  assert.equal(sampleMouseMotion(6250).frame, 8);
+-  assert.equal(sampleMouseMotion(6650).frame, 9);
+-  assert.equal(sampleMouseMotion(7000).frame, 10);
+-  assert.equal(sampleMouseMotion(7250).frame, 10);
+-  assert.equal(sampleMouseMotion(7350).frame, 11);
++  const planted = sampleMouseMotion(6350);
++  assert.equal(planted.phase, 'settle');
++  assert.equal(planted.approach, 1);
++  assert.equal(planted.turn, 0);
++  assert.equal(planted.depthOffset, .16);
++  assert.equal(planted.scale, 1);
++  assert.equal(planted.opacity, 1);
++  assert.equal(sampleMouseMotion(6500).frame, 8);
++  assert.equal(sampleMouseMotion(6900).frame, 9);
++  assert.equal(sampleMouseMotion(7200).frame, 10);
+   assert.equal(sampleMouseMotion(7450).frame, 10);
++  assert.equal(sampleMouseMotion(7570).frame, 11);
++  assert.equal(sampleMouseMotion(7690).frame, 10);
+ });
+ 
+ test('entry fades the whole mouse smoothly and finishes within the visit timer', () => {
+@@ -30,7 +37,10 @@ test('entry fades the whole mouse smoothly and finishes within the visit timer',
+     assert.ok(pose.entry >= previousEntry);
+     if (pose.entry > 0) {
+       assert.equal(pose.turn, 1);
+-      assert.equal(pose.opacity, 1 - pose.entry);
++      assert.ok(pose.scale < 1);
++      assert.ok(pose.brightness < .78);
++      assert.ok(pose.depthOffset < .16);
++      if (pose.entry <= .2) assert.equal(pose.opacity, 1);
+     }
+     previousEntry = pose.entry;
+   }
+@@ -38,5 +48,7 @@ test('entry fades the whole mouse smoothly and finishes within the visit timer',
+   assert.equal(sampleMouseMotion(MOUSE_VISIT_MS).entry, 1);
+   assert.equal(sampleMouseMotion(MOUSE_VISIT_MS).done, true);
+   assert.equal(sampleMouseMotion(MOUSE_VISIT_MS - 1).done, false);
+-  assert.equal(sampleMouseMotion(7812.5).opacity, .5);
++  const midway = sampleMouseMotion(8375);
++  assert.ok(midway.opacity > 0 && midway.opacity < 1);
++  assert.ok(midway.scale > .72 && midway.scale < 1);
+ });
+diff --git a/src/App.vue b/src/App.vue
+index 46bea98..60f5bfb 100644
+--- a/src/App.vue
++++ b/src/App.vue
+@@ -9,24 +9,19 @@ import ProjectsSection from "./sections/ProjectsSection.vue";
+ import ExperienceSection from "./sections/ExperienceSection.vue";
+ import ContactSection from "./sections/ContactSection.vue";
+ import { useActiveFloor } from "./composables/useActiveFloor";
+-
+-const floors = [
+-  { id: "office", number: "05", label: "Office" }, { id: "about", number: "04", label: "About" },
+-  { id: "projects", number: "03", label: "Projects" }, { id: "experience", number: "02", label: "Experience" },
+-  { id: "street", number: "01", label: "Street" },
+-] as const;
+-const { activeFloor } = useActiveFloor(floors.map(({ id }) => id));
++import { FLOORS, FLOOR_TRANSITIONS } from "./config/floors";
++const { activeFloor } = useActiveFloor(FLOORS.map(({ id }) => id));
+ </script>
+ 
+ <template>
+-  <AppShell>
++  <AppShell :data-active-floor="activeFloor">
+     <a class="skip-link" href="#main-content">Skip to content</a><SiteNavigation />
+-    <FloorNavigator :floors="floors" :active-floor="activeFloor" />
++    <FloorNavigator :floors="FLOORS" :active-floor="activeFloor" />
+     <main id="main-content">
+-      <OfficeHero /><FloorTransition label="Descending to floor 04" /><AboutSection />
+-      <FloorTransition label="Descending to floor 03" variant="cables" /><ProjectsSection />
+-      <FloorTransition label="Descending to floor 02" /><ExperienceSection />
+-      <FloorTransition label="Street level approaching" variant="cables" /><ContactSection />
++      <OfficeHero /><FloorTransition :transition="FLOOR_TRANSITIONS[0]!" /><AboutSection />
++      <FloorTransition :transition="FLOOR_TRANSITIONS[1]!" /><ProjectsSection />
++      <FloorTransition :transition="FLOOR_TRANSITIONS[2]!" /><ExperienceSection />
++      <FloorTransition :transition="FLOOR_TRANSITIONS[3]!" /><ContactSection />
+     </main>
+   </AppShell>
+ </template>
+diff --git a/src/components/AlleyFooter.vue b/src/components/AlleyFooter.vue
+index 690fcd3..d070a81 100644
+--- a/src/components/AlleyFooter.vue
++++ b/src/components/AlleyFooter.vue
+@@ -1,6 +1,7 @@
+ <script setup lang="ts">
+ import { computed } from "vue";
+ import { useEnvironment } from "../composables/useEnvironment";
++import { FLOOR } from "../config/floors";
+ const { state } = useEnvironment();
+ const year = new Date().getFullYear();
+ const condition = computed(() => state.value.weatherCondition.replace(/([A-Z])/g, " $1").toLowerCase());
+@@ -9,6 +10,6 @@ const condition = computed(() => state.value.weatherCondition.replace(/([A-Z])/g
+   <footer class="alley-footer">
+     <p>© {{ year }} Irinella Boutsika</p>
+     <p class="alley-footer__environment"><span class="sr-only">Athens conditions: </span>{{ state.localTime }} · {{ Math.round(state.temperature) }}°C · {{ condition }}</p>
+-    <p>Athens, Greece · Level 01</p>
++    <p>Athens, Greece · Level {{ FLOOR.street.number }}</p>
+   </footer>
+ </template>
+diff --git a/src/components/AppShell.vue b/src/components/AppShell.vue
+index c30bae3..32a7aa4 100644
+--- a/src/components/AppShell.vue
++++ b/src/components/AppShell.vue
+@@ -2,7 +2,6 @@
+ import { computed } from "vue";
+ import { provideEnvironment } from "../composables/useEnvironment";
+ import EnvironmentPreview from "./EnvironmentPreview.vue";
+-import WorldWelcome from "./WorldWelcome.vue";
+ 
+ const { state } = provideEnvironment();
+ const timePhase = computed(() => state.value.timePhase);
+@@ -13,7 +12,6 @@ const isDevelopment = import.meta.env.DEV;
+ <template>
+   <div class="app-shell" :data-time-phase="timePhase" :data-weather="weather">
+     <slot />
+-    <WorldWelcome />
+     <EnvironmentPreview v-if="isDevelopment" />
+   </div>
+ </template>
+diff --git a/src/components/FloorNavigator.vue b/src/components/FloorNavigator.vue
+index f3b2868..1d5e407 100644
+--- a/src/components/FloorNavigator.vue
++++ b/src/components/FloorNavigator.vue
+@@ -1,5 +1,5 @@
+ <script setup lang="ts">
+-interface Floor { id: string; number: string; label: string }
++import type { Floor } from "../config/floors";
+ defineProps<{ floors: readonly Floor[]; activeFloor: string }>();
+ </script>
+-<template><nav class="floor-nav" aria-label="Floor navigation"><span class="floor-nav__title">Floors</span><a v-for="floor in floors" :key="floor.id" :href="`#${floor.id}`" :class="{ active: floor.id === activeFloor }" :aria-current="floor.id === activeFloor ? 'location' : undefined"><span>{{ floor.number }}</span><b>{{ floor.label }}</b><i aria-hidden="true"></i></a></nav></template>
++<template><nav class="floor-nav" aria-label="Floor navigation"><span class="floor-nav__title">Floors</span><a v-for="floor in floors" :key="floor.id" :href="`#${floor.id}`" :aria-label="`Floor ${floor.number} · ${floor.label}`" :class="{ active: floor.id === activeFloor }" :aria-current="floor.id === activeFloor ? 'location' : undefined"><span>{{ floor.number }}</span><b>{{ floor.label }}</b><i aria-hidden="true"></i></a></nav></template>
+diff --git a/src/components/FloorTransition.vue b/src/components/FloorTransition.vue
+index 92afb5e..f85d5eb 100644
+--- a/src/components/FloorTransition.vue
++++ b/src/components/FloorTransition.vue
+@@ -2,7 +2,8 @@
+ import { onBeforeUnmount, onMounted, ref } from "vue";
+ import gsap from "gsap";
+ import { ScrollTrigger } from "gsap/ScrollTrigger";
+-const props = withDefaults(defineProps<{ label: string; variant?: "pipes" | "cables" }>(), { variant: "pipes" });
++import type { FloorTransition } from "../config/floors";
++const props = defineProps<{ transition: FloorTransition }>();
+ const artwork = {
+   pipes: "/transitions/service-void-pipes.png",
+   cables: "/transitions/service-void-cables.png",
+@@ -12,8 +13,8 @@ onMounted(() => { if (!root.value || matchMedia("(prefers-reduced-motion: reduce
+ onBeforeUnmount(() => context?.revert());
+ </script>
+ <template>
+-  <div ref="root" class="floor-transition" :class="`floor-transition--${props.variant}`" aria-hidden="true">
+-    <img class="transition__art" :src="artwork[props.variant]" alt="" loading="lazy" decoding="async" />
+-    <div class="transition__readout"><span>Inter-floor utilities</span><p>{{ label }}</p></div>
++  <div :id="`transition-${transition.id}`" ref="root" class="floor-transition" :class="`floor-transition--${transition.variant}`" :data-transition-id="transition.id" aria-hidden="true">
++    <img class="transition__art" :src="artwork[props.transition.variant]" alt="" loading="lazy" decoding="async" />
++    <div class="transition__readout"><span>Inter-floor utilities</span><p>Descending to floor {{ transition.to.number }} · {{ transition.to.label }}</p></div>
+   </div>
+ </template>
+diff --git a/src/components/MouseRunner.vue b/src/components/MouseRunner.vue
+index 859353f..9b73bca 100644
+--- a/src/components/MouseRunner.vue
++++ b/src/components/MouseRunner.vue
+@@ -29,10 +29,10 @@ watch(() => props.active, (active) => {
+ onBeforeUnmount(() => cancelAnimationFrame(animationFrame));
+ 
+ const runnerStyle = computed(() => ({
+-  // The nose leads in profile; the rump is centred on the hole after turning.
+-  left: `calc(${pose.value.approach * 100}% - ${pose.value.approach * 48}px - var(--mouse-size) * ${1 - pose.value.approach * .06 - pose.value.turn * .32})`,
++  // Bring the body in front of the opening before turning in place.
++  left: `calc(${pose.value.approach * 100}% - ${pose.value.approach * 48}px - var(--mouse-size) * ${1 - pose.value.approach * .38})`,
+   opacity: props.active ? pose.value.opacity : 0,
+-  transform: `translateY(${-pose.value.entry * 4}px) scale(${1 - pose.value.entry * .12})`,
++  transform: `translateY(calc(var(--mouse-size) * ${pose.value.depthOffset})) scale(${pose.value.scale})`,
+ }));
+ const spriteStyle = computed(() => {
+   const column = pose.value.frame % 4;
+@@ -41,7 +41,7 @@ const spriteStyle = computed(() => {
+   backgroundSize: `${1536 / width * 100}% ${1024 / 342 * 100}%`,
+   backgroundPosition: `${columnX[column] / (1536 - width) * 100}% ${rowY[Math.floor(pose.value.frame / 4)] / (1024 - 342) * 100}%`,
+   // The whole animal fades into the doorway; no moving crop or mask.
+-  filter: `url(#${matteId}) brightness(${.78 - pose.value.entry * .18})`,
++  filter: `url(#${matteId}) brightness(${pose.value.brightness})`,
+   };
+ });
+ </script>
+@@ -56,7 +56,7 @@ const spriteStyle = computed(() => {
+     </defs>
+   </svg>
+   <img class="mouse-runner__preload" src="/contact/mouse/house-mouse-gait.png" alt="" @load="emit('ready')" />
+-  <div class="mouse-runner" :style="runnerStyle" :data-pose="pose.frame" :data-entering="pose.entry > 0">
++  <div class="mouse-runner" :style="runnerStyle" :data-pose="pose.frame" :data-phase="pose.phase" :data-entering="pose.entry > 0">
+     <span class="mouse-runner__shadow" :style="{ opacity: .5 * (1 - pose.entry) }" />
+     <span class="mouse-runner__sprite" :style="spriteStyle" />
+   </div>
+diff --git a/src/components/SiteNavigation.vue b/src/components/SiteNavigation.vue
+index db8200b..577fc99 100644
+--- a/src/components/SiteNavigation.vue
++++ b/src/components/SiteNavigation.vue
+@@ -1,8 +1,11 @@
++<script setup lang="ts">
++import { FLOOR, FLOORS } from "../config/floors";
++</script>
+ <template>
+   <header class="site-header">
+-    <a class="wordmark" href="#office" aria-label="Return to office">PORTFOLIO <span>/ ATHENS</span></a>
++    <a class="wordmark" :href="`#${FLOOR.office.id}`" aria-label="Return to office">PORTFOLIO <span>/ ATHENS</span></a>
+     <nav class="site-nav" aria-label="Portfolio sections">
+-      <a href="#about">About</a><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#street">Contact</a>
++      <a v-for="floor in FLOORS.slice(1)" :key="floor.id" :href="`#${floor.id}`">{{ floor.label }}</a>
+     </nav>
+   </header>
+ </template>
+diff --git a/src/components/TelescopeExperience.vue b/src/components/TelescopeExperience.vue
+index a579987..0c78d73 100644
+--- a/src/components/TelescopeExperience.vue
++++ b/src/components/TelescopeExperience.vue
+@@ -4,120 +4,516 @@ import { useEnvironment } from "../composables/useEnvironment";
+ 
+ type DiscoveryKind = "city" | "sky";
+ type LightMode = "day" | "night";
+-interface Discovery { id: string; kind: DiscoveryKind; day: string; night: string }
+-interface SavedDiscovery { expiresAt: number; ids: Record<`${LightMode}-${DiscoveryKind}`, string> }
++type SelectionKey = `${LightMode}-${DiscoveryKind}`;
++
++interface Clue {
++  id: string;
++  x: number;
++  y: number;
++  text: string;
++  nightText?: string;
++}
++
++interface Discovery {
++  id: string;
++  kind: DiscoveryKind;
++  day: string;
++  night: string;
++  clues: Clue[];
++}
++
++interface SavedDiscovery {
++  expiresAt: number;
++  ids: Record<SelectionKey, string>;
++}
+ 
+ const DISCOVERY_TTL = 2 * 60 * 1000;
+-const STORAGE_KEY = "telescope-discovery-v3";
+-const MIN_ZOOM = 1.08;
+-const MAX_ZOOM = 3.4;
++const STORAGE_KEY = "telescope-discovery-v4";
++const MIN_ZOOM = 1.12;
++const MAX_ZOOM = 6;
++const IMAGE_OVERSCAN_X = 1.8;
++const IMAGE_OVERSCAN_Y = 1.2;
++const ASSET_ROOT = "/hero/telescope";
++
+ const discoveries: Discovery[] = [
+-  { id: "acropolis", kind: "city", day: "/hero/telescope/discoveries/acropolis-day.webp", night: "/hero/telescope/discoveries/acropolis-night.webp" },
+-  { id: "balconies", kind: "city", day: "/hero/telescope/discoveries/balconies-day.webp", night: "/hero/telescope/discoveries/balconies-night.webp" },
+-  { id: "backgammon", kind: "city", day: "/hero/telescope/discoveries/backgammon-day.webp", night: "/hero/telescope/discoveries/backgammon-night.webp" },
+-  { id: "glass-towers", kind: "city", day: "/hero/telescope/discoveries/glass-towers-day.webp", night: "/hero/telescope/discoveries/glass-towers-night.webp" },
+-  { id: "clouds", kind: "sky", day: "/hero/telescope/discoveries/clouds-day.webp", night: "/hero/telescope/discoveries/clouds-night.webp" },
+-  { id: "moon", kind: "sky", day: "/hero/telescope/discoveries/moon-day.webp", night: "/hero/telescope/discoveries/moon-night.webp" },
++  {
++    id: "acropolis",
++    kind: "city",
++    day: `${ASSET_ROOT}/discoveries-v2/acropolis-day.webp`,
++    night: `${ASSET_ROOT}/discoveries-v2/acropolis-night.webp`,
++    clues: [
++      { id: "tortoise", x: 81, y: 88, text: "Unit T-04 has been polishing the same pebble since Tuesday." },
++      { id: "cat", x: 91, y: 84, text: "The Acropolis cat has rejected another mandatory firmware update." },
++      { id: "drone-break", x: 33, y: 13, text: "Drone union break. Estimated return: eventually." },
++      { id: "picnic", x: 76, y: 32, text: "Unauthorized picnic detected. Sandwich appears to be in charge." },
++    ],
++  },
++  {
++    id: "balconies",
++    kind: "city",
++    day: `${ASSET_ROOT}/discoveries-v2/balconies-day.webp`,
++    night: `${ASSET_ROOT}/discoveries-v2/balconies-night.webp`,
++    clues: [
++      { id: "sock", x: 29, y: 57, text: "Laundry bot has declared one sock structurally unsound." },
++      { id: "coffee", x: 60, y: 29, text: "Coffee delivery delayed by a territorial pigeon." },
++      { id: "cat-temple", x: 63, y: 80, text: "Miniature cat temple accepts offerings in tuna only." },
++      { id: "antenna", x: 84, y: 57, text: "Balcony lights are broadcasting weather reports from 1987." },
++    ],
++  },
++  {
++    id: "backgammon",
++    kind: "city",
++    day: `${ASSET_ROOT}/discoveries-v2/backgammon-day.webp`,
++    night: `${ASSET_ROOT}/discoveries-v2/backgammon-night.webp`,
++    clues: [
++      { id: "tavli", x: 59, y: 59, text: "The board predicts every move except the uncle's cheating." },
++      { id: "owl", x: 27, y: 46, text: "Bubble #47 contains a legally distinct holographic owl." },
++      { id: "score", x: 66, y: 42, text: "Companion drone is keeping score. Nobody asked it to." },
++      { id: "pigeons", x: 55, y: 19, text: "Pigeon council is voting on whether humans may keep the roof." },
++    ],
++  },
++  {
++    id: "glass-towers",
++    kind: "city",
++    day: `${ASSET_ROOT}/discoveries-v2/glass-towers-day.webp`,
++    night: `${ASSET_ROOT}/discoveries-v2/glass-towers-night.webp`,
++    clues: [
++      { id: "astronaut", x: 80, y: 15, text: "Astronaut watering one plant. Mission day 4,821." },
++      { id: "sock-drone", x: 49, y: 27, text: "Window drone has stolen a sock and is refusing negotiations." },
++      { id: "flamingo", x: 80, y: 64, text: "The flamingo lamp has recently been promoted to middle management." },
++      { id: "meeting", x: 43, y: 57, text: "Meeting room empty. Holographic meeting still arguing." },
++    ],
++  },
++  {
++    id: "clouds",
++    kind: "sky",
++    day: `${ASSET_ROOT}/discoveries-v2/clouds-day.webp`,
++    night: `${ASSET_ROOT}/discoveries-v2/clouds-night.webp`,
++    clues: [
++      {
++        id: "flying-fish",
++        x: 92,
++        y: 51,
++        text: "Flying-fish weather drone migration has begun three weeks early.",
++        nightText: "Star registry has classified this empty patch as deeply suspicious.",
++      },
++      {
++        id: "birds",
++        x: 56,
++        y: 78,
++        text: "Bird formation is requesting a password reset.",
++        nightText: "A low-priority star has submitted an overtime claim.",
++      },
++      {
++        id: "glider",
++        x: 84,
++        y: 15,
++        text: "Pilot reports excellent visibility and one suspicious cloud.",
++        nightText: "Three stars are pretending not to form a face.",
++      },
++      {
++        id: "tiny-moon",
++        x: 55,
++        y: 24,
++        text: "Unscheduled glider is pretending to be a very thin moon.",
++        nightText: "Unscheduled constellation strongly resembles a tax form.",
++      },
++    ],
++  },
++  {
++    id: "moon",
++    kind: "sky",
++    day: `${ASSET_ROOT}/discoveries-v2/moon-day.webp`,
++    night: `${ASSET_ROOT}/discoveries-v2/moon-night.webp`,
++    clues: [
++      { id: "lunar-bot", x: 51, y: 68, text: "Lunar maintenance bot waving at exactly nobody." },
++      { id: "satellite", x: 20, y: 31, text: "Satellite status: emotionally unavailable." },
++      { id: "owl-orbit", x: 70, y: 31, text: "One crater has been promoted to orbital owl." },
++      { id: "planet", x: 84, y: 68, text: "A very distant planet is pretending not to notice us." },
++    ],
++  },
++];
++
++const opticalSpecks = [
++  { x: 18, y: 31, delay: "0s" },
++  { x: 81, y: 24, delay: "1.7s" },
++  { x: 73, y: 76, delay: "3.1s" },
++  { x: 36, y: 82, delay: "4.4s" },
++  { x: 56, y: 17, delay: "5.2s" },
+ ];
+ 
+ const { state } = useEnvironment();
+ const open = ref(false);
+ const kind = ref<DiscoveryKind>("city");
+-const selection = ref<Record<`${LightMode}-${DiscoveryKind}`, string>>({ "day-city": "acropolis", "night-city": "acropolis", "day-sky": "clouds", "night-sky": "clouds" });
++const selection = ref<Record<SelectionKey, string>>({
++  "day-city": "acropolis",
++  "night-city": "acropolis",
++  "day-sky": "clouds",
++  "night-sky": "clouds",
++});
+ const zoom = ref(1.22);
+-const panX = ref(0); const panY = ref(0);
+-const renderedX = ref(0); const renderedY = ref(0);
++const panX = ref(0);
++const panY = ref(0);
++const renderedX = ref(0);
++const renderedY = ref(0);
+ const isDragging = ref(false);
++const imageReady = ref(false);
++const previewFailed = ref(false);
++const detailFailed = ref(false);
++const activeClue = ref<Clue | null>(null);
++const foundClueIds = ref<string[]>([]);
++const dialog = ref<HTMLElement>();
+ const closeButton = ref<HTMLButtonElement>();
++const eyepiece = ref<HTMLElement>();
++const trigger = ref<SVGGElement>();
+ const pointers = new Map<number, { x: number; y: number }>();
+-let animationFrame = 0; let dragOrigin: { x: number; y: number; panX: number; panY: number } | null = null;
+-let pinchDistance = 0; let pinchZoom = 1;
++let animationFrame = 0;
++let dragOrigin: { x: number; y: number; panX: number; panY: number } | null = null;
++let pinchDistance = 0;
++let pinchZoom = 1;
+ 
+-const lightMode = computed<LightMode>(() => state.value.timePhase === "night" || state.value.timePhase === "dusk" ? "night" : "day");
+-const selectionKey = computed<`${LightMode}-${DiscoveryKind}`>(() => `${lightMode.value}-${kind.value}`);
+-const currentDiscovery = computed(() => discoveries.find(({ id }) => id === selection.value[selectionKey.value]) ?? discoveries[0]);
++const lightMode = computed<LightMode>(() =>
++  state.value.timePhase === "night" || state.value.timePhase === "dusk" ? "night" : "day",
++);
++const selectionKey = computed<SelectionKey>(() => `${lightMode.value}-${kind.value}`);
++const currentDiscovery = computed(
++  () => discoveries.find(({ id }) => id === selection.value[selectionKey.value]) ?? discoveries[0],
++);
+ const currentSource = computed(() => currentDiscovery.value[lightMode.value]);
+-const imageStyle = computed(() => ({ transform: `translate3d(${renderedX.value}px,${renderedY.value}px,0) scale(${zoom.value})` }));
++const currentPreview = computed(() => currentSource.value.replace("/discoveries-v2/", "/discoveries/"));
++const currentCluePrefix = computed(() => `${currentDiscovery.value.id}:`);
++const currentFoundCount = computed(
++  () => foundClueIds.value.filter((id) => id.startsWith(currentCluePrefix.value)).length,
++);
++const activeClueText = computed(() =>
++  lightMode.value === "night" && activeClue.value?.nightText
++    ? activeClue.value.nightText
++    : activeClue.value?.text,
++);
++const imageStatusText = computed(() => {
++  if (!previewFailed.value || imageReady.value) return "";
++  return detailFailed.value
++    ? "Signal interrupted · Try the next signal"
++    : "Preview unavailable · Resolving full signal";
++});
++const imageStyle = computed(() => ({
++  "--inverse-zoom": String(1 / zoom.value),
++  transform: `translate3d(${renderedX.value}px,${renderedY.value}px,0) scale(${zoom.value})`,
++}));
+ 
+ function randomFor(discoveryKind: DiscoveryKind, previous?: string) {
+   const pool = discoveries.filter((item) => item.kind === discoveryKind && item.id !== previous);
+-  return pool[Math.floor(Math.random() * pool.length)]?.id ?? discoveries.find((item) => item.kind === discoveryKind)!.id;
++  return (
++    pool[Math.floor(Math.random() * pool.length)]?.id ??
++    discoveries.find((item) => item.kind === discoveryKind)!.id
++  );
+ }
++
++function saveSelection(ids: SavedDiscovery["ids"]) {
++  selection.value = ids;
++  localStorage.setItem(
++    STORAGE_KEY,
++    JSON.stringify({ expiresAt: Date.now() + DISCOVERY_TTL, ids } satisfies SavedDiscovery),
++  );
++}
++
+ function refreshDiscoveries() {
+   let saved: SavedDiscovery | null = null;
+-  try { saved = JSON.parse(localStorage.getItem(STORAGE_KEY) ?? "null") as SavedDiscovery | null; } catch { /* use a fresh set */ }
+-  if (saved?.expiresAt && saved.expiresAt > Date.now() && saved.ids) { selection.value = saved.ids; return; }
+-  const previous = saved?.ids;
+-  const city = randomFor("city", previous?.["day-city"]);
+-  const sky = randomFor("sky", previous?.["day-sky"]);
+-  const ids: SavedDiscovery["ids"] = {
+-    "day-city": city, "night-city": city,
+-    "day-sky": sky, "night-sky": sky,
+-  };
+-  selection.value = ids;
+-  localStorage.setItem(STORAGE_KEY, JSON.stringify({ expiresAt: Date.now() + DISCOVERY_TTL, ids } satisfies SavedDiscovery));
+-}
+-function resetLens() { zoom.value = 1.22; panX.value = 0; panY.value = 0; renderedX.value = 0; renderedY.value = 0; }
+-function showTelescope() { refreshDiscoveries(); kind.value = "city"; resetLens(); open.value = true; }
+-function hideTelescope() { open.value = false; }
+-function chooseKind(next: DiscoveryKind) { kind.value = next; resetLens(); }
+-function clamp(value: number, min: number, max: number) { return Math.min(max, Math.max(min, value)); }
+-function changeZoom(delta: number) { zoom.value = clamp(zoom.value + delta, MIN_ZOOM, MAX_ZOOM); }
+-function panLimit(element: HTMLElement) {
++  try {
++    saved = JSON.parse(localStorage.getItem(STORAGE_KEY) ?? "null") as SavedDiscovery | null;
++  } catch {
++    // A malformed previous session should never block the telescope.
++  }
++  if (saved?.expiresAt && saved.expiresAt > Date.now() && saved.ids) {
++    selection.value = saved.ids;
++    return;
++  }
++  const city = randomFor("city", saved?.ids?.["day-city"]);
++  const sky = randomFor("sky", saved?.ids?.["day-sky"]);
++  saveSelection({
++    "day-city": city,
++    "night-city": city,
++    "day-sky": sky,
++    "night-sky": sky,
++  });
++}
++
++function resetLens() {
++  zoom.value = 1.22;
++  panX.value = 0;
++  panY.value = 0;
++  renderedX.value = 0;
++  renderedY.value = 0;
++  activeClue.value = null;
++}
++
++function showTelescope() {
++  refreshDiscoveries();
++  kind.value = "city";
++  resetLens();
++  open.value = true;
++}
++
++function hideTelescope() {
++  open.value = false;
++}
++
++function chooseKind(next: DiscoveryKind) {
++  if (kind.value === next) return;
++  kind.value = next;
++  resetLens();
++}
++
++function nextSignal() {
++  const nextId = randomFor(kind.value, currentDiscovery.value.id);
++  const ids = { ...selection.value };
++  ids[`day-${kind.value}`] = nextId;
++  ids[`night-${kind.value}`] = nextId;
++  saveSelection(ids);
++  resetLens();
++}
++
++function revealClue(clue: Clue) {
++  const clueId = `${currentDiscovery.value.id}:${clue.id}`;
++  if (!foundClueIds.value.includes(clueId)) foundClueIds.value = [...foundClueIds.value, clueId];
++  activeClue.value = clue;
++}
++
++function clueIsFound(clue: Clue) {
++  return foundClueIds.value.includes(`${currentDiscovery.value.id}:${clue.id}`);
++}
++
++function imageEventMatches(event: Event, source: string) {
++  return (event.currentTarget as HTMLImageElement | null)?.getAttribute("src") === source;
++}
++
++function onPreviewImageLoad(event: Event) {
++  if (imageEventMatches(event, currentPreview.value)) previewFailed.value = false;
++}
++
++function onPreviewImageError(event: Event) {
++  if (imageEventMatches(event, currentPreview.value)) previewFailed.value = true;
++}
++
++function onDetailImageLoad(event: Event) {
++  if (!imageEventMatches(event, currentSource.value)) return;
++  detailFailed.value = false;
++  imageReady.value = true;
++}
++
++function onDetailImageError(event: Event) {
++  if (!imageEventMatches(event, currentSource.value)) return;
++  detailFailed.value = true;
++  imageReady.value = false;
++}
++
++function clamp(value: number, min: number, max: number) {
++  return Math.min(max, Math.max(min, value));
++}
++
++function panLimit(element: HTMLElement, nextZoom = zoom.value) {
+   const bounds = element.getBoundingClientRect();
+-  const overflowRatio = Math.max(0, 1.14 * zoom.value - 1);
+-  return { x: Math.min(520, bounds.width * overflowRatio / 2), y: Math.min(420, bounds.height * overflowRatio / 2) };
++  const overflowX = Math.max(0, IMAGE_OVERSCAN_X * nextZoom - 1);
++  const overflowY = Math.max(0, IMAGE_OVERSCAN_Y * nextZoom - 1);
++  return {
++    x: bounds.width * overflowX * 0.48,
++    y: bounds.height * overflowY * 0.48,
++  };
++}
++
++function clampPan(nextZoom = zoom.value) {
++  if (!eyepiece.value) return;
++  const limit = panLimit(eyepiece.value, nextZoom);
++  panX.value = clamp(panX.value, -limit.x, limit.x);
++  panY.value = clamp(panY.value, -limit.y, limit.y);
++  renderedX.value = clamp(renderedX.value, -limit.x, limit.x);
++  renderedY.value = clamp(renderedY.value, -limit.y, limit.y);
+ }
++
++function setZoom(nextZoom: number, anchor?: { x: number; y: number }) {
++  const previousZoom = zoom.value;
++  const clampedZoom = clamp(nextZoom, MIN_ZOOM, MAX_ZOOM);
++  if (clampedZoom === previousZoom) return;
++
++  if (anchor) {
++    const ratio = clampedZoom / previousZoom;
++    panX.value = anchor.x - (anchor.x - panX.value) * ratio;
++    panY.value = anchor.y - (anchor.y - panY.value) * ratio;
++  }
++
++  zoom.value = clampedZoom;
++  clampPan(clampedZoom);
++}
++
++function changeZoom(delta: number) {
++  setZoom(zoom.value + delta);
++}
++
+ function onWheel(event: WheelEvent) {
+-  const strength = Math.min(.3, Math.max(.14, Math.abs(event.deltaY) / 600));
+-  changeZoom(event.deltaY < 0 ? strength : -strength);
++  const bounds = (event.currentTarget as HTMLElement).getBoundingClientRect();
++  const anchor = {
++    x: event.clientX - bounds.left - bounds.width / 2,
++    y: event.clientY - bounds.top - bounds.height / 2,
++  };
++  const strength = Math.min(0.52, Math.max(0.2, Math.abs(event.deltaY) / 450));
++  setZoom(zoom.value + (event.deltaY < 0 ? strength : -strength), anchor);
+ }
++
+ function onPointerDown(event: PointerEvent) {
+   event.preventDefault();
+-  const element = event.currentTarget as HTMLElement; element.setPointerCapture(event.pointerId);
++  const element = event.currentTarget as HTMLElement;
++  element.setPointerCapture(event.pointerId);
+   pointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
+   isDragging.value = true;
+-  if (pointers.size === 1) dragOrigin = { x: event.clientX, y: event.clientY, panX: renderedX.value, panY: renderedY.value };
+-  if (pointers.size === 2) { const [a,b] = [...pointers.values()]; pinchDistance = Math.hypot(a.x-b.x,a.y-b.y); pinchZoom = zoom.value; }
++  if (pointers.size === 1) {
++    dragOrigin = {
++      x: event.clientX,
++      y: event.clientY,
++      panX: renderedX.value,
++      panY: renderedY.value,
++    };
++  }
++  if (pointers.size === 2) {
++    const [a, b] = [...pointers.values()];
++    pinchDistance = Math.hypot(a.x - b.x, a.y - b.y);
++    pinchZoom = zoom.value;
++  }
+ }
++
+ function onPointerMove(event: PointerEvent) {
+   const lens = event.currentTarget as HTMLElement;
+-  if (pointers.has(event.pointerId)) pointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
++  if (pointers.has(event.pointerId)) {
++    pointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
++  }
+   if (pointers.size === 2) {
+-    const [a,b] = [...pointers.values()]; const distance = Math.hypot(a.x-b.x,a.y-b.y);
+-    zoom.value = clamp(pinchZoom * distance / Math.max(1,pinchDistance), MIN_ZOOM, MAX_ZOOM); return;
++    const [a, b] = [...pointers.values()];
++    const distance = Math.hypot(a.x - b.x, a.y - b.y);
++    setZoom(pinchZoom * (distance / Math.max(1, pinchDistance)));
++    return;
+   }
+   if (pointers.size === 1 && dragOrigin) {
+     const limit = panLimit(lens);
+-    panX.value = clamp(dragOrigin.panX + event.clientX-dragOrigin.x, -limit.x, limit.x);
+-    panY.value = clamp(dragOrigin.panY + event.clientY-dragOrigin.y, -limit.y, limit.y); return;
++    panX.value = clamp(dragOrigin.panX + event.clientX - dragOrigin.x, -limit.x, limit.x);
++    panY.value = clamp(dragOrigin.panY + event.clientY - dragOrigin.y, -limit.y, limit.y);
+   }
+ }
++
+ function onPointerUp(event: PointerEvent) {
+   const element = event.currentTarget as HTMLElement;
+   if (element.hasPointerCapture(event.pointerId)) element.releasePointerCapture(event.pointerId);
+-  pointers.delete(event.pointerId); pinchDistance = 0;
+-  if (pointers.size === 0) { dragOrigin = null; isDragging.value = false; }
+-  else { const remaining = [...pointers.values()][0]; dragOrigin = { x: remaining.x, y: remaining.y, panX: renderedX.value, panY: renderedY.value }; }
++  pointers.delete(event.pointerId);
++  pinchDistance = 0;
++  if (pointers.size === 0) {
++    dragOrigin = null;
++    isDragging.value = false;
++  } else {
++    const remaining = [...pointers.values()][0];
++    dragOrigin = {
++      x: remaining.x,
++      y: remaining.y,
++      panX: renderedX.value,
++      panY: renderedY.value,
++    };
++  }
+ }
++
+ function animatePan() {
+-  const easing = isDragging.value ? .18 : .075;
+-  renderedX.value += (panX.value-renderedX.value) * easing;
+-  renderedY.value += (panY.value-renderedY.value) * easing;
++  const easing = isDragging.value ? 0.16 : 0.08;
++  renderedX.value += (panX.value - renderedX.value) * easing;
++  renderedY.value += (panY.value - renderedY.value) * easing;
+   animationFrame = requestAnimationFrame(animatePan);
+ }
+-function onKeydown(event: KeyboardEvent) { if (event.key === "Escape" && open.value) hideTelescope(); }
++
++function getFocusableElements() {
++  if (!dialog.value) return [];
++  return Array.from(
++    dialog.value.querySelectorAll<HTMLElement>(
++      'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
++    ),
++  ).filter(
++    (element) =>
++      !element.hidden &&
++      element.getAttribute("aria-hidden") !== "true" &&
++      element.getClientRects().length > 0,
++  );
++}
++
++function onKeydown(event: KeyboardEvent) {
++  if (!open.value) return;
++
++  if (event.key === "Escape") {
++    event.preventDefault();
++    event.stopPropagation();
++    hideTelescope();
++    return;
++  }
++
++  if (event.key !== "Tab" || !dialog.value) return;
++
++  const focusableElements = getFocusableElements();
++  if (focusableElements.length === 0) {
++    event.preventDefault();
++    dialog.value.focus();
++    return;
++  }
++
++  const first = focusableElements[0];
++  const last = focusableElements[focusableElements.length - 1];
++  const activeElement = document.activeElement;
++  const focusIsInside = activeElement instanceof Node && dialog.value.contains(activeElement);
++
++  if (event.shiftKey && (activeElement === first || !focusIsInside)) {
++    event.preventDefault();
++    last.focus();
++  } else if (!event.shiftKey && (activeElement === last || !focusIsInside)) {
++    event.preventDefault();
++    first.focus();
++  }
++}
++
++function onFocusin(event: FocusEvent) {
++  if (!open.value || !dialog.value) return;
++  if (event.target instanceof Node && dialog.value.contains(event.target)) return;
++  (closeButton.value ?? getFocusableElements()[0] ?? dialog.value).focus();
++}
++
++watch(currentSource, () => {
++  imageReady.value = false;
++  previewFailed.value = false;
++  detailFailed.value = false;
++  activeClue.value = null;
++});
+ 
+ watch(open, async (isOpen) => {
+   document.body.classList.toggle("telescope-is-open", isOpen);
+-  if (isOpen) { await nextTick(); closeButton.value?.focus(); }
++  await nextTick();
++  if (isOpen) {
++    closeButton.value?.focus();
++  } else {
++    trigger.value?.focus();
++  }
++});
++
++window.addEventListener("keydown", onKeydown, true);
++document.addEventListener("focusin", onFocusin);
++animationFrame = requestAnimationFrame(animatePan);
++
++onBeforeUnmount(() => {
++  window.removeEventListener("keydown", onKeydown, true);
++  document.removeEventListener("focusin", onFocusin);
++  cancelAnimationFrame(animationFrame);
++  document.body.classList.remove("telescope-is-open");
+ });
+-window.addEventListener("keydown", onKeydown); animationFrame = requestAnimationFrame(animatePan);
+-onBeforeUnmount(() => { window.removeEventListener("keydown", onKeydown); cancelAnimationFrame(animationFrame); document.body.classList.remove("telescope-is-open"); });
+ </script>
+ 
+ <template>
+-  <svg v-if="!open" class="telescope-hotspot-map" viewBox="0 0 1536 1024" preserveAspectRatio="xMidYMid meet" aria-hidden="false">
++  <svg
++    v-if="!open"
++    class="telescope-hotspot-map"
++    viewBox="0 0 1536 1024"
++    preserveAspectRatio="xMidYMid meet"
++    aria-hidden="false"
++  >
+     <defs>
+       <radialGradient id="telescope-outer-halo">
+         <stop offset="0%" stop-color="#efad3f" stop-opacity="0" />
+@@ -126,7 +522,16 @@ onBeforeUnmount(() => { window.removeEventListener("keydown", onKeydown); cancel
+         <stop offset="100%" stop-color="#efad3f" stop-opacity="0" />
+       </radialGradient>
+     </defs>
+-    <g class="telescope-hotspot-target" role="button" tabindex="0" aria-label="Look through the telescope" @click.stop="showTelescope" @keydown.enter.prevent.stop="showTelescope" @keydown.space.prevent.stop="showTelescope">
++    <g
++      ref="trigger"
++      class="telescope-hotspot-target"
++      role="button"
++      tabindex="0"
++      aria-label="Look through the telescope"
++      @click.stop="showTelescope"
++      @keydown.enter.prevent.stop="showTelescope"
++      @keydown.space.prevent.stop="showTelescope"
++    >
+       <title>Look through the telescope</title>
+       <circle class="telescope-hotspot-target__halo" cx="374" cy="520" r="80" />
+       <circle class="telescope-hotspot-target__shape" cx="374" cy="520" r="64" />
+@@ -136,27 +541,154 @@ onBeforeUnmount(() => { window.removeEventListener("keydown", onKeydown); cancel
+       </g>
+     </g>
+   </svg>
++
+   <Teleport to="body">
+     <Transition name="telescope-reveal">
+-      <div v-if="open" class="telescope-app" role="dialog" aria-modal="true" aria-label="Telescope view" :data-time-phase="state.timePhase">
+-      <div class="telescope-app__eyepiece" :class="{ 'is-dragging': isDragging }" role="application" aria-label="Telescope lens. Click and drag to look around; use the wheel or pinch to zoom." @wheel.prevent.stop="onWheel" @pointerdown="onPointerDown" @pointermove="onPointerMove" @pointerup="onPointerUp" @pointercancel="onPointerUp">
+-        <Transition name="telescope-source" mode="out-in"><img :key="currentSource" :src="currentSource" alt="A randomly selected near-future Athens telescope discovery" draggable="false" :style="imageStyle" @dragstart.prevent></Transition>
+-        <div class="telescope-app__reticle" aria-hidden="true"><i /><i /></div>
+-        <div class="telescope-app__zoom" aria-label="Zoom controls">
+-          <button type="button" aria-label="Zoom out" :disabled="zoom <= MIN_ZOOM" @click.stop="changeZoom(-.25)">−</button>
+-          <output :aria-label="`Zoom ${Math.round(zoom * 100)} percent`">{{ zoom.toFixed(1) }}×</output>
+-          <button type="button" aria-label="Zoom in" :disabled="zoom >= MAX_ZOOM" @click.stop="changeZoom(.25)">+</button>
++      <div
++        v-if="open"
++        ref="dialog"
++        class="telescope-app"
++        role="dialog"
++        aria-modal="true"
++        aria-label="Telescope view"
++        tabindex="-1"
++        :data-time-phase="state.timePhase"
++      >
++        <div
++          ref="eyepiece"
++          class="telescope-app__eyepiece"
++          :class="{ 'is-dragging': isDragging, 'is-searching': zoom >= 1.55 }"
++          role="application"
++          aria-label="Telescope lens. Click and drag to look around; use the wheel or pinch to zoom."
++          @wheel.prevent.stop="onWheel"
++          @pointerdown="onPointerDown"
++          @pointermove="onPointerMove"
++          @pointerup="onPointerUp"
++          @pointercancel="onPointerUp"
++        >
++          <Transition name="telescope-source" mode="out-in">
++            <div :key="currentSource" class="telescope-app__scene" :style="imageStyle">
++              <img
++                class="telescope-app__image telescope-app__image--preview"
++                :src="currentPreview"
++                alt=""
++                draggable="false"
++                @load="onPreviewImageLoad"
++                @error="onPreviewImageError"
++                @dragstart.prevent
++              />
++              <img
++                class="telescope-app__image telescope-app__image--detail"
++                :class="{ 'is-ready': imageReady }"
++                :src="currentSource"
++                alt="A randomly selected near-future Athens telescope discovery"
++                draggable="false"
++                @load="onDetailImageLoad"
++                @error="onDetailImageError"
++                @dragstart.prevent
++              />
++              <template v-if="!imageStatusText">
++                <button
++                  v-for="clue in currentDiscovery.clues"
++                  :key="clue.id"
++                  class="telescope-app__clue"
++                  :class="{ 'is-found': clueIsFound(clue) }"
++                  :style="{ left: `${clue.x}%`, top: `${clue.y}%` }"
++                  type="button"
++                  aria-label="Inspect a faint signal"
++                  @pointerdown.stop
++                  @click.stop="revealClue(clue)"
++                >
++                  <span aria-hidden="true" />
++                </button>
++              </template>
++            </div>
++          </Transition>
++
++          <p v-if="imageStatusText" class="telescope-app__signal-status" role="status">
++            {{ imageStatusText }}
++          </p>
++
++          <div class="telescope-app__scan" aria-hidden="true" />
++          <div class="telescope-app__specks" aria-hidden="true">
++            <i
++              v-for="(speck, index) in opticalSpecks"
++              :key="index"
++              :style="{ left: `${speck.x}%`, top: `${speck.y}%`, animationDelay: speck.delay }"
++            />
++          </div>
++          <div class="telescope-app__reticle" aria-hidden="true"><i /><i /></div>
++
++          <Transition name="telescope-clue">
++            <aside v-if="activeClue" class="telescope-app__clue-card" aria-live="polite">
++              <small>Anomaly logged</small>
++              <p>{{ activeClueText }}</p>
++              <button type="button" aria-label="Close anomaly message" @pointerdown.stop @click.stop="activeClue = null">×</button>
++            </aside>
++          </Transition>
++
++          <div class="telescope-app__zoom" aria-label="Zoom controls" @pointerdown.stop>
++            <button
++              type="button"
++              aria-label="Zoom out"
++              :disabled="zoom <= MIN_ZOOM"
++              @click.stop="changeZoom(-0.4)"
++            >
++              −
++            </button>
++            <output :aria-label="`Zoom ${Math.round(zoom * 100)} percent`">{{ zoom.toFixed(1) }}×</output>
++            <button
++              type="button"
++              aria-label="Zoom in"
++              :disabled="zoom >= MAX_ZOOM"
++              @click.stop="changeZoom(0.4)"
++            >
++              +
++            </button>
++          </div>
+         </div>
+-      </div>
+-      <header class="telescope-app__header">
+-        <p><span>Optical observation</span><b>{{ kind === 'city' ? 'City signal' : 'Sky signal' }}</b><small>{{ state.timePhase }} mode · signal locked</small></p>
+-        <button ref="closeButton" class="telescope-app__exit" type="button" @click="hideTelescope">Exit telescope <span aria-hidden="true">→</span></button>
+-      </header>
+-      <nav class="telescope-app__coordinates" aria-label="Choose where to look">
+-        <button type="button" :class="{ 'is-active': kind === 'city' }" :aria-pressed="kind === 'city'" @click="chooseKind('city')"><span>Look at the city</span><small>Find a hidden moment</small></button>
+-        <button type="button" :class="{ 'is-active': kind === 'sky' }" :aria-pressed="kind === 'sky'" @click="chooseKind('sky')"><span>Look at the sky</span><small>Search the atmosphere</small></button>
+-      </nav>
+-      <p class="telescope-app__hint">Click and drag to scan · wheel or pinch to zoom · scenes shift every few minutes</p>
++
++        <header class="telescope-app__header">
++          <p>
++            <span>Optical observation</span>
++            <b>{{ kind === "city" ? "City signal" : "Sky signal" }}</b>
++            <small>
++              {{ state.timePhase }} mode · {{ currentFoundCount }}/{{ currentDiscovery.clues.length }} anomalies logged
++            </small>
++          </p>
++          <button ref="closeButton" class="telescope-app__exit" type="button" @click="hideTelescope">
++            Exit telescope <span aria-hidden="true">→</span>
++          </button>
++        </header>
++
++        <nav class="telescope-app__coordinates" aria-label="Choose where to look">
++          <button
++            type="button"
++            :class="{ 'is-active': kind === 'city' }"
++            :aria-pressed="kind === 'city'"
++            @click="chooseKind('city')"
++          >
++            <span>Look at the city</span>
++            <small>Find a hidden moment</small>
++          </button>
++          <button
++            type="button"
++            :class="{ 'is-active': kind === 'sky' }"
++            :aria-pressed="kind === 'sky'"
++            @click="chooseKind('sky')"
++          >
++            <span>Look at the sky</span>
++            <small>Search the atmosphere</small>
++          </button>
++          <button class="telescope-app__next" type="button" @click="nextSignal">
++            <span>Next signal</span>
++            <small>Find another view</small>
++          </button>
++        </nav>
++
++        <p class="telescope-app__hint">
++          Drag to scan · wheel or pinch up to 6× · inspect the faint blinking anomalies
++        </p>
+       </div>
+     </Transition>
+   </Teleport>
+diff --git a/src/components/WorldWelcome.vue b/src/components/WorldWelcome.vue
+deleted file mode 100644
+index 3eae7fe..0000000
+--- a/src/components/WorldWelcome.vue
++++ /dev/null
+@@ -1,137 +0,0 @@
+-<script setup lang="ts">
+-import { onBeforeUnmount, onMounted, ref } from "vue";
+-import { useEnvironment } from "../composables/useEnvironment";
+-
+-const { state } = useEnvironment();
+-const card = ref<HTMLDialogElement | null>(null);
+-let revealTimer: ReturnType<typeof setTimeout> | undefined;
+-let previousOverflow: string | undefined;
+-
+-function restoreScroll() {
+-  if (previousOverflow !== undefined) {
+-    document.documentElement.style.overflow = previousOverflow;
+-    previousOverflow = undefined;
+-  }
+-}
+-
+-function dismiss() {
+-  card.value?.close();
+-  restoreScroll();
+-}
+-
+-function handleBackdropClick(event: MouseEvent) {
+-  if (!card.value || event.target !== card.value) return;
+-  const bounds = card.value.getBoundingClientRect();
+-  if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) dismiss();
+-}
+-
+-function reveal() {
+-  revealTimer = setTimeout(() => {
+-    card.value?.showModal();
+-    previousOverflow = document.documentElement.style.overflow;
+-    document.documentElement.style.overflow = "hidden";
+-  }, 650);
+-}
+-
+-onMounted(() => {
+-  if (document.readyState === "complete") reveal();
+-  else window.addEventListener("load", reveal, { once: true });
+-});
+-
+-onBeforeUnmount(() => {
+-  clearTimeout(revealTimer);
+-  window.removeEventListener("load", reveal);
+-  dismiss();
+-});
+-</script>
+-
+-<template>
+-  <Teleport to="body">
+-    <dialog ref="card" class="world-welcome" :data-phase="state.timePhase" aria-labelledby="world-welcome-title" aria-describedby="world-welcome-intro world-welcome-details" @click="handleBackdropClick" @close="restoreScroll" @cancel.prevent="dismiss">
+-      <div class="world-welcome__skyline" aria-hidden="true">
+-        <svg viewBox="0 0 440 90" fill="none"><path d="M0 78h35V53h22v25h20V35h25v43h19V60h28v18h18V46h10V32h7v14h10v32h21V55h14v-9h62v9h14v23h20V28h25v50h16V44h26v34h19V60h29"/><path d="M229 46l31-14 31 14m-55 9v23m12-23v23m12-23v23m12-23v23m12-23v23M215 82h90M89 35V18m248 10V8"/><circle cx="365" cy="19" r="10"/></svg>
+-      </div>
+-      <button class="world-welcome__close" type="button" aria-label="Dismiss welcome" @click="dismiss">
+-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m7 7 10 10M17 7 7 17" /></svg>
+-      </button>
+-      <p class="world-welcome__eyebrow"><span class="world-welcome__signal" aria-hidden="true" /> A little world, alive</p>
+-      <h2 id="world-welcome-title">Welcome to my corner<br>of <em>futuristic Athens.</em></h2>
+-      <div class="world-welcome__coordinates" aria-hidden="true"><span>37.98° N / 23.73° E</span><span>ATHENS · {{ state.localTime }}</span></div>
+-      <p id="world-welcome-intro" class="world-welcome__copy">I’m Irinella. Make yourself at home — there are little things to play with and quiet details to discover.</p>
+-      <p id="world-welcome-details" class="world-welcome__copy">Stay curious, and come back after sunset. This world follows Athens through daylight, weather and night. Each visit has a different mood.</p>
+-      <p class="world-welcome__mobile">
+-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
+-        <span>A small screen is a lovely start. For the full experience, explore on desktop.</span>
+-      </p>
+-      <button class="world-welcome__enter" type="button" autofocus @click="dismiss">Step inside <span aria-hidden="true">↗</span></button>
+-      <span class="world-welcome__hint">Or click outside / press Esc</span>
+-    </dialog>
+-  </Teleport>
+-</template>
+-
+-<style scoped>
+-.world-welcome {
+-  --welcome-accent: #91e7dc;
+-  --welcome-secondary: #c2b4ed;
+-  --welcome-surface: #101e28;
+-  --welcome-ink: #edf4ef;
+-  --welcome-copy: #c1ced2;
+-  position: fixed;
+-  inset: 0;
+-  margin: auto;
+-  width: min(460px, calc(100vw - 2rem));
+-  max-height: calc(100dvh - 2rem);
+-  overflow-y: auto;
+-  padding: 94px 36px 25px;
+-  border: 1px solid color-mix(in srgb, var(--welcome-accent) 38%, transparent);
+-  border-radius: 24px 6px 24px 6px;
+-  background: radial-gradient(ellipse at 100% 0%, color-mix(in srgb, var(--welcome-accent) 15%, transparent), transparent 58%), var(--welcome-surface);
+-  box-shadow: 0 30px 120px #0008, 0 0 65px color-mix(in srgb, var(--welcome-accent) 9%, transparent), inset 0 1px 0 #ffffff17;
+-  color: var(--welcome-ink);
+-}
+-.world-welcome[data-phase="day"], .world-welcome[data-phase="goldenHour"] {
+-  --welcome-accent: #ffd097;
+-  --welcome-secondary: #a7e0d4;
+-  --welcome-surface: #292b27;
+-  --welcome-ink: #fff5e5;
+-  --welcome-copy: #dbd5c7;
+-}
+-.world-welcome[data-phase="dawn"], .world-welcome[data-phase="dusk"] {
+-  --welcome-accent: #f0b7b0;
+-  --welcome-secondary: #bfb8ed;
+-  --welcome-surface: #28232f;
+-  --welcome-copy: #d8ccd9;
+-}
+-.world-welcome::backdrop { background: #070e1670; backdrop-filter: blur(5px); }
+-.world-welcome[open] { animation: welcome-arrive 380ms cubic-bezier(.2,.8,.2,1) both; }
+-.world-welcome[open]::backdrop { animation: welcome-backdrop 380ms ease both; }
+-.world-welcome__skyline { position: absolute; inset: 0 0 auto; height: 90px; overflow: hidden; pointer-events: none; opacity: .45; }
+-.world-welcome__skyline svg { width: 100%; height: 100%; stroke: var(--welcome-accent); stroke-width: .8; }
+-.world-welcome__close { position: absolute; top: 10px; right: 10px; display: grid; place-items: center; width: 44px; height: 44px; border: 0; border-radius: 50%; color: var(--welcome-ink); background: var(--welcome-surface); cursor: pointer; }
+-.world-welcome__close:hover { background: color-mix(in srgb, var(--welcome-accent) 15%, var(--welcome-surface)); }
+-.world-welcome__close svg { width: 19px; stroke: currentColor; stroke-width: 1.5; }
+-.world-welcome__eyebrow { display: flex; align-items: center; gap: 10px; margin: 0 0 17px; color: var(--welcome-accent); font: 400 10px/1.5 "IBM Plex Mono", monospace; letter-spacing: .15em; text-transform: uppercase; }
+-.world-welcome__signal { width: 6px; height: 6px; border-radius: 50%; background: var(--welcome-accent); box-shadow: 0 0 12px var(--welcome-accent); }
+-.world-welcome h2 { margin: 0 0 19px; font: 500 clamp(25px, 5vw, 31px)/1.3 Manrope, sans-serif; letter-spacing: -.045em; }
+-.world-welcome h2 em { font-style: normal; color: var(--welcome-accent); }
+-.world-welcome__coordinates { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 21px; padding-bottom: 14px; border-bottom: 1px solid color-mix(in srgb, var(--welcome-accent) 20%, transparent); color: var(--welcome-secondary); font: 400 9px/1.5 "IBM Plex Mono", monospace; letter-spacing: .04em; }
+-.world-welcome__copy { margin: 0 0 13px; color: var(--welcome-copy); font-size: 13px; line-height: 1.85; }
+-.world-welcome__mobile { display: none; }
+-.world-welcome__enter { display: flex; align-items: center; justify-content: space-between; width: 100%; margin-top: 23px; padding: 13px 17px; min-height: 46px; border: 1px solid color-mix(in srgb, var(--welcome-accent) 50%, transparent); border-radius: 8px 2px 8px 2px; background: color-mix(in srgb, var(--welcome-accent) 9%, transparent); color: var(--welcome-accent); font: 500 12px/1.5 "IBM Plex Mono", monospace; cursor: pointer; transition: background 180ms ease; }
+-.world-welcome__enter:hover { background: color-mix(in srgb, var(--welcome-accent) 20%, transparent); }
+-.world-welcome__enter span { font-size: 19px; line-height: 1; }
+-.world-welcome button:focus-visible { outline: 2px solid var(--welcome-accent); outline-offset: 3px; }
+-.world-welcome__hint { display: block; margin-top: 13px; text-align: center; color: var(--welcome-copy); opacity: .8; font: 400 9px/1.5 "IBM Plex Mono", monospace; }
+-@keyframes welcome-arrive { from { opacity: 0; transform: translateY(12px) scale(.97); } to { opacity: 1; transform: none; } }
+-@keyframes welcome-backdrop { from { opacity: 0; } to { opacity: 1; } }
+-@media (max-width: 767px) {
+-  .world-welcome { padding: 76px 24px 21px; }
+-  .world-welcome__skyline { height: 70px; }
+-  .world-welcome__mobile { display: flex; gap: 10px; margin: 16px 0 0; padding-top: 14px; border-top: 1px solid color-mix(in srgb, var(--welcome-accent) 20%, transparent); color: var(--welcome-secondary); font-size: 12px; line-height: 1.65; }
+-  .world-welcome__mobile svg { flex: 0 0 20px; width: 20px; height: 20px; margin-top: 2px; stroke: currentColor; stroke-width: 1.4; }
+-}
+-@media (prefers-reduced-motion: reduce) {
+-  .world-welcome[open], .world-welcome[open]::backdrop { animation: none; }
+-  .world-welcome__enter { transition: none; }
+-}
+-</style>
+diff --git a/src/composables/useActiveFloor.ts b/src/composables/useActiveFloor.ts
+index ee4083e..0ee1d14 100644
+--- a/src/composables/useActiveFloor.ts
++++ b/src/composables/useActiveFloor.ts
+@@ -1,36 +1,48 @@
+ import { onMounted, onBeforeUnmount, ref, type Ref } from "vue";
++import { findActiveFloor } from "../services/floorNavigation";
+ 
+ export function useActiveFloor(ids: readonly string[]): { activeFloor: Ref<string> } {
+   const activeFloor = ref(ids[0] ?? "");
+-  let observer: IntersectionObserver | null = null;
++  let observer: ResizeObserver | undefined;
++  let frame = 0;
++  let mounted = false;
++  let elements: HTMLElement[] = [];
++
++  function update() {
++    frame = 0;
++    const headerBottom = document.querySelector(".site-header")?.getBoundingClientRect().bottom ?? 0;
++    const referenceLine = Math.min(window.innerHeight / 2, Math.max(window.innerHeight / 4, headerBottom + 16));
++    const positions = elements.map((element) => ({ id: element.id, top: element.getBoundingClientRect().top }));
++    const pageEnd = window.scrollY > 0 && window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2;
++    activeFloor.value = findActiveFloor(positions, referenceLine, pageEnd);
++  }
++
++  function scheduleUpdate() {
++    if (mounted && !frame) frame = requestAnimationFrame(update);
++  }
+ 
+   onMounted(() => {
+-    const elements = ids.map((id) => document.getElementById(id)).filter((element): element is HTMLElement => Boolean(element));
+-
+-    if (!elements.length) return;
+-
+-    observer = new IntersectionObserver(
+-      (entries) => {
+-        // Pick the entry with the highest visibility
+-        const visible = entries
+-          .filter((e) => e.isIntersecting)
+-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+-
+-        if (visible?.target?.id) activeFloor.value = visible.target.id;
+-      },
+-      {
+-        // This makes the "current floor" feel stable
+-        threshold: [0.35, 0.5, 0.65],
+-        root: null,
+-      },
+-    );
+-
+-    elements.forEach((el) => observer?.observe(el));
++    mounted = true;
++    elements = ids.map((id) => document.getElementById(id)).filter((element): element is HTMLElement => Boolean(element));
++    observer = new ResizeObserver(scheduleUpdate);
++    elements.forEach((element) => observer!.observe(element));
++    observer.observe(document.body);
++    window.addEventListener("scroll", scheduleUpdate, { passive: true });
++    window.addEventListener("resize", scheduleUpdate);
++    window.addEventListener("hashchange", scheduleUpdate);
++    window.addEventListener("pageshow", scheduleUpdate);
++    void document.fonts.ready.then(scheduleUpdate);
++    scheduleUpdate();
+   });
+ 
+   onBeforeUnmount(() => {
++    mounted = false;
++    cancelAnimationFrame(frame);
+     observer?.disconnect();
+-    observer = null;
++    window.removeEventListener("scroll", scheduleUpdate);
++    window.removeEventListener("resize", scheduleUpdate);
++    window.removeEventListener("hashchange", scheduleUpdate);
++    window.removeEventListener("pageshow", scheduleUpdate);
+   });
+ 
+   return { activeFloor };
+diff --git a/src/data/about.ts b/src/data/about.ts
+index bed2745..fec227a 100644
+--- a/src/data/about.ts
++++ b/src/data/about.ts
+@@ -1,9 +1,10 @@
+ import type { AboutContent } from "../types/content";
++import { FLOOR } from "../config/floors";
+ 
+ // TEMPORARY COPY: replace with Irinella's approved biography, focus, toolkit and CV URL.
+ // The themes below come only from the approved About-section brief.
+ export const aboutContent: AboutContent = {
+-  eyebrow: "Level 04 · About",
++  eyebrow: `Level ${FLOOR.about.number} · ${FLOOR.about.label}`,
+   title: "About",
+   introduction:
+     "I’m a frontend developer focused on making complex workflows feel understandable, dependable and human.",
+diff --git a/src/sections/AboutSection.vue b/src/sections/AboutSection.vue
+index 48105c0..4cca195 100644
+--- a/src/sections/AboutSection.vue
++++ b/src/sections/AboutSection.vue
+@@ -1,10 +1,38 @@
+ <script setup lang="ts">
+-import { nextTick, onBeforeUnmount, onMounted, ref } from "vue";
++import { computed, nextTick, onBeforeUnmount, onMounted, ref } from "vue";
+ import gsap from "gsap";
+ import { ScrollTrigger } from "gsap/ScrollTrigger";
+ import { aboutContent } from "../data/about";
++import { FLOOR, FLOORS } from "../config/floors";
+ 
+ const root = ref<HTMLElement>();
++const architecture = ref<HTMLElement>();
++const portraitArtworkQuery = "(max-width: 760px), (min-width: 761px) and (max-width: 1100px) and (orientation: portrait)";
++const portraitArtwork = ref(typeof window !== "undefined" && window.matchMedia(portraitArtworkQuery).matches);
++const architectureWidth = ref(0);
++const extendedWall = ref(false);
++const artwork = computed(() => portraitArtwork.value
++  ? { profile: "mobile", width: 848, height: 1855, cut: 1607, endcap: 248 }
++  : { profile: "desktop", width: 1956, height: 804, cut: 650, endcap: 154 });
++const architectureStyle = computed(() => {
++  const scale = architectureWidth.value / artwork.value.width;
++  return {
++    "--about-top-height": `${(extendedWall.value ? artwork.value.cut : artwork.value.height) * scale}px`,
++    "--about-endcap-height": `${artwork.value.endcap * scale}px`,
++  };
++});
++function artworkUrl(part: string) {
++  return `/environments/floor-03-about/floor-03-about-${part}-${artwork.value.profile}.${part.startsWith("light-") ? "png" : "webp"}`;
++}
++let architectureObserver: ResizeObserver | undefined;
++let portraitQuery: MediaQueryList | undefined;
++function measureArchitecture() {
++  if (!architecture.value) return;
++  portraitArtwork.value = portraitQuery?.matches ?? false;
++  const { width, height } = architecture.value.getBoundingClientRect();
++  architectureWidth.value = width;
++  extendedWall.value = height > width * artwork.value.height / artwork.value.width;
++}
+ const activeTab = ref<"background" | "toolkit" | "approach">("background");
+ const tabButtons = ref<HTMLButtonElement[]>([]);
+ const tabs = [
+@@ -30,27 +58,41 @@ function handleTabKeydown(event: KeyboardEvent, index: number) {
+   selectTab(tabs[next].id, true);
+ }
+ onMounted(() => {
++  // Portrait tablets share the mobile room; short landscape viewports retain the wide room.
++  portraitQuery = matchMedia(portraitArtworkQuery);
++  portraitQuery.addEventListener("change", measureArchitecture);
++  measureArchitecture();
++  architectureObserver = new ResizeObserver(measureArchitecture);
++  if (architecture.value) architectureObserver.observe(architecture.value);
+   if (!root.value || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+   gsap.registerPlugin(ScrollTrigger);
+   context = gsap.context(() => {
+     gsap.timeline({ scrollTrigger: { trigger: root.value, start: "top 72%", once: true } })
+       .from(".about__heading", { y: 24, opacity: 0, duration: .7, ease: "power2.out" })
+       .from(".about__narrative > *:not(.about__heading)", { y: 18, opacity: 0, duration: .55, stagger: .09, ease: "power2.out" }, "-=.38")
+-      .from(".about__secondary", { y: 14, opacity: 0, duration: .45, ease: "power2.out" }, "-=.35")
+-      .to(".about__conduit-pulse", { x: "290%", opacity: .9, duration: .75, ease: "power1.inOut" }, "-=.55");
++      .from(".about__secondary", { y: 14, opacity: 0, duration: .45, ease: "power2.out" }, "-=.35");
+   }, root.value);
+ });
+-onBeforeUnmount(() => context?.revert());
++onBeforeUnmount(() => {
++  architectureObserver?.disconnect();
++  portraitQuery?.removeEventListener("change", measureArchitecture);
++  context?.revert();
++});
+ </script>
+ 
+ <template>
+-  <section id="about" ref="root" class="floor-section about" aria-labelledby="about-title">
+-    <div class="about__architecture" aria-hidden="true">
+-      <picture class="about__art"><source media="(max-width: 760px)" srcset="/about/about-wall-mobile.webp" type="image/webp"><source media="(max-width: 760px)" srcset="/about/about-wall-mobile.jpg" type="image/jpeg"><source srcset="/about/about-wall.webp" type="image/webp"><img src="/about/about-wall.jpg" width="1956" height="804" alt=""></picture>
+-      <div class="about__conduit"><i class="about__conduit-pulse"></i></div>
++  <section :id="FLOOR.about.id" ref="root" class="floor-section about" :data-floor-number="FLOOR.about.number" aria-labelledby="about-title">
++    <div ref="architecture" class="about__architecture" :class="{ 'about__architecture--extended': extendedWall }" :data-artwork-profile="artwork.profile" :style="architectureStyle" aria-hidden="true">
++      <div v-if="extendedWall" class="about__wall-continuation" :style="{ backgroundImage: `url('${artworkUrl('wall-continuation')}')` }"></div>
++      <div class="about__wall-top">
++        <img class="about__wall-base" :src="artworkUrl('wall-base')" :width="artwork.width" :height="artwork.height" alt="">
++      </div>
++      <img v-if="extendedWall" class="about__wall-endcap" :src="artworkUrl('wall-endcap')" :width="artwork.width" :height="artwork.endcap" alt="">
++      <img class="about__light about__light--emission" :src="artworkUrl('light-01-emission')" :width="artwork.width" :height="artwork.height" alt="">
++      <img class="about__light about__light--spill" :src="artworkUrl('light-01-spill')" :width="artwork.width" :height="artwork.height" alt="">
+     </div>
+     <div class="about__layout">
+-      <aside class="about__rail" aria-label="Level 04"><span>Level</span><strong>04</strong><small>About</small><div class="about__floor-dots" aria-hidden="true"><i></i><i></i><i class="active"></i><i></i><i></i></div></aside>
++      <aside class="about__rail" :aria-label="`Level ${FLOOR.about.number}, ${FLOOR.about.label}`"><span>Level</span><strong>{{ FLOOR.about.number }}</strong><small>{{ FLOOR.about.label }}</small><div class="about__floor-dots" aria-hidden="true"><i v-for="floor in FLOORS" :key="floor.id" :class="{ active: floor.id === FLOOR.about.id }"></i></div></aside>
+       <div class="about__narrative">
+         <div class="about__identity">
+           <figure class="about__portrait"><picture><source srcset="/about/irene-portrait.webp" type="image/webp"><img src="/about/irene-portrait.jpg" width="799" height="730" alt="Portrait of Irinella" loading="lazy"></picture></figure>
+diff --git a/src/sections/ContactSection.vue b/src/sections/ContactSection.vue
+index e0064fc..2b43d9e 100644
+--- a/src/sections/ContactSection.vue
++++ b/src/sections/ContactSection.vue
+@@ -5,6 +5,7 @@ import MouseEasterEgg from "../components/MouseEasterEgg.vue";
+ import SceneEnvironment from "../components/SceneEnvironment.vue";
+ import WeatherEffects from "../components/WeatherEffects.vue";
+ import { useEnvironment } from "../composables/useEnvironment";
++import { FLOOR } from "../config/floors";
+ 
+ const { state, previewIntensity } = useEnvironment();
+ const section = ref<HTMLElement>(); const firstSocial = ref<HTMLAnchorElement>();
+@@ -33,7 +34,7 @@ onBeforeUnmount(() => { document.removeEventListener("visibilitychange", onVisib
+ </script>
+ 
+ <template>
+-  <section ref="section" id="street" class="floor-section contact-scene" :data-phase="state.timePhase" :data-weather="state.weatherCondition" aria-labelledby="contact-title">
++  <section ref="section" :id="FLOOR.street.id" class="floor-section contact-scene" :data-floor-number="FLOOR.street.number" :data-phase="state.timePhase" :data-weather="state.weatherCondition" aria-labelledby="contact-title">
+     <div class="contact-scene__stage">
+       <div class="contact-scene__art" aria-hidden="true">
+         <div class="contact-scene__canvas">
+@@ -46,7 +47,7 @@ onBeforeUnmount(() => { document.removeEventListener("visibilitychange", onVisib
+       </div>
+       <WeatherEffects class="contact-scene__precipitation" mode="precipitation" :state="state" :intensity="previewIntensity" :paused="effectsPaused" />
+       <div class="contact-scene__layout">
+-        <div class="contact-level" aria-label="Level 01, building entrance"><small>Level</small><strong>01</strong><span>Entrance</span><i aria-hidden="true">→</i></div>
++        <div class="contact-level" :aria-label="`Level ${FLOOR.street.number}, building entrance`"><small>Level</small><strong>{{ FLOOR.street.number }}</strong><span>Entrance</span><i aria-hidden="true">→</i></div>
+         <div class="contact-panel">
+           <p class="contact-panel__eyebrow">Athens · Street level</p>
+           <button class="contact-panel__title" type="button" aria-controls="contact-socials" @click="openContactChannels">
+diff --git a/src/sections/ExperienceSection.vue b/src/sections/ExperienceSection.vue
+index cce70cd..de6b9c4 100644
+--- a/src/sections/ExperienceSection.vue
++++ b/src/sections/ExperienceSection.vue
+@@ -4,6 +4,7 @@ import gsap from "gsap";
+ import { ScrollTrigger } from "gsap/ScrollTrigger";
+ import ExperienceTimeline from "../components/ExperienceTimeline.vue";
+ import { experience } from "../data/experience";
++import { FLOOR } from "../config/floors";
+ 
+ const root = ref<HTMLElement>();
+ const activeIndex = ref(0);
+@@ -71,11 +72,11 @@ onBeforeUnmount(() => {
+ </script>
+ 
+ <template>
+-  <section id="experience" ref="root" class="floor-section experience" :style="sectionStyle" aria-labelledby="experience-title">
++  <section :id="FLOOR.experience.id" ref="root" class="floor-section experience" :data-floor-number="FLOOR.experience.number" :style="sectionStyle" aria-labelledby="experience-title">
+     <div class="experience__scene">
+       <div class="experience__shade" aria-hidden="true"></div>
+-      <aside class="experience__level" aria-label="Level 02, Experience">
+-        <small>Level</small><strong>02</strong><span>Experience</span>
++      <aside class="experience__level" :aria-label="`Level ${FLOOR.experience.number}, ${FLOOR.experience.label}`">
++        <small>Level</small><strong>{{ FLOOR.experience.number }}</strong><span>{{ FLOOR.experience.label }}</span>
+         <div class="experience__level-progress" aria-hidden="true">
+           <i v-for="(_, index) in experience" :key="index" :class="{ active: index <= activeIndex }"></i>
+         </div>
+diff --git a/src/sections/OfficeHero.vue b/src/sections/OfficeHero.vue
+index bcd0786..52d9d87 100644
+--- a/src/sections/OfficeHero.vue
++++ b/src/sections/OfficeHero.vue
+@@ -1,22 +1,14 @@
+ <script setup lang="ts">
+-import { computed, onBeforeUnmount, onMounted, ref } from "vue";
++import { onBeforeUnmount, onMounted, ref } from "vue";
+ import HeroCat from "../components/HeroCat.vue";
+ import HeroVisual from "../components/HeroVisual.vue";
+ import TelescopeExperience from "../components/TelescopeExperience.vue";
+ import DailyPuzzleBook from "../components/DailyPuzzleBook.vue";
+ import DailyChessPuzzle from "../components/DailyChessPuzzle.vue";
+ import AquariumExperience from "../components/AquariumExperience.vue";
+-import { useEnvironment } from "../composables/useEnvironment";
++import { FLOOR } from "../config/floors";
+ 
+-const { state } = useEnvironment();
+ const showIntroduction = ref(true);
+-const weatherLabel = computed(() => state.value.weatherCondition.replace(/([A-Z])/g, " $1").toLowerCase());
+-const sourceLabel = computed(
+-  () =>
+-    ({ live: "Live", cache: "Cached", staleCache: "Cached", fallback: "Unavailable", preview: "Preview" })[
+-      state.value.source
+-    ],
+-);
+ function collapseIntroduction() {
+   if (showIntroduction.value) showIntroduction.value = false;
+ }
+@@ -54,7 +46,7 @@ onBeforeUnmount(() => window.removeEventListener("scroll", handleScroll));
+ </script>
+ 
+ <template>
+-  <section id="office" class="hero floor-section" aria-labelledby="hero-title" @click="collapseIntroduction">
++  <section :id="FLOOR.office.id" class="hero floor-section" :data-floor-number="FLOOR.office.number" aria-labelledby="hero-title" @click="collapseIntroduction">
+     <HeroVisual />
+     <HeroCat />
+     <TelescopeExperience />
+@@ -68,25 +60,12 @@ onBeforeUnmount(() => window.removeEventListener("scroll", handleScroll));
+         data-parallax="-2"
+         :aria-hidden="!showIntroduction"
+         :inert="!showIntroduction">
+-        <p class="eyebrow">Level 05 · Rooftop office · Athens</p>
+         <h1 id="hero-title"><span>Irinella Boutsika</span>Frontend developer.</h1>
+         <p class="hero__lede">
+-          I build clear, dependable interfaces for complex workflows—combining thoughtful frontend engineering with an
+-          evidence-led, human-centred approach.
++          I build thoughtful, dependable interfaces — and this is my playful corner of futuristic Athens.
++          Explore, interact, and discover little details along the way. This world follows Athens through
++          daylight, weather, and night. Come back after sunset; you might find a different mood.
+         </p>
+-        <div class="hero__status" aria-label="Current Athens time and weather">
+-          <span
+-            ><b>Athens</b><time :datetime="state.lastUpdated.toISOString()">{{ state.localTime }}</time></span
+-          >
+-          <span
+-            ><b>Weather · {{ sourceLabel }}</b
+-            >{{ Math.round(state.temperature) }}°C · {{ weatherLabel }}</span
+-          >
+-        </div>
+-        <div class="actions">
+-          <a class="button button--primary" href="#projects">View selected work <span>↓</span></a
+-          ><a class="button button--ghost" href="#about">About the developer</a>
+-        </div>
+       </div>
+       <button
+         class="hero-copy-toggle"
+@@ -101,7 +80,7 @@ onBeforeUnmount(() => window.removeEventListener("scroll", handleScroll));
+     <div class="scroll-cue" aria-hidden="true">Scroll to descend <span>↓</span></div>
+     <div class="hero-threshold" data-parallax="-7" aria-hidden="true">
+       <i class="hero-threshold__pipe" /><i class="hero-threshold__conduit" />
+-      <span><b>04</b> About · Floor below</span>
++      <span><b>{{ FLOOR.about.number }}</b> {{ FLOOR.about.label }} · Floor below</span>
+     </div>
+   </section>
+ </template>
+diff --git a/src/sections/ProjectsSection.vue b/src/sections/ProjectsSection.vue
+index 78c4ee4..f4a8dc7 100644
+--- a/src/sections/ProjectsSection.vue
++++ b/src/sections/ProjectsSection.vue
+@@ -3,6 +3,7 @@ import { computed, nextTick, ref } from "vue";
+ import ProjectCard from "../components/ProjectCard.vue";
+ import { projects } from "../data/projects";
+ import type { Project } from "../types/content";
++import { FLOOR } from "../config/floors";
+ 
+ const detailDialog = ref<HTMLDialogElement | null>(null);
+ const selectedProject = ref<Project | null>(null), triggerElement = ref<HTMLElement | null>(null);
+@@ -18,9 +19,9 @@ function onBackdropClick(event: MouseEvent) { if (event.target === detailDialog.
+ </script>
+ 
+ <template>
+-  <section id="projects" class="floor-section projects" aria-labelledby="projects-title">
++  <section :id="FLOOR.projects.id" class="floor-section projects" :data-floor-number="FLOOR.projects.number" aria-labelledby="projects-title">
+     <div class="projects__header">
+-      <div class="projects__level" aria-label="Level 03"><small>Level</small><strong>03</strong><span><i></i><i></i><i></i></span></div>
++      <div class="projects__level" :aria-label="`Level ${FLOOR.projects.number}, ${FLOOR.projects.label}`"><small>Level</small><strong>{{ FLOOR.projects.number }}</strong><span><i></i><i></i><i></i></span></div>
+       <div class="projects__title"><p class="eyebrow">Curated work / {{ projects.length }} projects</p><h2 id="projects-title">Selected<br />Projects</h2></div>
+     </div>
+     <ol class="projects-gallery" aria-label="Selected projects">
+diff --git a/src/services/mouseMotion.ts b/src/services/mouseMotion.ts
+index 31fb43a..718f5ac 100644
+--- a/src/services/mouseMotion.ts
++++ b/src/services/mouseMotion.ts
+@@ -1,8 +1,9 @@
+ /** One shared clock keeps the gait, turn and doorway fade in sync. */
+-export const MOUSE_VISIT_MS = 8500;
++export const MOUSE_VISIT_MS = 9500;
+ const RUN_END = 6250;
+-const TURN_END = 7250;
+-const ENTRY_END = 8375;
++const TURN_START = 6500;
++const TURN_END = 7450;
++const ENTRY_END = 9300;
+ 
+ const clamp = (value: number) => Math.min(1, Math.max(0, value));
+ const smooth = (value: number) => value * value * (3 - 2 * value);
+@@ -12,20 +13,29 @@ export function sampleMouseMotion(elapsed: number) {
+   const braking = clamp((time - 5650) / 600);
+   const strideTime = time <= 5650 ? time : 5650 + 600 * (braking - braking * braking / 2);
+   const approach = clamp(strideTime / 5950);
+-  const turn = clamp((time - RUN_END) / (TURN_END - RUN_END));
++  const turn = clamp((time - TURN_START) / (TURN_END - TURN_START));
+   const entry = smooth(clamp((time - TURN_END) / (ENTRY_END - TURN_END)));
++  const frontStep = smooth(braking);
++  const fade = smooth(clamp((entry - .2) / .8));
+   // Slow the last few strides before planting the feet to turn.
+   const frame = time < RUN_END
+     ? Math.floor(strideTime / 55) % 8
+-    : time < TURN_END
++    : time < TURN_START
++      ? 4
++      : time < TURN_END
+       ? 8 + Math.min(2, Math.floor(turn * 3))
+-      : 10 + Math.floor((time - TURN_END) / 100) % 2;
++      : 10 + Math.floor((time - TURN_END) / 120) % 2;
+   return {
+     frame,
+     approach,
+     turn: smooth(turn),
+     entry,
+-    opacity: Math.min(clamp(time / 180), 1 - entry),
++    phase: time < RUN_END ? 'run' : time < TURN_START ? 'settle' : time < TURN_END ? 'turn' : 'enter',
++    // Step onto the pavement in front of the door, then walk away into it.
++    depthOffset: frontStep * .16 - entry * .28,
++    scale: 1 - entry * .28,
++    brightness: .78 - entry * .48,
++    opacity: Math.min(clamp(time / 180), 1 - fade),
+     done: time >= MOUSE_VISIT_MS,
+   };
+ }
+diff --git a/src/style.css b/src/style.css
+index 09d365f..eda2178 100644
+--- a/src/style.css
++++ b/src/style.css
+@@ -3033,7 +3033,7 @@ button:focus-visible {
+   }
+ }
+ 
+-/* Level 01 — quiet, inhabited concrete floor. */
++/* Level 03 — quiet, inhabited concrete floor. */
+ .about {
+   --about-wall: color-mix(in srgb, var(--concrete-tint, #574f45) 28%, #a39d91);
+   --about-ink: #211f1b;
+@@ -3495,7 +3495,7 @@ button:focus-visible {
+   }
+ }
+ 
+-/* About art-plate refinement: generated architecture stays decorative; all content remains HTML. */
++/* About architecture v004: proportional, constant interior light; all content remains HTML. */
+ .about {
+   --about-cream: #f2e6d3;
+   --about-copy: #d3cbc0;
+@@ -3522,32 +3522,54 @@ button:focus-visible {
+ }
+ .about__architecture {
+   z-index: 0;
++  overflow: hidden;
++  isolation: isolate;
++}
++.about::after {
++  display: none;
+ }
+-.about__art,
+-.about__art img {
++.about__wall-base,
++.about__wall-endcap,
++.about__light {
+   display: block;
+   width: 100%;
+-  height: 100%;
++  height: auto;
++  pointer-events: none;
+ }
+-.about__art {
++.about__wall-top {
+   position: absolute;
+-  inset: 0;
++  top: 0;
++  left: 0;
++  width: 100%;
++  height: var(--about-top-height);
++  overflow: hidden;
+ }
+-.about__art img {
+-  object-fit: cover;
+-  object-position: center;
+-  filter: saturate(0.78) contrast(1.04) brightness(calc(0.86 + (1 - var(--shadow-depth, 0.72)) * 0.08));
+-  transition: filter 0.45s ease;
++.about__wall-continuation {
++  position: absolute;
++  top: var(--about-top-height);
++  right: 0;
++  bottom: var(--about-endcap-height);
++  left: 0;
++  background-position: top center;
++  background-size: 100% auto;
++  background-repeat: repeat-y;
+ }
+-.app-shell[data-time-phase="day"] .about__art img {
+-  filter: saturate(0.68) contrast(1.01) brightness(0.92);
++.about__wall-endcap {
++  position: absolute;
++  bottom: 0;
++  left: 0;
+ }
+-.app-shell[data-time-phase="goldenHour"] .about__art img {
+-  filter: saturate(0.88) sepia(0.08) contrast(1.04) brightness(0.89);
++.about__light {
++  position: absolute;
++  top: 0;
++  left: 0;
++  opacity: clamp(0, var(--about-light-intensity, 1), 1);
+ }
+-.app-shell[data-time-phase="dusk"] .about__art img,
+-.app-shell[data-time-phase="night"] .about__art img {
+-  filter: saturate(0.9) contrast(1.08) brightness(0.76);
++.about__light--emission {
++  z-index: 1;
++}
++.about__light--spill {
++  z-index: 2;
+ }
+ .about__layout {
+   width: min(91rem, calc(100vw - 2 * var(--space)));
+@@ -3743,9 +3765,6 @@ button:focus-visible {
+     grid-column: 2;
+     margin-top: 0;
+   }
+-  .about__art img {
+-    object-position: 43% center;
+-  }
+   .about__panels {
+     min-height: 17rem;
+   }
+@@ -3759,10 +3778,6 @@ button:focus-visible {
+       linear-gradient(90deg, rgba(9, 10, 9, 0.55), rgba(14, 14, 12, 0.35) 45%, rgba(12, 12, 10, 0.2)),
+       linear-gradient(0deg, rgba(8, 9, 8, 0.7), transparent 32% 75%, rgba(7, 8, 7, 0.35));
+   }
+-  .about__art img {
+-    object-position: center;
+-    filter: saturate(0.72) contrast(1.04) brightness(0.76);
+-  }
+   .about__layout {
+     width: calc(100vw - 2rem);
+     grid-template-columns: 1fr;
+@@ -3826,7 +3841,8 @@ button:focus-visible {
+   }
+ }
+ @media (prefers-reduced-motion: reduce) {
+-  .about__art img {
++  .about__light {
++    animation: none;
+     transition: none;
+   }
+   .about__secondary {
+@@ -4097,7 +4113,7 @@ button:focus-visible {
+   }
+ }
+ 
+-/* Level 03 — native horizontal project gallery. */
++/* Level 02 — native horizontal project gallery. */
+ .sr-only {
+   position: absolute !important;
+   width: 1px;
+@@ -4850,7 +4866,7 @@ button:focus-visible {
+   }
+ }
+ 
+-/* Level 03 density refinement: uniform compact displays over the cleaned reference wall. */
++/* Level 02 density refinement: uniform compact displays over the cleaned reference wall. */
+ .projects {
+   min-height: clamp(46rem, 92svh, 55rem);
+   padding: clamp(4.6rem, 6vw, 5.8rem) 0 clamp(3.3rem, 5vw, 4.5rem);
+@@ -5049,7 +5065,7 @@ button:focus-visible {
+   }
+ }
+ 
+-/* Level 03 grid: three columns on desktop, with future projects flowing into new rows. */
++/* Level 02 grid: three columns on desktop, with future projects flowing into new rows. */
+ .projects {
+   min-height: auto;
+   background-size: auto max(48rem, 100vh);
+@@ -5191,7 +5207,7 @@ button:focus-visible {
+   }
+ }
+ 
+-/* Level 02 — sticky industrial experience archive. */
++/* Level 01 — sticky industrial experience archive. */
+ .sr-only {
+   position: absolute !important;
+   width: 1px !important;
+@@ -5790,7 +5806,7 @@ button:focus-visible {
+   }
+ }
+ 
+-/* Level 01 — street contact and exit. */
++/* Level 00 — street contact and exit. */
+ .contact-scene {
+   --plate-ratio: 1.938;
+   min-height: auto;
+@@ -6222,7 +6238,7 @@ button:focus-visible {
+   align-items: center;
+   justify-content: center;
+   gap: 0.6cqi;
+-  padding: 0;
++  padding: 0 0 4cqi;
+   overflow: hidden;
+   border: 0;
+   background: transparent;
+@@ -6435,6 +6451,7 @@ button:focus-visible {
+     height: 8rem;
+     flex-direction: row;
+     gap: 0.6rem;
++    padding: 0;
+     border: 1px solid #c9955278;
+     background: #08100fed;
+   }
+@@ -6682,11 +6699,6 @@ button:focus-visible {
+     0 0 1.5rem rgba(112, 247, 255, 0.12),
+     inset 0 0 1rem rgba(255, 79, 216, 0.06);
+ }
+-.app-shell[data-time-phase="night"] .about {
+-  background:
+-    radial-gradient(circle at 76% 22%, rgba(255, 35, 184, 0.2), transparent 31%),
+-    linear-gradient(125deg, #080318, #16062b 58%, #071825);
+-}
+ .app-shell[data-time-phase="night"] .projects {
+   background:
+     radial-gradient(circle at 15% 35%, rgba(38, 220, 255, 0.14), transparent 29%),
+@@ -6761,7 +6773,7 @@ button:focus-visible {
+   }
+ }
+ 
+-/* Level 03 wall displays: each project reads as one recessed advertising terminal. */
++/* Level 02 wall displays: each project reads as one recessed advertising terminal. */
+ .project-card {
+   padding-top: 0.72rem;
+   isolation: isolate;
+@@ -7205,43 +7217,122 @@ body.telescope-is-open {
+ .telescope-app__eyepiece.is-dragging {
+   cursor: grabbing;
+ }
+-.telescope-app__eyepiece > img {
++.telescope-app__scene {
++  position: absolute;
++  z-index: 1;
++  top: -10%;
++  left: -40%;
++  width: 180%;
++  height: 120%;
++  transform-origin: center;
++  will-change: transform;
++  pointer-events: none;
++}
++.telescope-app__image {
+   position: absolute;
+-  inset: -7%;
+-  width: 114%;
+-  height: 114%;
++  inset: 0;
++  width: 100%;
++  height: 100%;
+   object-fit: cover;
+   max-width: none;
+-  will-change: transform;
+   pointer-events: none;
+   filter: saturate(0.96) contrast(1.03);
+ }
+-.telescope-app[data-time-phase="dawn"] .telescope-app__eyepiece > img {
++.telescope-app__image--preview {
++  filter: saturate(0.88) contrast(1.02) blur(0.22rem);
++}
++.telescope-app__image--detail {
++  opacity: 0;
++  transition: opacity 0.72s ease;
++}
++.telescope-app__image--detail.is-ready {
++  opacity: 1;
++}
++.telescope-app__signal-status {
++  position: absolute;
++  z-index: 4;
++  top: 50%;
++  left: 50%;
++  width: min(18rem, 68%);
++  margin: 0;
++  padding: 0.8rem 1rem;
++  border: 1px solid #91dfe666;
++  background: #020707d9;
++  color: #cceff2;
++  text-align: center;
++  translate: -50% -50%;
++  backdrop-filter: blur(0.6rem);
++  pointer-events: none;
++  font: 500 0.7rem/1.45 "IBM Plex Mono", monospace;
++  letter-spacing: 0.08em;
++  text-transform: uppercase;
++}
++.telescope-app[data-time-phase="dawn"] .telescope-app__image {
+   filter: saturate(0.8) sepia(0.18) brightness(0.9) hue-rotate(-8deg);
+ }
+-.telescope-app[data-time-phase="goldenHour"] .telescope-app__eyepiece > img {
++.telescope-app[data-time-phase="goldenHour"] .telescope-app__image {
+   filter: saturate(1.08) sepia(0.24) brightness(0.96);
+ }
+-.telescope-app[data-time-phase="dusk"] .telescope-app__eyepiece > img {
++.telescope-app[data-time-phase="dusk"] .telescope-app__image {
+   filter: saturate(0.88) brightness(0.82) hue-rotate(5deg);
+ }
+-.telescope-app[data-time-phase="night"] .telescope-app__eyepiece > img {
++.telescope-app[data-time-phase="night"] .telescope-app__image {
+   filter: saturate(1.1) contrast(1.06) brightness(0.9);
+ }
+ .telescope-app__eyepiece::after {
+   content: "";
+   position: absolute;
++  z-index: 2;
+   inset: 0;
+   border-radius: inherit;
+   background:
+     radial-gradient(circle, transparent 48%, #0009 85%, #000 100%), linear-gradient(115deg, #b6eff50b, transparent 28%);
+   pointer-events: none;
+ }
++.telescope-app__scan {
++  position: absolute;
++  z-index: 2;
++  inset: 0;
++  overflow: hidden;
++  border-radius: inherit;
++  background: repeating-linear-gradient(to bottom, transparent 0 3px, #8ae9f407 4px);
++  opacity: 0.42;
++  pointer-events: none;
++}
++.telescope-app__scan::after {
++  content: "";
++  position: absolute;
++  top: -18%;
++  left: 8%;
++  width: 84%;
++  height: 12%;
++  background: linear-gradient(to bottom, transparent, #b8f8ff18, #b8f8ff30, transparent);
++  filter: blur(0.35rem);
++  animation: telescope-scan-sweep 9s ease-in-out infinite;
++}
++.telescope-app__specks {
++  position: absolute;
++  z-index: 3;
++  inset: 0;
++  border-radius: inherit;
++  pointer-events: none;
++}
++.telescope-app__specks i {
++  position: absolute;
++  width: 0.22rem;
++  height: 0.22rem;
++  border-radius: 50%;
++  background: #dfffff;
++  box-shadow: 0 0 0.65rem #8cf6ff;
++  opacity: 0;
++  animation: telescope-speck 6.5s ease-in-out infinite;
++}
+ .telescope-app__reticle {
+   position: absolute;
+-  z-index: 1;
++  z-index: 3;
+   inset: 50%;
+   opacity: 0.34;
++  pointer-events: none;
+ }
+ .telescope-app__reticle i {
+   position: absolute;
+@@ -7258,9 +7349,99 @@ body.telescope-is-open {
+   height: 5rem;
+   translate: 0 -50%;
+ }
++.telescope-app__clue {
++  position: absolute;
++  z-index: 4;
++  width: 2rem;
++  height: 2rem;
++  padding: 0;
++  border: 0;
++  border-radius: 50%;
++  background: transparent;
++  opacity: 0.18;
++  translate: -50% -50%;
++  scale: var(--inverse-zoom);
++  pointer-events: auto;
++  cursor: crosshair;
++  transition: opacity 0.35s ease;
++}
++.telescope-app__clue span,
++.telescope-app__clue span::before {
++  position: absolute;
++  inset: 50%;
++  width: 0.55rem;
++  height: 0.55rem;
++  border: 1px solid #9df8ff;
++  border-radius: 50%;
++  content: "";
++  translate: -50% -50%;
++}
++.telescope-app__clue span {
++  background: #8ceaf042;
++  box-shadow: 0 0 0.8rem #7cecf9a6;
++  animation: telescope-clue-pulse 2.8s ease-out infinite;
++}
++.telescope-app__clue span::before {
++  width: 1.15rem;
++  height: 1.15rem;
++  opacity: 0.48;
++  animation: telescope-clue-ring 2.8s ease-out infinite;
++}
++.telescope-app__eyepiece.is-searching .telescope-app__clue {
++  opacity: 0.76;
++}
++.telescope-app__clue:hover,
++.telescope-app__clue:focus-visible {
++  opacity: 1;
++  outline: 1px dashed #f5c067;
++  outline-offset: 0.18rem;
++}
++.telescope-app__clue.is-found span,
++.telescope-app__clue.is-found span::before {
++  border-color: #a8ffb4;
++  box-shadow: 0 0 0.8rem #59ff7b9c;
++}
++.telescope-app__clue-card {
++  position: absolute;
++  z-index: 5;
++  left: 8%;
++  bottom: 9%;
++  width: min(18rem, 62%);
++  padding: 0.85rem 2.2rem 0.85rem 0.9rem;
++  border: 1px solid #91dfe677;
++  background: #020707e8;
++  box-shadow: 0 0 1.5rem #04080899;
++  backdrop-filter: blur(0.7rem);
++}
++.telescope-app__clue-card small {
++  display: block;
++  margin-bottom: 0.38rem;
++  color: #91dfe6;
++  font: 500 0.7rem/1.2 "IBM Plex Mono", monospace;
++  letter-spacing: 0.12em;
++  text-transform: uppercase;
++}
++.telescope-app__clue-card p {
++  margin: 0;
++  color: #f4f0e7;
++  font: 400 0.82rem/1.45 "IBM Plex Mono", monospace;
++}
++.telescope-app__clue-card button {
++  position: absolute;
++  top: 0.35rem;
++  right: 0.45rem;
++  width: 1.6rem;
++  height: 1.6rem;
++  padding: 0;
++  border: 0;
++  background: transparent;
++  color: #f4f0e7;
++  font-size: 1.1rem;
++  cursor: pointer;
++}
+ .telescope-app__zoom {
+   position: absolute;
+-  z-index: 3;
++  z-index: 5;
+   right: 8%;
+   bottom: 10%;
+   display: flex;
+@@ -7370,9 +7551,9 @@ body.telescope-is-open {
+   z-index: 3;
+   align-self: end;
+   display: grid;
+-  grid-template-columns: repeat(2, minmax(8rem, 1fr));
++  grid-template-columns: repeat(3, minmax(8rem, 1fr));
+   gap: 0.5rem;
+-  max-width: 34rem;
++  max-width: 48rem;
+   margin-inline: auto;
+   width: 100%;
+ }
+@@ -7403,6 +7584,14 @@ body.telescope-is-open {
+ .telescope-app__coordinates button.is-active > span {
+   color: #f2b45d;
+ }
++.telescope-app__coordinates .telescope-app__next {
++  border-color: #91dfe666;
++  background: #071316e8;
++}
++.telescope-app__coordinates .telescope-app__next > span::after {
++  content: " ↻";
++  color: #91dfe6;
++}
+ .telescope-app__hint {
+   position: relative;
+   z-index: 3;
+@@ -7434,6 +7623,63 @@ body.telescope-is-open {
+     0 0 2.2rem #ff174db3,
+     inset 0 0 0.8rem #ff174d8c;
+ }
++@keyframes telescope-scan-sweep {
++  0%,
++  16% {
++    translate: 0 0;
++    opacity: 0;
++  }
++  25% {
++    opacity: 0.75;
++  }
++  64% {
++    opacity: 0.38;
++  }
++  78%,
++  100% {
++    translate: 0 980%;
++    opacity: 0;
++  }
++}
++@keyframes telescope-speck {
++  0%,
++  70%,
++  100% {
++    opacity: 0;
++    scale: 0.45;
++  }
++  76% {
++    opacity: 0.72;
++    scale: 1.35;
++  }
++  84% {
++    opacity: 0.12;
++    scale: 0.8;
++  }
++}
++@keyframes telescope-clue-pulse {
++  0%,
++  100% {
++    opacity: 0.52;
++  }
++  46% {
++    opacity: 1;
++  }
++}
++@keyframes telescope-clue-ring {
++  0% {
++    opacity: 0;
++    scale: 0.55;
++  }
++  28% {
++    opacity: 0.62;
++  }
++  82%,
++  100% {
++    opacity: 0;
++    scale: 1.5;
++  }
++}
+ .telescope-reveal-enter-active,
+ .telescope-reveal-leave-active {
+   transition: opacity 0.45s ease;
+@@ -7456,6 +7702,17 @@ body.telescope-is-open {
+ .telescope-source-leave-to {
+   opacity: 0;
+ }
++.telescope-clue-enter-active,
++.telescope-clue-leave-active {
++  transition:
++    opacity 0.24s ease,
++    transform 0.36s cubic-bezier(0.22, 1, 0.36, 1);
++}
++.telescope-clue-enter-from,
++.telescope-clue-leave-to {
++  opacity: 0;
++  transform: translateY(0.65rem);
++}
+ @media (max-width: 760px) {
+   .telescope-hotspot {
+     top: 25%;
+@@ -7476,6 +7733,9 @@ body.telescope-is-open {
+   .telescope-app__coordinates {
+     grid-template-columns: 1fr 1fr;
+   }
++  .telescope-app__coordinates .telescope-app__next {
++    grid-column: 1 / -1;
++  }
+   .telescope-app__coordinates button {
+     min-width: 0;
+   }
+@@ -7485,21 +7745,29 @@ body.telescope-is-open {
+   .telescope-app__hint {
+     display: none;
+   }
+-}
+-@media (max-width: 760px) {
+-  .telescope-hotspot-map {
+-    display: none;
++  .telescope-app__clue-card {
++    bottom: 15%;
++    width: 68%;
+   }
+ }
+ @media (prefers-reduced-motion: reduce) {
+   .telescope-app__eyepiece,
+-  .telescope-app__eyepiece > img,
++  .telescope-app__scene,
++  .telescope-app__image,
+   .telescope-reveal-enter-active,
+   .telescope-reveal-leave-active,
+   .telescope-source-enter-active,
+-  .telescope-source-leave-active {
++  .telescope-source-leave-active,
++  .telescope-clue-enter-active,
++  .telescope-clue-leave-active {
+     transition: none !important;
+   }
++  .telescope-app__scan::after,
++  .telescope-app__specks i,
++  .telescope-app__clue span,
++  .telescope-app__clue span::before {
++    animation: none !important;
++  }
+ }
+ 
+ body.puzzle-book-is-open {
+@@ -8825,3 +9093,97 @@ body.aquarium-is-open {
+     font-size: 0.5rem;
+   }
+ }
++
++/* Reserve a navigation gutter without changing either exterior scene canvas. */
++@media (min-width: 1101px) {
++  .floor-nav {
++    width: 10rem;
++    right: 1rem;
++  }
++  .floor-nav a {
++    grid-template-columns: 1.5rem minmax(0, 1fr) 0.5rem;
++    gap: 0.4rem;
++  }
++  .floor-nav a b {
++    max-width: none;
++  }
++  .about,
++  .projects {
++    padding-right: 12rem;
++  }
++  .about__layout,
++  .projects__header,
++  .projects-gallery,
++  .projects__more {
++    width: min(84rem, calc(100% - 2 * var(--space)));
++  }
++  .experience__scene {
++    padding-right: 12rem;
++  }
++  .experience__content {
++    width: calc(100% - clamp(16rem, 31vw, 34rem));
++    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
++    column-gap: clamp(1.5rem, 2vw, 2rem);
++  }
++  .experience__heading {
++    flex-wrap: wrap;
++    gap: 0.75rem;
++  }
++  .app-shell[data-active-floor="office"] .floor-nav,
++  .app-shell[data-active-floor="street"] .floor-nav {
++    width: 4.5rem;
++    padding: 0.4rem;
++  }
++  .app-shell[data-active-floor="office"] .floor-nav a,
++  .app-shell[data-active-floor="street"] .floor-nav a {
++    grid-template-columns: 1.5rem 0.5rem;
++    padding-inline: 0.35rem;
++  }
++  .app-shell[data-active-floor="office"] .floor-nav a b,
++  .app-shell[data-active-floor="street"] .floor-nav a b {
++    display: none;
++  }
++}
++@media (min-width: 1101px) and (max-width: 1300px) {
++  .about__layout {
++    grid-template-columns: 6rem minmax(0, 1fr);
++    max-width: 52rem;
++  }
++  .about__secondary {
++    grid-column: 2;
++    margin-top: 0;
++  }
++}
++@media (min-width: 761px) and (max-width: 1100px) {
++  .experience__content {
++    width: calc(100% - 24vw);
++    margin-left: 24vw;
++    padding-inline: 1rem;
++    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
++    column-gap: 1rem;
++  }
++  .floor-nav {
++    left: 50%;
++    right: auto;
++    top: auto;
++    bottom: 0.5rem;
++    transform: translateX(-50%);
++    display: flex;
++    padding: 0.35rem;
++  }
++  .floor-nav__title,
++  .floor-nav a b {
++    display: none;
++  }
++  .floor-nav a {
++    grid-template-columns: 1fr 0.5rem;
++    min-width: 3.25rem;
++    min-height: 2.8rem;
++    padding: 0.4rem;
++  }
++}
++@media (max-width: 1100px) {
++  .alley-footer {
++    padding-bottom: 5.25rem;
++  }
++}

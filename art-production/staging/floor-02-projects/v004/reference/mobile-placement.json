@@ -1,0 +1,18 @@
+{
+  "profile": "mobile",
+  "renderedSceneTopOffsetCSSpx": 82,
+  "proofViewportCSSpx": [
+    390,
+    900
+  ],
+  "measuredHeaderBottomCSSpx": 98,
+  "fixtureCenterImagePixels": [
+    600,
+    92
+  ],
+  "fixtureCenterViewportCSSpx": [
+    305,
+    129
+  ],
+  "note": "Header-aware offset is proposed CSS behavior and not a modified source fixture. Implementation requires dedicated positioning and browser verification; only candidate proof is supplied."
+}

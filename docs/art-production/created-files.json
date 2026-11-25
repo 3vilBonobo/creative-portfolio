@@ -1,0 +1,843 @@
+{
+  "date": "2026-11-25",
+  "files": [
+    {
+      "path": "art-production/README.md",
+      "bytes": 1091
+    },
+    {
+      "path": "art-production/reference-packages/floor-00-contact-reference-v002.zip",
+      "bytes": 2570332
+    },
+    {
+      "path": "art-production/reference-packages/floor-01-experience-reference-v002.zip",
+      "bytes": 3218194
+    },
+    {
+      "path": "art-production/reference-packages/floor-02-projects-reference-v002.zip",
+      "bytes": 1834839
+    },
+    {
+      "path": "art-production/reference-packages/floor-03-about-reference-v002.zip",
+      "bytes": 1413308
+    },
+    {
+      "path": "art-production/reference-packages/floor-04-hero-reference-v002.zip",
+      "bytes": 5361241
+    },
+    {
+      "path": "art-production/reference-packages/package-index.json",
+      "bytes": 2178
+    },
+    {
+      "path": "art-production/reference-packages/transitions-reference-v002.zip",
+      "bytes": 5266818
+    },
+    {
+      "path": "art-production/references/floor-00-contact/artwork/alley-day-extended.webp",
+      "bytes": 318498
+    },
+    {
+      "path": "art-production/references/floor-00-contact/artwork/alley-exterior.svg",
+      "bytes": 584
+    },
+    {
+      "path": "art-production/references/floor-00-contact/artwork/alley-night-extended.webp",
+      "bytes": 257190
+    },
+    {
+      "path": "art-production/references/floor-00-contact/artwork/alley-sky.svg",
+      "bytes": 558
+    },
+    {
+      "path": "art-production/references/floor-00-contact/brief.md",
+      "bytes": 12003
+    },
+    {
+      "path": "art-production/references/floor-00-contact/inventory.json",
+      "bytes": 21959
+    },
+    {
+      "path": "art-production/references/floor-00-contact/layout-desktop-wide.json",
+      "bytes": 3044
+    },
+    {
+      "path": "art-production/references/floor-00-contact/layout-desktop.json",
+      "bytes": 2970
+    },
+    {
+      "path": "art-production/references/floor-00-contact/layout-mobile-landscape.json",
+      "bytes": 2938
+    },
+    {
+      "path": "art-production/references/floor-00-contact/layout-mobile.json",
+      "bytes": 2928
+    },
+    {
+      "path": "art-production/references/floor-00-contact/layout-tablet-landscape.json",
+      "bytes": 2983
+    },
+    {
+      "path": "art-production/references/floor-00-contact/layout-tablet-portrait.json",
+      "bytes": 3011
+    },
+    {
+      "path": "art-production/references/floor-00-contact/proposed-layout-desktop.svg",
+      "bytes": 1840
+    },
+    {
+      "path": "art-production/references/floor-00-contact/proposed-layout-mobile.svg",
+      "bytes": 1745
+    },
+    {
+      "path": "art-production/references/floor-00-contact/proposed-layouts.json",
+      "bytes": 1067
+    },
+    {
+      "path": "art-production/references/floor-00-contact/README.md",
+      "bytes": 1412
+    },
+    {
+      "path": "art-production/references/floor-00-contact/reference-manifest.json",
+      "bytes": 7943
+    },
+    {
+      "path": "art-production/references/floor-00-contact/screenshots/desktop-1440x900-day-clear.jpg",
+      "bytes": 202959
+    },
+    {
+      "path": "art-production/references/floor-00-contact/screenshots/desktop-1440x900-day-rain.jpg",
+      "bytes": 172720
+    },
+    {
+      "path": "art-production/references/floor-00-contact/screenshots/desktop-1440x900-goldenHour-clear.jpg",
+      "bytes": 185192
+    },
+    {
+      "path": "art-production/references/floor-00-contact/screenshots/desktop-1440x900-night-clear.jpg",
+      "bytes": 169035
+    },
+    {
+      "path": "art-production/references/floor-00-contact/screenshots/desktop-wide-1920x1080-day-clear.jpg",
+      "bytes": 286048
+    },
+    {
+      "path": "art-production/references/floor-00-contact/screenshots/full-section-desktop-1440x900-day-clear.jpg",
+      "bytes": 202000
+    },
+    {
+      "path": "art-production/references/floor-00-contact/screenshots/full-section-mobile-390x844-day-clear.jpg",
+      "bytes": 57871
+    },
+    {
+      "path": "art-production/references/floor-00-contact/screenshots/interaction-mouse-office.jpg",
+      "bytes": 13296
+    },
+    {
+      "path": "art-production/references/floor-00-contact/screenshots/mobile-390x844-day-clear.jpg",
+      "bytes": 49284
+    },
+    {
+      "path": "art-production/references/floor-00-contact/screenshots/mobile-390x844-day-rain.jpg",
+      "bytes": 44856
+    },
+    {
+      "path": "art-production/references/floor-00-contact/screenshots/mobile-390x844-goldenHour-clear.jpg",
+      "bytes": 46591
+    },
+    {
+      "path": "art-production/references/floor-00-contact/screenshots/mobile-390x844-night-clear.jpg",
+      "bytes": 43754
+    },
+    {
+      "path": "art-production/references/floor-00-contact/screenshots/mobile-landscape-844x390-day-clear.jpg",
+      "bytes": 51659
+    },
+    {
+      "path": "art-production/references/floor-00-contact/screenshots/tablet-landscape-1180x820-day-clear.jpg",
+      "bytes": 157832
+    },
+    {
+      "path": "art-production/references/floor-00-contact/screenshots/tablet-portrait-820x1180-day-clear.jpg",
+      "bytes": 94532
+    },
+    {
+      "path": "art-production/references/floor-00-contact/screenshots/tablet-portrait-820x1180-day-rain.jpg",
+      "bytes": 85161
+    },
+    {
+      "path": "art-production/references/floor-00-contact/screenshots/tablet-portrait-820x1180-goldenHour-clear.jpg",
+      "bytes": 88753
+    },
+    {
+      "path": "art-production/references/floor-00-contact/screenshots/tablet-portrait-820x1180-night-clear.jpg",
+      "bytes": 79914
+    },
+    {
+      "path": "art-production/references/floor-01-experience/artwork/experience-wall-clean.png",
+      "bytes": 2067223
+    },
+    {
+      "path": "art-production/references/floor-01-experience/brief.md",
+      "bytes": 7660
+    },
+    {
+      "path": "art-production/references/floor-01-experience/inventory.json",
+      "bytes": 7817
+    },
+    {
+      "path": "art-production/references/floor-01-experience/layout-desktop-wide.json",
+      "bytes": 2029
+    },
+    {
+      "path": "art-production/references/floor-01-experience/layout-desktop.json",
+      "bytes": 1982
+    },
+    {
+      "path": "art-production/references/floor-01-experience/layout-mobile-landscape.json",
+      "bytes": 1966
+    },
+    {
+      "path": "art-production/references/floor-01-experience/layout-mobile.json",
+      "bytes": 1877
+    },
+    {
+      "path": "art-production/references/floor-01-experience/layout-tablet-landscape.json",
+      "bytes": 2050
+    },
+    {
+      "path": "art-production/references/floor-01-experience/layout-tablet-portrait.json",
+      "bytes": 1952
+    },
+    {
+      "path": "art-production/references/floor-01-experience/proposed-safe-area-desktop.svg",
+      "bytes": 847
+    },
+    {
+      "path": "art-production/references/floor-01-experience/proposed-safe-area-mobile.svg",
+      "bytes": 877
+    },
+    {
+      "path": "art-production/references/floor-01-experience/proposed-safe-areas.json",
+      "bytes": 500
+    },
+    {
+      "path": "art-production/references/floor-01-experience/README.md",
+      "bytes": 1415
+    },
+    {
+      "path": "art-production/references/floor-01-experience/reference-manifest.json",
+      "bytes": 5201
+    },
+    {
+      "path": "art-production/references/floor-01-experience/screenshots/desktop-1440x900-day-clear.jpg",
+      "bytes": 139763
+    },
+    {
+      "path": "art-production/references/floor-01-experience/screenshots/desktop-wide-1920x1080-day-clear.jpg",
+      "bytes": 190578
+    },
+    {
+      "path": "art-production/references/floor-01-experience/screenshots/first-record-desktop.jpg",
+      "bytes": 146338
+    },
+    {
+      "path": "art-production/references/floor-01-experience/screenshots/full-section-desktop-1440x900-day-clear.jpg",
+      "bytes": 161697
+    },
+    {
+      "path": "art-production/references/floor-01-experience/screenshots/full-section-mobile-390x844-day-clear.jpg",
+      "bytes": 99263
+    },
+    {
+      "path": "art-production/references/floor-01-experience/screenshots/last-record-desktop.jpg",
+      "bytes": 140735
+    },
+    {
+      "path": "art-production/references/floor-01-experience/screenshots/mobile-390x844-day-clear.jpg",
+      "bytes": 42184
+    },
+    {
+      "path": "art-production/references/floor-01-experience/screenshots/mobile-landscape-844x390-day-clear.jpg",
+      "bytes": 50222
+    },
+    {
+      "path": "art-production/references/floor-01-experience/screenshots/tablet-landscape-1180x820-day-clear.jpg",
+      "bytes": 111067
+    },
+    {
+      "path": "art-production/references/floor-01-experience/screenshots/tablet-portrait-820x1180-day-clear.jpg",
+      "bytes": 86678
+    },
+    {
+      "path": "art-production/references/floor-02-projects/artwork/projects-wall-clean.webp",
+      "bytes": 243708
+    },
+    {
+      "path": "art-production/references/floor-02-projects/artwork/projects-wall-tall.webp",
+      "bytes": 249948
+    },
+    {
+      "path": "art-production/references/floor-02-projects/brief.md",
+      "bytes": 7648
+    },
+    {
+      "path": "art-production/references/floor-02-projects/inventory.json",
+      "bytes": 7743
+    },
+    {
+      "path": "art-production/references/floor-02-projects/layout-desktop-wide.json",
+      "bytes": 1644
+    },
+    {
+      "path": "art-production/references/floor-02-projects/layout-desktop.json",
+      "bytes": 1662
+    },
+    {
+      "path": "art-production/references/floor-02-projects/layout-mobile-landscape.json",
+      "bytes": 1669
+    },
+    {
+      "path": "art-production/references/floor-02-projects/layout-mobile.json",
+      "bytes": 1613
+    },
+    {
+      "path": "art-production/references/floor-02-projects/layout-tablet-landscape.json",
+      "bytes": 1693
+    },
+    {
+      "path": "art-production/references/floor-02-projects/layout-tablet-portrait.json",
+      "bytes": 1652
+    },
+    {
+      "path": "art-production/references/floor-02-projects/proposed-safe-area-desktop.svg",
+      "bytes": 907
+    },
+    {
+      "path": "art-production/references/floor-02-projects/proposed-safe-area-mobile.svg",
+      "bytes": 874
+    },
+    {
+      "path": "art-production/references/floor-02-projects/proposed-safe-areas.json",
+      "bytes": 500
+    },
+    {
+      "path": "art-production/references/floor-02-projects/README.md",
+      "bytes": 1413
+    },
+    {
+      "path": "art-production/references/floor-02-projects/reference-manifest.json",
+      "bytes": 5507
+    },
+    {
+      "path": "art-production/references/floor-02-projects/screenshots/desktop-1440x900-day-clear.jpg",
+      "bytes": 171373
+    },
+    {
+      "path": "art-production/references/floor-02-projects/screenshots/desktop-wide-1920x1080-day-clear.jpg",
+      "bytes": 240605
+    },
+    {
+      "path": "art-production/references/floor-02-projects/screenshots/full-section-desktop-1440x900-day-clear.jpg",
+      "bytes": 300316
+    },
+    {
+      "path": "art-production/references/floor-02-projects/screenshots/full-section-mobile-390x844-day-clear.jpg",
+      "bytes": 203304
+    },
+    {
+      "path": "art-production/references/floor-02-projects/screenshots/mobile-390x844-day-clear.jpg",
+      "bytes": 44590
+    },
+    {
+      "path": "art-production/references/floor-02-projects/screenshots/mobile-landscape-844x390-day-clear.jpg",
+      "bytes": 46646
+    },
+    {
+      "path": "art-production/references/floor-02-projects/screenshots/mobile-mid-section-navigation.jpg",
+      "bytes": 43833
+    },
+    {
+      "path": "art-production/references/floor-02-projects/screenshots/project-detail-desktop.jpg",
+      "bytes": 82919
+    },
+    {
+      "path": "art-production/references/floor-02-projects/screenshots/tablet-landscape-1180x820-day-clear.jpg",
+      "bytes": 138691
+    },
+    {
+      "path": "art-production/references/floor-02-projects/screenshots/tablet-portrait-820x1180-day-clear.jpg",
+      "bytes": 120384
+    },
+    {
+      "path": "art-production/references/floor-03-about/artwork/about-wall-mobile.webp",
+      "bytes": 194800
+    },
+    {
+      "path": "art-production/references/floor-03-about/artwork/about-wall.webp",
+      "bytes": 237242
+    },
+    {
+      "path": "art-production/references/floor-03-about/artwork/irene-portrait.webp",
+      "bytes": 61756
+    },
+    {
+      "path": "art-production/references/floor-03-about/brief.md",
+      "bytes": 7496
+    },
+    {
+      "path": "art-production/references/floor-03-about/inventory.json",
+      "bytes": 7617
+    },
+    {
+      "path": "art-production/references/floor-03-about/layout-desktop-wide.json",
+      "bytes": 2150
+    },
+    {
+      "path": "art-production/references/floor-03-about/layout-desktop.json",
+      "bytes": 2157
+    },
+    {
+      "path": "art-production/references/floor-03-about/layout-mobile-landscape.json",
+      "bytes": 2125
+    },
+    {
+      "path": "art-production/references/floor-03-about/layout-mobile.json",
+      "bytes": 2122
+    },
+    {
+      "path": "art-production/references/floor-03-about/layout-tablet-landscape.json",
+      "bytes": 2117
+    },
+    {
+      "path": "art-production/references/floor-03-about/layout-tablet-portrait.json",
+      "bytes": 2149
+    },
+    {
+      "path": "art-production/references/floor-03-about/proposed-safe-area-desktop.svg",
+      "bytes": 853
+    },
+    {
+      "path": "art-production/references/floor-03-about/proposed-safe-area-mobile.svg",
+      "bytes": 876
+    },
+    {
+      "path": "art-production/references/floor-03-about/proposed-safe-areas.json",
+      "bytes": 503
+    },
+    {
+      "path": "art-production/references/floor-03-about/README.md",
+      "bytes": 1409
+    },
+    {
+      "path": "art-production/references/floor-03-about/reference-manifest.json",
+      "bytes": 5273
+    },
+    {
+      "path": "art-production/references/floor-03-about/screenshots/desktop-1440x900-day-clear.jpg",
+      "bytes": 143228
+    },
+    {
+      "path": "art-production/references/floor-03-about/screenshots/desktop-wide-1920x1080-day-clear.jpg",
+      "bytes": 210738
+    },
+    {
+      "path": "art-production/references/floor-03-about/screenshots/full-section-desktop-1440x900-day-clear.jpg",
+      "bytes": 176864
+    },
+    {
+      "path": "art-production/references/floor-03-about/screenshots/full-section-mobile-390x844-day-clear.jpg",
+      "bytes": 87499
+    },
+    {
+      "path": "art-production/references/floor-03-about/screenshots/mobile-390x844-day-clear.jpg",
+      "bytes": 53360
+    },
+    {
+      "path": "art-production/references/floor-03-about/screenshots/mobile-landscape-844x390-day-clear.jpg",
+      "bytes": 36926
+    },
+    {
+      "path": "art-production/references/floor-03-about/screenshots/tablet-landscape-1180x820-day-clear.jpg",
+      "bytes": 99230
+    },
+    {
+      "path": "art-production/references/floor-03-about/screenshots/tablet-portrait-820x1180-day-clear.jpg",
+      "bytes": 101039
+    },
+    {
+      "path": "art-production/references/floor-04-hero/artwork/athens-coder-loft-day.webp",
+      "bytes": 402900
+    },
+    {
+      "path": "art-production/references/floor-04-hero/artwork/athens-coder-loft-mobile.webp",
+      "bytes": 381914
+    },
+    {
+      "path": "art-production/references/floor-04-hero/artwork/athens-coder-loft-night.png",
+      "bytes": 2360138
+    },
+    {
+      "path": "art-production/references/floor-04-hero/artwork/exterior-window-mask.svg",
+      "bytes": 736
+    },
+    {
+      "path": "art-production/references/floor-04-hero/artwork/hero-exterior-day.svg",
+      "bytes": 455
+    },
+    {
+      "path": "art-production/references/floor-04-hero/artwork/hero-exterior-night.svg",
+      "bytes": 396
+    },
+    {
+      "path": "art-production/references/floor-04-hero/artwork/hero-sky-day.svg",
+      "bytes": 688
+    },
+    {
+      "path": "art-production/references/floor-04-hero/artwork/hero-sky-night.svg",
+      "bytes": 686
+    },
+    {
+      "path": "art-production/references/floor-04-hero/artwork/interior-occlusion-mask.svg",
+      "bytes": 783
+    },
+    {
+      "path": "art-production/references/floor-04-hero/brief.md",
+      "bytes": 23632
+    },
+    {
+      "path": "art-production/references/floor-04-hero/inventory.json",
+      "bytes": 73060
+    },
+    {
+      "path": "art-production/references/floor-04-hero/layout-desktop-wide.json",
+      "bytes": 3325
+    },
+    {
+      "path": "art-production/references/floor-04-hero/layout-desktop.json",
+      "bytes": 3323
+    },
+    {
+      "path": "art-production/references/floor-04-hero/layout-mobile-landscape.json",
+      "bytes": 3402
+    },
+    {
+      "path": "art-production/references/floor-04-hero/layout-mobile.json",
+      "bytes": 3134
+    },
+    {
+      "path": "art-production/references/floor-04-hero/layout-tablet-landscape.json",
+      "bytes": 3422
+    },
+    {
+      "path": "art-production/references/floor-04-hero/layout-tablet-portrait.json",
+      "bytes": 3393
+    },
+    {
+      "path": "art-production/references/floor-04-hero/proposed-layout-desktop.svg",
+      "bytes": 2668
+    },
+    {
+      "path": "art-production/references/floor-04-hero/proposed-layout-mobile.svg",
+      "bytes": 2595
+    },
+    {
+      "path": "art-production/references/floor-04-hero/proposed-layout-tablet.svg",
+      "bytes": 2482
+    },
+    {
+      "path": "art-production/references/floor-04-hero/proposed-layouts.json",
+      "bytes": 2261
+    },
+    {
+      "path": "art-production/references/floor-04-hero/README.md",
+      "bytes": 1409
+    },
+    {
+      "path": "art-production/references/floor-04-hero/reference-manifest.json",
+      "bytes": 10098
+    },
+    {
+      "path": "art-production/references/floor-04-hero/screenshots/desktop-1440x900-day-clear.jpg",
+      "bytes": 177545
+    },
+    {
+      "path": "art-production/references/floor-04-hero/screenshots/desktop-1440x900-day-rain.jpg",
+      "bytes": 187440
+    },
+    {
+      "path": "art-production/references/floor-04-hero/screenshots/desktop-1440x900-goldenHour-clear.jpg",
+      "bytes": 189073
+    },
+    {
+      "path": "art-production/references/floor-04-hero/screenshots/desktop-1440x900-night-clear.jpg",
+      "bytes": 171861
+    },
+    {
+      "path": "art-production/references/floor-04-hero/screenshots/desktop-intro-open.jpg",
+      "bytes": 196682
+    },
+    {
+      "path": "art-production/references/floor-04-hero/screenshots/desktop-wide-1920x1080-day-clear.jpg",
+      "bytes": 264663
+    },
+    {
+      "path": "art-production/references/floor-04-hero/screenshots/full-section-desktop-1440x900-day-clear.jpg",
+      "bytes": 199935
+    },
+    {
+      "path": "art-production/references/floor-04-hero/screenshots/full-section-mobile-390x844-day-clear.jpg",
+      "bytes": 34798
+    },
+    {
+      "path": "art-production/references/floor-04-hero/screenshots/interaction-aquarium.jpg",
+      "bytes": 86442
+    },
+    {
+      "path": "art-production/references/floor-04-hero/screenshots/interaction-telescope.jpg",
+      "bytes": 89051
+    },
+    {
+      "path": "art-production/references/floor-04-hero/screenshots/mobile-390x844-day-clear.jpg",
+      "bytes": 30938
+    },
+    {
+      "path": "art-production/references/floor-04-hero/screenshots/mobile-390x844-day-rain.jpg",
+      "bytes": 30552
+    },
+    {
+      "path": "art-production/references/floor-04-hero/screenshots/mobile-390x844-goldenHour-clear.jpg",
+      "bytes": 30651
+    },
+    {
+      "path": "art-production/references/floor-04-hero/screenshots/mobile-390x844-night-clear.jpg",
+      "bytes": 28156
+    },
+    {
+      "path": "art-production/references/floor-04-hero/screenshots/mobile-intro-open.jpg",
+      "bytes": 48597
+    },
+    {
+      "path": "art-production/references/floor-04-hero/screenshots/mobile-landscape-844x390-day-clear.jpg",
+      "bytes": 51908
+    },
+    {
+      "path": "art-production/references/floor-04-hero/screenshots/tablet-landscape-1180x820-day-clear.jpg",
+      "bytes": 152796
+    },
+    {
+      "path": "art-production/references/floor-04-hero/screenshots/tablet-portrait-820x1180-day-clear.jpg",
+      "bytes": 97424
+    },
+    {
+      "path": "art-production/references/floor-04-hero/screenshots/tablet-portrait-820x1180-day-rain.jpg",
+      "bytes": 95396
+    },
+    {
+      "path": "art-production/references/floor-04-hero/screenshots/tablet-portrait-820x1180-goldenHour-clear.jpg",
+      "bytes": 95997
+    },
+    {
+      "path": "art-production/references/floor-04-hero/screenshots/tablet-portrait-820x1180-night-clear.jpg",
+      "bytes": 85451
+    },
+    {
+      "path": "art-production/references/transitions/artwork/service-void-cables.png",
+      "bytes": 2403047
+    },
+    {
+      "path": "art-production/references/transitions/artwork/service-void-pipes.png",
+      "bytes": 2199809
+    },
+    {
+      "path": "art-production/references/transitions/brief.md",
+      "bytes": 7210
+    },
+    {
+      "path": "art-production/references/transitions/inventory.json",
+      "bytes": 5353
+    },
+    {
+      "path": "art-production/references/transitions/layouts.json",
+      "bytes": 5730
+    },
+    {
+      "path": "art-production/references/transitions/proposed-strip-guide.svg",
+      "bytes": 603
+    },
+    {
+      "path": "art-production/references/transitions/README.md",
+      "bytes": 1407
+    },
+    {
+      "path": "art-production/references/transitions/reference-manifest.json",
+      "bytes": 7779
+    },
+    {
+      "path": "art-production/references/transitions/screenshots/01-to-00-desktop-1440x900.jpg",
+      "bytes": 40264
+    },
+    {
+      "path": "art-production/references/transitions/screenshots/01-to-00-desktop-wide-1920x1080.jpg",
+      "bytes": 50820
+    },
+    {
+      "path": "art-production/references/transitions/screenshots/01-to-00-mobile-390x844.jpg",
+      "bytes": 13164
+    },
+    {
+      "path": "art-production/references/transitions/screenshots/01-to-00-mobile-landscape-844x390.jpg",
+      "bytes": 17862
+    },
+    {
+      "path": "art-production/references/transitions/screenshots/01-to-00-tablet-landscape-1180x820.jpg",
+      "bytes": 31234
+    },
+    {
+      "path": "art-production/references/transitions/screenshots/01-to-00-tablet-portrait-820x1180.jpg",
+      "bytes": 17599
+    },
+    {
+      "path": "art-production/references/transitions/screenshots/02-to-01-desktop-1440x900.jpg",
+      "bytes": 37598
+    },
+    {
+      "path": "art-production/references/transitions/screenshots/02-to-01-desktop-wide-1920x1080.jpg",
+      "bytes": 55678
+    },
+    {
+      "path": "art-production/references/transitions/screenshots/02-to-01-mobile-390x844.jpg",
+      "bytes": 8509
+    },
+    {
+      "path": "art-production/references/transitions/screenshots/02-to-01-mobile-landscape-844x390.jpg",
+      "bytes": 23142
+    },
+    {
+      "path": "art-production/references/transitions/screenshots/02-to-01-tablet-landscape-1180x820.jpg",
+      "bytes": 28472
+    },
+    {
+      "path": "art-production/references/transitions/screenshots/02-to-01-tablet-portrait-820x1180.jpg",
+      "bytes": 22264
+    },
+    {
+      "path": "art-production/references/transitions/screenshots/03-to-02-desktop-1440x900.jpg",
+      "bytes": 49586
+    },
+    {
+      "path": "art-production/references/transitions/screenshots/03-to-02-desktop-wide-1920x1080.jpg",
+      "bytes": 61484
+    },
+    {
+      "path": "art-production/references/transitions/screenshots/03-to-02-mobile-390x844.jpg",
+      "bytes": 8251
+    },
+    {
+      "path": "art-production/references/transitions/screenshots/03-to-02-mobile-landscape-844x390.jpg",
+      "bytes": 23018
+    },
+    {
+      "path": "art-production/references/transitions/screenshots/03-to-02-tablet-landscape-1180x820.jpg",
+      "bytes": 36444
+    },
+    {
+      "path": "art-production/references/transitions/screenshots/03-to-02-tablet-portrait-820x1180.jpg",
+      "bytes": 23521
+    },
+    {
+      "path": "art-production/references/transitions/screenshots/04-to-03-desktop-1440x900.jpg",
+      "bytes": 35951
+    },
+    {
+      "path": "art-production/references/transitions/screenshots/04-to-03-desktop-wide-1920x1080.jpg",
+      "bytes": 45138
+    },
+    {
+      "path": "art-production/references/transitions/screenshots/04-to-03-mobile-390x844.jpg",
+      "bytes": 9177
+    },
+    {
+      "path": "art-production/references/transitions/screenshots/04-to-03-mobile-landscape-844x390.jpg",
+      "bytes": 15193
+    },
+    {
+      "path": "art-production/references/transitions/screenshots/04-to-03-tablet-landscape-1180x820.jpg",
+      "bytes": 25709
+    },
+    {
+      "path": "art-production/references/transitions/screenshots/04-to-03-tablet-portrait-820x1180.jpg",
+      "bytes": 15212
+    },
+    {
+      "path": "art-production/references/verification.json",
+      "bytes": 9140
+    },
+    {
+      "path": "art-production/staging/README.md",
+      "bytes": 623
+    },
+    {
+      "path": "docs/art-production/asset-inventory.json",
+      "bytes": 123135
+    },
+    {
+      "path": "docs/art-production/briefs/floor-00-contact.md",
+      "bytes": 12003
+    },
+    {
+      "path": "docs/art-production/briefs/floor-01-experience.md",
+      "bytes": 7660
+    },
+    {
+      "path": "docs/art-production/briefs/floor-02-projects.md",
+      "bytes": 7648
+    },
+    {
+      "path": "docs/art-production/briefs/floor-03-about.md",
+      "bytes": 7496
+    },
+    {
+      "path": "docs/art-production/briefs/floor-04-hero.md",
+      "bytes": 23632
+    },
+    {
+      "path": "docs/art-production/briefs/transitions.md",
+      "bytes": 7210
+    },
+    {
+      "path": "docs/art-production/master-specification.md",
+      "bytes": 8442
+    },
+    {
+      "path": "docs/art-production/package-contract.md",
+      "bytes": 3203
+    },
+    {
+      "path": "docs/art-production/README.md",
+      "bytes": 3934
+    },
+    {
+      "path": "docs/art-production/responsive-compositions.md",
+      "bytes": 10966
+    },
+    {
+      "path": "docs/art-production/verification.md",
+      "bytes": 8219
+    },
+    {
+      "path": "scripts/floor-navigation.test.mjs",
+      "bytes": 1736
+    },
+    {
+      "path": "src/config/floors.ts",
+      "bytes": 1083
+    },
+    {
+      "path": "src/services/floorNavigation.ts",
+      "bytes": 558
+    }
+  ],
+  "self": "docs/art-production/created-files.json",
+  "includesIgnoredBuildOutputs": false
+}

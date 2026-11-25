@@ -1,0 +1,28 @@
+{
+  "status": "PROPOSED image safe zones; current layouts are in layout-*.json",
+  "regions": {
+    "desktop": [
+      0.18,
+      0.15,
+      0.72,
+      0.7
+    ],
+    "mobile": [
+      0.12,
+      0.12,
+      0.76,
+      0.82
+    ],
+    "lights": {
+      "desktop": [
+        0.76,
+        0.14
+      ],
+      "mobile": [
+        0.81,
+        0.13
+      ]
+    }
+  },
+  "behavior": "Top-centered proportional plate, matching quiet continuation, no fixed content height"
+}

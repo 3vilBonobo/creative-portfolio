@@ -1,0 +1,66 @@
+{
+  "status": "PROPOSED - portrait requires approval",
+  "profiles": {
+    "desktop": {
+      "size": [
+        1746,
+        901
+      ],
+      "safe": [
+        0.4325,
+        0.19,
+        0.142,
+        0.39
+      ],
+      "door": [
+        0.764,
+        0.23,
+        0.144,
+        0.34
+      ],
+      "hotspots": {
+        "Ground 00": [
+          0.06,
+          0.23
+        ],
+        "Hatch baseline": [
+          0.64,
+          0.7
+        ]
+      }
+    },
+    "mobile": {
+      "size": [
+        768,
+        1344
+      ],
+      "safe": [
+        0.06,
+        0.34,
+        0.62,
+        0.45
+      ],
+      "door": [
+        0.72,
+        0.25,
+        0.24,
+        0.57
+      ],
+      "hotspots": {
+        "Ground 00": [
+          0.1,
+          0.12
+        ],
+        "Hatch baseline": [
+          0.64,
+          0.92
+        ]
+      }
+    }
+  },
+  "tablet": "Landscape shares desktop; portrait shares mobile",
+  "hitAreaCssPixels": {
+    "target": 48,
+    "minimum": 44
+  }
+}

@@ -1,0 +1,18 @@
+[
+  {
+    "active": "projects-results",
+    "headingY": 340.07501220703125,
+    "pageY": 2130.39990234375,
+    "paneY": 0,
+    "plateY": 228.33750915527344,
+    "step": "focused-pane"
+  },
+  {
+    "active": "projects-results",
+    "headingY": 340.07501220703125,
+    "pageY": 2130.39990234375,
+    "paneY": 488.7999877929687,
+    "plateY": 228.33750915527344,
+    "step": "native-page-down"
+  }
+]

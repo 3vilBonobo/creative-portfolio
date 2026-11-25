@@ -29,10 +29,10 @@ watch(() => props.active, (active) => {
 onBeforeUnmount(() => cancelAnimationFrame(animationFrame));
 
 const runnerStyle = computed(() => ({
-  // The nose leads in profile; the rump is centred on the hole after turning.
-  left: `calc(${pose.value.approach * 100}% - ${pose.value.approach * 48}px - var(--mouse-size) * ${1 - pose.value.approach * .06 - pose.value.turn * .32})`,
+  // Bring the body in front of the opening before turning in place.
+  left: `calc(${pose.value.approach * 100}% - ${pose.value.approach * 48}px - var(--mouse-size) * ${1 - pose.value.approach * .38})`,
   opacity: props.active ? pose.value.opacity : 0,
-  transform: `translateY(${-pose.value.entry * 4}px) scale(${1 - pose.value.entry * .12})`,
+  transform: `translateY(calc(var(--mouse-size) * ${pose.value.depthOffset})) scale(${pose.value.scale})`,
 }));
 const spriteStyle = computed(() => {
   const column = pose.value.frame % 4;
@@ -41,7 +41,7 @@ const spriteStyle = computed(() => {
   backgroundSize: `${1536 / width * 100}% ${1024 / 342 * 100}%`,
   backgroundPosition: `${columnX[column] / (1536 - width) * 100}% ${rowY[Math.floor(pose.value.frame / 4)] / (1024 - 342) * 100}%`,
   // The whole animal fades into the doorway; no moving crop or mask.
-  filter: `url(#${matteId}) brightness(${.78 - pose.value.entry * .18})`,
+  filter: `url(#${matteId}) brightness(${pose.value.brightness})`,
   };
 });
 </script>
@@ -56,7 +56,7 @@ const spriteStyle = computed(() => {
     </defs>
   </svg>
   <img class="mouse-runner__preload" src="/contact/mouse/house-mouse-gait.png" alt="" @load="emit('ready')" />
-  <div class="mouse-runner" :style="runnerStyle" :data-pose="pose.frame" :data-entering="pose.entry > 0">
+  <div class="mouse-runner" :style="runnerStyle" :data-pose="pose.frame" :data-phase="pose.phase" :data-entering="pose.entry > 0">
     <span class="mouse-runner__shadow" :style="{ opacity: .5 * (1 - pose.entry) }" />
     <span class="mouse-runner__sprite" :style="spriteStyle" />
   </div>

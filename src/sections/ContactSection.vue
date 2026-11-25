@@ -5,6 +5,7 @@ import MouseEasterEgg from "../components/MouseEasterEgg.vue";
 import SceneEnvironment from "../components/SceneEnvironment.vue";
 import WeatherEffects from "../components/WeatherEffects.vue";
 import { useEnvironment } from "../composables/useEnvironment";
+import { FLOOR } from "../config/floors";
 
 const { state, previewIntensity } = useEnvironment();
 const section = ref<HTMLElement>(); const firstSocial = ref<HTMLAnchorElement>();
@@ -33,7 +34,7 @@ onBeforeUnmount(() => { document.removeEventListener("visibilitychange", onVisib
 </script>
 
 <template>
-  <section ref="section" id="street" class="floor-section contact-scene" :data-phase="state.timePhase" :data-weather="state.weatherCondition" aria-labelledby="contact-title">
+  <section ref="section" :id="FLOOR.street.id" class="floor-section contact-scene" :data-floor-number="FLOOR.street.number" :data-phase="state.timePhase" :data-weather="state.weatherCondition" aria-labelledby="contact-title">
     <div class="contact-scene__stage">
       <div class="contact-scene__art" aria-hidden="true">
         <div class="contact-scene__canvas">
@@ -46,7 +47,7 @@ onBeforeUnmount(() => { document.removeEventListener("visibilitychange", onVisib
       </div>
       <WeatherEffects class="contact-scene__precipitation" mode="precipitation" :state="state" :intensity="previewIntensity" :paused="effectsPaused" />
       <div class="contact-scene__layout">
-        <div class="contact-level" aria-label="Level 01, building entrance"><small>Level</small><strong>01</strong><span>Entrance</span><i aria-hidden="true">→</i></div>
+        <div class="contact-level" :aria-label="`Level ${FLOOR.street.number}, building entrance`"><small>Level</small><strong>{{ FLOOR.street.number }}</strong><span>Entrance</span><i aria-hidden="true">→</i></div>
         <div class="contact-panel">
           <p class="contact-panel__eyebrow">Athens · Street level</p>
           <button class="contact-panel__title" type="button" aria-controls="contact-socials" @click="openContactChannels">

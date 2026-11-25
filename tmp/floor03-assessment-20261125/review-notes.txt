@@ -1,0 +1,13 @@
+FLOOR 03 — ABOUT | ARTWORK REVIEW BUNDLE (NOT FINAL PRODUCTION)
+
+Scope: locked desktop background + candidate mobile artwork + four first-pass transparent practical-light effects.
+
+DESKTOP BASE: approved by user; 1956x804 WebP.
+MOBILE BASE: artistically coordinated portrait reconstruction; 848x1855 WebP, but not a strict crop-and-outpaint transformation of the same camera/room. Needs visual review before production lock.
+LIGHTING: matched pixel dimensions; normal alpha overlays. Both passes are prototypes, not a finished physically calibrated re-lighting.
+
+Caution: Lighting will be rendered z1 emission, z2 spill, accessible HTML on top. Base z0. Preserve top-center proportional anchor. Do not stretch background imagery to total section height.
+
+Unresolved checks: overlay against live ABOUT content, portrait tablet crop, actual CSS alignment, screenreader/accessibility and reduced motion, real-device browser checks, and long-content wall continuation.
+
+Do not copy directly into public/ or replace current runtime assets without separate integration approval.

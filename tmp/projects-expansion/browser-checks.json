@@ -1,0 +1,310 @@
+[
+  {
+    "cards": 8,
+    "clipped": [],
+    "count": "8 projects / All Projects",
+    "height": 1000,
+    "overflow": false,
+    "step": "catalogue",
+    "width": 1440,
+    "windowed": true
+  },
+  {
+    "clipped": [],
+    "images": [
+      {
+        "fit": "contain",
+        "loaded": true,
+        "src": "/projects/athens-therapy.jpg"
+      }
+    ],
+    "links": [
+      {
+        "href": "https://www.athens-therapy.gr/",
+        "target": "_blank",
+        "text": "Visit website ↗"
+      },
+      {
+        "href": "https://github.com/3vilBonobo/athens-therapy.gr",
+        "target": "_blank",
+        "text": "Source code ↗"
+      }
+    ],
+    "overflow": false,
+    "step": "dialog",
+    "title": "Psychotherapy Practice Website",
+    "width": 1440
+  },
+  {
+    "closed": true,
+    "restored": "work-title-athens-therapy",
+    "step": "focus"
+  },
+  {
+    "clipped": [],
+    "images": [
+      {
+        "fit": "contain",
+        "loaded": true,
+        "src": "/projects/madlen-v.jpg"
+      },
+      {
+        "fit": "contain",
+        "loaded": true,
+        "src": "/projects/madlen-v-alternate.jpg"
+      }
+    ],
+    "links": [
+      {
+        "href": "https://www.vasileia-oikonomou.com/madlen-v.html",
+        "target": "_blank",
+        "text": "Explore live poem ↗"
+      },
+      {
+        "href": "https://github.com/3vilBonobo/poem",
+        "target": "_blank",
+        "text": "Source code ↗"
+      }
+    ],
+    "overflow": false,
+    "step": "dialog",
+    "title": "Interactive Digital Poetry",
+    "width": 1440
+  },
+  {
+    "closed": true,
+    "restored": "work-title-madlen-v",
+    "step": "focus"
+  },
+  {
+    "cards": 8,
+    "clipped": [],
+    "count": "8 projects / All Projects",
+    "height": 1024,
+    "overflow": false,
+    "step": "catalogue",
+    "width": 768,
+    "windowed": false
+  },
+  {
+    "clipped": [],
+    "images": [
+      {
+        "fit": "contain",
+        "loaded": true,
+        "src": "/projects/athens-therapy.jpg"
+      }
+    ],
+    "links": [
+      {
+        "href": "https://www.athens-therapy.gr/",
+        "target": "_blank",
+        "text": "Visit website ↗"
+      },
+      {
+        "href": "https://github.com/3vilBonobo/athens-therapy.gr",
+        "target": "_blank",
+        "text": "Source code ↗"
+      }
+    ],
+    "overflow": false,
+    "step": "dialog",
+    "title": "Psychotherapy Practice Website",
+    "width": 768
+  },
+  {
+    "closed": true,
+    "restored": "work-title-athens-therapy",
+    "step": "focus"
+  },
+  {
+    "clipped": [],
+    "images": [
+      {
+        "fit": "contain",
+        "loaded": true,
+        "src": "/projects/madlen-v.jpg"
+      },
+      {
+        "fit": "contain",
+        "loaded": true,
+        "src": "/projects/madlen-v-alternate.jpg"
+      }
+    ],
+    "links": [
+      {
+        "href": "https://www.vasileia-oikonomou.com/madlen-v.html",
+        "target": "_blank",
+        "text": "Explore live poem ↗"
+      },
+      {
+        "href": "https://github.com/3vilBonobo/poem",
+        "target": "_blank",
+        "text": "Source code ↗"
+      }
+    ],
+    "overflow": false,
+    "step": "dialog",
+    "title": "Interactive Digital Poetry",
+    "width": 768
+  },
+  {
+    "closed": true,
+    "restored": "work-title-madlen-v",
+    "step": "focus"
+  },
+  {
+    "cards": 8,
+    "clipped": [],
+    "count": "8 projects / All Projects",
+    "height": 844,
+    "overflow": false,
+    "step": "catalogue",
+    "width": 390,
+    "windowed": false
+  },
+  {
+    "clipped": [],
+    "images": [
+      {
+        "fit": "contain",
+        "loaded": true,
+        "src": "/projects/athens-therapy.jpg"
+      }
+    ],
+    "links": [
+      {
+        "href": "https://www.athens-therapy.gr/",
+        "target": "_blank",
+        "text": "Visit website ↗"
+      },
+      {
+        "href": "https://github.com/3vilBonobo/athens-therapy.gr",
+        "target": "_blank",
+        "text": "Source code ↗"
+      }
+    ],
+    "overflow": false,
+    "step": "dialog",
+    "title": "Psychotherapy Practice Website",
+    "width": 390
+  },
+  {
+    "closed": true,
+    "restored": "work-title-athens-therapy",
+    "step": "focus"
+  },
+  {
+    "clipped": [],
+    "images": [
+      {
+        "fit": "contain",
+        "loaded": true,
+        "src": "/projects/madlen-v.jpg"
+      },
+      {
+        "fit": "contain",
+        "loaded": true,
+        "src": "/projects/madlen-v-alternate.jpg"
+      }
+    ],
+    "links": [
+      {
+        "href": "https://www.vasileia-oikonomou.com/madlen-v.html",
+        "target": "_blank",
+        "text": "Explore live poem ↗"
+      },
+      {
+        "href": "https://github.com/3vilBonobo/poem",
+        "target": "_blank",
+        "text": "Source code ↗"
+      }
+    ],
+    "overflow": false,
+    "step": "dialog",
+    "title": "Interactive Digital Poetry",
+    "width": 390
+  },
+  {
+    "closed": true,
+    "restored": "work-title-madlen-v",
+    "step": "focus"
+  },
+  {
+    "cards": 8,
+    "clipped": [],
+    "count": "8 projects / All Projects",
+    "height": 900,
+    "overflow": false,
+    "step": "catalogue",
+    "width": 622,
+    "windowed": false
+  },
+  {
+    "clipped": [],
+    "images": [
+      {
+        "fit": "contain",
+        "loaded": true,
+        "src": "/projects/athens-therapy.jpg"
+      }
+    ],
+    "links": [
+      {
+        "href": "https://www.athens-therapy.gr/",
+        "target": "_blank",
+        "text": "Visit website ↗"
+      },
+      {
+        "href": "https://github.com/3vilBonobo/athens-therapy.gr",
+        "target": "_blank",
+        "text": "Source code ↗"
+      }
+    ],
+    "overflow": false,
+    "step": "dialog",
+    "title": "Psychotherapy Practice Website",
+    "width": 622
+  },
+  {
+    "closed": true,
+    "restored": "work-title-athens-therapy",
+    "step": "focus"
+  },
+  {
+    "clipped": [],
+    "images": [
+      {
+        "fit": "contain",
+        "loaded": true,
+        "src": "/projects/madlen-v.jpg"
+      },
+      {
+        "fit": "contain",
+        "loaded": true,
+        "src": "/projects/madlen-v-alternate.jpg"
+      }
+    ],
+    "links": [
+      {
+        "href": "https://www.vasileia-oikonomou.com/madlen-v.html",
+        "target": "_blank",
+        "text": "Explore live poem ↗"
+      },
+      {
+        "href": "https://github.com/3vilBonobo/poem",
+        "target": "_blank",
+        "text": "Source code ↗"
+      }
+    ],
+    "overflow": false,
+    "step": "dialog",
+    "title": "Interactive Digital Poetry",
+    "width": 622
+  },
+  {
+    "closed": true,
+    "restored": "work-title-madlen-v",
+    "step": "focus"
+  }
+]

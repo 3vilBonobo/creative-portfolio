@@ -1,9 +1,10 @@
 import type { AboutContent } from "../types/content";
+import { FLOOR } from "../config/floors";
 
 // TEMPORARY COPY: replace with Irinella's approved biography, focus, toolkit and CV URL.
 // The themes below come only from the approved About-section brief.
 export const aboutContent: AboutContent = {
-  eyebrow: "Level 04 · About",
+  eyebrow: `Level ${FLOOR.about.number} · ${FLOOR.about.label}`,
   title: "About",
   introduction:
     "I’m a frontend developer focused on making complex workflows feel understandable, dependable and human.",

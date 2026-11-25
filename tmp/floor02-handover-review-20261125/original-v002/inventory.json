@@ -1,0 +1,254 @@
+{
+  "revision": "v002",
+  "status": "PROPOSED - not replacement artwork",
+  "assets": [
+    {
+      "id": "floor-02-projects.wall-base.desktop",
+      "floor": "02",
+      "package": "floor-02-projects",
+      "filename": "floor-02-projects-wall-base-desktop.webp",
+      "path": "public/environments/floor-02-projects/floor-02-projects-wall-base-desktop.webp",
+      "width": 1370,
+      "height": 1148,
+      "aspectRatio": "1370:1148",
+      "masterWidth": 2740,
+      "masterHeight": 2296,
+      "format": "webp",
+      "alpha": false,
+      "priority": "required",
+      "method": "edit master",
+      "purpose": "Quiet wall, constant ambient, controllable fixture unlit",
+      "lighting": "constant",
+      "weather": [
+        "enclosed"
+      ],
+      "device": "desktop",
+      "alignmentGroup": "floor-02-projects-desktop-v002",
+      "anchor": [
+        0.5,
+        0
+      ],
+      "layerOrder": 0,
+      "motion": "stationary",
+      "overscanPixels": 0,
+      "maxBytes": 358400,
+      "dependencies": [],
+      "acceptance": [
+        "exact dimensions",
+        "declared alpha",
+        "registered geometry",
+        "no baked UI or floor digits",
+        "budget met"
+      ],
+      "status": "PROPOSED - composition and commissioning approval required"
+    },
+    {
+      "id": "floor-02-projects.light-01-emission.desktop",
+      "floor": "02",
+      "package": "floor-02-projects",
+      "filename": "floor-02-projects-light-01-emission-desktop.png",
+      "path": "public/environments/floor-02-projects/floor-02-projects-light-01-emission-desktop.png",
+      "width": 1370,
+      "height": 1148,
+      "aspectRatio": "1370:1148",
+      "masterWidth": 2740,
+      "masterHeight": 2296,
+      "format": "png",
+      "alpha": true,
+      "priority": "recommended",
+      "method": "derive fixture emission",
+      "purpose": "Visible practical emitter",
+      "lighting": "emission",
+      "weather": [
+        "enclosed"
+      ],
+      "device": "desktop",
+      "alignmentGroup": "floor-02-projects-desktop-v002",
+      "anchor": [
+        0.5,
+        0
+      ],
+      "layerOrder": 1,
+      "motion": "stationary",
+      "overscanPixels": 0,
+      "maxBytes": 32768,
+      "dependencies": [
+        "floor-02-projects.wall-base.desktop"
+      ],
+      "acceptance": [
+        "exact dimensions",
+        "declared alpha",
+        "registered geometry",
+        "no baked UI or floor digits",
+        "budget met"
+      ],
+      "status": "PROPOSED - composition and commissioning approval required"
+    },
+    {
+      "id": "floor-02-projects.light-01-spill.desktop",
+      "floor": "02",
+      "package": "floor-02-projects",
+      "filename": "floor-02-projects-light-01-spill-desktop.png",
+      "path": "public/environments/floor-02-projects/floor-02-projects-light-01-spill-desktop.png",
+      "width": 1370,
+      "height": 1148,
+      "aspectRatio": "1370:1148",
+      "masterWidth": 2740,
+      "masterHeight": 2296,
+      "format": "png",
+      "alpha": true,
+      "priority": "recommended",
+      "method": "derive illumination pass",
+      "purpose": "Localized wall/object illumination outside text",
+      "lighting": "spill",
+      "weather": [
+        "enclosed"
+      ],
+      "device": "desktop",
+      "alignmentGroup": "floor-02-projects-desktop-v002",
+      "anchor": [
+        0.5,
+        0
+      ],
+      "layerOrder": 2,
+      "motion": "stationary",
+      "overscanPixels": 0,
+      "maxBytes": 98304,
+      "dependencies": [
+        "floor-02-projects.wall-base.desktop"
+      ],
+      "acceptance": [
+        "exact dimensions",
+        "declared alpha",
+        "registered geometry",
+        "no baked UI or floor digits",
+        "budget met"
+      ],
+      "status": "PROPOSED - composition and commissioning approval required"
+    },
+    {
+      "id": "floor-02-projects.wall-base.mobile",
+      "floor": "02",
+      "package": "floor-02-projects",
+      "filename": "floor-02-projects-wall-base-mobile.webp",
+      "path": "public/environments/floor-02-projects/floor-02-projects-wall-base-mobile.webp",
+      "width": 768,
+      "height": 2048,
+      "aspectRatio": "768:2048",
+      "masterWidth": 1536,
+      "masterHeight": 4096,
+      "format": "webp",
+      "alpha": false,
+      "priority": "required",
+      "method": "derive crop/outpaint",
+      "purpose": "Quiet wall, constant ambient, controllable fixture unlit",
+      "lighting": "constant",
+      "weather": [
+        "enclosed"
+      ],
+      "device": "mobile",
+      "alignmentGroup": "floor-02-projects-mobile-v002",
+      "anchor": [
+        0.5,
+        0
+      ],
+      "layerOrder": 0,
+      "motion": "stationary",
+      "overscanPixels": 0,
+      "maxBytes": 256000,
+      "dependencies": [],
+      "acceptance": [
+        "exact dimensions",
+        "declared alpha",
+        "registered geometry",
+        "no baked UI or floor digits",
+        "budget met"
+      ],
+      "status": "PROPOSED - composition and commissioning approval required"
+    },
+    {
+      "id": "floor-02-projects.light-01-emission.mobile",
+      "floor": "02",
+      "package": "floor-02-projects",
+      "filename": "floor-02-projects-light-01-emission-mobile.png",
+      "path": "public/environments/floor-02-projects/floor-02-projects-light-01-emission-mobile.png",
+      "width": 768,
+      "height": 2048,
+      "aspectRatio": "768:2048",
+      "masterWidth": 1536,
+      "masterHeight": 4096,
+      "format": "png",
+      "alpha": true,
+      "priority": "recommended",
+      "method": "derive fixture emission",
+      "purpose": "Visible practical emitter",
+      "lighting": "emission",
+      "weather": [
+        "enclosed"
+      ],
+      "device": "mobile",
+      "alignmentGroup": "floor-02-projects-mobile-v002",
+      "anchor": [
+        0.5,
+        0
+      ],
+      "layerOrder": 1,
+      "motion": "stationary",
+      "overscanPixels": 0,
+      "maxBytes": 24576,
+      "dependencies": [
+        "floor-02-projects.wall-base.mobile"
+      ],
+      "acceptance": [
+        "exact dimensions",
+        "declared alpha",
+        "registered geometry",
+        "no baked UI or floor digits",
+        "budget met"
+      ],
+      "status": "PROPOSED - composition and commissioning approval required"
+    },
+    {
+      "id": "floor-02-projects.light-01-spill.mobile",
+      "floor": "02",
+      "package": "floor-02-projects",
+      "filename": "floor-02-projects-light-01-spill-mobile.png",
+      "path": "public/environments/floor-02-projects/floor-02-projects-light-01-spill-mobile.png",
+      "width": 768,
+      "height": 2048,
+      "aspectRatio": "768:2048",
+      "masterWidth": 1536,
+      "masterHeight": 4096,
+      "format": "png",
+      "alpha": true,
+      "priority": "recommended",
+      "method": "derive illumination pass",
+      "purpose": "Localized wall/object illumination outside text",
+      "lighting": "spill",
+      "weather": [
+        "enclosed"
+      ],
+      "device": "mobile",
+      "alignmentGroup": "floor-02-projects-mobile-v002",
+      "anchor": [
+        0.5,
+        0
+      ],
+      "layerOrder": 2,
+      "motion": "stationary",
+      "overscanPixels": 0,
+      "maxBytes": 81920,
+      "dependencies": [
+        "floor-02-projects.wall-base.mobile"
+      ],
+      "acceptance": [
+        "exact dimensions",
+        "declared alpha",
+        "registered geometry",
+        "no baked UI or floor digits",
+        "budget met"
+      ],
+      "status": "PROPOSED - composition and commissioning approval required"
+    }
+  ]
+}

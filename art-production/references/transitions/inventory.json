@@ -1,0 +1,174 @@
+{
+  "revision": "v002",
+  "status": "PROPOSED - not replacement artwork",
+  "assets": [
+    {
+      "id": "transitions.04-to-03.universal",
+      "floor": null,
+      "package": "transitions",
+      "filename": "transition-04-to-03-universal.webp",
+      "path": "public/environments/transitions/transition-04-to-03-universal.webp",
+      "width": 2560,
+      "height": 256,
+      "aspectRatio": "2560:256",
+      "masterWidth": 5120,
+      "masterHeight": 512,
+      "format": "webp",
+      "alpha": false,
+      "priority": "required",
+      "method": "approve one strip then derive related variations",
+      "purpose": "Rooftop power/data",
+      "lighting": "constant",
+      "weather": [
+        "enclosed"
+      ],
+      "device": "universal",
+      "alignmentGroup": "transition-04-to-03-v002",
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "layerOrder": 0,
+      "motion": "stationary preferred; optional 2% rendered-height travel, 4% edge coverage",
+      "overscanPixels": 0,
+      "maxBytes": 184320,
+      "dependencies": [],
+      "acceptance": [
+        "exact dimensions",
+        "declared alpha",
+        "registered geometry",
+        "no baked UI or floor digits",
+        "budget met"
+      ],
+      "status": "PROPOSED - composition and commissioning approval required",
+      "fromFloor": "04",
+      "toFloor": "03"
+    },
+    {
+      "id": "transitions.03-to-02.universal",
+      "floor": null,
+      "package": "transitions",
+      "filename": "transition-03-to-02-universal.webp",
+      "path": "public/environments/transitions/transition-03-to-02-universal.webp",
+      "width": 2560,
+      "height": 256,
+      "aspectRatio": "2560:256",
+      "masterWidth": 5120,
+      "masterHeight": 512,
+      "format": "webp",
+      "alpha": false,
+      "priority": "required",
+      "method": "approve one strip then derive related variations",
+      "purpose": "Studio distribution",
+      "lighting": "constant",
+      "weather": [
+        "enclosed"
+      ],
+      "device": "universal",
+      "alignmentGroup": "transition-03-to-02-v002",
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "layerOrder": 0,
+      "motion": "stationary preferred; optional 2% rendered-height travel, 4% edge coverage",
+      "overscanPixels": 0,
+      "maxBytes": 184320,
+      "dependencies": [],
+      "acceptance": [
+        "exact dimensions",
+        "declared alpha",
+        "registered geometry",
+        "no baked UI or floor digits",
+        "budget met"
+      ],
+      "status": "PROPOSED - composition and commissioning approval required",
+      "fromFloor": "03",
+      "toFloor": "02"
+    },
+    {
+      "id": "transitions.02-to-01.universal",
+      "floor": null,
+      "package": "transitions",
+      "filename": "transition-02-to-01-universal.webp",
+      "path": "public/environments/transitions/transition-02-to-01-universal.webp",
+      "width": 2560,
+      "height": 256,
+      "aspectRatio": "2560:256",
+      "masterWidth": 5120,
+      "masterHeight": 512,
+      "format": "webp",
+      "alpha": false,
+      "priority": "required",
+      "method": "approve one strip then derive related variations",
+      "purpose": "Archive conduits",
+      "lighting": "constant",
+      "weather": [
+        "enclosed"
+      ],
+      "device": "universal",
+      "alignmentGroup": "transition-02-to-01-v002",
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "layerOrder": 0,
+      "motion": "stationary preferred; optional 2% rendered-height travel, 4% edge coverage",
+      "overscanPixels": 0,
+      "maxBytes": 184320,
+      "dependencies": [],
+      "acceptance": [
+        "exact dimensions",
+        "declared alpha",
+        "registered geometry",
+        "no baked UI or floor digits",
+        "budget met"
+      ],
+      "status": "PROPOSED - composition and commissioning approval required",
+      "fromFloor": "02",
+      "toFloor": "01"
+    },
+    {
+      "id": "transitions.01-to-00.universal",
+      "floor": null,
+      "package": "transitions",
+      "filename": "transition-01-to-00-universal.webp",
+      "path": "public/environments/transitions/transition-01-to-00-universal.webp",
+      "width": 2560,
+      "height": 256,
+      "aspectRatio": "2560:256",
+      "masterWidth": 5120,
+      "masterHeight": 512,
+      "format": "webp",
+      "alpha": false,
+      "priority": "required",
+      "method": "approve one strip then derive related variations",
+      "purpose": "Ground feeds/drainage",
+      "lighting": "constant",
+      "weather": [
+        "enclosed"
+      ],
+      "device": "universal",
+      "alignmentGroup": "transition-01-to-00-v002",
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "layerOrder": 0,
+      "motion": "stationary preferred; optional 2% rendered-height travel, 4% edge coverage",
+      "overscanPixels": 0,
+      "maxBytes": 184320,
+      "dependencies": [],
+      "acceptance": [
+        "exact dimensions",
+        "declared alpha",
+        "registered geometry",
+        "no baked UI or floor digits",
+        "budget met"
+      ],
+      "status": "PROPOSED - composition and commissioning approval required",
+      "fromFloor": "01",
+      "toFloor": "00"
+    }
+  ]
+}

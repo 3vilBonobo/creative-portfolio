@@ -1,0 +1,747 @@
+[
+  {
+    "Algorithm": "SHA256",
+    "Hash": "AAEBFE9F480F50751CC44B39D2F6B04702333597121E418CCAFD1C7B8AB6C05E",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\about\\about-wall-mobile.jpg"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "9CBE3247B66F2AFF3EFEA6414BF56EB81CDF1D02D33B7F76806AD879C6945EE7",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\about\\about-wall-mobile.webp"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "1CC3BE8849E8D050030AF8F1F8BC15F9F2ADBF98ECA5F8C3C0A55F3D1D311EAE",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\about\\about-wall.jpg"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "F30092319D99A9CBF93C22C58B33C3D6CA4372977B2A20C23DAD6E8FC67B35D5",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\about\\about-wall.webp"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "CC5C76BFF459A331D30D8035C4817F17FB2B9E83DFB27CE5180BA1CCC5C5DBF2",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\about\\irene-portrait.jpg"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "5D6FDA1DA5481F30046EE20062DA292093E84EBE1756BED7DBBF6AC646F8A4C4",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\about\\irene-portrait.webp"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "C3414072ACD1926A39905BF59602C6EEC75B9BA4243DF4A6DEE523AAA0C76E7C",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\audio\\cat\\credits.html"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "FDBFA1C5D5F7F18B5713BD58D50387A008133CA5E84606757898228B3521A2FF",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\audio\\cat\\meow-pleading.oga"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "34D45DB58A5AD7B9586514BD30350F0E6C43AD9391B253CFEE82A08DA21EAB67",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\audio\\cat\\meow-silas.ogg"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "C82D3AC2016F214032CADB979D91F164FE245A2BF9EBDF797CDA638234F3F458",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\audio\\cat\\purr-hull.ogg"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "CD4BD1D17F838BC54CC19AA6D3CC2E7DFCD2D2648FF6E468A0A6665DB5E66D6E",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\audio\\cat\\purr-whiskers.ogg"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "D22053684AAAED7AF746DBBD6A64B7C0CA9534F6983977E3CA0B986186CC2AFE",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\city\\city_base.jpg"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "D072990B42DE91185A0542C7B7DAB7AC79C285A844F386A1DDFCF43505DB0628",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\contact\\alley-day-extended.webp"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "1B6F600B4EA02DFF4F53ADED5FC6A82B9C9970327AD1C5305988760B16F6741E",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\contact\\alley-day.webp"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "BD22E760A8897A6CC3911F749DA5DF5814920DEF9891B5AB266926683977F5B9",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\contact\\alley-night-extended.webp"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "D689941A2F679AF1C17ED59E7E19C157A498A2D07B134771269E30DE75B932D0",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\contact\\alley-night.webp"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "5AAF5204132886E72927744D2D03AFB11EA46A963128D6A63BD86C29627D8D83",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\contact\\mouse\\house-mouse-gait.png"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "91E98380E9A4E046AFA42B902D680C84E98EC26C812C75F29DAC6CEEE510F352",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\contact\\mouse\\house-mouse.png"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "5A35F6457BD8CF33E02061EB885DA8A3DA7AA2FBABE3E1680DEA1112BDE93F34",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\contact\\mouse\\night-office.png"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "6623F797EBB84DCFDEA7A0CCFEB6F51D0DBB1BB74A7D8FDE9C4BC5A931D61215",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\experience\\experience-wall-clean.png"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "DB74AB0B78338C1F778F8398C45F4103C99AEA0E845A3118A7750B4EEAFD3445",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\favicon.ico"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "D4057DEBBE47844481A690135A596CA764ACE113EF2E2119959531847F8E7B17",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\favicon.svg"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "E1D9C85206495BB4D3D820E1D633B505F5F29117E7DECE1F7EB97A496A048DB8",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\hero\\aquarium\\aquascape.glb"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "47705F0435D2B575ABAF20A2DB27A616B690DAC0A51EF0D0D92722F5C6097563",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\hero\\aquarium\\small-fish.glb"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "63DDE4EA191CB0FD36C736E7515669FC58E33E57F69C66AB8448949EC9585C9C",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\hero\\aquarium\\small-plant.glb"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "7C8D0794DD9DB0A82F668A276896818D195C644CFED35F0FBF984A3260E70E50",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\hero\\aquarium\\textures\\moss.jpg"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "43CD69BF736A3847E09B5454684C0EC5ACC20C1D1D5A96401A9BAC5BE98378BF",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\hero\\aquarium\\textures\\soil.jpg"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "220CD009E477CC01A2A300C6028F4CA0530BE9D2F85667F1C977D902DEB1AD09",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\hero\\athens-coder-loft-day.webp"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "BF8E21731F7B8CE4E53E3CEA9F7563D25CD69D989E0E751DDC7ADA46AEF62B8C",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\hero\\athens-coder-loft-mobile.webp"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "71B130B4905889B1A7E383E609566E8A6E916C276C22042EF2ECCDD899AA1AFC",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\hero\\athens-coder-loft-night.png"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "7E66E758F179C9FAFEAB7B77975CC688F69C0850D1F3B03D9266AECD6FEC8598",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\hero\\cat\\README.md"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "55E5A0DFFCF28701E0F1C43844C411B8160407B0BCDE1E4861C61732397256A7",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\hero\\cat\\black-tomcat-sprites.png"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "BD042511A2EA27AD41421A7457C18C49BFBBD835946EE2AC855A57A9486AEEE2",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\hero\\daily-puzzle-cyberpunk-magazine.png"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "B6B7BABDC55D44BA13CC0ADB27CB6C718B4F4B8E61252AD0A8E0254EE4274975",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\hero\\layers\\acropolis-dawn.webp"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "0275DB249A9E8C431C7023189D300B43C7B410C18020D1FB8F5E59AFB98B4858",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\hero\\layers\\acropolis-day.webp"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "379365B2719A7ADEE2CAC93B3DFB64D2326D842DBF4B471083942E6C52880833",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\hero\\layers\\acropolis-dusk.webp"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "BBADAEBECF25B5F71DD3824C786FC383F84E5CE3EF01F05D0E8E5D7DDB3D1253",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\hero\\layers\\acropolis-goldenHour.webp"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "92604916A787923367BCEF15FE024D9C8454375A773C3D7F9A06FA3E33205F1E",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\hero\\layers\\acropolis-night.webp"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "E1C3B2F887340DA9D1F664AA408856E0DED1D6A12057AD2788038D34F76A43A5",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\hero\\layers\\background-city-dawn.webp"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "D137E612D6A6D1BEB539A1A39207CD349DF6A6434A5943298A69A56D1108A53B",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\hero\\layers\\background-city-day.webp"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "3FED702C827625DDF3E91912189B3C0A6FECA993E5BA5D4A78BBCF9C3CDB885D",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\hero\\layers\\background-city-dusk.webp"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "8B58EA3F643ADF9AD19E2CA808605B6AB0D4DA9637F6C088F190E1E5467038B6",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\hero\\layers\\background-city-goldenHour.webp"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "BA7C4F319E71386A92471F0E73CCFC3514CB04AD46DDBDFDE94BB14847C8560F",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\hero\\layers\\background-city-night.webp"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "8BCB3F8A8DF37C4897F0B3C79A4E3C16A17DA369E0F476277F180CC4CBF077EF",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\hero\\layers\\distant-terrain-dawn.webp"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "250E48D25C48D8314E9346384A40E51777D16275429869D3CA17850F65DAA03F",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\hero\\layers\\distant-terrain-day.webp"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "8019311FF96C0D9BD64B6E77E0EB47C11EC831AF3E595A9BB0A7C0AD6C1B8AE8",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\hero\\layers\\distant-terrain-dusk.webp"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "644325DC8F648F61AA715DEFBC7E04B181C15E51C9E692A00661EAE5F0400253",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\hero\\layers\\distant-terrain-goldenHour.webp"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "D12BB3A38CB79ECF9EACCBC427394805C9BA5F7C4475D5969A392655416F9975",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\hero\\layers\\distant-terrain-night.webp"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "4FED04FD37368330210BA5AF8D3610F0643475B50B80208D141AA25A48570D9D",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\hero\\layers\\exterior-window-mask.svg"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "0F582501F70E233F098E404B4E456343957A67887BDD2A3EE519954BDB0605AF",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\hero\\layers\\interior-lighting-overlay.svg"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "202707A596A6AB87C9DDFF383401B0331EFEB066C2EAE3312A7BB44622B25009",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\hero\\layers\\interior-occlusion-mask.svg"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "0370085B1A4D478DDDED668D54E9ADF54BAFA7BB80D3EB59FA314E80B00BB1A7",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\hero\\layers\\moon-skyline-occlusion.svg"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "53657EE79ACAF37F78B72806511FE058B74B2253F425DA8E99DC9D284B28A8B2",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\hero\\layers\\near-buildings-dawn.webp"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "F6D9E13B069C2491D7189BD934F7DC52DA37725F67DD443C8782E0253091D4A5",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\hero\\layers\\near-buildings-day.webp"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "5F2A9BC36787F0B56549002F81A12B9E9CED4E7711295008A5ACF3F7A47F9E2E",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\hero\\layers\\near-buildings-dusk.webp"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "4D622A535E1C8127136C935E3C227D9D0532B1AC72F5427AACA27294AEF1E95F",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\hero\\layers\\near-buildings-goldenHour.webp"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "CF16E85161271CCF6D4E7CE982857B8FB6A7072A83D10D845C4C7D0BF070B289",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\hero\\layers\\near-buildings-night.webp"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "742FEC59B756001953622E34289490BCB25B11CB2B06FEE70F916C7273135010",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\hero\\layers\\office-shell.webp"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "EDF666C77818AEA2CC79365C49947F67857149BE49E1C0DD9D1CC8208E86C0F9",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\hero\\layers\\sky-dawn.webp"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "18DD01133E486C8A22135A46597ADD7F115CA7FD573E32DF9674E0D5B11C68A7",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\hero\\layers\\sky-day.webp"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "F2DC6ED938F009D13599621702125892A4FE6BE3D8E33AC3739B6599C5F3F0D3",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\hero\\layers\\sky-dusk.webp"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "5282564D056006B3F0CA9C6806056C3DEB81DE37DB7F788415D1452F7A576ADA",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\hero\\layers\\sky-goldenHour.webp"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "B2BC6093AA7DF8CE5364885E574118E2501BD7673E9226C72E69816D041BBB89",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\hero\\layers\\sky-night.webp"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "6F8F5A6A9989736A47D473C3DA9C4AC6395672732C9077B9DE5BFFC97B432B18",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\hero\\layers\\window-frame.webp"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "633B4631C8C81A6C50E84360F02FFE7C798F4B982DC016729F0CC1C460CA3F62",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\hero\\layers\\workstation-foreground.webp"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "12F5EFDD53362301C5C46F85279376C81730238C43D432ACC5710C9B71CB4084",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\hero\\telescope\\discoveries\\acropolis-day.webp"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "3AA717014B014DA26F062DE12D405664864CF99956D91A92A1C866E824575CC5",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\hero\\telescope\\discoveries\\acropolis-night.webp"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "08BA1E35FB26D54928F59BE80E0449523E2EC0A1B2D3E8E89445DA97C0F3BC13",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\hero\\telescope\\discoveries\\backgammon-day.webp"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "B628DE2A5027EEC416DDB89A2A16659BB38991CF67C7601EEA2003F5321D83A9",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\hero\\telescope\\discoveries\\backgammon-night.webp"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "E6CD363C861188C53F9A632D2A85335A3FFC4B76FAC3563E9B06EA2B067CC377",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\hero\\telescope\\discoveries\\balconies-day.webp"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "5337F71484B44F59BB27496F30D933AA687411D69D855A124B82B0DD0D8EC7D8",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\hero\\telescope\\discoveries\\balconies-night.webp"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "D1B7C8BDB81594C232D303723877F24526C3F920AEC7CCEA6E042F84C807F273",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\hero\\telescope\\discoveries\\clouds-day.webp"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "FA510E966F96C2C6D4A24E1CF65FCEA3D86BD24CE62E6B4434C71D9F7B37BF99",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\hero\\telescope\\discoveries\\clouds-night.webp"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "502195710C377D5A5DD8179FE072A80C9C6E07AEDF26868EE66C652D03207C83",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\hero\\telescope\\discoveries\\glass-towers-day.webp"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "F869565C833D77AC309551CC813C64216876418722B287261139D9405F6EE051",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\hero\\telescope\\discoveries\\glass-towers-night.webp"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "1C054F964BAC7E02A1B31CC3499CB28CDBD37C9E22842DC6E07EBE6E328BA654",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\hero\\telescope\\discoveries\\moon-day.webp"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "F11B8C930B04F2240B4EF82EA310A350546B2371F94DEE1EB351E989DC8F161A",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\hero\\telescope\\discoveries\\moon-night.webp"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "C2EF6AE9EE07D5B5261A1C60CB98FE41F8A1AA5F84EB8BA76D0A3AEA83E342B3",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\moon-realistic-warm.png"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "C63512EBB47DAFCC42213C37C7EEAC7A5D1A7D4F7B1DD6091E76065D28F67672",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\projects\\fashion-show.webp"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "AA3C4245784720FDD146CBC9EF4DFE86D72E7DF65E75A3D3AB4C4591857EE0DB",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\projects\\iss-tracker.webp"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "341FA7A7CC9991B22F9E6373979C33B8BAC66CB08AA40A985DAEB9CBCA9C77A5",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\projects\\magic-herbs.webp"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "1A82750FC34515EAEA9A871A48EC1012D0205F05ED8BA8B2D4B38820CA6A0625",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\projects\\orthobyron.webp"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "81701AB829E3ACCC99F70AE4FA89DB6BE09D85C7A2F266219C4AA81D7E42D945",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\projects\\projects-wall-clean.webp"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "B9593C94C5D268E8F2F05F14FD60042794CE29909691C77522EC0277FC8D3BE0",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\projects\\projects-wall-tall.webp"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "C5DD80069D22597FAD888DD469A3A9CBE8DD90882E1F4211C2879FD27250F79E",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\projects\\tip-calculator.webp"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "73E346DC0084BC36F82EBAE1B217A442C103EE1E1CD92951B9E1265E4ADF889A",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\transitions\\service-void-cables.png"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "E2BD584A206E42473FFA22D4DF424B7597E642D84BE53FE4F8732D3BD9C22EA9",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\transitions\\service-void-pipes.png"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "01F314A9658C00F5F40BF5B32ADA983FDCFFB94C34F6B89A12F0705BCDD30924",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\weather\\alley-exterior.svg"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "5252865BD43847F08924E4ED9FA03AC09249A1CA6588A2D7D47DA1D52F1BC732",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\weather\\alley-sky.svg"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "005A79F2844221C148A2FD22351886D198DE2C75460B674A7E5693E0A40ED23A",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\weather\\cloud-bank.svg"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "F4C202C6E27C8DB11AF47DA43D431AE0EADB4347A860E904A88461314573EEAB",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\weather\\hero-exterior-day.svg"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "8943AC71CFF532DCD8070FC130729D4A2A70C5D75A806616F288D1AD1CDC7F6F",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\weather\\hero-exterior-night.svg"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "757D7CD701BEBC88938576DA148874D6920EBB02B6A0F43AD6AA232A955C0E5E",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\weather\\hero-sky-day.svg"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "B42A39A53D5B0BAD4BC8F7DF2DD926BF058F6111CDFA4D3A16876DDDE1D0C19C",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\public\\weather\\hero-sky-night.svg"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "202A108E227EEE2EF1A3D7A084E8EFC08EE795100E55B7E75D4A2218A10FCAAC",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\src\\App.vue"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "D73C3F47CA15C9A5E65C601B8B23F41F1BC801C114AF955046EC5629B0F1159D",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\src\\components\\AcropolisLightBeams.vue"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "E00700911631B5907C904B4E14F6F2136DCC8718D9C99B9D2E78A1F27023697E",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\src\\components\\AlleyFooter.vue"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "4319E38A9366601F35D3AE0B48083B2116CBA68FBA3838F81F2125229FC62024",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\src\\components\\AppShell.vue"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "1D6CED64BB3FD41A7ED156022309BDC4C2B8C0BB837A55BB132C5C272D627AF2",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\src\\components\\AquariumExperience.vue"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "77C45D8180ABC8CFBB06D7E3773F0C1A104A81AF404AC5845FFA0474913D4F7D",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\src\\components\\CatSprite.vue"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "7E32044DDA9943862F136115B716307C4A0AD69B575226C43432C1B9EFD8AC63",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\src\\components\\DailyChessPuzzle.vue"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "F5BEEA13A9984E5C9ECED0EE7CA0B160D1D3C403D4FAE18B6720F1C08B07BF0E",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\src\\components\\DailyPuzzleBook.vue"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "6E06FBC5388C3782A922DABBD47BF68B44B1A301EA23F44F2F0D005BCD77FBFF",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\src\\components\\EnvironmentPreview.vue"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "E8F81844A81824566E4C15F059528E20E0399D19CAE39F8DDAEBA6E34E511076",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\src\\components\\ExperienceTimeline.vue"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "B904985C025AC3BADCACE9E4A16198068625258C7FA5785C18803CAAA5C5858C",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\src\\components\\FloorNavigator.vue"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "8DEB9BE017280C459B169C415703D5593EC95493F375C0C594514B9A8C23EF05",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\src\\components\\FloorTransition.vue"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "8FC67BD25D851939129C7E70F61707BBCC27D7A94B27C6A1E6C8632264411210",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\src\\components\\HeroCat.vue"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "05E4B14E36487EF2AEB063D97FE2F7E2A73CA918C413D50FA7317C5F70619B38",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\src\\components\\HeroClock.vue"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "A3ABFB8C104B69BA36B82406348FD63D3DD3F62B773196D0A477829030101F94",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\src\\components\\HeroMonitorAnimations.vue"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "70F56347AE5DB7B54FDC5C60D30CBE895A15C3A61CDC09C91BFBB6D9726885CB",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\src\\components\\HeroVisual.vue"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "A6CF398537B82A822F82515A0B660BAAD7823DAFECE91C2453E15358ABD18CBF",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\src\\components\\MoonSky.vue"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "B85E90981D54D4A8C2BE5E0F5CCEB387957BFDB3F1A065BAB91B97244ED734F1",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\src\\components\\MouseEasterEgg.vue"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "1D6149294EA9D4C702C3758C4D4529B73A84F2364274AFD67D9E9ABBC5A7F8A3",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\src\\components\\MouseRunner.vue"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "41EFA849ADC2F17AEF5DBB81AB60A12074A3EAA0C659D0E0D93C1E9BE5DF6F12",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\src\\components\\PrecipitationCanvas.vue"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "09F98F6A20738C516EA28A98A25C3D5F9077C09CAA2EBF635795C16D65EA6EE2",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\src\\components\\ProjectCard.vue"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "B179E8744575D9411708D3B501CB1BF1F9B9EE9CC22BB1A251A95598B9325A0B",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\src\\components\\SceneEnvironment.vue"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "309C3061EDBE6575516752A32DB2796479B325F6091E3FE5618D9640D83F2BFF",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\src\\components\\SiteNavigation.vue"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "FA3817414431AD962BB0B85F88605FC1D558D3EF0115355B7A939D72F5B041C7",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\src\\components\\TelescopeExperience.vue"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "80AD955674895ABDF3FAE2EB9F116E75BCD17F93CBA5A66E25C3D7AB7673D4F2",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\src\\components\\WeatherEffects.vue"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "2E650E6FF358A26ABD95116FBBE82846CD1D1F7FDE8081339968238863D8A96D",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\src\\composables\\useActiveFloor.ts"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "ED41AED686CFD9F8EA30139C08545C34D9017381E4A4E67615E80D5859013CD2",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\src\\composables\\useEnvironment.ts"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "24E8939B74F38362EF84319500EE43D85B4FAAB4E2BC50F02550F28E1ECAD2CE",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\src\\config\\environment.ts"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "9B7D710C3D54FE1C94B7A006760431132FDC9D39AE259474CA50BE6A48F0E777",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\src\\config\\heroCat.ts"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "59DDA2D5FFA84EF3A052EE78D19D11743A6092C7C1655A56CEE8CF5ACD4DE4A5",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\src\\config\\heroLayers.ts"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "D353BE7545D1A6E299462E87C801BC806BFD6F6658F7B2F09E73B2918B83DB3B",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\src\\config\\timeArtwork.ts"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "2CC2DEDDE857DB30578BD8628F6641A8FCBC7C49A116F45F2A822A326923529F",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\src\\data\\about.ts"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "859160194FAA2D6752578BAF817AEB73669BDED183941A278C61F08614C2C03F",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\src\\data\\experience.ts"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "9BB82DCEE610D63474F89E962D45CEE28A5C95A136D4BB85B82F556DB7CEBB54",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\src\\data\\nonogramPictures.ts"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "E507CA2AD9CB5192A5F7A54F60E754BDE54FDA275D2F890683C753B26E2ECA8A",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\src\\data\\projects.ts"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "7DCEDEF2D6B2BC9503DBABE3C78753E1D109A95EDDE3579E8CC49402225BB280",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\src\\environment.css"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "BC0C810ABC1E39795C4D791D498030E92B96718093E91BE95AB6E399849CBD97",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\src\\main.ts"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "A0A1F777B9AA4E1066E241A7FE2C1B03A16D2EDD8DE689DD36099EAAB7194AE0",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\src\\sections\\AboutSection.vue"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "2464558E8E0A6AE75C25D57E4D0EC84AA14C0D2272837A49270DEA40DFE643F1",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\src\\sections\\ContactSection.vue"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "AAE3ABBD6CBBFCF28FDE1195620955D1ED168AD4FBB83C4B567D7444427560EC",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\src\\sections\\ExperienceSection.vue"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "1DF16A694656B0B2FD7BD0C51CC348462AC23DE7909AE7FB72F892563325DF33",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\src\\sections\\OfficeHero.vue"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "0430B31779DF0373467D7D9584F95B5F63B341533AE934ECC71CD6D23F7BB997",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\src\\sections\\ProjectsSection.vue"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "C376D426667707495A6F9212EBABB5F71D8355F9DF9779117F4E96F7C7A47DFA",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\src\\services\\catInteraction.ts"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "49C139177C1183D0B9B889291877DBDC673C7B85C1C4782235D9010556B7A53B",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\src\\services\\chessPuzzle.d.ts"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "0F7D955BC4037A0395AC025C6270EAE6979FFCAFFE18345FABAE44FFB104A369",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\src\\services\\chessPuzzle.js"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "B8297145E3D86CBA77E09A801F34E38976C147B701F20C7729B9A050728F4A1E",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\src\\services\\environmentMath.ts"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "E5D92FEC71FA94C83D979C748080B7FCF9924785BA9C6980061FCB2173AD8784",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\src\\services\\moonMath.ts"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "847803BA205711A886F10950DC37552E9E3A89EE9E596CBDE6A01E539264FF61",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\src\\services\\mouseMotion.ts"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "BD9EDA5DCA7C2E08729FA26CEB3E9455C376AED931ECCED45E78B3D20000CFF6",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\src\\services\\weatherCache.ts"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "3BEE1C2645C921EFFC70EFBE694594095D0889F853B12379614D6C2E5C215C0A",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\src\\services\\weatherEffects.ts"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "F3AE0028470729C84B647C9C58FC014A1867A801BD00EF750BBDE3D15E02F884",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\src\\services\\weatherService.ts"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "E6CB541DD726676095AA025EE7C15B90E64F0B4AF5D414DEAEF087305D26A1C5",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\src\\style.css"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "5C2F9EF63B51C21FA77A9968B4233695102483CC53F6F71D4B50F7FBFEAAE6B9",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\src\\types\\content.ts"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "BB1F1C5EEB654CC4E195D086346D1BB7B80C7B0A048D489392C15FF648CED560",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\src\\types\\environment.ts"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "65996936FBB042915F7B74A200FCDDE7E410F32A669B1AB9597CFAA4B0FADDB5",
+    "Path": "C:\\Users\\Irinella\\Desktop\\Bonobo Files\\Portfolio\\src\\vite-env.d.ts"
+  }
+]

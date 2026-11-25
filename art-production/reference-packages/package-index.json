@@ -1,0 +1,67 @@
+{
+  "revision": "v002",
+  "type": "reference-only",
+  "packages": [
+    {
+      "package": "floor-00-contact",
+      "path": "art-production/reference-packages/floor-00-contact-reference-v002.zip",
+      "bytes": 2570332,
+      "sha256": "a520302f666a021a2007cbde817bc36d2088df310c54346d9f3aaa2ea8c445ff",
+      "entries": 35,
+      "screenshots": 18,
+      "proposedAssets": 16
+    },
+    {
+      "package": "floor-01-experience",
+      "path": "art-production/reference-packages/floor-01-experience-reference-v002.zip",
+      "bytes": 3218194,
+      "sha256": "d8710febe15ca85d7422688435f0c428691507cf400572a615bcf0b3de4ae069",
+      "entries": 24,
+      "screenshots": 10,
+      "proposedAssets": 6
+    },
+    {
+      "package": "floor-02-projects",
+      "path": "art-production/reference-packages/floor-02-projects-reference-v002.zip",
+      "bytes": 1834839,
+      "sha256": "5b8d28093c9fbab10d8ae13ea9ca50931974fbc20dc7d58668c723513f525173",
+      "entries": 25,
+      "screenshots": 10,
+      "proposedAssets": 6
+    },
+    {
+      "package": "floor-03-about",
+      "path": "art-production/reference-packages/floor-03-about-reference-v002.zip",
+      "bytes": 1413308,
+      "sha256": "3966b035db4adc987450d439eee4487c9ebec56ebbe6cb17f66b70023e4ec05f",
+      "entries": 24,
+      "screenshots": 8,
+      "proposedAssets": 6
+    },
+    {
+      "package": "floor-04-hero",
+      "path": "art-production/reference-packages/floor-04-hero-reference-v002.zip",
+      "bytes": 5361241,
+      "sha256": "e4e751de6560aae65a47e23c9f062fd256d54638dfef48a5330b1161cf8337aa",
+      "entries": 44,
+      "screenshots": 21,
+      "proposedAssets": 53
+    },
+    {
+      "package": "transitions",
+      "path": "art-production/reference-packages/transitions-reference-v002.zip",
+      "bytes": 5266818,
+      "sha256": "35c2be75f9be074b80e75319a349607d029d0cc95ba8da408deb45f738b9efab",
+      "entries": 32,
+      "screenshots": 24,
+      "proposedAssets": 4
+    }
+  ],
+  "totalZipBytes": 19664732,
+  "totalScreenshots": 91,
+  "proposedCounts": {
+    "required": 44,
+    "recommended": 27,
+    "conditional": 20
+  }
+}

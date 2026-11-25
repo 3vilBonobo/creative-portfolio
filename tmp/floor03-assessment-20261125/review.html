@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Temporary Floor 03 assessment</title>
+  <style id="assessment-style">
+    #assessment-controls {position:fixed;left:4px;bottom:4px;z-index:99999;background:#111e;color:white;padding:6px;font:11px sans-serif;display:flex;flex-wrap:wrap;gap:6px;max-width:95vw}
+    #assessment-controls select,#assessment-controls button {font:11px sans-serif;color:white;background:#252d2c;border:1px solid #8ed8d0;padding:3px}
+    #assessment-controls label{display:flex;align-items:center;gap:3px}
+    #about[data-assessment] .assessment-plate {position:absolute;left:0;top:0;width:100%;aspect-ratio:1956/804;isolation:isolate}
+    #about[data-assessment] .assessment-plate img {position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none}
+    #about[data-assessment] .assessment-emission {z-index:1}
+    #about[data-assessment] .assessment-spill {z-index:2}
+    #about[data-lamp="off"] .assessment-light{opacity:0}
+    #about[data-assessment="cover"] .assessment-plate {height:100%;aspect-ratio:auto}
+    #about[data-assessment="cover"] .assessment-plate img {object-fit:cover;object-position:center}
+    #about[data-assessment] .about__conduit {display:none}
+    #about[data-assessment="proportional"] .about__architecture {background:#25231f}
+    #about[data-assessment][data-tall="yes"] {min-height:2200px}
+    @media(max-width:760px){#about[data-assessment] .assessment-plate{aspect-ratio:848/1855}}
+    @media(min-width:761px) and (max-width:1100px) and (orientation:portrait){#about[data-assessment="proportional"] .assessment-plate{aspect-ratio:848/1855}}
+    @media(prefers-reduced-motion:reduce){#about[data-assessment] .assessment-plate img{animation:none;transition:none}}
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+  <form id="assessment-controls" aria-label="Temporary artwork assessment" onsubmit="return false">
+    <label>Artwork <select id="assessment-mode"><option value="original">Original</option><option value="cover">Candidate cover</option><option value="proportional" selected>Candidate proportional</option></select></label>
+    <label>Lamp <select id="assessment-lamp"><option value="off">Off</option><option value="on">On</option></select></label>
+    <label><input type="checkbox" id="assessment-tall">Tall section</label>
+    <button id="assessment-top">About start</button>
+    <button id="assessment-bottom">About end</button>
+  </form>
+  <script type="module" src="/src/main.ts"></script>
+  <script type="module">
+    const ready = setInterval(() => {
+      const section = document.querySelector('#about');
+      if (!section) return;
+      clearInterval(ready);
+      const architecture = section.querySelector('.about__architecture');
+      const original = architecture.innerHTML;
+      const mode = document.querySelector('#assessment-mode');
+      const lamp = document.querySelector('#assessment-lamp');
+      const tall = document.querySelector('#assessment-tall');
+      function update() {
+        section.dataset.lamp = lamp.value;
+        section.dataset.tall = tall.checked ? 'yes' : 'no';
+        if (mode.value === 'original') {
+          delete section.dataset.assessment;
+          architecture.innerHTML = original;
+          return;
+        }
+        section.dataset.assessment = mode.value;
+        const portraitTablet = mode.value === 'proportional' && innerWidth <= 1100 && innerWidth > 760 && innerHeight > innerWidth;
+        const profile = innerWidth <= 760 || portraitTablet ? 'mobile' : 'desktop';
+        architecture.innerHTML = `<div class="assessment-plate" data-profile="${profile}"><img alt="" src="./production/floor-03-about-wall-base-${profile}.webp"><img class="assessment-light assessment-emission" alt="" src="./production/floor-03-about-light-01-emission-${profile}.png"><img class="assessment-light assessment-spill" alt="" src="./production/floor-03-about-light-01-spill-${profile}.png"></div>`;
+      }
+      mode.addEventListener('change', update);
+      lamp.addEventListener('change', update);
+      tall.addEventListener('change', update);
+      window.addEventListener('resize', update);
+      document.querySelector('#assessment-top').onclick = () => section.scrollIntoView({behavior:'instant',block:'start'});
+      document.querySelector('#assessment-bottom').onclick = () => section.scrollIntoView({behavior:'instant',block:'end'});
+      update();
+      section.scrollIntoView({behavior:'instant',block:'start'});
+    }, 100);
+  </script>
+</body>
+</html>

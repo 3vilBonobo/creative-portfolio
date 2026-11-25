@@ -1,0 +1,273 @@
+{
+  "type": "reference-only",
+  "revision": "v002",
+  "capturedDate": "2026-11-25",
+  "package": "transitions",
+  "sourceBrief": "docs/art-production/briefs/transitions.md",
+  "productionArtworkGenerated": false,
+  "screenshotCount": 24,
+  "files": [
+    {
+      "path": "artwork/service-void-cables.png",
+      "bytes": 2403047,
+      "sha256": "73e346dc0084bc36f82ebae1b217a442c103ee1e1cd92951b9e1265e4adf889a",
+      "imagePixels": [
+        1956,
+        804
+      ],
+      "originalSource": "public/transitions/service-void-cables.png"
+    },
+    {
+      "path": "artwork/service-void-pipes.png",
+      "bytes": 2199809,
+      "sha256": "e2bd584a206e42473ffa22d4df424b7597e642d84be53fe4f8732d3bd9c22ea9",
+      "imagePixels": [
+        1954,
+        805
+      ],
+      "originalSource": "public/transitions/service-void-pipes.png"
+    },
+    {
+      "path": "brief.md",
+      "bytes": 7210,
+      "sha256": "255f288f22ef0cefba6f7b02e1b7491e8d5fffc64510c79a1dfde37f59716bfe"
+    },
+    {
+      "path": "inventory.json",
+      "bytes": 5353,
+      "sha256": "c8e9d59767686f884ff724bf1ef0271cbf4ea473075e4d1465161b4e57e0037a"
+    },
+    {
+      "path": "layouts.json",
+      "bytes": 5730,
+      "sha256": "b9969adc2620bcc9d45b8b67ca1cb006d94abc3a0c54c1809f5f03ab903b4edf"
+    },
+    {
+      "path": "proposed-strip-guide.svg",
+      "bytes": 603,
+      "sha256": "e273afcab4f2519958a682a41279d31c8cd85656c55220216b7ca3182a8ac3a8"
+    },
+    {
+      "path": "README.md",
+      "bytes": 1407,
+      "sha256": "d6743d0b2c8a06092c6963f609dfb16af9c856c4e82ae151bae628dbe7cb8a46"
+    },
+    {
+      "path": "screenshots/01-to-00-desktop-1440x900.jpg",
+      "bytes": 40264,
+      "sha256": "d9a9aa55c3e7fa21a0af73ffb224337dd6eabcbf8b94acaa974988aa0f4e6bb1",
+      "imagePixels": [
+        1424,
+        225
+      ]
+    },
+    {
+      "path": "screenshots/01-to-00-desktop-wide-1920x1080.jpg",
+      "bytes": 50820,
+      "sha256": "5a8ad60221922786d43a48f1ea067675690b1208f59d89667a0740911e8e0c63",
+      "imagePixels": [
+        1904,
+        234
+      ]
+    },
+    {
+      "path": "screenshots/01-to-00-mobile-390x844.jpg",
+      "bytes": 13164,
+      "sha256": "12bff9adda84e266f3add7f4151355abcc63c8bf1132b630640f372eea013911",
+      "imagePixels": [
+        375,
+        170
+      ]
+    },
+    {
+      "path": "screenshots/01-to-00-mobile-landscape-844x390.jpg",
+      "bytes": 17862,
+      "sha256": "ac6894bfc2944cf726f0bf32d7e78363b75976cb0caf9e284f3a1bbe6ea5d025",
+      "imagePixels": [
+        828,
+        174
+      ]
+    },
+    {
+      "path": "screenshots/01-to-00-tablet-landscape-1180x820.jpg",
+      "bytes": 31234,
+      "sha256": "b42a9898f2b943c1f35538efd9c322d96b5a615ec8eb19f4180f28c6bc80d04a",
+      "imagePixels": [
+        1164,
+        203
+      ]
+    },
+    {
+      "path": "screenshots/01-to-00-tablet-portrait-820x1180.jpg",
+      "bytes": 17599,
+      "sha256": "719704a74e577c3a9de76f609e98224fc3c1da5afe92675812e382a8c4fef15c",
+      "imagePixels": [
+        804,
+        172
+      ]
+    },
+    {
+      "path": "screenshots/02-to-01-desktop-1440x900.jpg",
+      "bytes": 37598,
+      "sha256": "99df159ee0bb9700113523a376ac2ef7d75fdd806abc89ea34154d3e2fc647f1",
+      "imagePixels": [
+        1424,
+        225
+      ]
+    },
+    {
+      "path": "screenshots/02-to-01-desktop-wide-1920x1080.jpg",
+      "bytes": 55678,
+      "sha256": "2a19ebe39d3a92b018d48fd4e6d268dd29cf31a1368e61941813bc95c565d368",
+      "imagePixels": [
+        1904,
+        234
+      ]
+    },
+    {
+      "path": "screenshots/02-to-01-mobile-390x844.jpg",
+      "bytes": 8509,
+      "sha256": "6e070837d7457b93d1dfca5ae7d03d303bb05c0c4937e8579679c5dd4a96b321",
+      "imagePixels": [
+        375,
+        170
+      ]
+    },
+    {
+      "path": "screenshots/02-to-01-mobile-landscape-844x390.jpg",
+      "bytes": 23142,
+      "sha256": "bbbbd588590e8766b8f92e16a73c70b0e69cdac1a948f8e80cabc7f3960f880c",
+      "imagePixels": [
+        828,
+        174
+      ]
+    },
+    {
+      "path": "screenshots/02-to-01-tablet-landscape-1180x820.jpg",
+      "bytes": 28472,
+      "sha256": "af44822a8bab61e3264aa2e71b52edc76828c2496c094da025c61f61ce3d39dc",
+      "imagePixels": [
+        1164,
+        203
+      ]
+    },
+    {
+      "path": "screenshots/02-to-01-tablet-portrait-820x1180.jpg",
+      "bytes": 22264,
+      "sha256": "91daa6531a5d66ed9a571a5decd0ed1497c191821efa365af2a56c9924aea439",
+      "imagePixels": [
+        804,
+        172
+      ]
+    },
+    {
+      "path": "screenshots/03-to-02-desktop-1440x900.jpg",
+      "bytes": 49586,
+      "sha256": "193ab5b86b68e5fa50b18316be5a11aa62d18eddcc53b369bd664c5e920335c6",
+      "imagePixels": [
+        1424,
+        225
+      ]
+    },
+    {
+      "path": "screenshots/03-to-02-desktop-wide-1920x1080.jpg",
+      "bytes": 61484,
+      "sha256": "bbae1bca173948dd97cc3693d3b43a59f1055a8c61aa456a706d81d0917af0cc",
+      "imagePixels": [
+        1904,
+        234
+      ]
+    },
+    {
+      "path": "screenshots/03-to-02-mobile-390x844.jpg",
+      "bytes": 8251,
+      "sha256": "5d65b2960f37dde68e6cc2abbe1a53f94a9102bd658c47dab323eb5e05b0a804",
+      "imagePixels": [
+        375,
+        170
+      ]
+    },
+    {
+      "path": "screenshots/03-to-02-mobile-landscape-844x390.jpg",
+      "bytes": 23018,
+      "sha256": "c1ddbfc78658cdf54f059bddedfa0e75bb4d420a37f5ec1bdd25e4989455a2c1",
+      "imagePixels": [
+        828,
+        174
+      ]
+    },
+    {
+      "path": "screenshots/03-to-02-tablet-landscape-1180x820.jpg",
+      "bytes": 36444,
+      "sha256": "a7c6f0ef31f9a2a7bca4e909de6677ea0ad633ab2d27ec4062fb243264a0791f",
+      "imagePixels": [
+        1164,
+        203
+      ]
+    },
+    {
+      "path": "screenshots/03-to-02-tablet-portrait-820x1180.jpg",
+      "bytes": 23521,
+      "sha256": "28f08a187e2a795793163c6dd18bbfaafb9d093aea2b721d0a3899091b1e3a4e",
+      "imagePixels": [
+        804,
+        172
+      ]
+    },
+    {
+      "path": "screenshots/04-to-03-desktop-1440x900.jpg",
+      "bytes": 35951,
+      "sha256": "603d91c4c4ef35bdf60db387b39bc8d9ecb5ea6f8c00a7d92887f5f5da07f551",
+      "imagePixels": [
+        1424,
+        225
+      ]
+    },
+    {
+      "path": "screenshots/04-to-03-desktop-wide-1920x1080.jpg",
+      "bytes": 45138,
+      "sha256": "a19d877e8d759611bdec5f4accb63b71307e83595a62aeac8bcaed88dac48425",
+      "imagePixels": [
+        1904,
+        234
+      ]
+    },
+    {
+      "path": "screenshots/04-to-03-mobile-390x844.jpg",
+      "bytes": 9177,
+      "sha256": "141816a23f1f8cf09ecd4c9049edf06268ae2521af5618045da9bd09d988d331",
+      "imagePixels": [
+        375,
+        170
+      ]
+    },
+    {
+      "path": "screenshots/04-to-03-mobile-landscape-844x390.jpg",
+      "bytes": 15193,
+      "sha256": "45eb7fd135aacb421926af5175a5ccd3da1d8d45111a466745b32f08663299a4",
+      "imagePixels": [
+        828,
+        174
+      ]
+    },
+    {
+      "path": "screenshots/04-to-03-tablet-landscape-1180x820.jpg",
+      "bytes": 25709,
+      "sha256": "226e183c2cb3cb70401ac55a7b4c3c907693cc9aad8307259c4b3d9229a59de8",
+      "imagePixels": [
+        1164,
+        203
+      ]
+    },
+    {
+      "path": "screenshots/04-to-03-tablet-portrait-820x1180.jpg",
+      "bytes": 15212,
+      "sha256": "53d42a6bd2d26c77811a2474ff15098befe9455a32b4185e52d672eaa3e7476a",
+      "imagePixels": [
+        804,
+        172
+      ]
+    }
+  ],
+  "captureCaveat": "Filename dimensions are browser CSS viewports. Actual JPEG dimensions are recorded separately. Full-section clips include scroll runway where applicable."
+}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="el">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Μαντλέν - Ποίημα</title>
+    <meta name="description" content="Το ποίημα 'Μαντλέν' με διαδραστική εναλλαγή λέξεων που αλλάζουν δυναμικά.">
+    <meta name="author" content="Βασιλεία Οικονόμου">
+
+    <link href="https://fonts.googleapis.com/css?family=GFS+Neohellenic" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <div id="loader">
+        <div class="loader-text">
+            <h1>Μαντλέν V</h1>
+            <br>
+            <p>Loading ...</p>
+        </div>
+    </div>
+    <div class="poem" id="main-content">
+        <p>Μαντλέν</p>
+
+        <p class="line-gap">
+            χθες το βράδυ με πήρε ο ύπνος <br>
+            <span class="changing" data-options="κλαίγοντας, αναπολώντας, στην καρέκλα">κλαίγοντας</span><br>
+            κοιτώντας <br>
+            <span>ξανά</span><br>
+            τις φωτογραφίες μας
+        </p>
+
+        <p class="line-gap">
+            <span class="changing" data-options="Νομίζω πως, Σίγουρα">Νομίζω πως</span><br>
+            <span class="changing" data-options="ονειρεύομαι, πονάω, νοσταλγώ">ονειρεύομαι</span><br>
+            Είμαι <br>
+            <span class="changing" data-options="ακόμα, πολύ, ακόμα πολύ">ακόμα</span><br>
+            θυμωμένη
+        </p>
+
+        <p>Μαντλέν</p>
+        <p>Εσύ </p>
+        <p>είσαι πολύ μακριά,</p>
+        <p> <span class="changing" data-options="Εσύ είσαι πολύ, Εσύ είσαι Εσύ">Εσύ είσαι πολύ</span></p>
+        <p>Εσύ</p>
+        <p>Μου έστειλες μήνυμα μετά από<br>
+            <span class="changing" data-options="χρόνια, χρόνους λειψούς, εποχές ολόκληρες">χρόνια</span>
+        </p>
+        <p>Είπες πως ήσουν <br>
+            <span class="changing" data-options="στο Βερολίνο, στη Γενεύη">στο Βερολίνο</span>
+        </p>
+
+        <p><span class="changing" data-options="Με είδες, Με φαντάστηκες">Με είδες</span></p>
+
+        <p><span class="changing" data-options="σε μια γωνία, σε μια ανάμνηση, σε έναν πίνακα">σε μια γωνία</span></p>
+
+        <p><span class="changing" data-options="στη Βιέννη, στο Παρίσι">στη Βιέννη</span></p>
+
+        <p><span class="changing" data-options="Σε μία γυναίκα, σε μια ζωγραφιά">Σε μία γυναίκα</span></p>
+
+        <p><span class="changing" data-options="που μου μοιάζει, που είναι εγώ">που μου μοιάζει</span></p>
+
+        <!-- Combined section -->
+        <div class="poem combined"
+            data-combined-options="που δεν με αφήνει|που δεν σε αφήνει|Να ξεχάσεις, που δεν σε αφήνει | που δεν με αφήνει|Να ξεχάσω">
+            <p><span class="changing" data-index="0">που δεν με αφήνει</span></p>
+            <p class="line-gap"><span class="changing" data-index="1">που δεν σε αφήνει</span></p>
+            <p><span class="changing" data-index="2">Να ξεχάσεις</span></p>
+        </div>
+
+
+    </div>
+    <footer class="site-footer">
+        <p>
+            &copy; <span id="year"></span> All rights reserved by <strong>Vasileia Oikonomou</strong> —
+            developed by <a href="https://github.com/3vilBonobo" target="_blank" rel="noopener">Irinella Boutsika</a>
+        </p>
+    </footer>
+
+</body>
+
+</html>

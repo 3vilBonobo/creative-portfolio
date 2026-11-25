@@ -1,0 +1,32 @@
+{
+  "status": "reference_only_not_production",
+  "assets": [
+    {
+      "file": "artwork-candidates/desktop-master-v001-concept.png",
+      "dimensions": [
+        2740,
+        2296
+      ],
+      "sha256": "1a46e875ef972e5d39e69063e6604ae953f1173dc8321056c61bd1e513126277",
+      "production_ready": false
+    },
+    {
+      "file": "artwork-candidates/desktop-vibrant-v002-concept.png",
+      "dimensions": [
+        1370,
+        1148
+      ],
+      "sha256": "57d8a339223d977e04d8284efc65ee1afaa7cd524a3beae441a8ed9676957740",
+      "production_ready": false
+    },
+    {
+      "file": "artwork-candidates/user-preferred-vibrant-reference.png",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "sha256": "e11d8e95edcb0d7d4d7a4f274aaa8bd059cfd421660a6e9afddf6ce693a463b6",
+      "production_ready": false
+    }
+  ]
+}

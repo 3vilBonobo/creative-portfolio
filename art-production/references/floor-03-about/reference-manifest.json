@@ -1,0 +1,174 @@
+{
+  "type": "reference-only",
+  "revision": "v002",
+  "capturedDate": "2026-11-25",
+  "package": "floor-03-about",
+  "sourceBrief": "docs/art-production/briefs/floor-03-about.md",
+  "productionArtworkGenerated": false,
+  "screenshotCount": 8,
+  "files": [
+    {
+      "path": "artwork/about-wall-mobile.webp",
+      "bytes": 194800,
+      "sha256": "9cbe3247b66f2aff3efea6414bf56eb81cdf1d02d33b7f76806ad879c6945ee7",
+      "imagePixels": [
+        848,
+        1855
+      ],
+      "originalSource": "public/about/about-wall-mobile.webp"
+    },
+    {
+      "path": "artwork/about-wall.webp",
+      "bytes": 237242,
+      "sha256": "f30092319d99a9cbf93c22c58b33c3d6ca4372977b2a20c23dad6e8fc67b35d5",
+      "imagePixels": [
+        1956,
+        804
+      ],
+      "originalSource": "public/about/about-wall.webp"
+    },
+    {
+      "path": "artwork/irene-portrait.webp",
+      "bytes": 61756,
+      "sha256": "5d6fda1da5481f30046ee20062da292093e84ebe1756bed7dbbf6ac646f8a4c4",
+      "imagePixels": [
+        799,
+        730
+      ],
+      "originalSource": "public/about/irene-portrait.webp"
+    },
+    {
+      "path": "brief.md",
+      "bytes": 7496,
+      "sha256": "45b5b8db000dfb0828e8766aa7fe71bdf3c28c7b8ba2042cf32c24e95babd8ec"
+    },
+    {
+      "path": "inventory.json",
+      "bytes": 7617,
+      "sha256": "c16ac7f491849635e636b1bbe2ff3e406d6de4048ecf3bb608b580bf7820f2df"
+    },
+    {
+      "path": "layout-desktop-wide.json",
+      "bytes": 2150,
+      "sha256": "52d8fe73929fd56adb650ba807cb884724a622301776af1cc580aa8d9a073c60"
+    },
+    {
+      "path": "layout-desktop.json",
+      "bytes": 2157,
+      "sha256": "64c61a7e6fa5f1146f3372ebc7192318da4045db6e4c0464a9e45a9008fb67dc"
+    },
+    {
+      "path": "layout-mobile-landscape.json",
+      "bytes": 2125,
+      "sha256": "d16cd94660fcda9f74c66e9be4339e9f2b77bf504283540bc42cfc7f1492e5bb"
+    },
+    {
+      "path": "layout-mobile.json",
+      "bytes": 2122,
+      "sha256": "e35ea0bc32ddf660b2209c1ef07bcbe2761b2fd26832595274a038048b2959fc"
+    },
+    {
+      "path": "layout-tablet-landscape.json",
+      "bytes": 2117,
+      "sha256": "59fe08eafa7d0f24f24e6553beb34ca871a33dcb67c3fe606decf0e91e0ec304"
+    },
+    {
+      "path": "layout-tablet-portrait.json",
+      "bytes": 2149,
+      "sha256": "c9d430aba0fb47030436e66fd52d2c558b19b31413bb7cf94eb67bb79999c78f"
+    },
+    {
+      "path": "proposed-safe-area-desktop.svg",
+      "bytes": 853,
+      "sha256": "e9f320d986aebd739ac0feeb8471a3d323a85ad49cea53f6cabf23dae18ce7d8"
+    },
+    {
+      "path": "proposed-safe-area-mobile.svg",
+      "bytes": 876,
+      "sha256": "a6add3b1f0200853a27632a38f6fcc82f875109d205e8c92297fc91109d09995"
+    },
+    {
+      "path": "proposed-safe-areas.json",
+      "bytes": 503,
+      "sha256": "a1163cb0ae2b16bea6c0b4b900fa76305200524a300e1e215ff20929c8dcf856"
+    },
+    {
+      "path": "README.md",
+      "bytes": 1409,
+      "sha256": "eec2e696f88c83c7c37e9c3b3210013e80a48d754ce4477a3d7b4fae57377476"
+    },
+    {
+      "path": "screenshots/desktop-1440x900-day-clear.jpg",
+      "bytes": 143228,
+      "sha256": "1d3efa23513cdae82222e6111a7ef2ffdfb913e0d55ec3daa919a1ac58d310fe",
+      "imagePixels": [
+        1425,
+        891
+      ]
+    },
+    {
+      "path": "screenshots/desktop-wide-1920x1080-day-clear.jpg",
+      "bytes": 210738,
+      "sha256": "dc724c1bc6a9245f24c0c59c69016f63db85af25d1e9fcf0b415eceb49e8de78",
+      "imagePixels": [
+        1905,
+        1053
+      ]
+    },
+    {
+      "path": "screenshots/full-section-desktop-1440x900-day-clear.jpg",
+      "bytes": 176864,
+      "sha256": "e1c824fd54456f5089136f7617753512769331f5b863f189b0b2f9a1dd712da1",
+      "imagePixels": [
+        1424,
+        1109
+      ]
+    },
+    {
+      "path": "screenshots/full-section-mobile-390x844-day-clear.jpg",
+      "bytes": 87499,
+      "sha256": "15659900821e6b5434a99f2429943224b77d89b93b6b7052d1d8f7a2c4fdc2e7",
+      "imagePixels": [
+        375,
+        1408
+      ]
+    },
+    {
+      "path": "screenshots/mobile-390x844-day-clear.jpg",
+      "bytes": 53360,
+      "sha256": "e50ffe13d96f73068c8f52327b89a09d429952871686e99087573d774a153e4f",
+      "imagePixels": [
+        375,
+        811
+      ]
+    },
+    {
+      "path": "screenshots/mobile-landscape-844x390-day-clear.jpg",
+      "bytes": 36926,
+      "sha256": "a116959cf4afbfd5ae646d05a0323325916308934f3261a24107af1563804360",
+      "imagePixels": [
+        829,
+        383
+      ]
+    },
+    {
+      "path": "screenshots/tablet-landscape-1180x820-day-clear.jpg",
+      "bytes": 99230,
+      "sha256": "51cad1c39d3cd5acd732c9587995b3f447af83cd8abda73f53037c232de2924d",
+      "imagePixels": [
+        1165,
+        810
+      ]
+    },
+    {
+      "path": "screenshots/tablet-portrait-820x1180-day-clear.jpg",
+      "bytes": 101039,
+      "sha256": "8b470b0c79dbc7a159ff3ffb90bd342dbdfc702ffcf5266798037931df8a20a3",
+      "imagePixels": [
+        805,
+        1041
+      ]
+    }
+  ],
+  "captureCaveat": "Filename dimensions are browser CSS viewports. Actual JPEG dimensions are recorded separately. Full-section clips include scroll runway where applicable."
+}

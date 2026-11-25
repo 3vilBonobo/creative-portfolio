@@ -2,7 +2,8 @@
 import { onBeforeUnmount, onMounted, ref } from "vue";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-const props = withDefaults(defineProps<{ label: string; variant?: "pipes" | "cables" }>(), { variant: "pipes" });
+import type { FloorTransition } from "../config/floors";
+const props = defineProps<{ transition: FloorTransition }>();
 const artwork = {
   pipes: "/transitions/service-void-pipes.png",
   cables: "/transitions/service-void-cables.png",
@@ -12,8 +13,8 @@ onMounted(() => { if (!root.value || matchMedia("(prefers-reduced-motion: reduce
 onBeforeUnmount(() => context?.revert());
 </script>
 <template>
-  <div ref="root" class="floor-transition" :class="`floor-transition--${props.variant}`" aria-hidden="true">
-    <img class="transition__art" :src="artwork[props.variant]" alt="" loading="lazy" decoding="async" />
-    <div class="transition__readout"><span>Inter-floor utilities</span><p>{{ label }}</p></div>
+  <div :id="`transition-${transition.id}`" ref="root" class="floor-transition" :class="`floor-transition--${transition.variant}`" :data-transition-id="transition.id" aria-hidden="true">
+    <img class="transition__art" :src="artwork[props.transition.variant]" alt="" loading="lazy" decoding="async" />
+    <div class="transition__readout"><span>Inter-floor utilities</span><p>Descending to floor {{ transition.to.number }} · {{ transition.to.label }}</p></div>
   </div>
 </template>
