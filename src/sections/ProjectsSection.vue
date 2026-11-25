@@ -56,7 +56,7 @@ watch(category, async () => {
   await nextTick();
   if (windowed.value) projectResults.value?.scrollTo({ top: 0, behavior: "auto" });
 });
-const featuredProject = computed(() => projects.find(project => project.id === "iss-tracker"));
+const featuredProject = computed(() => projects.find(project => project.id === "nerve-ending"));
 const creativeProjects = computed(() => projects.filter(project => project.category === "creative" && project.id !== featuredProject.value?.id));
 const professionalProjects = computed(() => projects.filter(project => project.category === "professional"));
 const categories = computed(() => [
@@ -93,13 +93,13 @@ function onBackdropClick(event: MouseEvent) { if (event.target === detailDialog.
         <div id="projects-results" ref="projectResults" class="projects-showcase__results" role="region" aria-label="Project collection" :tabindex="windowed ? 0 : undefined" :aria-describedby="windowed ? 'projects-scroll-hint' : undefined">
           <p class="projects-showcase__count" role="status">{{ visibleProjectCount }} {{ visibleProjectCount === 1 ? 'project' : 'projects' }} / {{ categories.find(item => item.id === category)?.label }}</p>
           <ProjectCard v-if="category !== 'professional' && featuredProject" :project="featuredProject" featured @details="openDetails" />
-          <section v-if="category !== 'professional' && creativeProjects.length" class="projects-showcase__group" aria-labelledby="creative-projects-title">
-            <div class="projects-showcase__group-heading"><h3 id="creative-projects-title">Creative &amp; Interactive</h3><span>{{ creativeProjects.length }} projects</span></div>
-            <ol class="projects-showcase__grid" aria-label="Creative and interactive projects"><li v-for="project in creativeProjects" :key="project.id"><ProjectCard :project="project" @details="openDetails" /></li></ol>
-          </section>
           <section v-if="category !== 'creative' && professionalProjects.length" class="projects-showcase__group" aria-labelledby="professional-projects-title">
             <div class="projects-showcase__group-heading"><h3 id="professional-projects-title">Professional Work</h3><span>{{ professionalProjects.length }} {{ professionalProjects.length === 1 ? 'project' : 'projects' }}</span></div>
             <ol class="projects-showcase__grid projects-showcase__grid--professional" aria-label="Professional projects"><li v-for="project in professionalProjects" :key="project.id"><ProjectCard :project="project" @details="openDetails" /></li></ol>
+          </section>
+          <section v-if="category !== 'professional' && creativeProjects.length" class="projects-showcase__group" aria-labelledby="creative-projects-title">
+            <div class="projects-showcase__group-heading"><h3 id="creative-projects-title">Creative &amp; Interactive</h3><span>{{ creativeProjects.length }} projects</span></div>
+            <ol class="projects-showcase__grid" aria-label="Creative and interactive projects"><li v-for="project in creativeProjects" :key="project.id"><ProjectCard :project="project" @details="openDetails" /></li></ol>
           </section>
         </div>
       </div>
@@ -120,6 +120,7 @@ function onBackdropClick(event: MouseEvent) { if (event.target === detailDialog.
         </div>
         <div class="project-dialog__content">
           <p class="eyebrow">{{ selectedProject.categoryLabel ?? selectedProject.title }}</p>
+          <p v-if="selectedProject.status" class="project-development-status">{{ selectedProject.status }}</p>
           <h3 id="project-dialog-title">{{ selectedProject.displayTitle }}</h3>
           <template v-if="selectedProject.caseStudy">
             <p v-for="paragraph in selectedProject.caseStudy.introduction" :key="paragraph">{{ paragraph }}</p>
@@ -129,7 +130,15 @@ function onBackdropClick(event: MouseEvent) { if (event.target === detailDialog.
             </section>
           </template>
           <p v-else>{{ selectedProject.shortDescription }}</p>
+          <div v-if="selectedProject.developmentDetails" class="project-development">
+            <section aria-labelledby="development-concept-title"><h4 id="development-concept-title">Concept &amp; player experience</h4><p>{{ selectedProject.developmentDetails.concept }}</p></section>
+            <section aria-labelledby="development-implemented-title"><h4 id="development-implemented-title">Implemented in the prototype</h4><ul><li v-for="item in selectedProject.developmentDetails.implemented" :key="item">{{ item }}</li></ul></section>
+            <section aria-labelledby="development-planned-title"><h4 id="development-planned-title">Planned &amp; still in development</h4><ul><li v-for="item in selectedProject.developmentDetails.planned" :key="item">{{ item }}</li></ul></section>
+            <section aria-labelledby="development-architecture-title"><h4 id="development-architecture-title">Technical architecture</h4><p>{{ selectedProject.developmentDetails.architecture }}</p></section>
+            <section aria-labelledby="development-art-direction-title"><h4 id="development-art-direction-title">Artistic direction</h4><p>{{ selectedProject.developmentDetails.artisticDirection }}</p></section>
+          </div>
           <dl>
+            <div v-if="selectedProject.genre"><dt>Genre</dt><dd>{{ selectedProject.genre }}</dd></div>
             <div><dt>Role</dt><dd>{{ selectedProject.role }}</dd></div>
             <div v-if="selectedProject.interactionNotes"><dt>Interaction</dt><dd>{{ selectedProject.interactionNotes }}</dd></div>
             <div v-if="selectedProject.industry"><dt>Industry</dt><dd>{{ selectedProject.industry }}</dd></div>
@@ -162,6 +171,14 @@ function onBackdropClick(event: MouseEvent) { if (event.target === detailDialog.
 <style scoped>
 .projects { background: #10191b; }
 .projects::before { content: none; }
+.project-development-status { display: inline-block; margin: 0 0 1rem; padding: .3rem .6rem; border: 1px solid #bbb18b66; color: #d1c79f; font: .75rem/1.5 "IBM Plex Mono", monospace; }
+.project-development { color: #d8d8cf; font-size: .95rem; line-height: 1.75; }
+.project-development section { margin: 1.5rem 0; }
+.project-development h4 { margin: 0 0 .7rem; color: #e1d8b1; font-size: 1rem; line-height: 1.5; }
+.project-development p { margin: 0; }
+.project-development ul { margin: 0; padding-left: 1.2rem; list-style: disc; }
+.project-development li + li { margin-top: .6rem; }
+
 .project-dialog--case-study, .project-dialog--responsive-preview { max-height: calc(100dvh - 2rem); overflow: hidden; }
 .project-dialog--case-study .project-dialog__panel, .project-dialog--responsive-preview .project-dialog__panel { max-height: calc(100dvh - 2rem - 4px); }
 .project-dialog--case-study .project-dialog__content, .project-dialog--responsive-preview .project-dialog__content { min-width: 0; overflow-wrap: anywhere; }
@@ -230,9 +247,9 @@ function onBackdropClick(event: MouseEvent) { if (event.target === detailDialog.
 .projects-showcase__group-heading { display: flex; flex-wrap: wrap; align-items: center; gap: .7rem; margin-bottom: 1rem; border-bottom: 1px solid #c5a67b55; padding-bottom: .7rem; }
 .projects-showcase__group-heading h3 { margin: 0; color: #e5d5be; text-transform: uppercase; font-size: .8rem; letter-spacing: .12em; }
 .projects-showcase__group-heading > span { color: #bfae95; font: .65rem "IBM Plex Mono", monospace; margin-left: auto; }
-.projects-showcase__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: start; gap: 1.1rem; list-style: none; padding: 0; margin: 0; }
+.projects-showcase__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: stretch; grid-auto-rows: 1fr; gap: 1.1rem; list-style: none; padding: 0; margin: 0; }
 .projects-showcase__grid > li { min-width: 0; }
-.projects-showcase__grid.projects-showcase__grid--professional { grid-template-columns: minmax(0, 1fr); }
+
 .projects-showcase__footer { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between; border-top: 1px solid #ac8d6755; margin-top: 2rem; padding-top: 1rem; color: #c7b8a3; font: .65rem/1.8 "IBM Plex Mono", monospace; text-transform: uppercase; letter-spacing: .08em; }
 @media (min-width: 1400px) {
   .projects-showcase__layout { grid-template-columns: 11.5rem minmax(0, 1fr); gap: 1.5rem; }

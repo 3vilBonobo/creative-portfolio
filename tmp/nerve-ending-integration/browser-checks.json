@@ -1,0 +1,64 @@
+[
+  {
+    "clipped": [],
+    "height": 1000,
+    "implemented": 6,
+    "links": 0,
+    "panelOverflow": false,
+    "planned": 2,
+    "screenshot": "/projects/nerve-ending/welcome-1440.jpg",
+    "screenshotLoaded": true,
+    "sections": [
+      "Concept & player experience",
+      "Implemented in the prototype",
+      "Planned & still in development",
+      "Technical architecture",
+      "Artistic direction"
+    ],
+    "status": "In Development",
+    "width": 1440
+  },
+  {
+    "clipped": [],
+    "height": 1024,
+    "implemented": 6,
+    "links": 0,
+    "panelOverflow": false,
+    "planned": 2,
+    "screenshot": "/projects/nerve-ending/welcome-1440.jpg",
+    "screenshotLoaded": true,
+    "sections": [
+      "Concept & player experience",
+      "Implemented in the prototype",
+      "Planned & still in development",
+      "Technical architecture",
+      "Artistic direction"
+    ],
+    "status": "In Development",
+    "width": 768
+  },
+  {
+    "clipped": [],
+    "height": 844,
+    "implemented": 6,
+    "links": 0,
+    "panelOverflow": false,
+    "planned": 2,
+    "screenshot": "/projects/nerve-ending/welcome-1440.jpg",
+    "screenshotLoaded": true,
+    "sections": [
+      "Concept & player experience",
+      "Implemented in the prototype",
+      "Planned & still in development",
+      "Technical architecture",
+      "Artistic direction"
+    ],
+    "status": "In Development",
+    "width": 390
+  },
+  {
+    "focusRestored": "work-title-nerve-ending",
+    "pageOverflow": false,
+    "statusVisible": "In Development"
+  }
+]

@@ -1,0 +1,20 @@
+[
+  {
+    "file": "public/projects/nerve-ending/welcome-1440.jpg",
+    "width": 1440,
+    "height": 796,
+    "bytes": 58036,
+    "sha256": "c6a76fe518b3eee34eb523e036f7fcb27cbaa023ebed6c580b18c7427590ea76",
+    "source": "Authentic neutral opening of existing local prototype build",
+    "captured": "2026-11-25"
+  },
+  {
+    "file": "public/projects/nerve-ending/welcome-800.jpg",
+    "width": 800,
+    "height": 442,
+    "bytes": 23211,
+    "sha256": "b0bcab9ae02be37010f1134bc900015297cd442e5060a29a6a95c2ba28be45ae",
+    "source": "Authentic neutral opening of existing local prototype build",
+    "captured": "2026-11-25"
+  }
+]
