@@ -293,10 +293,12 @@ onBeforeUnmount(() => {
   window.removeEventListener("storage", syncStorage);
   if (open.value) close();
 });
+defineProps<{ hotspots?: boolean }>();
+defineExpose({ open, show: show });
 </script>
 
 <template>
-  <svg class="chess-hotspot-map" viewBox="0 0 1672 941" preserveAspectRatio="xMidYMid meet">
+  <svg v-if="hotspots !== false" class="chess-hotspot-map" viewBox="0 0 1672 941" preserveAspectRatio="xMidYMid meet">
     <defs>
       <radialGradient id="chess-outer-halo">
         <stop offset="0%" stop-color="#d5d7db" stop-opacity="0" />

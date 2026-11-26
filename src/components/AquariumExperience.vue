@@ -174,10 +174,12 @@ watch(open, async (isOpen) => {
 });
 window.addEventListener("keydown", onKeydown);
 onBeforeUnmount(() => { cleanupScene?.(); window.removeEventListener("keydown", onKeydown); document.body.classList.remove("aquarium-is-open"); });
+defineProps<{ hotspots?: boolean }>();
+defineExpose({ open, show: showAquarium });
 </script>
 
 <template>
-  <svg v-if="!open" class="aquarium-ambient" viewBox="0 0 1672 941" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+  <svg v-if="!open && hotspots !== false" class="aquarium-ambient" viewBox="0 0 1672 941" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
     <defs>
       <clipPath id="hero-aquarium-glass"><path d="M1328 452 1520 459 1520 576 1328 546Z" /></clipPath>
       <linearGradient id="hero-aquarium-wash" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#baffef" stop-opacity=".04"/><stop offset=".5" stop-color="#55e9bd" stop-opacity=".13"/><stop offset="1" stop-color="#0c604b" stop-opacity=".03"/></linearGradient>
@@ -198,7 +200,7 @@ onBeforeUnmount(() => { cleanupScene?.(); window.removeEventListener("keydown", 
       </g>
     </g></g>
   </svg>
-  <svg v-if="!open" class="aquarium-hotspot-map" viewBox="0 0 1672 941" preserveAspectRatio="xMidYMid meet">
+  <svg v-if="!open && hotspots !== false" class="aquarium-hotspot-map" viewBox="0 0 1672 941" preserveAspectRatio="xMidYMid meet">
     <defs><radialGradient id="aquarium-outer-halo"><stop offset="0%" stop-color="#52ff9b" stop-opacity="0"/><stop offset="79%" stop-color="#52ff9b" stop-opacity="0"/><stop offset="86%" stop-color="#52ff9b" stop-opacity=".34"/><stop offset="100%" stop-color="#52ff9b" stop-opacity="0"/></radialGradient></defs>
     <g class="aquarium-hotspot" transform="translate(35 -105)" role="button" tabindex="0" aria-label="Open the interactive aquarium" @click.stop="showAquarium" @keydown.enter.prevent.stop="showAquarium" @keydown.space.prevent.stop="showAquarium">
       <circle class="aquarium-hotspot__halo" cx="1390" cy="620" r="80"/><circle class="aquarium-hotspot__outline" cx="1390" cy="620" r="64"/>

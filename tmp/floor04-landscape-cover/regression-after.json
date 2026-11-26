@@ -1,0 +1,218 @@
+[
+  {
+    "hero": {
+      "bottom": 1003.671875,
+      "height": 1003.671875,
+      "left": 0,
+      "right": 305,
+      "top": 0,
+      "width": 305,
+      "x": 0,
+      "y": 0
+    },
+    "overflow": false,
+    "scene": {
+      "bottom": 306.90625,
+      "height": 249.90625,
+      "left": 0,
+      "right": 305,
+      "top": 57,
+      "width": 305,
+      "x": 0,
+      "y": 57
+    },
+    "viewport": [
+      320,
+      568
+    ]
+  },
+  {
+    "hero": {
+      "bottom": 992.484375,
+      "height": 992.484375,
+      "left": 0,
+      "right": 345,
+      "top": 0,
+      "width": 345,
+      "x": 0,
+      "y": 0
+    },
+    "overflow": false,
+    "scene": {
+      "bottom": 409,
+      "height": 352,
+      "left": 0,
+      "right": 345,
+      "top": 57,
+      "width": 345,
+      "x": 0,
+      "y": 57
+    },
+    "viewport": [
+      360,
+      800
+    ]
+  },
+  {
+    "hero": {
+      "bottom": 1014.046875,
+      "height": 1014.046875,
+      "left": 0,
+      "right": 375,
+      "top": 0,
+      "width": 375,
+      "x": 0,
+      "y": 0
+    },
+    "overflow": false,
+    "scene": {
+      "bottom": 428.359375,
+      "height": 371.359375,
+      "left": 0,
+      "right": 375,
+      "top": 57,
+      "width": 375,
+      "x": 0,
+      "y": 57
+    },
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "hero": {
+      "bottom": 1056.765625,
+      "height": 1056.765625,
+      "left": 0,
+      "right": 415,
+      "top": 0,
+      "width": 415,
+      "x": 0,
+      "y": 0
+    },
+    "overflow": false,
+    "scene": {
+      "bottom": 467.078125,
+      "height": 410.078125,
+      "left": 0,
+      "right": 415,
+      "top": 57,
+      "width": 415,
+      "x": 0,
+      "y": 57
+    },
+    "viewport": [
+      430,
+      932
+    ]
+  },
+  {
+    "hero": {
+      "bottom": 1046.34375,
+      "height": 1046.34375,
+      "left": 0,
+      "right": 753,
+      "top": 0,
+      "width": 753,
+      "x": 0,
+      "y": 0
+    },
+    "overflow": false,
+    "scene": {
+      "bottom": 735.0625,
+      "height": 423.78125,
+      "left": 0,
+      "right": 753,
+      "top": 311.28125,
+      "width": 753,
+      "x": 0,
+      "y": 311.28125
+    },
+    "viewport": [
+      768,
+      1024
+    ]
+  },
+  {
+    "hero": {
+      "bottom": 1013.109375,
+      "height": 1013.109375,
+      "left": 0,
+      "right": 1009,
+      "top": 0,
+      "width": 1009,
+      "x": 0,
+      "y": 0
+    },
+    "overflow": false,
+    "scene": {
+      "bottom": 790.4765625,
+      "height": 567.859375,
+      "left": 0,
+      "right": 1009,
+      "top": 222.6171875,
+      "width": 1009,
+      "x": 0,
+      "y": 222.6171875
+    },
+    "viewport": [
+      1024,
+      768
+    ]
+  },
+  {
+    "hero": {
+      "bottom": 1060,
+      "height": 1060,
+      "left": 0,
+      "right": 1425,
+      "top": 0,
+      "width": 1425,
+      "x": 0,
+      "y": 0
+    },
+    "overflow": false,
+    "scene": {
+      "bottom": 930.9921875,
+      "height": 801.984375,
+      "left": 0,
+      "right": 1425,
+      "top": 129.0078125,
+      "width": 1425,
+      "x": 0,
+      "y": 129.0078125
+    },
+    "viewport": [
+      1440,
+      900
+    ]
+  },
+  {
+    "hero": {
+      "bottom": 1080,
+      "height": 1080,
+      "left": 0,
+      "right": 1905,
+      "top": 0,
+      "width": 1905,
+      "x": 0,
+      "y": 0
+    },
+    "overflow": false,
+    "scene": {
+      "bottom": 1076.0625,
+      "height": 1072.125,
+      "left": 0,
+      "right": 1905,
+      "top": 3.9375,
+      "width": 1905,
+      "x": 0,
+      "y": 3.9375
+    },
+    "viewport": [
+      1920,
+      1080
+    ]
+  }
+]

@@ -1,0 +1,66 @@
+[
+  {
+    "file": "floor00-desktop-16x9-day.webp",
+    "size": [
+      1448,
+      814
+    ],
+    "sha256": "8489161a3676cbe2465b12ed7aae96c8d87e68d2e47fc3ee7d351478c3a701ae"
+  },
+  {
+    "file": "floor00-desktop-16x9-night.webp",
+    "size": [
+      1448,
+      814
+    ],
+    "sha256": "55b196142ff328c9e3b4d668fbad496ded4e6fdffd89b9ca558c6e3002cc9d83"
+  },
+  {
+    "file": "floor00-mobile-day.webp",
+    "size": [
+      941,
+      1672
+    ],
+    "sha256": "5ee5cd739f960f899d1e12158b19a4c2bee6a682ee8af8223537c4edb2f350c5"
+  },
+  {
+    "file": "floor00-mobile-night.webp",
+    "size": [
+      941,
+      1672
+    ],
+    "sha256": "d0b2f9f05be9e40189d1f629c6e9d3393c7fcb4959828396c68219131c5aab41"
+  },
+  {
+    "file": "floor00-tablet-day.webp",
+    "size": [
+      1448,
+      1086
+    ],
+    "sha256": "1d7c3c7b1dfcaee823026b1a466774b76974500d0936001d7e8bd1d1b5a696e7"
+  },
+  {
+    "file": "floor00-tablet-night.webp",
+    "size": [
+      1448,
+      1086
+    ],
+    "sha256": "519ca339cf64490b0d7798ab197705d7dac757755baccb8fd0e96a245ea7b9f7"
+  },
+  {
+    "file": "floor00-ultrawide-day.webp",
+    "size": [
+      1916,
+      821
+    ],
+    "sha256": "33f9a87707fb1adeca34b6036310f6038046321e9df022f180553115c8683ca1"
+  },
+  {
+    "file": "floor00-ultrawide-night.webp",
+    "size": [
+      1916,
+      821
+    ],
+    "sha256": "6193e564d85d46f517f8ae4414ddd65f38beff5bbf796fc06004be36d7608485"
+  }
+]

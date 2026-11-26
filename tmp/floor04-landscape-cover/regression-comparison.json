@@ -1,0 +1,114 @@
+[
+  {
+    "viewport": [
+      320,
+      568
+    ],
+    "dimensionDifferencesPx": {
+      "hero_width": 0.199981689453125,
+      "hero_height": 1.171875,
+      "scene_width": 0.199981689453125,
+      "scene_height": 0.006256103515596578
+    },
+    "within1point5px": true,
+    "overflow": false
+  },
+  {
+    "viewport": [
+      360,
+      800
+    ],
+    "dimensionDifferencesPx": {
+      "hero_width": 0.199981689453125,
+      "hero_height": 1.171875,
+      "scene_width": 0.199981689453125,
+      "scene_height": 0
+    },
+    "within1point5px": true,
+    "overflow": false
+  },
+  {
+    "viewport": [
+      390,
+      844
+    ],
+    "dimensionDifferencesPx": {
+      "hero_width": 0.20001220703130684,
+      "hero_height": 1.1468505859376137,
+      "scene_width": 0.20001220703130684,
+      "scene_height": 0.009368896484375
+    },
+    "within1point5px": true,
+    "overflow": false
+  },
+  {
+    "viewport": [
+      430,
+      932
+    ],
+    "dimensionDifferencesPx": {
+      "hero_width": 0.20001220703130684,
+      "hero_height": 1.140625,
+      "scene_width": 0.20001220703130684,
+      "scene_height": 0.0031127929686931566
+    },
+    "within1point5px": true,
+    "overflow": false
+  },
+  {
+    "viewport": [
+      768,
+      1024
+    ],
+    "dimensionDifferencesPx": {
+      "hero_width": 0.20001220703125,
+      "hero_height": 0.793701171875,
+      "scene_width": 0.21246337890625,
+      "scene_height": 0.118743896484375
+    },
+    "within1point5px": true,
+    "overflow": false
+  },
+  {
+    "viewport": [
+      1024,
+      768
+    ],
+    "dimensionDifferencesPx": {
+      "hero_width": 0.20001220703125,
+      "hero_height": 0.75933837890625,
+      "scene_width": 0.21246337890625,
+      "scene_height": 0.12188720703125
+    },
+    "within1point5px": true,
+    "overflow": false
+  },
+  {
+    "viewport": [
+      1440,
+      900
+    ],
+    "dimensionDifferencesPx": {
+      "hero_width": 0.199951171875,
+      "hero_height": 1,
+      "scene_width": 0.2125244140625,
+      "scene_height": 0.12188720703125
+    },
+    "within1point5px": true,
+    "overflow": false
+  },
+  {
+    "viewport": [
+      1920,
+      1080
+    ],
+    "dimensionDifferencesPx": {
+      "hero_width": 0.199951171875,
+      "hero_height": 0,
+      "scene_width": 0.2125244140625,
+      "scene_height": 0.1124267578125
+    },
+    "within1point5px": true,
+    "overflow": false
+  }
+]

@@ -1,12 +1,18 @@
 <script setup lang="ts">
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from "vue";
 import ProjectCard from "../components/ProjectCard.vue";
+import MobileProjectPreview from "../components/MobileProjectPreview.vue";
+import { usePhoneLayout } from "../composables/usePhoneLayout";
+import { categoryProjects, projectDisclosure, type CatalogueCategory } from "../services/projectCatalogue";
+import "../floor02-mobile.css";
 import ProjectsEnvironment from "../components/ProjectsEnvironment.vue";
 import { projects } from "../data/projects";
 import type { Project } from "../types/content";
 import { FLOOR } from "../config/floors";
 
 const detailDialog = ref<HTMLDialogElement | null>(null);
+const { phone, portrait, landscape } = usePhoneLayout();
+const expanded = ref<Record<CatalogueCategory, boolean>>({ professional: false, creative: false });
 const sectionElement = ref<HTMLElement | null>(null);
 const contentClearance = ref(0);
 const showcaseHeader = ref<HTMLElement | null>(null);
@@ -57,8 +63,36 @@ watch(category, async () => {
   if (windowed.value) projectResults.value?.scrollTo({ top: 0, behavior: "auto" });
 });
 const featuredProject = computed(() => projects.find(project => project.id === "nerve-ending"));
-const creativeProjects = computed(() => projects.filter(project => project.category === "creative" && project.id !== featuredProject.value?.id));
-const professionalProjects = computed(() => projects.filter(project => project.category === "professional"));
+const creativeProjects = computed(() => categoryProjects(projects, "creative", featuredProject.value?.id));
+const professionalProjects = computed(() => categoryProjects(projects, "professional", featuredProject.value?.id));
+const creativeDisclosure = computed(() => projectDisclosure(creativeProjects.value, expanded.value.creative, phone.value));
+const professionalDisclosure = computed(() => projectDisclosure(professionalProjects.value, expanded.value.professional, phone.value));
+const displayedCount = computed(() => phone.value
+  ? (category.value !== "professional" ? creativeDisclosure.value.visible.length + (featuredProject.value ? 1 : 0) : 0)
+    + (category.value !== "creative" ? professionalDisclosure.value.visible.length : 0)
+  : visibleProjectCount.value);
+async function toggleCategory(id: CatalogueCategory, event: Event) {
+  const button = event.currentTarget as HTMLButtonElement;
+  expanded.value[id] = !expanded.value[id];
+  await nextTick();
+  button.focus({ preventScroll: true });
+  if (!expanded.value[id]) {
+    const bounds = button.getBoundingClientRect();
+    const header = document.querySelector(".site-header")?.getBoundingClientRect().bottom ?? 64;
+    if (bounds.top < header || bounds.bottom > window.innerHeight) button.scrollIntoView({ block: "center", behavior: "instant" });
+  }
+}
+// Both orientations keep the same preview and dialog nodes. Compensate for
+// upstream floor height changes without resetting catalogue state on rotation.
+watch([portrait, landscape], async (_, previous) => {
+  if (!(previous[0] || previous[1]) || !phone.value || selectedProject.value
+    || document.querySelector('.app-shell')?.getAttribute('data-active-floor') !== FLOOR.projects.id) return;
+  const anchor = [...(sectionElement.value?.querySelectorAll<HTMLElement>('[data-project-id]') ?? [])]
+    .find(element => element.getBoundingClientRect().bottom > 64) ?? sectionElement.value;
+  const top = anchor?.getBoundingClientRect().top ?? 0;
+  await nextTick();
+  if (anchor?.isConnected) window.scrollBy({ top: anchor.getBoundingClientRect().top - top, behavior: "instant" });
+});
 const categories = computed(() => [
   { id: "all" as const, label: "All Projects", count: projects.length, symbol: "▦" },
   { id: "creative" as const, label: "Creative & Interactive", count: projects.filter(project => project.category === "creative").length, symbol: "◇" },
@@ -79,18 +113,42 @@ const technologyGroups = computed(() => {
 });
 async function openDetails(project: Project, trigger: HTMLElement) { selectedProject.value = project; triggerElement.value = trigger; await nextTick(); detailDialog.value?.showModal(); }
 function closeDetails() { detailDialog.value?.close(); }
-function onDialogClose() { selectedProject.value = null; triggerElement.value?.focus(); }
+function keepPhoneDialogFocus(event: KeyboardEvent) {
+  if (!phone.value || event.key !== "Tab") return;
+  const controls = [...(detailDialog.value?.querySelectorAll<HTMLElement>('button, a[href], [tabindex="0"]') ?? [])]
+    .filter(element => element.getClientRects().length);
+  const first = controls[0], last = controls[controls.length - 1];
+  if (!first || !last) return;
+  if (event.shiftKey && (document.activeElement === first || document.activeElement === detailDialog.value)) {
+    event.preventDefault(); last.focus();
+  } else if (!event.shiftKey && document.activeElement === last) {
+    event.preventDefault(); first.focus();
+  }
+}
+function onDialogClose() {
+  const projectId = selectedProject.value?.id;
+  selectedProject.value = null;
+  const trigger = triggerElement.value?.isConnected ? triggerElement.value
+    : projectId ? sectionElement.value?.querySelector<HTMLElement>(`[data-project-id="${projectId}"] button, button[data-project-id="${projectId}"]`) : null;
+  if (phone.value) trigger?.focus({ preventScroll: true });
+  else trigger?.focus();
+  if (phone.value && trigger) {
+    const bounds = trigger.getBoundingClientRect();
+    const header = document.querySelector(".site-header")?.getBoundingClientRect().bottom ?? 64;
+    if (bounds.top < header || bounds.bottom > innerHeight) trigger.scrollIntoView({ block: "center", behavior: "instant" });
+  }
+}
 function onBackdropClick(event: MouseEvent) { if (event.target === detailDialog.value) closeDetails(); }
 
 </script>
 
 <template>
-  <section ref="sectionElement" :id="FLOOR.projects.id" class="floor-section projects" :class="{ 'projects--windowed': windowed }" :data-floor-number="FLOOR.projects.number" aria-labelledby="projects-title">
+  <section ref="sectionElement" :id="FLOOR.projects.id" class="floor-section projects" :class="{ 'projects--windowed': windowed, 'projects--phone': phone, 'projects--portrait': portrait, 'projects--landscape': landscape }" :data-floor-number="FLOOR.projects.number" aria-labelledby="projects-title">
     <ProjectsEnvironment />
     <div class="projects-showcase" :style="{ '--projects-ui-clearance': `${contentClearance}px`, '--projects-pane-height': `${paneHeight}px` }">
       <header ref="showcaseHeader" class="projects-showcase__header">
         <div class="projects-showcase__level" :aria-label="`Level ${FLOOR.projects.number}, ${FLOOR.projects.label}`"><small>Level</small><strong>{{ FLOOR.projects.number }}</strong><span aria-hidden="true">▰ ▰ ▰</span></div>
-        <div class="projects-showcase__title"><p class="eyebrow">Portfolio / Selected work</p><h2 id="projects-title">Selected<br />Projects</h2></div>
+        <div class="projects-showcase__title"><p class="eyebrow">Portfolio / Selected work</p><h2 id="projects-title">Selected<br />{{ phone ? ' Projects' : 'Projects' }}</h2></div>
         <p class="projects-showcase__intro">Frontend development, interactive experiences and creative web projects.<span aria-hidden="true">////</span></p>
       </header>
       <div class="projects-showcase__layout">
@@ -110,20 +168,27 @@ function onBackdropClick(event: MouseEvent) { if (event.target === detailDialog.
         </aside>
         <div id="projects-results" ref="projectResults" class="projects-showcase__results" role="region" aria-label="Project collection" :tabindex="windowed ? 0 : undefined" :aria-describedby="windowed ? 'projects-scroll-hint' : undefined">
           <p class="projects-showcase__count" role="status">{{ visibleProjectCount }} {{ visibleProjectCount === 1 ? 'project' : 'projects' }} / {{ categories.find(item => item.id === category)?.label }}</p>
-          <ProjectCard v-if="category !== 'professional' && featuredProject" :project="featuredProject" featured @details="openDetails" />
+          <component :is="phone ? MobileProjectPreview : ProjectCard" v-if="category !== 'professional' && featuredProject" :project="featuredProject" featured @details="openDetails" />
           <section v-if="category !== 'creative' && professionalProjects.length" class="projects-showcase__group" aria-labelledby="professional-projects-title">
             <div class="projects-showcase__group-heading"><h3 id="professional-projects-title">Professional Work</h3><span>{{ professionalProjects.length }} {{ professionalProjects.length === 1 ? 'project' : 'projects' }}</span></div>
-            <ol class="projects-showcase__grid projects-showcase__grid--professional" aria-label="Professional projects"><li v-for="project in professionalProjects" :key="project.id"><ProjectCard :project="project" @details="openDetails" /></li></ol>
+            <ol id="professional-project-list" class="projects-showcase__grid projects-showcase__grid--professional" aria-label="Professional projects"><li v-for="project in professionalDisclosure.visible" :key="project.id"><component :is="phone ? MobileProjectPreview : ProjectCard" :project="project" @details="openDetails" /></li></ol>
+            <button v-if="phone && professionalDisclosure.expandable" class="projects-showcase__more" type="button" :aria-expanded="expanded.professional" aria-controls="professional-project-list" @click="toggleCategory('professional', $event)">{{ expanded.professional ? 'Show fewer professional projects' : `Show ${professionalDisclosure.remaining} more professional projects` }} <span aria-hidden="true">{{ expanded.professional ? '−' : '+' }}</span></button>
           </section>
           <section v-if="category !== 'professional' && creativeProjects.length" class="projects-showcase__group" aria-labelledby="creative-projects-title">
             <div class="projects-showcase__group-heading"><h3 id="creative-projects-title">Creative &amp; Interactive</h3><span>{{ creativeProjects.length }} projects</span></div>
-            <ol class="projects-showcase__grid" aria-label="Creative and interactive projects"><li v-for="project in creativeProjects" :key="project.id"><ProjectCard :project="project" @details="openDetails" /></li></ol>
+            <ol id="creative-project-list" class="projects-showcase__grid" aria-label="Creative and interactive projects"><li v-for="project in creativeDisclosure.visible" :key="project.id"><component :is="phone ? MobileProjectPreview : ProjectCard" :project="project" @details="openDetails" /></li></ol>
+            <button v-if="phone && creativeDisclosure.expandable" class="projects-showcase__more" type="button" :aria-expanded="expanded.creative" aria-controls="creative-project-list" @click="toggleCategory('creative', $event)">{{ expanded.creative ? 'Show fewer creative projects' : `Show ${creativeDisclosure.remaining} more creative projects` }} <span aria-hidden="true">{{ expanded.creative ? '−' : '+' }}</span></button>
           </section>
         </div>
       </div>
-      <footer ref="showcaseFooter" class="projects-showcase__footer"><span>{{ visibleProjectCount }} of {{ projects.length }} projects</span><span id="projects-scroll-hint">{{ windowed ? 'Scroll inside the project window ↓' : `Selected work / Floor ${FLOOR.projects.number}` }}</span></footer>
+      <footer ref="showcaseFooter" class="projects-showcase__footer"><span :role="phone ? 'status' : undefined">{{ displayedCount }} of {{ projects.length }} projects</span><span id="projects-scroll-hint">{{ windowed ? 'Scroll inside the project window ↓' : `Selected work / Floor ${FLOOR.projects.number}` }}</span></footer>
+      <div v-if="portrait" class="mobile-office-rotation projects-rotation">
+        <img src="/hero/loft-mobile-v1/rotate-phone.svg" alt="" aria-hidden="true" width="32" height="32">
+        <p><strong>Explore the full exhibition</strong><span>Rotate your phone sideways for the immersive experience.</span></p>
+      </div>
+      <a v-if="phone" class="projects-next-floor" :href="`#${FLOOR.experience.id}`">Experience <span aria-hidden="true">↓</span></a>
     </div>
-    <dialog ref="detailDialog" class="project-dialog" :class="{ 'project-dialog--case-study': selectedProject?.caseStudy, 'project-dialog--responsive-preview': selectedProject?.preview.srcSet }" aria-labelledby="project-dialog-title" @close="onDialogClose" @click="onBackdropClick" @keydown.esc.prevent="closeDetails">
+    <dialog ref="detailDialog" class="project-dialog" :class="{ 'project-dialog--case-study': selectedProject?.caseStudy, 'project-dialog--responsive-preview': selectedProject?.preview.srcSet }" aria-labelledby="project-dialog-title" @close="onDialogClose" @click="onBackdropClick" @keydown="keepPhoneDialogFocus" @keydown.esc.prevent="closeDetails">
       <article v-if="selectedProject" class="project-dialog__panel">
         <button class="project-dialog__close" type="button" aria-label="Close project details" @click="closeDetails">×</button>
         <div class="project-dialog__preview" :class="{ 'project-dialog__preview--mockups': selectedProject.preview.kind === 'mockup' || selectedProject.additionalPreviews?.length }">
@@ -148,6 +213,7 @@ function onBackdropClick(event: MouseEvent) { if (event.target === detailDialog.
             </section>
           </template>
           <p v-else>{{ selectedProject.shortDescription }}</p>
+          <p v-if="phone && selectedProject.credit">{{ selectedProject.credit }}</p>
           <div v-if="selectedProject.developmentDetails" class="project-development">
             <section aria-labelledby="development-concept-title"><h4 id="development-concept-title">Concept &amp; player experience</h4><p>{{ selectedProject.developmentDetails.concept }}</p></section>
             <section aria-labelledby="development-implemented-title"><h4 id="development-implemented-title">Implemented in the prototype</h4><ul><li v-for="item in selectedProject.developmentDetails.implemented" :key="item">{{ item }}</li></ul></section>

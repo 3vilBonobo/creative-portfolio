@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { previewPhoneTouch } from "../composables/usePhoneLayout";
 import { computed, ref } from "vue";
 import { useEnvironment } from "../composables/useEnvironment";
 import { MOON_PHASES, getPreviewMoonAppearance } from "../services/moonMath";
@@ -20,6 +21,7 @@ function selectMoonPhase() {
   </button>
   <aside v-show="isOpen" id="environment-preview-panel" class="environment-preview" aria-label="Environment preview controls">
     <p>Scene preview</p>
+    <label><input v-model="previewPhoneTouch" type="checkbox"> Phone touch layout (Floors 04–00)</label>
     <label>Time
       <select v-model="previewTimePhase">
         <option :value="null">Live Athens time</option>

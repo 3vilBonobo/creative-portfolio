@@ -1,0 +1,33 @@
+[
+  {
+    "check": "keyboard fit toggle",
+    "pressed": "true",
+    "focus": "Fill the screen"
+  },
+  {
+    "check": "mapped telescope target",
+    "visible": true
+  },
+  {
+    "check": "puzzle survives rotation",
+    "visible": true,
+    "valueBefore": "3",
+    "valueAfter": "3"
+  },
+  {
+    "check": "rotation does not reenter studio",
+    "immersive": false
+  },
+  {
+    "check": "chess menu action",
+    "visible": true
+  },
+  {
+    "check": "aquarium menu action",
+    "visible": true
+  },
+  {
+    "check": "cat menu action",
+    "status": "Prrrr…"
+  }
+]

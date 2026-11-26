@@ -1,0 +1,51 @@
+/* The shared phone classifier owns orientation; tablets retain the exhibition. */
+.projects.projects--phone {
+  min-height: 0; height: auto; padding: 2rem 0 max(2rem, env(safe-area-inset-bottom));
+  scroll-margin-top: 3.5rem; overflow: clip;
+}
+.projects.projects--phone .projects-showcase { width: auto; margin-inline: max(1rem, env(safe-area-inset-left)) max(1rem, env(safe-area-inset-right)); padding-top: 0; }
+.projects.projects--phone .projects-showcase__header { grid-template-columns: auto minmax(0, 1fr); gap: .65rem 1rem; padding-bottom: 1rem; }
+.projects.projects--phone .projects-showcase__level { display: grid; gap: .2rem; padding-right: .75rem; border: 0; border-right: 1px solid #dbb28955; }
+.projects.projects--phone .projects-showcase__level strong { font-size: 1.8rem; }
+.projects.projects--phone .projects-showcase__level small { font-size: .55rem; }
+.projects.projects--phone .projects-showcase__level > span { display: none; }
+.projects.projects--phone .projects-showcase__title .eyebrow { font-size: .55rem; margin-bottom: .4rem; }
+.projects.projects--phone .projects-showcase__title h2 { font-size: 2rem; line-height: .95; }
+.projects.projects--phone .projects-showcase__title h2 br { display: none; }
+.projects.projects--phone .projects-showcase__intro { grid-column: 1 / -1; padding: .2rem 0 .2rem .65rem; font-size: .8rem; line-height: 1.6; }
+.projects.projects--phone .projects-showcase__intro > span { display: none; }
+.projects.projects--phone .projects-showcase__layout { display: block; }
+.projects.projects--phone .projects-showcase__rail { padding: 0; border: 0; background: transparent; }
+.projects.projects--phone .project-categories, .projects.projects--phone .projects-showcase__metadata { display: none; }
+.projects.projects--phone .projects-showcase__mobile-category { display: grid; gap: .4rem; color: #d1c5af; font: .6rem/1.5 "IBM Plex Mono", monospace; text-transform: uppercase; }
+.projects.projects--phone .projects-showcase__mobile-category select { width: 100%; min-width: 0; min-height: 44px; padding: .65rem; border: 1px solid #c69e5f; border-radius: 2px; background: #0a1014ed; color: #ffcb74; font: .75rem/1.5 "IBM Plex Mono", monospace; }
+.projects.projects--phone .projects-showcase__results { height: auto; overflow: visible; padding: .85rem 0 0; border: 0; outline: 0; background: transparent; }
+.projects.projects--phone .projects-showcase__count { font-size: .6rem; margin-bottom: .65rem; }
+.projects.projects--phone .projects-showcase__group, .projects.projects--phone .projects-showcase__group:first-of-type { margin-top: 1.2rem; }
+.projects.projects--phone .projects-showcase__group-heading { gap: .4rem; padding-bottom: .55rem; margin-bottom: .65rem; }
+.projects.projects--phone .projects-showcase__group-heading h3 { font-size: .7rem; line-height: 1.5; letter-spacing: .08em; }
+.projects.projects--phone .projects-showcase__group-heading > span { font-size: .6rem; }
+.projects.projects--phone .projects-showcase__grid { grid-template-columns: minmax(0, 1fr); grid-auto-rows: auto; gap: .6rem; }
+.projects.projects--phone .projects-showcase__grid > li { container-type: inline-size; }
+.projects-showcase__more { display: flex; align-items: center; justify-content: space-between; gap: .6rem; width: 100%; min-height: 44px; margin-top: .5rem; padding: .65rem; border: 1px solid #b894565e; background: #11191be8; color: #f3ce8e; font: .7rem/1.5 "IBM Plex Mono", monospace; text-align: left; cursor: pointer; }
+.projects.projects--phone .projects-showcase__footer { margin-top: 1rem; gap: .5rem; padding-top: .7rem; font-size: .55rem; }
+.projects.projects--phone .projects-rotation { margin: .9rem 0; padding-block: .8rem; }
+.projects.projects--phone .projects-next-floor { display: flex; justify-content: space-between; align-items: center; min-height: 44px; padding: .65rem 0; color: #bce9e2; font: .75rem/1.5 "IBM Plex Mono", monospace; }
+.projects.projects--phone :is(select, .projects-showcase__more, .projects-next-floor):focus-visible { outline: 3px solid #8fe5e6; outline-offset: 3px; }
+.projects.projects--landscape { padding-top: 1.25rem; }
+.projects.projects--landscape .projects-showcase__header { grid-template-columns: auto minmax(0, 1fr) minmax(0, 1fr); }
+.projects.projects--landscape .projects-showcase__intro { grid-column: auto; }
+.projects.projects--landscape .projects-showcase__mobile-category { grid-template-columns: max-content minmax(0, 1fr); align-items: center; gap: 1rem; }
+.projects.projects--landscape .projects-showcase__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+/* One scrolling surface for short dialogs; the close control stays in reach. */
+.projects.projects--phone .project-dialog { width: calc(100% - 1rem); max-width: 48rem; max-height: calc(100dvh - 1rem); overflow: auto; overscroll-behavior: contain; }
+.projects.projects--phone .project-dialog .project-dialog__panel { display: flex; flex-direction: column; max-height: none; overflow: visible; padding-top: 0; }
+.projects.projects--phone .project-dialog__close { position: sticky; top: 0; right: auto; align-self: flex-end; flex: 0 0 44px; min-width: 44px; min-height: 44px; margin: .25rem .25rem 0 0; z-index: 5; background: #10191b; }
+.projects.projects--phone .project-dialog__preview { max-height: none; min-height: 0; overflow: visible; }
+.projects.projects--phone .project-dialog__preview > img { height: auto; max-height: 45dvh; object-fit: contain; }
+.projects.projects--phone .project-dialog__preview--mockups { display: block; padding: .75rem; }
+.projects.projects--phone .project-dialog__preview--mockups figure + figure { margin-top: 1rem; }
+.projects.projects--phone .project-dialog__content { padding: 1rem; overflow: visible; }
+.projects.projects--phone .project-dialog .project-dialog__content h3 { font-size: 2rem; }
+.app-shell:has(.projects--phone)[data-active-floor="projects"] > .floor-nav { display: none; }
+body:has(.app-shell[data-active-floor="projects"] .projects--phone) { min-width: 0; }

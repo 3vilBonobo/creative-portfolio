@@ -15,7 +15,7 @@ const { activeFloor } = useActiveFloor(FLOORS.map(({ id }) => id));
 
 <template>
   <AppShell :data-active-floor="activeFloor">
-    <a class="skip-link" href="#main-content">Skip to content</a><SiteNavigation />
+    <a class="skip-link" href="#main-content">Skip to content</a><SiteNavigation :active-floor="activeFloor" />
     <FloorNavigator :floors="FLOORS" :active-floor="activeFloor" />
     <main id="main-content">
       <OfficeHero /><FloorTransition :transition="FLOOR_TRANSITIONS[0]!" /><AboutSection />

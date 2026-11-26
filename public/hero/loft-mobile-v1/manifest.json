@@ -1,0 +1,63 @@
+{
+  "schema": "handoff-v1",
+  "intrinsicSize": {
+    "width": 941,
+    "height": 1672
+  },
+  "coordinateSystem": "normalized 0..1 on full uncropped artwork; preliminary visual estimates",
+  "variants": {
+    "day": {
+      "src": "day-941.webp",
+      "small": "day-720.webp"
+    },
+    "night": {
+      "src": "night-941.webp",
+      "small": "night-720.webp"
+    }
+  },
+  "masks": {
+    "sky": "sky-mask.svg",
+    "weather": "weather-mask.svg",
+    "status": "conservative draft; inspect both states before enabling"
+  },
+  "hotspots": [
+    {
+      "id": "telescope",
+      "x": 0.1207,
+      "y": 0.4533,
+      "mode": "visible"
+    },
+    {
+      "id": "cat",
+      "x": 0.1078,
+      "y": 0.7354,
+      "mode": "visible"
+    },
+    {
+      "id": "chess",
+      "x": 0.8685,
+      "y": 0.8799,
+      "mode": "visible"
+    },
+    {
+      "id": "aquarium",
+      "x": 0.9774,
+      "y": 0.4879,
+      "mode": "menu-preferred"
+    },
+    {
+      "id": "sudoku",
+      "mode": "menu-only"
+    }
+  ],
+  "bakedElements": [
+    "cat",
+    "night moon",
+    "clouds"
+  ],
+  "notes": [
+    "Do not duplicate baked cat or moon with desktop overlays.",
+    "No portrait clock or Sudoku booklet visible; use HTML clock and discovery menu.",
+    "Coordinates are not desktop coordinates."
+  ]
+}

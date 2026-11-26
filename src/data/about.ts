@@ -93,3 +93,19 @@ export const aboutContent: PersonalAboutContent = {
     },
   },
 };
+
+// Phone editorial copy; verified facts and technical inventory stay shared above.
+export const aboutMobileContent = {
+  introduction: "From law to software engineering, I've always been drawn to complex systems, difficult questions and creative solutions. Today, I turn that curiosity into software.",
+  journey: [
+    aboutContent.journey[0]!,
+    aboutContent.journey[1]!,
+    { title: "Creative Technology", description: "Interactive storytelling, game development, creative coding and immersive environments. Sometimes, making something wonderfully strange is reason enough." },
+  ],
+  principles: [
+    { title: "Investigate first", description: "Untangle complex workflows, data and the occasional bug with an unnecessarily elaborate backstory. Symptoms are rarely the whole story." },
+    aboutContent.principles[1]!,
+    aboutContent.principles[2]!,
+    { title: "Stay curious", description: "Experiment across technology, art and human experience. Interesting ideas rarely respect the boundaries of a single discipline." },
+  ],
+};

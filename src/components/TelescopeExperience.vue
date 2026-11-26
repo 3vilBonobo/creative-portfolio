@@ -247,6 +247,7 @@ function resetLens() {
   activeClue.value = null;
 }
 
+let menuOpener: HTMLElement | null = null;
 function showTelescope() {
   refreshDiscoveries();
   kind.value = "city";
@@ -490,7 +491,8 @@ watch(open, async (isOpen) => {
   if (isOpen) {
     closeButton.value?.focus();
   } else {
-    trigger.value?.focus();
+    (menuOpener?.isConnected ? menuOpener : trigger.value)?.focus();
+    menuOpener = null;
   }
 });
 
@@ -504,11 +506,13 @@ onBeforeUnmount(() => {
   cancelAnimationFrame(animationFrame);
   document.body.classList.remove("telescope-is-open");
 });
+defineProps<{ hotspots?: boolean }>();
+defineExpose({ open, show: () => { menuOpener = document.activeElement as HTMLElement; showTelescope(); } });
 </script>
 
 <template>
   <svg
-    v-if="!open"
+    v-if="!open && hotspots !== false"
     class="telescope-hotspot-map"
     viewBox="0 0 1672 941"
     preserveAspectRatio="xMidYMid meet"

@@ -4,10 +4,13 @@ import AlleyFooter from "../components/AlleyFooter.vue";
 import MouseEasterEgg from "../components/MouseEasterEgg.vue";
 import WeatherEffects from "../components/WeatherEffects.vue";
 import { useEnvironment } from "../composables/useEnvironment";
+import { usePhoneLayout } from "../composables/usePhoneLayout";
 import { FLOOR } from "../config/floors";
 import { contactTopProjection } from "../services/contactScreenProjection";
 
 const { state, previewIntensity } = useEnvironment();
+const { phone, portrait, landscape } = usePhoneLayout();
+const phonePlate = computed(() => landscape.value ? "ultrawide" : "desktop-16x9");
 const section = ref<HTMLElement>();
 const panel = ref<HTMLElement>();
 const topWarp = ref("matrix(1, 0, 0, 1, 0, 0)");
@@ -47,14 +50,14 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <section ref="section" :id="FLOOR.street.id" class="floor-section contact-scene contact-scene--athens" :data-floor-number="FLOOR.street.number" :data-phase="state.timePhase" :data-weather="state.weatherCondition" aria-labelledby="contact-title">
+  <section ref="section" :id="FLOOR.street.id" class="floor-section contact-scene contact-scene--athens" :class="{ 'contact-scene--phone': phone, 'contact-scene--portrait': portrait, 'contact-scene--landscape': landscape }" :data-floor-number="FLOOR.street.number" :data-phase="state.timePhase" :data-weather="state.weatherCondition" aria-labelledby="contact-title">
     <div class="contact-scene__stage">
       <div class="contact-scene__art" aria-hidden="true">
         <picture>
-          <source media="(max-width: 600px)" :srcset="`${root}floor00-mobile-${lighting}.webp`" width="941" height="1672">
-          <source media="(max-width: 1100px)" :srcset="`${root}floor00-tablet-${lighting}.webp`" width="1448" height="1086">
-          <source media="(min-aspect-ratio: 2/1) and (min-width: 1800px)" :srcset="`${root}floor00-ultrawide-${lighting}.webp`" width="1916" height="821">
-          <img class="contact-scene__plate" :src="`${root}floor00-desktop-16x9-${lighting}.webp`" width="1448" height="814" alt="" loading="lazy" decoding="async">
+          <source v-if="!phone" media="(max-width: 600px)" :srcset="`${root}floor00-mobile-${lighting}.webp`" width="941" height="1672">
+          <source v-if="!phone" media="(max-width: 1100px)" :srcset="`${root}floor00-tablet-${lighting}.webp`" width="1448" height="1086">
+          <source v-if="!phone" media="(min-aspect-ratio: 2/1) and (min-width: 1800px)" :srcset="`${root}floor00-ultrawide-${lighting}.webp`" width="1916" height="821">
+          <img class="contact-scene__plate" :src="`${root}floor00-${phone ? phonePlate : 'desktop-16x9'}-${lighting}.webp`" :width="landscape ? 1916 : 1448" :height="landscape ? 821 : 814" alt="" loading="lazy" decoding="async">
         </picture>
         <div class="contact-sky"><WeatherEffects mode="sky" :state="state" :intensity="previewIntensity" :paused="paused" /></div>
         <div class="contact-practical" />
@@ -75,7 +78,7 @@ onBeforeUnmount(() => {
               <span class="contact-screen__station" aria-hidden="true">ATH—GR</span>
             </div>
             <h2 id="contact-title" class="contact-screen__title"><span class="sr-only">Contact. </span>Good ideas start<br>with a <em>hello.</em></h2>
-            <p class="contact-screen__copy">A product that needs clarity. An interface with a stubborn problem. Or something a little unusual. Tell me what you’re working on.</p>
+            <p class="contact-screen__copy">{{ phone ? 'Building something interesting? Tell me what you’re working on.' : 'A product that needs clarity. An interface with a stubborn problem. Or something a little unusual. Tell me what you’re working on.' }}</p>
             <a class="contact-email" href="mailto:3vilbonobo@gmail.com"><span>Start a conversation</span><span aria-hidden="true">↗</span><small>3vilbonobo@gmail.com</small></a>
             <nav id="contact-socials" class="contact-socials" aria-label="Irinella's social profiles">
               <a href="https://x.com/Irinella_b" target="_blank" rel="noopener noreferrer" aria-label="Visit Irinella on X"><span>X</span><span aria-hidden="true">↗</span></a>
@@ -86,6 +89,11 @@ onBeforeUnmount(() => {
           </div>
           <div class="contact-panel__label" aria-hidden="true"><i /> DIRECT LINE <span>ATHENS · FLOOR 00</span></div>
         </div>
+        <div v-if="portrait" class="mobile-office-rotation contact-rotation">
+          <img src="/hero/loft-mobile-v1/rotate-phone.svg" alt="" aria-hidden="true" width="32" height="32">
+          <p><strong>Explore the full street</strong><span>Rotate your phone sideways for the immersive experience.</span></p>
+        </div>
+        <a v-if="phone" class="contact-rooftop" :href="`#${FLOOR.office.id}`">Back to the rooftop</a>
         <a class="exit-door" :href="`#${FLOOR.office.id}`" aria-label="Enter the building and return to the rooftop"><span class="sr-only">Return to rooftop</span></a>
         <MouseEasterEgg />
       </div>
@@ -296,5 +304,105 @@ onBeforeUnmount(() => {
   .contact-panel__label { padding-top: 7px; gap: 6px; font-size: 8px; }
 }
 @media (prefers-reduced-motion: reduce) { .contact-email, .contact-socials a { transition: none; } }
+
+/* The native desktop plate is already uncropped. Keep its camera and shared
+   coordinates; uncover a little more mounting wall without shrinking type. */
+@media (min-width: 1101px) {
+  .contact-panel { width: 25%; }
+  .contact-screen { gap: .45cqi; }
+}
+
+/* One interactive tree survives rotation. The complete establishing plate,
+   sky mask, lamp, doorway and precipitation share the same art rectangle. */
+.contact-scene--phone {
+  --street-art-height: calc(100cqi * 814 / 1448);
+  min-height: 0;
+  scroll-margin-top: 3.5rem;
+  background: #171c1d;
+}
+.contact-scene--phone .contact-scene__stage {
+  aspect-ratio: auto;
+  background:
+    linear-gradient(90deg, #060a0c80, transparent 8% 92%, #060a0c80),
+    repeating-linear-gradient(0deg, transparent 0 95px, #05080855 96px, #65716d22 97px, transparent 98px),
+    linear-gradient(110deg, #28302f, #171c1e 55%, #272b2c);
+}
+.contact-scene--phone[data-phase="night"] .contact-scene__stage,
+.contact-scene--phone[data-phase="dusk"] .contact-scene__stage {
+  background:
+    radial-gradient(ellipse at 15% 25%, #1e718028, transparent 55%),
+    radial-gradient(ellipse at 100% 50%, #8428551c, transparent 50%),
+    repeating-linear-gradient(0deg, transparent 0 95px, #05080888 96px, #65716d12 97px, transparent 98px),
+    linear-gradient(110deg, #151e21, #101519 55%, #1d171e);
+}
+.contact-scene--phone .contact-scene__art {
+  height: var(--street-art-height); aspect-ratio: auto;
+  bottom: auto; border: 0; box-shadow: 0 2px #050a0b;
+}
+.contact-scene--phone .contact-scene__plate { object-fit: contain; }
+.contact-scene--phone .contact-sky { mask-image: url('/environments/floor-00-contact/floor00-desktop-16x9-sky-mask.svg'); }
+.contact-scene--phone .contact-sky :deep(.weather-cloud-bank) { top: 14%; height: 40%; }
+.contact-scene--phone .contact-practical,
+.contact-scene--phone[data-phase="night"] .contact-practical { left: 28%; top: 14%; width: 17%; height: 15%; }
+.contact-scene--phone .contact-scene__precipitation { height: var(--street-art-height); max-height: none; }
+.contact-scene--phone .contact-scene__layout {
+  position: relative; display: flex; flex-direction: column; gap: 0;
+  padding: calc(var(--street-art-height) + 12px) max(16px, env(safe-area-inset-right)) 0 max(16px, env(safe-area-inset-left));
+}
+.contact-scene--phone .contact-level { top: 10px; left: 16px; font-size: 10px; }
+.contact-scene--phone .contact-panel {
+  --rim-side: 7px; --rim-top: 7px; --rim-bottom: 23px;
+  position: relative; inset: auto; transform: none; width: 100%; max-width: 600px;
+  height: auto; margin: 0; padding: 7px 7px 5px; border-radius: 3px;
+  box-shadow: inset 1px 1px #61e5ed40, 2px 3px #020507, 4px 5px 4px #000c, 7px 9px 12px #0007;
+}
+.contact-scene--phone .contact-screen { padding: 14px; gap: 12px; }
+.contact-scene--phone .contact-screen__header { padding-bottom: 6px; }
+.contact-scene--phone .contact-screen__title { font-size: clamp(32px, 8.7vw, 40px); }
+.contact-scene--phone .contact-screen__copy { font-size: 16px; line-height: 1.4; }
+.contact-scene--phone .contact-screen__eyebrow,
+.contact-scene--phone .contact-screen__station { font-size: 11px; }
+.contact-scene--phone .contact-email { padding: 10px; min-height: 60px; font-size: 16px; }
+.contact-scene--phone .contact-email small { font-size: 12px; }
+.contact-scene--phone .contact-socials { gap: 4px; }
+.contact-scene--phone .contact-socials a { min-height: 44px; font-size: 12px; padding: 4px; }
+.contact-scene--phone .contact-screen__signature { font-size: 10px; }
+.contact-scene--phone .contact-panel__label { padding-top: 5px; font-size: 8px; }
+.contact-scene--phone .exit-door { left: 10%; top: 0; margin-top: calc(var(--street-art-height) * .28); width: 14%; height: calc(var(--street-art-height) * .58); }
+.contact-rotation { max-width: 600px; width: 100%; align-self: center; margin: 14px 0 0; padding-block: 10px; }
+.contact-rooftop { display: flex; align-items: center; align-self: center; min-height: 44px; padding: 8px 12px; color: #bce8e8; font: 14px/1.5 "IBM Plex Mono", monospace; text-underline-offset: 4px; }
+.contact-rooftop:focus-visible { outline: 2px solid #d8ffec; outline-offset: 3px; }
+/* A local wall threshold replaces the duplicated photograph of the pavement.
+   The original mouse and accessible hatch retain their lifecycle and dialog. */
+.contact-scene--phone :deep(.mouse-world) {
+  position: relative; inset: auto; flex: 0 0 44px; width: 100%; height: 44px;
+  margin: 0; border: 0; background: none !important;
+  --hole-x: 82%; --floor-y: 88%; --mouse-size: 48px;
+}
+.contact-scene--phone :deep(.mouse-world:not(.mouse-world--night)) { display: none; }
+.contact-scene--phone :deep(.mouse-hatch__hint) { opacity: 1; left: auto; right: 100%; bottom: 0; transform: none; font-size: 11px; }
+.contact-scene--phone :deep(.alley-footer) {
+  min-height: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 20px;
+  padding: 14px max(16px, env(safe-area-inset-right)) max(18px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+  font-size: 10px; line-height: 1.5;
+}
+.contact-scene--phone :deep(.alley-footer p:last-child) { display: none; }
+.contact-scene--phone :deep(.alley-footer__environment) { display: block; }
+:global(.app-shell:has(.contact-scene--phone)[data-active-floor="street"] > .floor-nav) { display: none; }
+:global(.app-shell:has(.contact-scene--phone)[data-active-floor="street"] > .environment-preview-toggle) { top: 3.75rem; bottom: auto; right: 8px; font-size: 9px; padding: 7px 9px; }
+
+.contact-scene--landscape { --street-art-height: calc(100cqi * 821 / 1916); }
+.contact-scene--landscape .contact-sky { mask-image: url('/environments/floor-00-contact/floor00-ultrawide-sky-mask.svg'); }
+.contact-scene--landscape .contact-practical,
+.contact-scene--landscape[data-phase="night"] .contact-practical { left: 27%; top: 8%; width: 13%; height: 17%; }
+.contact-scene--landscape .exit-door { margin-top: calc(var(--street-art-height) * .25); width: 13%; height: calc(var(--street-art-height) * .65); }
+.contact-scene--landscape .contact-panel { max-width: none; }
+.contact-scene--landscape .contact-screen { display: grid; grid-template-columns: 1fr 1fr; align-items: start; gap: 10px 24px; }
+.contact-scene--landscape .contact-screen__header { grid-column: 1 / -1; }
+.contact-scene--landscape .contact-screen__title { grid-column: 1; grid-row: 2; font-size: 34px; }
+.contact-scene--landscape .contact-screen__copy { grid-column: 1; grid-row: 3 / 5; }
+.contact-scene--landscape .contact-email { grid-column: 2; grid-row: 2; }
+.contact-scene--landscape .contact-socials { grid-column: 2; grid-row: 3; }
+.contact-scene--landscape .contact-screen__signature { grid-column: 2; grid-row: 4; }
 
 </style>

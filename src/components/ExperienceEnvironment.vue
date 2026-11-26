@@ -5,6 +5,7 @@ import { experienceManualLights, experienceWallPreview, experienceCeilingPreview
 import profiles from "../config/experienceEnvironment.json";
 
 type Profile = keyof typeof profiles;
+const props = defineProps<{ phoneLandscape?: boolean }>();
 const root = ref<HTMLElement>();
 const profile = ref<Profile>("desktop");
 const wallIntensity = ref(1);
@@ -49,7 +50,7 @@ function updateActivity() {
 if (import.meta.env.DEV) watch(experienceManualLights, updateActivity);
 
 function syncProfile() {
-  const next: Profile = phone?.matches || portrait?.matches ? "mobile" : tablet?.matches ? "tablet" : "desktop";
+  const next: Profile = props.phoneLandscape ? "desktop" : phone?.matches || portrait?.matches ? "mobile" : tablet?.matches ? "tablet" : "desktop";
   if (next !== profile.value) {
     loaded.value = false;
     failed.value = false;
@@ -59,6 +60,8 @@ function syncProfile() {
   updateClearance();
   updateActivity();
 }
+
+watch(() => props.phoneLandscape, syncProfile);
 
 function assetLoaded(name: string) {
   pending.add(name);

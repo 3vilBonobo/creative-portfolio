@@ -1,0 +1,2 @@
+# Floor 00 handoff
+Read CODEX-PROMPT.md first. references contains current user screenshots and historical Contact implementation notes. assets contains a reusable rotation icon, not new street artwork. Runtime day/night backgrounds remain in the repository and must be inspected there. This package is a design and implementation handoff, not a tested code change. Desktop changes are limited to Floor 00 framing. Screenshots must not be deployed as artwork.

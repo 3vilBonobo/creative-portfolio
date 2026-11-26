@@ -1,0 +1,30 @@
+[
+  {
+    "url": "http://127.0.0.1:4310/environments/floor-00-contact/floor00-desktop-16x9-day.webp",
+    "sources": [
+      {
+        "kind": "resource",
+        "property": "img"
+      },
+      {
+        "kind": "attribute",
+        "nodeId": 2829,
+        "property": "src"
+      }
+    ]
+  },
+  {
+    "url": "http://127.0.0.1:4310/environments/floor-00-contact/floor00-desktop-16x9-sky-mask.svg",
+    "sources": [
+      {
+        "kind": "resource",
+        "property": "css"
+      },
+      {
+        "kind": "computedStyle",
+        "nodeId": 2830,
+        "property": "mask-image"
+      }
+    ]
+  }
+]

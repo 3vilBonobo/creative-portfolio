@@ -1,0 +1,32 @@
+[
+  {
+    "height": 353,
+    "phase": "dawn",
+    "source": "http://127.0.0.1:5173/environments/floor-00-contact/floor00-ultrawide-day.webp",
+    "veilTarget": "0"
+  },
+  {
+    "height": 353,
+    "phase": "day",
+    "source": "http://127.0.0.1:5173/environments/floor-00-contact/floor00-ultrawide-day.webp",
+    "veilTarget": "0"
+  },
+  {
+    "height": 353,
+    "phase": "goldenHour",
+    "source": "http://127.0.0.1:5173/environments/floor-00-contact/floor00-ultrawide-day.webp",
+    "veilTarget": "0"
+  },
+  {
+    "height": 353,
+    "phase": "dusk",
+    "source": "http://127.0.0.1:5173/environments/floor-00-contact/floor00-ultrawide-night.webp",
+    "veilTarget": ".1"
+  },
+  {
+    "height": 353,
+    "phase": "night",
+    "source": "http://127.0.0.1:5173/environments/floor-00-contact/floor00-ultrawide-night.webp",
+    "veilTarget": ".25"
+  }
+]

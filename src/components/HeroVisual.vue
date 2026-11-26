@@ -11,6 +11,7 @@ import MoonSky from "./MoonSky.vue";
 import SceneEnvironment from "./SceneEnvironment.vue";
 import "../hero-scene.css";
 
+const props = defineProps<{ compact?: boolean }>();
 const { state, previewMoonPhase, previewMoonProgress, previewIntensity, hiddenHeroLayers, showExteriorMask, showInteriorMask, freezeParallax } = useEnvironment();
 const root = ref<HTMLElement>();
 const documentHidden = ref(document.visibilityState === "hidden");
@@ -28,7 +29,7 @@ function teardownParallax() { context?.revert(); context = undefined; triggers.l
 function syncParallax() {
   teardownParallax();
   const hero = root.value?.closest<HTMLElement>(".hero");
-  if (!hero || !motionQuery?.matches) return;
+  if (!hero || props.compact || !motionQuery?.matches) return;
   context = gsap.context(() => {
     gsap.utils.toArray<HTMLElement>("[data-parallax]", hero).forEach((element) => {
       const tween = gsap.to(element, { yPercent: Number(element.dataset.parallax ?? 0), ease: "none", scrollTrigger: { trigger: hero, start: "top top", end: "bottom top", scrub: .55 } });
@@ -37,6 +38,7 @@ function syncParallax() {
   }, hero);
   if (freezeParallax.value) triggers.forEach(trigger => trigger.disable());
 }
+watch(() => props.compact, syncParallax);
 watch(freezeParallax, frozen => triggers.forEach(trigger => frozen ? trigger.disable() : trigger.enable()));
 onMounted(() => {
   document.addEventListener("visibilitychange", onVisibilityChange);

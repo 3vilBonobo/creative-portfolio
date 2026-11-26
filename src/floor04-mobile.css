@@ -1,0 +1,88 @@
+/* Floor 04 only. All desktop/tablet rules continue to own their original canvas. */
+.office-studio-stage, .office-studio-canvas { display: contents; }
+body:has(.app-shell[data-active-floor="office"] .hero--phone) { min-width: 0; }
+.hero.hero--phone {
+  display: block; min-height: 0; height: auto; padding: 3.5rem 0 0;
+  background: #0d1112 !important; overflow: clip;
+}
+.hero--phone .office-studio-stage {
+  display: block; position: relative; width: 100%; height: min(65svh, 28rem);
+  container-type: size; isolation: isolate;
+}
+.hero--portrait .office-studio-stage { height: auto; container-type: normal; }
+.hero--landscape .office-studio-stage { overflow: hidden; }
+.hero--landscape:not(.hero--immersive) .office-studio-stage {
+  height: min(100svh, 56.2799043vw);
+}
+/* One native-aspect canvas scales the plate, masks and interaction maps together.
+   Only the stage clips it: changing the fit never changes scene coordinates. */
+.hero--landscape .office-studio-canvas {
+  display: block; position: absolute; left: 50%; top: 70%;
+  width: max(100cqw, 177.6833156cqh); aspect-ratio: 1672 / 941;
+  transform: translate(-50%, -70%); container-type: size;
+}
+.hero--landscape.hero--studio-contained .office-studio-canvas {
+  width: min(100cqw, 177.6833156cqh); top: 50%; transform: translate(-50%, -50%);
+}
+.hero--phone .hero-visual { inset: 0; width: 100%; height: 100%; }
+.hero--phone .hero-copy-drawer, .hero--phone .scroll-cue { display: none !important; }
+.mobile-office-copy { padding: 1.1rem max(1.25rem, env(safe-area-inset-right)) 0 max(1.25rem, env(safe-area-inset-left)); }
+.mobile-office-eyebrow { margin: 0 0 .6rem; font: .6rem/1.5 "IBM Plex Mono", monospace; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.hero--phone .mobile-office-copy h1 { margin: 0; font: 500 clamp(2.3rem, 10vw, 3rem)/1 "Barlow Condensed", sans-serif; text-transform: uppercase; letter-spacing: -.01em; }
+.hero--phone .mobile-office-copy h1 span { display: block; margin: 0 0 .5rem; color: var(--service); font: 500 .8rem/1.4 "IBM Plex Mono", monospace; letter-spacing: .07em; }
+.mobile-office-lede { max-width: 33rem; margin: .75rem 0 1rem; color: #eee9e0; font-size: 1rem; line-height: 1.55; }
+.mobile-office-actions { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1.25rem; }
+.mobile-office-actions a, .mobile-studio-enter { display: inline-flex; align-items: center; justify-content: space-between; gap: 1.5rem; min-height: 44px; padding: .65rem .8rem; font: 500 .75rem/1.4 "IBM Plex Mono", monospace; }
+.mobile-office-primary { background: var(--cyan); color: #0d1112; border: 1px solid var(--cyan); }
+.mobile-office-actions a + a { color: #eee9e0; }
+.mobile-office-rotation { display: flex; align-items: center; gap: .85rem; margin: 1.1rem 0; padding-block: 1rem; border-block: 1px solid var(--line); }
+.mobile-office-rotation img { flex: 0 0 32px; opacity: .8; filter: invert(1); }
+.mobile-office-rotation p { margin: 0; font-size: .8rem; line-height: 1.6; color: var(--muted); }
+.mobile-office-rotation strong, .mobile-office-rotation span { display: block; }
+.mobile-office-rotation strong { margin-bottom: .15rem; color: var(--cyan); font-weight: 600; }
+.mobile-office-background { max-width: 40rem; font-size: .9rem; line-height: 1.7; color: #cbc7be; }
+.mobile-studio-enter { background: #172322; border: 1px solid var(--cyan); color: var(--cyan); cursor: pointer; }
+.mobile-studio-tools { position: relative; padding: 0 max(1.25rem, env(safe-area-inset-right)) 2rem max(1.25rem, env(safe-area-inset-left)); }
+.mobile-office-weather { margin: 1.25rem 0 .8rem; color: var(--muted); font: .65rem/1.7 "IBM Plex Mono", monospace; }
+.mobile-office-weather small { display: block; font-size: inherit; }
+.mobile-studio-discoveries { border-block: 1px solid var(--line); }
+.mobile-studio-discoveries summary { display: flex; justify-content: space-between; align-items: center; min-height: 48px; padding: .65rem 0; list-style: none; cursor: pointer; color: #eee9e0; font: 500 .8rem/1.5 "IBM Plex Mono", monospace; }
+.mobile-studio-discoveries summary::-webkit-details-marker { display: none; }
+.mobile-studio-discoveries summary:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
+.mobile-studio-discoveries summary span { color: var(--cyan); }
+.mobile-studio-discoveries[open] summary span { transform: rotate(45deg); }
+.mobile-studio-discoveries__actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .5rem; padding-block: .25rem 1rem; }
+.mobile-studio-discoveries button { display: flex; justify-content: space-between; align-items: center; gap: .4rem; min-height: 44px; padding: .7rem; border: 1px solid var(--line); background: #19201f; color: #eee9e0; font: .75rem/1.5 "IBM Plex Mono", monospace; cursor: pointer; }
+.mobile-studio-discoveries button span { color: var(--cyan); }
+.site-header.site-header--office-phone { padding: max(.3rem, env(safe-area-inset-top)) max(1.25rem, env(safe-area-inset-right)) .3rem max(1.25rem, env(safe-area-inset-left)); min-height: 3.5rem; gap: .5rem; background: #0d1112f5; }
+.site-header--office-phone .wordmark { font-size: .6rem; letter-spacing: .1em; }
+.mobile-office-menu { display: flex; align-items: center; gap: .75rem; min-height: 44px; padding: .5rem; border: 0; background: transparent; color: #eee9e0; font: .7rem "IBM Plex Mono", monospace; pointer-events: auto; cursor: pointer; }
+.mobile-office-menu span { color: var(--cyan); }
+.site-header--office-phone .site-nav { position: absolute; inset: 100% 1rem auto; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); width: auto; background: #101918fa; }
+.site-header--office-phone .site-nav a { min-height: 44px; font-size: .7rem; }
+/* Cover the viewport; safe areas belong to controls, not the artwork. */
+.hero.hero--immersive { z-index: 60; overflow: visible; }
+.hero--immersive .office-studio-stage {
+  position: fixed; inset: 0; z-index: 50; width: 100%; height: 100dvh;
+  border: 0; background: #0d1112;
+}
+.hero--immersive .mobile-studio-tools { position: fixed; z-index: 51; top: max(.5rem, env(safe-area-inset-top)); left: max(.65rem, env(safe-area-inset-left)); right: max(.65rem, env(safe-area-inset-right)); padding: 0; pointer-events: none; }
+.mobile-studio-toolbar { display: flex; gap: .5rem; align-items: flex-start; padding-right: 11rem; }
+.mobile-studio-return, .mobile-studio-fit { flex-shrink: 0; min-height: 44px; padding: .6rem .75rem; border: 1px solid #e8dfcf38; background: #0d1112df; color: var(--cyan); font: .7rem/1.4 "IBM Plex Mono", monospace; cursor: pointer; pointer-events: auto; backdrop-filter: blur(8px); }
+.mobile-studio-fit { color: #eee9e0; }
+.hero--immersive .mobile-office-weather { display: none; }
+.hero--immersive .mobile-studio-discoveries { position: absolute; top: 0; right: 0; width: 10.5rem; max-height: calc(100dvh - max(.5rem, env(safe-area-inset-top)) - max(.5rem, env(safe-area-inset-bottom))); overflow: auto; background: #0d1112df; border: 1px solid #e8dfcf38; padding-inline: .6rem; pointer-events: auto; backdrop-filter: blur(8px); }
+.hero--immersive .mobile-studio-discoveries__actions { grid-template-columns: 1fr; }
+.hero--immersive .telescope-hotspot-map, .hero--immersive .puzzle-hotspot-map,
+.hero--immersive .chess-hotspot-map, .hero--immersive .aquarium-hotspot-map { display: block; }
+/* The compact header replaces the floating floor bar only on this floor. */
+.app-shell:has(.hero--phone)[data-active-floor="office"] > .floor-nav { display: none; }
+.app-shell:has(.hero--immersive) > .site-header,
+.app-shell:has(.hero--immersive) > .floor-nav { visibility: hidden; }
+body:has(.hero--phone) .puzzle-book__page header button {
+  position: relative; z-index: 2; min-height: 44px; padding: .6rem;
+  border: 1px solid #072b3c; background: #d8d5c9; color: #072b3c;
+}
+body:has(.hero--phone) .chess-close { min-width: 44px; min-height: 44px; }
+body:has(.hero--phone) .puzzle-book__spread { width: 100%; min-width: 0; max-width: 100%; }
+body:has(.hero--phone) .sudoku-grid { width: calc(100% - 2px); }

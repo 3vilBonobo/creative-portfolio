@@ -1,0 +1,314 @@
+[
+  {
+    "art": {
+      "bottom": 557.5,
+      "height": 541.921875,
+      "left": 0,
+      "right": 305,
+      "top": 15.578125,
+      "width": 305,
+      "x": 0,
+      "y": 15.578125
+    },
+    "emailBottom": 938.734375,
+    "emailTop": 870.15625,
+    "height": 1378.484375,
+    "native": [
+      941,
+      1672
+    ],
+    "source": "http://127.0.0.1:5173/environments/floor-00-contact/floor00-mobile-day.webp",
+    "viewport": [
+      320,
+      568
+    ]
+  },
+  {
+    "art": {
+      "bottom": 628.5625,
+      "height": 613,
+      "left": 0,
+      "right": 345,
+      "top": 15.5625,
+      "width": 345,
+      "x": 0,
+      "y": 15.5625
+    },
+    "emailBottom": 955.5,
+    "emailTop": 886.921875,
+    "height": 1395.25,
+    "native": [
+      941,
+      1672
+    ],
+    "source": "http://127.0.0.1:5173/environments/floor-00-contact/floor00-mobile-day.webp",
+    "viewport": [
+      360,
+      800
+    ]
+  },
+  {
+    "art": {
+      "bottom": 682.6875,
+      "height": 666.296875,
+      "left": 0,
+      "right": 375,
+      "top": 16.390625,
+      "width": 375,
+      "x": 0,
+      "y": 16.390625
+    },
+    "emailBottom": 1008.796875,
+    "emailTop": 940.21875,
+    "height": 1429.15625,
+    "native": [
+      941,
+      1672
+    ],
+    "source": "http://127.0.0.1:5173/environments/floor-00-contact/floor00-mobile-day.webp",
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "art": {
+      "bottom": 753.140625,
+      "height": 737.375,
+      "left": 0,
+      "right": 415,
+      "top": 15.765625,
+      "width": 415,
+      "x": 0,
+      "y": 15.765625
+    },
+    "emailBottom": 1060.0625,
+    "emailTop": 991.484375,
+    "height": 1481.609375,
+    "native": [
+      941,
+      1672
+    ],
+    "source": "http://127.0.0.1:5173/environments/floor-00-contact/floor00-mobile-day.webp",
+    "viewport": [
+      430,
+      932
+    ]
+  },
+  {
+    "art": {
+      "bottom": 504.609375,
+      "height": 489,
+      "left": 0,
+      "right": 652,
+      "top": 15.609375,
+      "width": 652,
+      "x": 0,
+      "y": 15.609375
+    },
+    "emailBottom": 825.046875,
+    "emailTop": 756.46875,
+    "height": 1256.078125,
+    "native": [
+      1448,
+      1086
+    ],
+    "source": "http://127.0.0.1:5173/environments/floor-00-contact/floor00-tablet-day.webp",
+    "viewport": [
+      667,
+      375
+    ]
+  },
+  {
+    "art": {
+      "bottom": 637.5,
+      "height": 621.75,
+      "left": 0,
+      "right": 829,
+      "top": 15.75,
+      "width": 829,
+      "x": 0,
+      "y": 15.75
+    },
+    "emailBottom": 971.53125,
+    "emailTop": 902.953125,
+    "height": 1405.890625,
+    "native": [
+      1448,
+      1086
+    ],
+    "source": "http://127.0.0.1:5173/environments/floor-00-contact/floor00-tablet-day.webp",
+    "viewport": [
+      844,
+      390
+    ]
+  },
+  {
+    "art": {
+      "bottom": 703.40625,
+      "height": 687.75,
+      "left": 0,
+      "right": 917,
+      "top": 15.65625,
+      "width": 917,
+      "x": 0,
+      "y": 15.65625
+    },
+    "emailBottom": 447.1841735839844,
+    "emailTop": 385.5649719238281,
+    "height": 801.75,
+    "native": [
+      1448,
+      1086
+    ],
+    "source": "http://127.0.0.1:5173/environments/floor-00-contact/floor00-tablet-day.webp",
+    "viewport": [
+      932,
+      430
+    ]
+  },
+  {
+    "art": {
+      "bottom": 580.484375,
+      "height": 564.75,
+      "left": 0,
+      "right": 753,
+      "top": 15.734375,
+      "width": 753,
+      "x": 0,
+      "y": 15.734375
+    },
+    "emailBottom": 914.53125,
+    "emailTop": 845.953125,
+    "height": 1348.890625,
+    "native": [
+      1448,
+      1086
+    ],
+    "source": "http://127.0.0.1:5173/environments/floor-00-contact/floor00-tablet-day.webp",
+    "viewport": [
+      768,
+      1024
+    ]
+  },
+  {
+    "art": {
+      "bottom": 772.328125,
+      "height": 756.75,
+      "left": 0,
+      "right": 1009,
+      "top": 15.578125,
+      "width": 1009,
+      "x": 0,
+      "y": 15.578125
+    },
+    "emailBottom": 474.6446838378906,
+    "emailTop": 409.51519775390625,
+    "height": 870.75,
+    "native": [
+      1448,
+      1086
+    ],
+    "source": "http://127.0.0.1:5173/environments/floor-00-contact/floor00-tablet-day.webp",
+    "viewport": [
+      1024,
+      768
+    ]
+  },
+  {
+    "art": {
+      "bottom": 832.453125,
+      "height": 801.0625,
+      "left": 0,
+      "right": 1425,
+      "top": 31.390625,
+      "width": 1425,
+      "x": 0,
+      "y": 31.390625
+    },
+    "emailBottom": 487.707275390625,
+    "emailTop": 413.46929931640625,
+    "height": 869.0625,
+    "native": [
+      1448,
+      814
+    ],
+    "source": "http://127.0.0.1:5173/environments/floor-00-contact/floor00-desktop-16x9-day.webp",
+    "viewport": [
+      1440,
+      900
+    ]
+  },
+  {
+    "art": {
+      "bottom": 1086.421875,
+      "height": 1070.890625,
+      "left": 0,
+      "right": 1905,
+      "top": 15.53125,
+      "width": 1905,
+      "x": 0,
+      "y": 15.53125
+    },
+    "emailBottom": 661.1275634765625,
+    "emailTop": 565.3775024414062,
+    "height": 1138.890625,
+    "native": [
+      1448,
+      814
+    ],
+    "source": "http://127.0.0.1:5173/environments/floor-00-contact/floor00-desktop-16x9-day.webp",
+    "viewport": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "art": {
+      "bottom": 1446.5,
+      "height": 1430.671875,
+      "left": 0,
+      "right": 2545,
+      "top": 15.828125,
+      "width": 2545,
+      "x": 0,
+      "y": 15.828125
+    },
+    "emailBottom": 873.9092407226562,
+    "emailTop": 757.6195068359375,
+    "height": 1498.671875,
+    "native": [
+      1448,
+      814
+    ],
+    "source": "http://127.0.0.1:5173/environments/floor-00-contact/floor00-desktop-16x9-day.webp",
+    "viewport": [
+      2560,
+      1440
+    ]
+  },
+  {
+    "art": {
+      "bottom": 1483.234375,
+      "height": 1467.59375,
+      "left": 0,
+      "right": 3425,
+      "top": 15.640625,
+      "width": 3425,
+      "x": 0,
+      "y": 15.640625
+    },
+    "emailBottom": 834.469970703125,
+    "emailTop": 693.282958984375,
+    "height": 1535.59375,
+    "native": [
+      1916,
+      821
+    ],
+    "source": "http://127.0.0.1:5173/environments/floor-00-contact/floor00-ultrawide-day.webp",
+    "viewport": [
+      3440,
+      1440
+    ]
+  }
+]

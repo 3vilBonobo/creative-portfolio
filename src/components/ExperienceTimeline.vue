@@ -6,7 +6,7 @@ const emit = defineEmits<{ select: [index: number] }>();
 
 <template>
   <ol class="experience-timeline" :class="{ 'experience-timeline--accordion': accordion }" aria-label="Professional experience">
-    <li v-for="(entry, index) in entries" :id="`experience-entry-${entry.id}`" :key="entry.id" class="experience-entry" :class="{ 'is-active': index === activeIndex }">
+    <li v-for="(entry, index) in entries" :id="`experience-entry-${entry.id}`" :key="entry.id" class="experience-entry" :class="{ 'is-active': index === activeIndex, 'is-current': entry.current }" :style="{ '--chapter-row': index + 1 }">
       <button
         :id="`experience-select-${entry.id}`"
         class="experience-entry__select"

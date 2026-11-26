@@ -1,5 +1,9 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref } from "vue";
+import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from "vue";
+import MobileStudioPlate from "../components/MobileStudioPlate.vue";
+import { usePhoneLayout } from "../composables/usePhoneLayout";
+import { useEnvironment } from "../composables/useEnvironment";
+import "../floor04-mobile.css";
 import HeroCat from "../components/HeroCat.vue";
 import HeroVisual from "../components/HeroVisual.vue";
 import TelescopeExperience from "../components/TelescopeExperience.vue";
@@ -8,10 +12,75 @@ import DailyChessPuzzle from "../components/DailyChessPuzzle.vue";
 import AquariumExperience from "../components/AquariumExperience.vue";
 import { FLOOR } from "../config/floors";
 
+const { portrait, landscape, phone } = usePhoneLayout();
+const { state } = useEnvironment();
+const hero = ref<HTMLElement>();
+const telescope = ref<InstanceType<typeof TelescopeExperience>>();
+const aquarium = ref<InstanceType<typeof AquariumExperience>>();
+const chess = ref<InstanceType<typeof DailyChessPuzzle>>();
+const sudoku = ref<InstanceType<typeof DailyPuzzleBook>>();
+const cat = ref<InstanceType<typeof HeroCat>>();
+const studioRequested = ref(false);
+const studioContained = ref(false);
+const portraitExpanded = ref(false);
+const immersive = computed(() => studioRequested.value && landscape.value);
+const discoveryOpen = computed(() => !!(telescope.value?.open || aquarium.value?.open || chess.value?.open || sudoku.value?.open));
+const weatherLabel = computed(() => ({ clear: "Clear", partlyCloudy: "Partly cloudy", cloudy: "Cloudy", fog: "Fog", rain: "Rain", storm: "Storm", snow: "Snow" })[state.value.weatherCondition]);
+let returnFocus: HTMLElement | null = null;
+let studioScroll = 0;
+let previousOverflow = "";
+function discover(kind: "telescope" | "aquarium" | "chess" | "sudoku" | "cat", event: Event) {
+  if (kind === "cat") cat.value?.pet();
+  else {
+    returnFocus = event.currentTarget as HTMLElement;
+    ({ telescope, aquarium, chess, sudoku })[kind].value?.show();
+  }
+}
+async function enterStudio() {
+  if (!landscape.value || discoveryOpen.value) return;
+  studioRequested.value = true;
+  await nextTick();
+  hero.value?.querySelector<HTMLButtonElement>(".mobile-studio-return")?.focus({ preventScroll: true });
+}
+async function exitStudio() {
+  studioRequested.value = false;
+  await nextTick();
+  hero.value?.querySelector<HTMLButtonElement>(".mobile-studio-enter")?.focus({ preventScroll: true });
+}
+watch(landscape, available => { if (!available) studioRequested.value = false; });
+watch(immersive, async active => {
+  if (active) {
+    studioScroll = window.scrollY;
+    previousOverflow = document.documentElement.style.overflow;
+    document.documentElement.style.overflow = "hidden";
+  } else {
+    document.documentElement.style.overflow = previousOverflow;
+    await nextTick();
+    // No smooth scrolling or history changes when returning to the portfolio.
+    window.scrollTo({ top: studioScroll, behavior: "instant" });
+  }
+});
+watch(discoveryOpen, async open => {
+  if (!open) {
+    const opener = returnFocus;
+    returnFocus = null;
+    await nextTick();
+    if (phone.value && opener?.isConnected) opener.focus({ preventScroll: true });
+  }
+});
+function keepDialogFocus(event: KeyboardEvent) {
+  if (!phone.value || (!discoveryOpen.value && !immersive.value) || event.key !== "Tab") return;
+  const dialog = discoveryOpen.value ? document.querySelector<HTMLElement>('.telescope-app, .aquarium-app, .puzzle-book, dialog[open].chess-dialog') : hero.value;
+  const controls = dialog ? [...dialog.querySelectorAll<HTMLElement>('a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex="0"]')].filter(el => el.getClientRects().length && !el.closest('[inert]')) : [];
+  const first = controls[0], last = controls[controls.length - 1];
+  if (!first || !last) return;
+  if (event.shiftKey && (document.activeElement === first || !dialog?.contains(document.activeElement))) { event.preventDefault(); last.focus(); }
+  else if (!event.shiftKey && (document.activeElement === last || !dialog?.contains(document.activeElement))) { event.preventDefault(); first.focus(); }
+}
 const showIntroduction = ref(true);
 const introductionPanel = ref<HTMLElement | null>(null);
 function collapseIntroduction() {
-  if (showIntroduction.value) showIntroduction.value = false;
+  if (!phone.value && showIntroduction.value) showIntroduction.value = false;
 }
 
 let previousScrollY = 0;
@@ -24,6 +93,7 @@ function toggleIntroduction() {
 }
 
 function handleScroll() {
+  if (phone.value) return;
   const scrollY = Math.max(0, window.scrollY);
   const movement = scrollY - previousScrollY;
 
@@ -46,22 +116,64 @@ function handleScroll() {
 }
 
 onMounted(() => {
+  document.addEventListener("keydown", keepDialogFocus);
   previousScrollY = window.scrollY;
   window.addEventListener("scroll", handleScroll, { passive: true });
 });
 
-onBeforeUnmount(() => window.removeEventListener("scroll", handleScroll));
+onBeforeUnmount(() => {
+  window.removeEventListener("scroll", handleScroll);
+  document.removeEventListener("keydown", keepDialogFocus);
+  if (immersive.value) document.documentElement.style.overflow = previousOverflow;
+});
 </script>
 
 <template>
-  <section :id="FLOOR.office.id" class="hero hero--wide-scene floor-section" :data-floor-number="FLOOR.office.number" aria-labelledby="hero-title" @click="collapseIntroduction">
-    <HeroVisual />
-    <HeroCat />
-    <TelescopeExperience />
-    <DailyPuzzleBook />
-    <DailyChessPuzzle />
-    <AquariumExperience />
-    <div class="hero-copy-drawer" :class="{ 'hero-copy-drawer--closed': !showIntroduction }">
+  <section ref="hero" :class="{ 'hero--phone': phone, 'hero--portrait': portrait, 'hero--landscape': landscape, 'hero--immersive': immersive, 'hero--studio-contained': studioContained }" :id="FLOOR.office.id" class="hero hero--wide-scene floor-section" :data-floor-number="FLOOR.office.number" :aria-labelledby="phone ? 'mobile-hero-title' : 'hero-title'" @click="collapseIntroduction">
+    <div class="office-studio-stage">
+      <div class="office-studio-canvas">
+        <MobileStudioPlate v-if="portrait" v-model:expanded="portraitExpanded" />
+        <HeroVisual v-else :compact="phone" />
+        <HeroCat ref="cat" :artwork="!portrait" />
+        <TelescopeExperience ref="telescope" :hotspots="!portrait" />
+        <DailyPuzzleBook ref="sudoku" :hotspots="!portrait" />
+        <DailyChessPuzzle ref="chess" :hotspots="!portrait" />
+        <AquariumExperience ref="aquarium" :hotspots="!portrait" />
+      </div>
+    </div>
+    <div v-if="phone" class="mobile-office-copy" :inert="immersive">
+      <p class="mobile-office-eyebrow">Floor 04 / Athens studio</p>
+      <h1 id="mobile-hero-title"><span>Irinella Boutsika</span>Frontend developer.</h1>
+      <p class="mobile-office-lede">I turn complex problems into interfaces that make sense.</p>
+      <div class="mobile-office-actions">
+        <a class="mobile-office-primary" :href="`#${FLOOR.projects.id}`">View Projects <span aria-hidden="true">↗</span></a>
+        <a :href="`#${FLOOR.about.id}`">About me <span aria-hidden="true">↓</span></a>
+      </div>
+      <div class="mobile-office-rotation">
+        <img src="/hero/loft-mobile-v1/rotate-phone.svg" alt="" aria-hidden="true" width="32" height="32" />
+        <p><strong>Explore the full studio</strong><span>Rotate your phone sideways for the immersive experience.</span></p>
+      </div>
+      <button v-if="landscape" class="mobile-studio-enter" type="button" @click.stop="enterStudio">Enter immersive studio <span aria-hidden="true">↗</span></button>
+      <p class="mobile-office-background">My background in law taught me to question assumptions. Software engineering gave that curiosity something to build.</p>
+    </div>
+    <div v-if="phone" class="mobile-studio-tools">
+      <div v-if="immersive" class="mobile-studio-toolbar">
+        <button class="mobile-studio-return" type="button" aria-label="Return to portfolio" @click.stop="exitStudio">← Portfolio</button>
+        <button class="mobile-studio-fit" type="button" :aria-pressed="studioContained" @click.stop="studioContained = !studioContained">{{ studioContained ? 'Fill the screen' : 'View entire studio' }}</button>
+      </div>
+      <p class="mobile-office-weather">Athens <time :datetime="state.localTime">{{ state.localTime }}</time> · {{ weatherLabel }} · {{ Math.round(state.temperature) }}°C <small v-if="state.source === 'fallback'">Weather unavailable · fallback</small><small v-else-if="state.source === 'staleCache'">Last known weather</small><small v-else-if="state.source === 'preview'">Scene preview</small></p>
+      <details class="mobile-studio-discoveries" @click.stop>
+        <summary>Explore Studio <span aria-hidden="true">+</span></summary>
+        <div class="mobile-studio-discoveries__actions">
+          <button type="button" @click="discover('telescope', $event)">Telescope <span aria-hidden="true">↗</span></button>
+          <button type="button" @click="discover('aquarium', $event)">Aquarium <span aria-hidden="true">↗</span></button>
+          <button type="button" @click="discover('chess', $event)">Daily chess <span aria-hidden="true">↗</span></button>
+          <button type="button" @click="discover('sudoku', $event)">Sudoku & puzzles <span aria-hidden="true">↗</span></button>
+          <button type="button" @click="discover('cat', $event)">Pet Yannos <span aria-hidden="true">♡</span></button>
+        </div>
+      </details>
+    </div>
+    <div v-show="!phone" class="hero-copy-drawer" :class="{ 'hero-copy-drawer--closed': !showIntroduction }">
       <div
         id="hero-introduction"
         ref="introductionPanel"

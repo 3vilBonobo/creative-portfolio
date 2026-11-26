@@ -4,7 +4,7 @@ import { useEnvironment } from "../composables/useEnvironment";
 import { createCatVoice, createCatMood, CAT_CALM_DELAY_MS, type CatReaction } from "../services/catInteraction";
 import CatSprite from "./CatSprite.vue";
 
-const props = defineProps<{ paused?: boolean }>();
+const props = defineProps<{ paused?: boolean; artwork?: boolean }>();
 const { catScene, state } = useEnvironment();
 const reaction = ref<CatReaction>("idle");
 const hidden = ref(false);
@@ -95,10 +95,12 @@ onBeforeUnmount(() => {
   sound.dispose();
   document.removeEventListener("visibilitychange", visibility);
 });
+defineExpose({ pet });
 </script>
 
 <template>
   <svg
+    v-if="artwork !== false"
     class="hero-cat"
     :class="{
       'hero-cat--paused': paused || hidden,

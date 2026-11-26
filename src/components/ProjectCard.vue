@@ -7,7 +7,7 @@ const image = computed(() => props.project.cover ?? props.project.preview);
 </script>
 
 <template>
-  <article class="work-panel" :class="[{ 'work-panel--featured': featured, 'work-panel--professional': project.category === 'professional', 'work-panel--cover': project.cover }, `work-panel--${project.id}`]" :aria-labelledby="`work-title-${project.id}`">
+  <article class="work-panel" :data-project-id="project.id" :class="[{ 'work-panel--featured': featured, 'work-panel--professional': project.category === 'professional', 'work-panel--cover': project.cover }, `work-panel--${project.id}`]" :aria-labelledby="`work-title-${project.id}`">
     <div class="work-panel__media">
       <img v-if="image.src" :src="image.src" :width="image.width" :height="image.height" :alt="image.alt" :srcset="image.srcSet"
         :sizes="featured ? '(min-width: 1400px) 45vw, (min-width: 981px) 50vw, 100vw' : '(min-width: 1400px) 25vw, (min-width: 981px) 30vw, (min-width: 621px) 45vw, 100vw'"

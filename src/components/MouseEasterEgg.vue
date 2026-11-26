@@ -58,15 +58,20 @@ function exit() {
   room.value?.close();
   open.value = false;
   document.body.style.overflow = previousOverflow;
-  if (!disposed && eligible.value) {
+  if (!disposed && isNight.value && !hidden.value) {
     scheduleVisit(26000);
     void nextTick(() => hatch.value?.focus({ preventScroll: true }));
   }
 }
 function visibilityChanged() { hidden.value = document.hidden; }
 function motionChanged() { reduced.value = motion.matches; }
-watch([eligible, reduced, spriteReady], () => {
-  if (!eligible.value) exit();
+watch([eligible, reduced, spriteReady, isNight, hidden], () => {
+  // Rotation can move the approach lane outside the viewport behind the modal.
+  // Keep that same dialog alive; only night ending or a hidden tab ends a visit.
+  if (open.value) {
+    if (!isNight.value || hidden.value) exit();
+    return;
+  }
   scheduleVisit();
 });
 onMounted(() => {
