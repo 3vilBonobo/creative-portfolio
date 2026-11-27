@@ -1,111 +1,29 @@
-import type { AboutContent } from "../types/content";
-import { FLOOR } from "../config/floors";
-
-// Owner-approved personal introduction and profile brief, November 2026.
+// Owner-supplied About copy, November 2026. Shared by every responsive layout.
 export const aboutProfile = {
   name: "Irinella Boutsika",
-  facts: [
-    { label: "Professional experience", value: "~5 years" },
-    { label: "Core expertise", value: "Frontend Engineering" },
-    { label: "Based in", value: "Athens, Greece" },
-  ],
+  role: "Frontend Engineer & Creative Technologist",
 };
-
-type PersonalAboutContent = Pick<AboutContent, "eyebrow" | "title" | "introduction" | "principles" | "toolkitGroups" | "cvUrl"> & {
-  introductionParagraphs: string[];
-  sections: { title: string; paragraphs: string[] }[];
-  journey: { title: string; description: string }[];
-  backendNote: string;
-  panels: Record<"background" | "toolkit" | "approach", { label: string; title: string; closing: string }>;
-};
-
-// Backend practice and creative exploration are qualified, not proficiency claims.
-export const aboutContent: PersonalAboutContent = {
-  eyebrow: `Level ${FLOOR.about.number} · ${FLOOR.about.label}`,
+export const aboutContent = {
   title: "About",
-  introduction:
-    "Software engineer by choice. Problem solver by nature.",
+  introduction: "I like complicated problems. I just don't think users should have to.",
   introductionParagraphs: [
-    "I build digital experiences where logic meets creativity. My path from law to software engineering was less of a career detour and more of a natural evolution: understanding complex systems, asking difficult questions and figuring out how things work — or why they don’t.",
-    "Today, I turn that curiosity into software.",
+    "I build software that makes sense to humans — and explore the stranger possibilities of interactive worlds.",
+    "Law and criminology taught me to question assumptions and follow the evidence. Now I bring that curiosity to engineering and design.",
   ],
-  sections: [
-    {
-      title: "Engineering mindset",
-      paragraphs: [
-        "I enjoy making complicated things feel simple — particularly when they involve intricate workflows, large amounts of data, demanding interfaces and the occasional bug with an unnecessarily elaborate backstory.",
-        "My work combines frontend architecture, user experience, application logic and an expanding understanding of backend systems.",
-      ],
-    },
-    {
-      title: "Beyond the code",
-      paragraphs: [
-        "I’m drawn to the intersection of technology, art and human experience. Interactive storytelling, game development, creative coding and immersive environments are some of the territories I enjoy exploring.",
-        "Not everything needs to solve a business problem. Sometimes, making something wonderfully strange is reason enough.",
-      ],
-    },
-  ],
-  journey: [
-    { title: "Law & Criminology", description: "Analytical reasoning, investigation, human behaviour and navigating complex systems." },
-    { title: "Software Engineering", description: "Building production applications, designing interfaces and turning complicated requirements into dependable software." },
-    { title: "Creative Technology", description: "Exploring interactive experiences, emerging technologies and the possibilities beyond conventional web development." },
-  ],
-  principles: [
-    {
-      title: "Investigate first",
-      description: "Understand the problem before committing to a solution. Symptoms are rarely the whole story.",
-    },
-    {
-      title: "Build with intent",
-      description: "Prioritise maintainability, usability and practical engineering decisions over unnecessary complexity.",
-    },
-    {
-      title: "Work with intelligence",
-      description: "Use AI and agentic development tools to accelerate engineering while retaining responsibility for architecture, decisions, verification and quality.",
-    },
-    {
-      title: "Stay curious",
-      description: "Keep learning across disciplines. The most interesting ideas often emerge outside the boundaries of a single specialisation.",
-    },
-  ],
-  toolkitGroups: [
-    { label: "Frontend Engineering", items: ["Angular · TypeScript", "JavaScript · Vue · React"] },
-    { label: "Application Architecture", items: ["Reactive programming · State management", "Component architecture · Offline workflows"] },
-    { label: "Beyond the Frontend", items: ["REST APIs · Java · Spring Boot", "SQL · Database-backed workflows"] },
-    { label: "Engineering & Exploration", items: ["Automated testing · Agentic development", "Creative coding · Interactive experiences"] },
-  ],
-  backendNote: "Backend engineering is an expanding area of my professional practice.",
   panels: {
     background: {
-      label: "01 / The journey",
-      title: "Different disciplines. Familiar questions.",
-      closing: "Different tools, same obsession with understanding how things work.",
+      title: "From case files to code.",
+      paragraphs: ["Law and criminology shaped how I investigate problems, understand people and untangle complex systems. Software gave those instincts something to build."],
     },
     toolkit: {
-      label: "02 / Technical inventory",
-      title: "The tools behind the thinking.",
-      closing: "Frameworks change. Knowing how to think is the more portable skill.",
+      title: "Code, design & a few rabbit holes.",
+      paragraphs: ["Angular, TypeScript, Vue and React. UX/UI, creative coding and interactive storytelling — with growing curiosity about the systems behind the screen."],
     },
     approach: {
-      label: "03 / Working principles",
-      title: "How I think, build and collaborate.",
-      closing: "Good software should make life easier, not give complexity a prettier interface.",
+      title: "Curious first. Methodical second.",
+      paragraphs: [
+        "Question the obvious. Understand the problem. Build something reliable and intuitive — with a little room for the unexpected.",
+      ],
     },
   },
-};
-
-// Phone editorial copy; verified facts and technical inventory stay shared above.
-export const aboutMobileContent = {
-  introduction: "From law to software engineering, I've always been drawn to complex systems, difficult questions and creative solutions. Today, I turn that curiosity into software.",
-  journey: [
-    aboutContent.journey[0]!,
-    aboutContent.journey[1]!,
-    { title: "Creative Technology", description: "Interactive storytelling, game development, creative coding and immersive environments. Sometimes, making something wonderfully strange is reason enough." },
-  ],
-  principles: [
-    { title: "Investigate first", description: "Untangle complex workflows, data and the occasional bug with an unnecessarily elaborate backstory. Symptoms are rarely the whole story." },
-    aboutContent.principles[1]!,
-    aboutContent.principles[2]!,
-    { title: "Stay curious", description: "Experiment across technology, art and human experience. Interesting ideas rarely respect the boundaries of a single discipline." },
-  ],
 };

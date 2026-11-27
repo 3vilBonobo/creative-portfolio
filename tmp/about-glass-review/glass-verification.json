@@ -1,0 +1,742 @@
+{
+  "normal": [
+    {
+      "clipped": 0,
+      "headlineTop": 295.03125,
+      "hidden": true,
+      "name": "Background",
+      "overflow": false,
+      "panelHeight": 126.390625,
+      "size": [
+        1920,
+        1080
+      ],
+      "touch": true
+    },
+    {
+      "clipped": 0,
+      "headlineTop": 295.03125,
+      "hidden": true,
+      "name": "Toolkit",
+      "overflow": false,
+      "panelHeight": 126.390625,
+      "size": [
+        1920,
+        1080
+      ],
+      "touch": true
+    },
+    {
+      "clipped": 0,
+      "headlineTop": 295.03125,
+      "hidden": true,
+      "name": "Approach",
+      "overflow": false,
+      "panelHeight": 126.390625,
+      "size": [
+        1920,
+        1080
+      ],
+      "touch": true
+    },
+    {
+      "clipped": 0,
+      "headlineTop": 244.828125,
+      "hidden": true,
+      "name": "Background",
+      "overflow": false,
+      "panelHeight": 126.390625,
+      "size": [
+        1440,
+        900
+      ],
+      "touch": true
+    },
+    {
+      "clipped": 0,
+      "headlineTop": 244.828125,
+      "hidden": true,
+      "name": "Toolkit",
+      "overflow": false,
+      "panelHeight": 126.390625,
+      "size": [
+        1440,
+        900
+      ],
+      "touch": true
+    },
+    {
+      "clipped": 0,
+      "headlineTop": 244.828125,
+      "hidden": true,
+      "name": "Approach",
+      "overflow": false,
+      "panelHeight": 126.390625,
+      "size": [
+        1440,
+        900
+      ],
+      "touch": true
+    },
+    {
+      "clipped": 0,
+      "headlineTop": 418.28125,
+      "hidden": true,
+      "name": "Background",
+      "overflow": false,
+      "panelHeight": 114.390625,
+      "size": [
+        1180,
+        820
+      ],
+      "touch": true
+    },
+    {
+      "clipped": 0,
+      "headlineTop": 418.28125,
+      "hidden": true,
+      "name": "Toolkit",
+      "overflow": false,
+      "panelHeight": 114.390625,
+      "size": [
+        1180,
+        820
+      ],
+      "touch": true
+    },
+    {
+      "clipped": 0,
+      "headlineTop": 418.28125,
+      "hidden": true,
+      "name": "Approach",
+      "overflow": false,
+      "panelHeight": 126.390625,
+      "size": [
+        1180,
+        820
+      ],
+      "touch": true
+    },
+    {
+      "clipped": 0,
+      "headlineTop": 418.28125,
+      "hidden": true,
+      "name": "Background",
+      "overflow": false,
+      "panelHeight": 114.390625,
+      "size": [
+        820,
+        1180
+      ],
+      "touch": true
+    },
+    {
+      "clipped": 0,
+      "headlineTop": 418.28125,
+      "hidden": true,
+      "name": "Toolkit",
+      "overflow": false,
+      "panelHeight": 114.390625,
+      "size": [
+        820,
+        1180
+      ],
+      "touch": true
+    },
+    {
+      "clipped": 0,
+      "headlineTop": 418.28125,
+      "hidden": true,
+      "name": "Approach",
+      "overflow": false,
+      "panelHeight": 126.390625,
+      "size": [
+        820,
+        1180
+      ],
+      "touch": true
+    },
+    {
+      "clipped": 0,
+      "headlineTop": 303.1875,
+      "hidden": true,
+      "name": "Background",
+      "overflow": false,
+      "panelHeight": 165.390625,
+      "size": [
+        390,
+        844
+      ],
+      "touch": true
+    },
+    {
+      "clipped": 0,
+      "headlineTop": 303.1875,
+      "hidden": true,
+      "name": "Toolkit",
+      "overflow": false,
+      "panelHeight": 165.390625,
+      "size": [
+        390,
+        844
+      ],
+      "touch": true
+    },
+    {
+      "clipped": 0,
+      "headlineTop": 303.1875,
+      "hidden": true,
+      "name": "Approach",
+      "overflow": false,
+      "panelHeight": 177.390625,
+      "size": [
+        390,
+        844
+      ],
+      "touch": true
+    },
+    {
+      "clipped": 0,
+      "headlineTop": 274.28125,
+      "hidden": true,
+      "name": "Background",
+      "overflow": false,
+      "panelHeight": 114.390625,
+      "size": [
+        844,
+        390
+      ],
+      "touch": true
+    },
+    {
+      "clipped": 0,
+      "headlineTop": 274.28125,
+      "hidden": true,
+      "name": "Toolkit",
+      "overflow": false,
+      "panelHeight": 114.390625,
+      "size": [
+        844,
+        390
+      ],
+      "touch": true
+    },
+    {
+      "clipped": 0,
+      "headlineTop": 274.28125,
+      "hidden": true,
+      "name": "Approach",
+      "overflow": false,
+      "panelHeight": 126.390625,
+      "size": [
+        844,
+        390
+      ],
+      "touch": true
+    },
+    {
+      "clipped": 0,
+      "headlineTop": 323.984375,
+      "hidden": true,
+      "name": "Background",
+      "overflow": false,
+      "panelHeight": 190.890625,
+      "size": [
+        320,
+        568
+      ],
+      "touch": true
+    },
+    {
+      "clipped": 0,
+      "headlineTop": 323.984375,
+      "hidden": true,
+      "name": "Toolkit",
+      "overflow": false,
+      "panelHeight": 218.390625,
+      "size": [
+        320,
+        568
+      ],
+      "touch": true
+    },
+    {
+      "clipped": 0,
+      "headlineTop": 323.984375,
+      "hidden": true,
+      "name": "Approach",
+      "overflow": false,
+      "panelHeight": 230.390625,
+      "size": [
+        320,
+        568
+      ],
+      "touch": true
+    }
+  ],
+  "stress": [
+    {
+      "clipped": [],
+      "height": 1742.90625,
+      "mode": "text=1",
+      "name": "Background",
+      "overflow": false,
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "clipped": [],
+      "height": 1742.90625,
+      "mode": "text=1",
+      "name": "Toolkit",
+      "overflow": false,
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "clipped": [],
+      "height": 1742.90625,
+      "mode": "text=1",
+      "name": "Approach",
+      "overflow": false,
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "clipped": [],
+      "height": 1834.703125,
+      "mode": "text=1",
+      "name": "Background",
+      "overflow": false,
+      "size": [
+        1440,
+        900
+      ]
+    },
+    {
+      "clipped": [],
+      "height": 1834.703125,
+      "mode": "text=1",
+      "name": "Toolkit",
+      "overflow": false,
+      "size": [
+        1440,
+        900
+      ]
+    },
+    {
+      "clipped": [],
+      "height": 1834.703125,
+      "mode": "text=1",
+      "name": "Approach",
+      "overflow": false,
+      "size": [
+        1440,
+        900
+      ]
+    },
+    {
+      "clipped": [],
+      "height": 1995.75,
+      "mode": "text=1",
+      "name": "Background",
+      "overflow": false,
+      "size": [
+        1180,
+        820
+      ]
+    },
+    {
+      "clipped": [],
+      "height": 1995.75,
+      "mode": "text=1",
+      "name": "Toolkit",
+      "overflow": false,
+      "size": [
+        1180,
+        820
+      ]
+    },
+    {
+      "clipped": [],
+      "height": 2007.75,
+      "mode": "text=1",
+      "name": "Approach",
+      "overflow": false,
+      "size": [
+        1180,
+        820
+      ]
+    },
+    {
+      "clipped": [],
+      "height": 1995.75,
+      "mode": "text=1",
+      "name": "Background",
+      "overflow": false,
+      "size": [
+        820,
+        1180
+      ]
+    },
+    {
+      "clipped": [],
+      "height": 1995.75,
+      "mode": "text=1",
+      "name": "Toolkit",
+      "overflow": false,
+      "size": [
+        820,
+        1180
+      ]
+    },
+    {
+      "clipped": [],
+      "height": 2007.75,
+      "mode": "text=1",
+      "name": "Approach",
+      "overflow": false,
+      "size": [
+        820,
+        1180
+      ]
+    },
+    {
+      "clipped": [],
+      "height": 3232.03125,
+      "mode": "text=1",
+      "name": "Background",
+      "overflow": false,
+      "size": [
+        390,
+        844
+      ]
+    },
+    {
+      "clipped": [],
+      "height": 3232.03125,
+      "mode": "text=1",
+      "name": "Toolkit",
+      "overflow": false,
+      "size": [
+        390,
+        844
+      ]
+    },
+    {
+      "clipped": [],
+      "height": 3244.03125,
+      "mode": "text=1",
+      "name": "Approach",
+      "overflow": false,
+      "size": [
+        390,
+        844
+      ]
+    },
+    {
+      "clipped": [],
+      "height": 1851.75,
+      "mode": "text=1",
+      "name": "Background",
+      "overflow": false,
+      "size": [
+        844,
+        390
+      ]
+    },
+    {
+      "clipped": [],
+      "height": 1851.75,
+      "mode": "text=1",
+      "name": "Toolkit",
+      "overflow": false,
+      "size": [
+        844,
+        390
+      ]
+    },
+    {
+      "clipped": [],
+      "height": 1863.75,
+      "mode": "text=1",
+      "name": "Approach",
+      "overflow": false,
+      "size": [
+        844,
+        390
+      ]
+    },
+    {
+      "clipped": [],
+      "height": 3925.6875,
+      "mode": "text=1",
+      "name": "Background",
+      "overflow": false,
+      "size": [
+        320,
+        568
+      ]
+    },
+    {
+      "clipped": [],
+      "height": 4082.6875,
+      "mode": "text=1",
+      "name": "Toolkit",
+      "overflow": false,
+      "size": [
+        320,
+        568
+      ]
+    },
+    {
+      "clipped": [],
+      "height": 3992.6875,
+      "mode": "text=1",
+      "name": "Approach",
+      "overflow": false,
+      "size": [
+        320,
+        568
+      ]
+    },
+    {
+      "clipped": [],
+      "height": 1638.25,
+      "mode": "long=1",
+      "name": "Background",
+      "overflow": false,
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "clipped": [],
+      "height": 1638.25,
+      "mode": "long=1",
+      "name": "Toolkit",
+      "overflow": false,
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "clipped": [],
+      "height": 1638.25,
+      "mode": "long=1",
+      "name": "Approach",
+      "overflow": false,
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "clipped": [],
+      "height": 1566.421875,
+      "mode": "long=1",
+      "name": "Background",
+      "overflow": false,
+      "size": [
+        1440,
+        900
+      ]
+    },
+    {
+      "clipped": [],
+      "height": 1566.421875,
+      "mode": "long=1",
+      "name": "Toolkit",
+      "overflow": false,
+      "size": [
+        1440,
+        900
+      ]
+    },
+    {
+      "clipped": [],
+      "height": 1566.421875,
+      "mode": "long=1",
+      "name": "Approach",
+      "overflow": false,
+      "size": [
+        1440,
+        900
+      ]
+    },
+    {
+      "clipped": [],
+      "height": 1036.671875,
+      "mode": "long=1",
+      "name": "Background",
+      "overflow": false,
+      "size": [
+        1180,
+        820
+      ]
+    },
+    {
+      "clipped": [],
+      "height": 1744.671875,
+      "mode": "long=1",
+      "name": "Toolkit",
+      "overflow": false,
+      "size": [
+        1180,
+        820
+      ]
+    },
+    {
+      "clipped": [],
+      "height": 1048.671875,
+      "mode": "long=1",
+      "name": "Approach",
+      "overflow": false,
+      "size": [
+        1180,
+        820
+      ]
+    },
+    {
+      "clipped": [],
+      "height": 1036.671875,
+      "mode": "long=1",
+      "name": "Background",
+      "overflow": false,
+      "size": [
+        820,
+        1180
+      ]
+    },
+    {
+      "clipped": [],
+      "height": 1744.671875,
+      "mode": "long=1",
+      "name": "Toolkit",
+      "overflow": false,
+      "size": [
+        820,
+        1180
+      ]
+    },
+    {
+      "clipped": [],
+      "height": 1048.671875,
+      "mode": "long=1",
+      "name": "Approach",
+      "overflow": false,
+      "size": [
+        820,
+        1180
+      ]
+    },
+    {
+      "clipped": [],
+      "height": 1125.5,
+      "mode": "long=1",
+      "name": "Background",
+      "overflow": false,
+      "size": [
+        390,
+        844
+      ]
+    },
+    {
+      "clipped": [],
+      "height": 2241.5,
+      "mode": "long=1",
+      "name": "Toolkit",
+      "overflow": false,
+      "size": [
+        390,
+        844
+      ]
+    },
+    {
+      "clipped": [],
+      "height": 1137.5,
+      "mode": "long=1",
+      "name": "Approach",
+      "overflow": false,
+      "size": [
+        390,
+        844
+      ]
+    },
+    {
+      "clipped": [],
+      "height": 892.671875,
+      "mode": "long=1",
+      "name": "Background",
+      "overflow": false,
+      "size": [
+        844,
+        390
+      ]
+    },
+    {
+      "clipped": [],
+      "height": 1600.671875,
+      "mode": "long=1",
+      "name": "Toolkit",
+      "overflow": false,
+      "size": [
+        844,
+        390
+      ]
+    },
+    {
+      "clipped": [],
+      "height": 904.671875,
+      "mode": "long=1",
+      "name": "Approach",
+      "overflow": false,
+      "size": [
+        844,
+        390
+      ]
+    },
+    {
+      "clipped": [],
+      "height": 1308.734375,
+      "mode": "long=1",
+      "name": "Background",
+      "overflow": false,
+      "size": [
+        320,
+        568
+      ]
+    },
+    {
+      "clipped": [],
+      "height": 2656.234375,
+      "mode": "long=1",
+      "name": "Toolkit",
+      "overflow": false,
+      "size": [
+        320,
+        568
+      ]
+    },
+    {
+      "clipped": [],
+      "height": 1348.234375,
+      "mode": "long=1",
+      "name": "Approach",
+      "overflow": false,
+      "size": [
+        320,
+        568
+      ]
+    }
+  ],
+  "notes": "200% uses doubled computed font sizes; reduced motion simulated by local QA harness. Inactive states verified by attributes and accessibility snapshot."
+}

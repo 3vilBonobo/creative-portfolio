@@ -1,0 +1,83 @@
+/* Level 03 — one reading surface; scenery, aperture and portrait share coordinates. */
+.about {
+  --about-cream: #f5efe5;
+  --about-copy: #dedbd5;
+  --about-cyan: #9ed6d5;
+  --about-amber: #f2bf80;
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  min-height: 0;
+  padding: 0;
+  color: var(--about-cream);
+  background: linear-gradient(#101312d9, #101312d9), #171a19 url('/environments/floor-03-about-corridor/v003/floor-03-about-corridor-quiet-wall-tile.webp') top center / 512px 512px repeat;
+}
+.about::before, .about::after { display: none; }
+.about__scene-window { display: contents; }
+.about__scene { position: absolute; inset: 0 0 auto; width: 100%; margin-inline: auto; aspect-ratio: var(--about-scene-ratio); pointer-events: none; }
+.about__scene::after { content: ""; position: absolute; inset: 82% 0 0; background: linear-gradient(transparent, #121514); }
+.about__scene-base { display: block; width: 100%; height: auto; }
+.about__scene-portrait { position: absolute; inset: 0; margin: 0; mask-size: 100% 100%; mask-repeat: no-repeat; -webkit-mask-size: 100% 100%; -webkit-mask-repeat: no-repeat; }
+.about__photo-plane { position: absolute; top: 0; left: 0; width: 438px; height: 730px; overflow: hidden; transform-origin: 0 0; }
+.about__photo-plane img { position: absolute; top: 0; left: -204px; width: 799px; height: 730px; max-width: none; }
+.about__layout { position: relative; z-index: 1; width: 49%; margin-left: 7%; min-height: max(92svh, calc(var(--about-scene-height) * .9)); padding-block: clamp(6rem, 10svh, 8rem) clamp(3rem, 6svh, 5rem); display: grid; align-items: center; overflow-wrap: anywhere; }
+.about__reading-surface { min-width: 0; padding: clamp(1.5rem, 2.4vw, 3rem); border: 1px solid #b4cac52b; border-radius: .625rem; background: #101514f5; box-shadow: 0 16px 48px #00000038; }
+@supports ((backdrop-filter: blur(8px)) or (-webkit-backdrop-filter: blur(8px))) {
+  .about__reading-surface { background: #101514de; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+}
+.about__identity { min-width: 0; }
+.about__title-line { display: flex; flex-wrap: wrap; gap: .5rem 1rem; align-items: baseline; }
+.about .eyebrow { margin: 0; color: var(--about-cyan); font: 500 .6875rem/1.5 "IBM Plex Mono", monospace; letter-spacing: .1em; }
+.about__heading { margin: 0; max-width: none !important; color: var(--about-copy); font: 600 1.125rem/1.3 "Barlow Condensed", sans-serif !important; letter-spacing: .08em; }
+.about__name { margin: 1rem 0 .25rem; color: var(--about-cream); font: 500 .9375rem/1.5 "IBM Plex Mono", monospace; text-transform: uppercase; letter-spacing: .04em; }
+.about__role { margin: 0; color: var(--about-cyan); font-size: .875rem; line-height: 1.6; }
+.about__statement { max-width: 29ch; margin: 1.5rem 0 1.25rem; color: var(--about-amber); font: 600 clamp(2rem, 2.3vw, 2.75rem)/1.13 "Barlow Condensed", sans-serif; letter-spacing: -.01em; text-wrap: pretty; }
+.about__introduction { max-width: 65ch; color: var(--about-copy); font-size: 1rem; line-height: 1.7; }
+.about__introduction p { margin: 0 0 .9rem; }
+.about__introduction p:last-child { margin-bottom: 0; }
+.about__secondary { min-width: 0; margin-top: 1.6rem; }
+.about__tabs { display: flex; flex-wrap: wrap; gap: .25rem; border-bottom: 1px solid #b4cac52b; }
+.about__tabs button { flex: 1 1 7rem; min-width: 44px; min-height: 44px; padding: .7rem .5rem; border: 0; border-bottom: 2px solid transparent; color: var(--about-copy); background: transparent; font: 500 .8125rem/1.5 "IBM Plex Mono", monospace; text-align: center; cursor: pointer; overflow-wrap: anywhere; transition: color 140ms ease, border-color 140ms ease, background-color 140ms ease; }
+.about__tabs button:hover { color: var(--about-cream); background: #ffffff08; }
+.about__tabs button[aria-selected="true"] { color: var(--about-amber); border-bottom-color: var(--about-amber); }
+.about__tabs button:focus-visible, .about__profile-panel:focus-visible { outline: 2px solid var(--about-cyan); outline-offset: 3px; }
+.about__panels { display: grid; padding-top: 1.25rem; }
+.about__profile-panel { display: none; min-width: 0; }
+.about__profile-panel.is-active { display: block; animation: about-panel-settle 160ms ease-out; }
+.about__profile-panel h3 { margin: 0 0 .65rem; color: var(--about-cream); font: 600 1.375rem/1.25 "Barlow Condensed", sans-serif; }
+.about__profile-panel p { max-width: 65ch; margin: 0 0 .75rem; color: var(--about-copy); font-size: .9375rem; line-height: 1.7; }
+.about__profile-panel p:last-child { margin-bottom: 0; }
+@keyframes about-panel-settle { from { opacity: .65; } to { opacity: 1; } }
+/* All desktop states determine intrinsic height; inactive states cannot receive focus. */
+@media (min-width: 1301px) {
+  .about__profile-panel { grid-area: 1 / 1; display: block; visibility: hidden; }
+  .about__profile-panel.is-active { visibility: visible; }
+}
+/* On intermediate widths, a brief architectural header gives text its full measure. */
+@media (min-width: 761px) and (max-width: 1300px) {
+  .about__scene-window { position: relative; display: block; height: 20rem; overflow: clip; }
+  .about__scene { width: min(100%, 640px); inset: 0 0 auto auto; margin: 0; }
+  .about__layout { width: auto; max-width: 48rem; min-height: 0; margin: -1rem auto 0; padding: 0 1.5rem 4rem; }
+  .about__reading-surface { padding: 2rem; }
+}
+@media (max-width: 760px) {
+  .about { scroll-margin-top: calc(3.5rem + env(safe-area-inset-top)); }
+  .about__scene-window { position: relative; display: block; height: 10rem; overflow: clip; }
+  .about__scene { width: 240px; inset: -2rem 0 auto auto; margin: 0; }
+  .about__layout { width: auto; min-height: 0; margin: 0; padding: 0 max(.75rem, env(safe-area-inset-right)) calc(2.5rem + env(safe-area-inset-bottom)) max(.75rem, env(safe-area-inset-left)); }
+  .about__reading-surface { padding: 1.25rem; border-radius: .5rem; box-shadow: 0 8px 24px #00000026; }
+  .about__name { font-size: .875rem; }
+  .about__role { font-size: .8125rem; }
+  .about__statement { font-size: 2rem; margin-top: 1.25rem; }
+  .about__introduction { font-size: 1rem; line-height: 1.65; }
+  .about__tabs button { flex-basis: 5.5rem; font-size: .75rem; padding-inline: .25rem; }
+}
+/* Touch landscape uses the already selected desktop plate at a modest scale. */
+.about.about--landscape .about__scene-window { height: 10rem; }
+.about.about--landscape .about__scene { width: min(100%, 640px); inset: -1rem 0 auto auto; }
+.about.about--landscape .about__layout { min-height: 0; margin-top: 0; }
+@media (prefers-reduced-motion: reduce) {
+  .about__heading, .about__statement, .about__introduction, .about__secondary { opacity: 1 !important; transform: none !important; }
+  .about__profile-panel.is-active { animation: none; }
+  .about__tabs button { transition: none; }
+}

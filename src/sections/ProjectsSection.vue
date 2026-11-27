@@ -258,7 +258,18 @@ function onBackdropClick(event: MouseEvent) { if (event.target === detailDialog.
 </template>
 
 <style scoped>
-.projects { background: #10191b; }
+.projects {
+  --projects-amber: #dea044;
+  --projects-amber-hover: #efb65c;
+  --projects-amber-border: #a66c27;
+  --projects-button-fill: linear-gradient(180deg, #edb555 0%, #df9a36 52%, #bd7526 100%);
+  --projects-button-hover: linear-gradient(180deg, #f3c06a 0%, #eaaa4c 52%, #cb8836 100%);
+  --projects-button-pressed: linear-gradient(180deg, #b87325, #d79232);
+  --projects-button-shadow: inset 0 1px 0 #fff4, inset 0 -1px 0 #0004, 0 3px 8px #0005;
+  --projects-surface: rgb(6 12 14 / .88);
+  --projects-card-surface: rgb(8 15 17 / .72);
+  background: #10191b;
+}
 .projects::before {
   content: "";
   position: absolute;
@@ -303,32 +314,34 @@ function onBackdropClick(event: MouseEvent) { if (event.target === detailDialog.
 .projects-showcase__level { display: grid; gap: .4rem; align-self: stretch; align-content: center; padding-right: 1rem; border-right: 1px solid #dbb28955; color: #ce8296; }
 .projects-showcase__level small { font: .65rem "IBM Plex Mono", monospace; text-transform: uppercase; }
 .projects-showcase__level strong { font-size: 2.8rem; line-height: 1; font-weight: 900; }
-.projects-showcase__level span { font-size: .7rem; color: #ffac35; }
+.projects-showcase__level span { font-size: .7rem; color: var(--projects-amber); }
 .projects-showcase__title { min-width: 0; }
 .projects-showcase__title .eyebrow { margin: 0 0 .7rem; font-size: .68rem; color: #e9dccc; letter-spacing: .16em; }
 .projects-showcase__title h2 { margin: 0; color: #f1e9dc; font-size: clamp(2.4rem, 3.7vw, 4.4rem); line-height: .95; letter-spacing: -.045em; font-weight: 900; text-transform: uppercase; overflow-wrap: anywhere; text-shadow: 0 3px 0 #0005; }
-.projects-showcase__intro { position: relative; margin: 0; padding: .3rem 2rem .3rem 1.2rem; border-left: 2px solid #ffae31; font-size: .85rem; line-height: 1.7; color: #e2dbd1; }
+.projects-showcase__intro { position: relative; margin: 0; padding: .3rem 2rem .3rem 1.2rem; border-left: 2px solid var(--projects-amber-border); font-size: .85rem; line-height: 1.7; color: #e2dbd1; }
 .projects-showcase__intro > span { display: block; color: #d88d2c; font-size: 1.3rem; letter-spacing: .12em; font-weight: 900; margin-top: .8rem; }
 .projects-showcase__layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.5rem; align-items: start; }
-.projects-showcase__rail { min-width: 0; padding: .75rem; border: 1px solid #c68a414d; border-radius: 3px; background: #000; }
+.projects-showcase__rail { min-width: 0; padding: .75rem; border: 1px solid #a98d644d; border-radius: 3px; background: var(--projects-surface); }
 .projects-showcase__mobile-category { display: none; }
 .project-categories { display: flex; flex-wrap: wrap; gap: .55rem; }
-.project-categories button { display: flex; align-items: center; gap: .6rem; min-width: 0; min-height: 44px; padding: .65rem .8rem; border: 1px solid #afa18a77; border-radius: 7px 2px 7px 2px; background: #080808; color: #e9dfd0; font-size: .76rem; text-align: left; transition: background .2s, color .2s; }
-.project-categories button[aria-pressed="true"] { border-color: #ffb33c; background: linear-gradient(110deg, #ffbd48, #f59f20); color: #1b140b; box-shadow: 0 3px 14px #ffaf2422; }
-.project-categories button:hover { border-color: #ffbd48; }
+.project-categories button { display: flex; align-items: center; gap: .6rem; min-width: 0; min-height: 44px; padding: .65rem .8rem; border: 1px solid #afa18a77; border-radius: 7px 2px 7px 2px; background: rgb(13 20 22 / .8); color: #e9dfd0; font-size: .76rem; text-align: left; transition: background .2s, color .2s; }
+.project-categories button[aria-pressed="true"] { border-color: var(--projects-amber-border); background: var(--projects-button-fill); color: #1b140b; box-shadow: var(--projects-button-shadow); }
+.project-categories button[aria-pressed="true"]:hover { background: var(--projects-button-hover); }
+.project-categories button[aria-pressed="true"]:active { background: var(--projects-button-pressed); box-shadow: inset 0 2px 4px #0005; }
+.project-categories button:hover { border-color: var(--projects-amber); }
 .project-categories button:focus-visible { outline: 3px solid #8fe5e6; outline-offset: 3px; }
 .project-categories button > span:nth-child(2) { min-width: 0; overflow-wrap: anywhere; }
 .project-categories__symbol { font-size: 1.2rem; }
 .project-categories button b { margin-left: auto; padding-left: .5rem; font-size: .72rem; }
 .projects-showcase__metadata { display: none; }
-.projects-showcase__results { min-width: 0; padding: .75rem .75rem 2rem; border: clamp(.75rem, 1.2vw, 1.25rem) solid #000; outline: 1px solid #c68a414d; border-radius: 3px; background: #000; }
+.projects-showcase__results { min-width: 0; padding: .75rem .75rem 2rem; border: clamp(.75rem, 1.2vw, 1.25rem) solid transparent; outline: 1px solid #a98d644d; border-radius: 3px; background: var(--projects-surface); }
 .projects--windowed .projects-showcase__rail { position: static; }
 .projects--windowed .projects-showcase__results {
   height: auto;
   max-height: var(--projects-pane-height);
   overflow-y: auto;
   scrollbar-gutter: stable;
-  scrollbar-color: #dc9f45 #10171a;
+  scrollbar-color: var(--projects-amber-border) #10171a;
   scroll-padding-block: .75rem;
   scroll-padding-block-end: 2rem;
 }
@@ -375,7 +388,7 @@ function onBackdropClick(event: MouseEvent) { if (event.target === detailDialog.
   .projects-showcase__intro { grid-column: 1; font-size: .9rem; }
   .project-categories { display: none; }
   .projects-showcase__mobile-category { display: grid; gap: .5rem; color: #e8d5b9; font: .7rem "IBM Plex Mono", monospace; text-transform: uppercase; letter-spacing: .08em; }
-  .projects-showcase__mobile-category select { width: 100%; min-width: 0; min-height: 44px; padding: .8rem; border: 1px solid #ffb33c; border-radius: 7px 2px 7px 2px; color: #ffbf50; background: #101316; font: inherit; white-space: normal; }
+  .projects-showcase__mobile-category select { width: 100%; min-width: 0; min-height: 44px; padding: .8rem; border: 1px solid var(--projects-amber-border); border-radius: 7px 2px 7px 2px; color: var(--projects-amber-hover); background: #101316; font: inherit; white-space: normal; }
   .projects-showcase__mobile-category select:focus-visible { outline: 3px solid #8fe5e6; outline-offset: 3px; }
   .projects-showcase__grid { grid-template-columns: minmax(0, 1fr); }
 }
