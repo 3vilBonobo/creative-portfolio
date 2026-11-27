@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from "vue";
-import ProjectCard from "../components/ProjectCard.vue";
-import MobileProjectPreview from "../components/MobileProjectPreview.vue";
+import ProjectCard from "../components/projects/ProjectCard.vue";
+import MobileProjectPreview from "../components/projects/MobileProjectPreview.vue";
 import { usePhoneLayout } from "../composables/usePhoneLayout";
 import { categoryProjects, projectDisclosure, type CatalogueCategory } from "../services/projectCatalogue";
 import "../floor02-mobile.css";
-import ProjectsEnvironment from "../components/ProjectsEnvironment.vue";
+import ProjectsEnvironment from "../components/projects/ProjectsEnvironment.vue";
 import { projects } from "../data/projects";
 import type { Project } from "../types/content";
 import { FLOOR } from "../config/floors";

@@ -5,9 +5,9 @@ from pathlib import Path
 
 random.seed(108)
 ROOT=Path(__file__).resolve().parents[1]
-ASSET_ROOT=ROOT/"assets"/"external"/"polyhaven"
+ASSET_ROOT=ROOT/"local-archive"/"assets"/"external"/"polyhaven"
 OUT_ROOT=ROOT/"public"/"hero"/"aquarium"
-SOURCE_ROOT=ROOT/"assets"/"blender"
+SOURCE_ROOT=ROOT/"local-archive"/"assets"/"blender"
 
 def clear():
     bpy.ops.object.select_all(action="SELECT"); bpy.ops.object.delete(use_global=False)

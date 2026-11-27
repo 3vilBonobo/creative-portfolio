@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import AppShell from "./components/AppShell.vue";
-import FloorNavigator from "./components/FloorNavigator.vue";
-import SiteNavigation from "./components/SiteNavigation.vue";
-import FloorTransition from "./components/FloorTransition.vue";
+import AppShell from "./components/layout/AppShell.vue";
+import FloorNavigator from "./components/layout/FloorNavigator.vue";
+import SiteNavigation from "./components/layout/SiteNavigation.vue";
+import FloorTransition from "./components/layout/FloorTransition.vue";
 import OfficeHero from "./sections/OfficeHero.vue";
 import AboutSection from "./sections/AboutSection.vue";
 import ProjectsSection from "./sections/ProjectsSection.vue";

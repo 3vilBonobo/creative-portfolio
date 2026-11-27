@@ -1,16 +1,16 @@
 <script setup lang="ts">
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from "vue";
-import MobileStudioPlate from "../components/MobileStudioPlate.vue";
+import MobileStudioPlate from "../components/hero/MobileStudioPlate.vue";
 import { usePhoneLayout } from "../composables/usePhoneLayout";
 import { useEnvironment } from "../composables/useEnvironment";
 import "../floor04-mobile.css";
-import HeroCat from "../components/HeroCat.vue";
-import HeroVisual from "../components/HeroVisual.vue";
-import TelescopeExperience from "../components/TelescopeExperience.vue";
-import DailyPuzzleBook from "../components/DailyPuzzleBook.vue";
-import DailyChessPuzzle from "../components/DailyChessPuzzle.vue";
-import AquariumExperience from "../components/AquariumExperience.vue";
-import RadioLaptop from "../components/RadioLaptop.vue";
+import HeroCat from "../components/hero/HeroCat.vue";
+import HeroVisual from "../components/hero/HeroVisual.vue";
+import TelescopeExperience from "../components/hero/TelescopeExperience.vue";
+import DailyPuzzleBook from "../components/hero/DailyPuzzleBook.vue";
+import DailyChessPuzzle from "../components/hero/DailyChessPuzzle.vue";
+import AquariumExperience from "../components/hero/AquariumExperience.vue";
+import RadioLaptop from "../components/hero/RadioLaptop.vue";
 import { useRadio } from "../composables/useRadio";
 import { FLOOR } from "../config/floors";
 

@@ -1,6 +1,6 @@
 $ErrorActionPreference = 'Stop'
 $headers = @{ 'User-Agent' = 'IrenePortfolioAquascape/1.0' }
-$outputRoot = Join-Path (Split-Path -Parent $PSScriptRoot) 'assets\external\polyhaven'
+$outputRoot = Join-Path (Split-Path -Parent $PSScriptRoot) 'local-archive\assets\external\polyhaven'
 $assetIds = @('boulder_01', 'coast_land_rocks_03', 'fern_02', 'calathea_orbifolia_01', 'moss_01', 'dead_tree_trunk_02', 'bark_debris_01')
 
 New-Item -ItemType Directory -Force -Path $outputRoot | Out-Null

@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { computed, nextTick, onBeforeUnmount, onMounted, reactive, ref, toRefs } from "vue";
-import ExperienceTimeline from "../components/ExperienceTimeline.vue";
-import ExperienceDetail from "../components/ExperienceDetail.vue";
-import ExperienceEnvironment from "../components/ExperienceEnvironment.vue";
+import ExperienceTimeline from "../components/experience/ExperienceTimeline.vue";
+import ExperienceDetail from "../components/experience/ExperienceDetail.vue";
+import ExperienceEnvironment from "../components/experience/ExperienceEnvironment.vue";
 import { experience, communityExperience } from "../data/experience";
 import { FLOOR } from "../config/floors";
 import { usePhoneLayout } from "../composables/usePhoneLayout";

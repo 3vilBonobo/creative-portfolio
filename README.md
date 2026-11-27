@@ -1,68 +1,74 @@
-# Creative Portfolio
+# Athens Cyberpunk Portfolio
 
-This template should help get you started developing with Vue 3 in Vite.
+A five-floor interactive portfolio built with Vue 3, TypeScript and Vite. The
+rooftop studio leads through About, Projects and Experience to street-level
+Contact. The scenes include Athens time and weather, a radio, puzzles and other
+optional interactions.
 
-## Recommended IDE Setup
+## Development
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Recommended Browser Setup
-
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
+Use **Node 22.12 or later in the Node 22 release line**, matching `.nvmrc` and
+Netlify. Install the locked dependencies with `npm ci` on a fresh checkout.
 
 ```sh
 npm run dev
 ```
 
-### Compile and Minify for Production
+Vite prints the local URL. The development-only **Scene preview** controls allow
+time, weather and phone-layout checks; they are hidden in production.
 
-```sh
-npm run build
-```
-
-### Run the Logic Tests
-
-Use Node 22.12 or later in the Node 22 release line, matching `.nvmrc` and Netlify. The test runner uses Node's TypeScript type stripping for the mouse and weather suites.
+## Verification
 
 ```sh
 npm test
+node --experimental-strip-types --test scripts/contact-screen-projection.test.mjs
+node node_modules/vue-tsc/bin/vue-tsc.js --noEmit
+npm run build
+npm run preview
 ```
 
-## Deploy to Netlify
+The build command bundles the application; type checking is a separate step.
+Check affected floors on desktop and mobile, including keyboard access and
+reduced motion, when changing visible behavior.
 
-The repository includes `netlify.toml`, so Netlify automatically uses Node 22,
-runs the Vite production build, and publishes the generated `dist` directory.
+## Project structure
 
-1. Push this repository to GitHub, GitLab, or Bitbucket.
-2. Sign in to [Netlify](https://app.netlify.com/) and select **Add new project**,
-   then **Import an existing project**.
-3. Connect the Git provider and select this repository.
-4. Leave the detected build settings as they are:
-   - Build command: `npm run build`
-   - Publish directory: `dist`
-5. Select **Deploy**.
+| Directory | Purpose |
+| --- | --- |
+| `src/sections/` | The five floor compositions |
+| `src/components/hero/`, `projects/`, `experience/`, `contact/` | Floor-specific interactions and scene components |
+| `src/components/layout/` | Application shell, navigation and floor transitions |
+| `src/components/environment/` | Shared weather, moon and atmospheric effects |
+| `src/components/radio/` | Persistent radio player and its artwork and icons |
+| `src/components/dev/` | Development-only scene controls |
+| `src/composables/` | Vue state, lifecycle and shared providers |
+| `src/services/` | Application logic and external integrations |
+| `src/config/`, `src/data/`, `src/types/` | Scene configuration, content and TypeScript contracts |
+| `public/` | Shipped images, masks, models, audio and asset metadata |
+| `scripts/` | Logic tests and optional artwork preparation tools |
+| `docs/` | Current architecture, radio maintenance and asset credits |
 
-Netlify enables continuous deployment for an imported Git repository. Every
-push to the production branch (usually `main`) triggers a new production build
-and updates the live site. Pushes to other branches and pull requests can create
-Deploy Previews without replacing the production site.
+See [architecture](docs/architecture.md), [radio maintenance](docs/radio.md), and
+[asset credits](docs/asset-credits.md).
 
-To use a custom domain, open the site in Netlify and go to **Domain management**,
-then choose **Add a domain** and follow the DNS instructions.
+## Local archive
+
+`local-archive/` is ignored by Git and is not copied into the production build.
+It preserves source artwork, Blender/import files, obsolete public assets,
+production handovers, historical documentation, review captures, temporary tools
+and ZIP packages in their original directory structure. Historical reports keep
+the paths and observations from the versions they describe.
+
+The archive exists only on this computer. Keep a separate backup if needed; a
+fresh Git clone will not contain it. Artwork preparation scripts that use source
+files read them from `local-archive/assets/`. They are optional and are never run
+by the app build. See [architecture](docs/architecture.md) before regenerating art.
+
+Moving files out of the tracked tree keeps them out of future repository snapshots
+once the changes are committed. Earlier Git history still contains prior copies.
+
+## Hosting
+
+`netlify.toml` selects Node 22, runs `npm run build`, and publishes `dist/`.
+`npm run preview` serves the production build locally. Deployment is a separate
+owner-approved operation.

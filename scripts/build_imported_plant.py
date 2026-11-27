@@ -2,7 +2,7 @@ import bpy
 from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
-source=ROOT/"assets"/"external"/"polyhaven"/"fern_02"/"fern_02.gltf"
+source=ROOT/"local-archive"/"assets"/"external"/"polyhaven"/"fern_02"/"fern_02.gltf"
 target=ROOT/"public"/"hero"/"aquarium"/"small-plant.glb"
 bpy.ops.object.select_all(action="SELECT"); bpy.ops.object.delete(use_global=False)
 bpy.ops.import_scene.gltf(filepath=str(source))

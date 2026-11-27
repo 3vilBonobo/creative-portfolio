@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, onMounted, ref } from "vue";
-import AlleyFooter from "../components/AlleyFooter.vue";
-import MouseEasterEgg from "../components/MouseEasterEgg.vue";
-import WeatherEffects from "../components/WeatherEffects.vue";
+import AlleyFooter from "../components/contact/AlleyFooter.vue";
+import MouseEasterEgg from "../components/contact/MouseEasterEgg.vue";
+import WeatherEffects from "../components/environment/WeatherEffects.vue";
 import { useEnvironment } from "../composables/useEnvironment";
 import { usePhoneLayout } from "../composables/usePhoneLayout";
 import { FLOOR } from "../config/floors";

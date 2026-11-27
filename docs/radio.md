@@ -16,7 +16,8 @@ Keep `accent` and `ambient` alongside the cover as its curated palette: `accent`
 colors selected controls and `ambient` tints the player background. Colors are
 configured from the cover's identity, not extracted from image pixels at runtime.
 `shortGenre` is available for compact browsing metadata, while `genre` retains the
-full description. See [the visual redesign review](radio-ui-redesign.md).
+full description. Radio UI components live in `src/components/radio/`; the studio
+laptop entrypoint lives in `src/components/hero/RadioLaptop.vue`.
 
 ## Adding, removing and reorganizing music
 
@@ -142,9 +143,10 @@ development-only Scene preview toggle is moved above the utility.
 
 ## Verification and review
 
-See [the implementation report](radio-verification.md) for actual checks, known
-limits and before/after screenshots. Development screenshots and raw browser
-observations are under `tmp/radio-review/`.
+Historical implementation reports and screenshots are preserved locally under
+`local-archive/docs/` and `local-archive/tmp/radio-review/`. They describe earlier
+snapshots and are excluded from Git. See [development checks](../README.md) for
+the current verification commands.
 
 Run with Node 22:
 

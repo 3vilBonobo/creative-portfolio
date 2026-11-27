@@ -1,8 +1,0 @@
-<!doctype html><html lang="en"><meta charset="utf-8"><title>Floor 02 v004 decoding measurements</title><body style="background:#222;color:#eee;font:14px monospace"><h1>Local browser image decode sample</h1><pre id="results">Measuring…</pre><script type="module">
-const root='/art-production/staging/floor-02-projects/v004/';
-const manifest=await (await fetch(root+'manifest.json')).json();
-const samples=[];
-for(const asset of manifest.assets){const times=[];for(let run=0;run<3;run++){const image=new Image();const start=performance.now();image.src=root+asset.path;await image.decode();times.push(performance.now()-start);}samples.push({file:asset.filename,profile:asset.profile,role:asset.role,width:asset.width,height:asset.height,rgbaBytes:asset.width*asset.height*4,decodeMs:times});}
-const totals=['desktop','mobile'].map(profile=>({profile,rgbaBytes:samples.filter(a=>a.profile===profile).reduce((s,a)=>s+a.rgbaBytes,0)}));
-document.querySelector('#results').textContent=JSON.stringify({userAgent:navigator.userAgent,devicePixelRatio,hardwareConcurrency:navigator.hardwareConcurrency,jsHeapBytes:performance.memory?.usedJSHeapSize??null,note:'Decoded RGBA totals are calculated pixel payloads, not measured GPU/process memory. Sequential samples include browser caching; no physical-device claim.',totals,samples},null,2);
-</script></body></html>
