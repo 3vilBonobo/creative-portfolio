@@ -1,0 +1,158 @@
+[
+  {
+    "stage": "before",
+    "frame": {
+      "hero": {
+        "bottom": 1060,
+        "height": 1060,
+        "left": 0,
+        "right": 1425,
+        "top": 0,
+        "width": 1425,
+        "x": 0,
+        "y": 0
+      },
+      "scene": {
+        "bottom": 930.9921875,
+        "height": 801.984375,
+        "left": 0,
+        "right": 1425,
+        "top": 129.0078125,
+        "width": 1425,
+        "x": 0,
+        "y": 129.0078125
+      },
+      "scrollY": 0
+    }
+  },
+  {
+    "stage": "open",
+    "frame": {
+      "hero": {
+        "bottom": 897,
+        "height": 1060,
+        "left": 0,
+        "right": 1440,
+        "top": -163,
+        "width": 1440,
+        "x": 0,
+        "y": -163
+      },
+      "scene": {
+        "bottom": 772.2109375,
+        "height": 810.421875,
+        "left": 0,
+        "right": 1440,
+        "top": -38.2109375,
+        "width": 1440,
+        "x": 0,
+        "y": -38.2109375
+      },
+      "scrollY": 163
+    }
+  },
+  {
+    "stage": "closed",
+    "frame": {
+      "hero": {
+        "bottom": 893,
+        "height": 1060,
+        "left": 0,
+        "right": 1425,
+        "top": -167,
+        "width": 1425,
+        "x": 0,
+        "y": -167
+      },
+      "scene": {
+        "bottom": 763.9921875,
+        "height": 801.984375,
+        "left": 0,
+        "right": 1425,
+        "top": -37.9921875,
+        "width": 1425,
+        "x": 0,
+        "y": -37.9921875
+      },
+      "scrollY": 167
+    }
+  },
+  {
+    "stage": "settled before native pointer",
+    "frame": {
+      "hero": {
+        "bottom": 1060,
+        "height": 1060,
+        "left": 0,
+        "right": 1425,
+        "top": 0,
+        "width": 1425,
+        "x": 0,
+        "y": 0
+      },
+      "scene": {
+        "bottom": 930.9921875,
+        "height": 801.984375,
+        "left": 0,
+        "right": 1425,
+        "top": 129.0078125,
+        "width": 1425,
+        "x": 0,
+        "y": 129.0078125
+      },
+      "scrollY": 0
+    }
+  },
+  {
+    "stage": "native pointer open",
+    "frame": {
+      "hero": {
+        "bottom": 1060,
+        "height": 1060,
+        "left": 0,
+        "right": 1440,
+        "top": 0,
+        "width": 1440,
+        "x": 0,
+        "y": 0
+      },
+      "scene": {
+        "bottom": 935.2109375,
+        "height": 810.421875,
+        "left": 0,
+        "right": 1440,
+        "top": 124.7890625,
+        "width": 1440,
+        "x": 0,
+        "y": 124.7890625
+      },
+      "scrollY": 0
+    }
+  },
+  {
+    "stage": "native pointer closed",
+    "frame": {
+      "hero": {
+        "bottom": 1060,
+        "height": 1060,
+        "left": 0,
+        "right": 1425,
+        "top": 0,
+        "width": 1425,
+        "x": 0,
+        "y": 0
+      },
+      "scene": {
+        "bottom": 930.9921875,
+        "height": 801.984375,
+        "left": 0,
+        "right": 1425,
+        "top": 129.0078125,
+        "width": 1425,
+        "x": 0,
+        "y": 129.0078125
+      },
+      "scrollY": 0
+    }
+  }
+]

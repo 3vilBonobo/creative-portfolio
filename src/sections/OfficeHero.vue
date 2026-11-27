@@ -10,10 +10,13 @@ import TelescopeExperience from "../components/TelescopeExperience.vue";
 import DailyPuzzleBook from "../components/DailyPuzzleBook.vue";
 import DailyChessPuzzle from "../components/DailyChessPuzzle.vue";
 import AquariumExperience from "../components/AquariumExperience.vue";
+import RadioLaptop from "../components/RadioLaptop.vue";
+import { useRadio } from "../composables/useRadio";
 import { FLOOR } from "../config/floors";
 
 const { portrait, landscape, phone } = usePhoneLayout();
 const { state } = useEnvironment();
+const radio = useRadio();
 const hero = ref<HTMLElement>();
 const telescope = ref<InstanceType<typeof TelescopeExperience>>();
 const aquarium = ref<InstanceType<typeof AquariumExperience>>();
@@ -69,6 +72,7 @@ watch(discoveryOpen, async open => {
   }
 });
 function keepDialogFocus(event: KeyboardEvent) {
+  if (radio.opened.value) return;
   if (!phone.value || (!discoveryOpen.value && !immersive.value) || event.key !== "Tab") return;
   const dialog = discoveryOpen.value ? document.querySelector<HTMLElement>('.telescope-app, .aquarium-app, .puzzle-book, dialog[open].chess-dialog') : hero.value;
   const controls = dialog ? [...dialog.querySelectorAll<HTMLElement>('a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex="0"]')].filter(el => el.getClientRects().length && !el.closest('[inert]')) : [];
@@ -139,6 +143,7 @@ onBeforeUnmount(() => {
         <DailyPuzzleBook ref="sudoku" :hotspots="!portrait" />
         <DailyChessPuzzle ref="chess" :hotspots="!portrait" />
         <AquariumExperience ref="aquarium" :hotspots="!portrait" />
+        <RadioLaptop v-if="!portrait" />
       </div>
     </div>
     <div v-if="phone" class="mobile-office-copy" :inert="immersive">
@@ -170,6 +175,7 @@ onBeforeUnmount(() => {
           <button type="button" @click="discover('chess', $event)">Daily chess <span aria-hidden="true">↗</span></button>
           <button type="button" @click="discover('sudoku', $event)">Sudoku & puzzles <span aria-hidden="true">↗</span></button>
           <button type="button" @click="discover('cat', $event)">Pet Yannos <span aria-hidden="true">♡</span></button>
+          <button type="button" aria-haspopup="dialog" @click="radio.show">Athens radio <span aria-hidden="true">↗</span></button>
         </div>
       </details>
     </div>

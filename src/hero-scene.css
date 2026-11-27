@@ -47,12 +47,12 @@
 @media (max-width: 760px) {
   /* Once the introduction closes, its hidden text should not keep a tall
      empty floor around a landscape scene. The open reading flow is retained. */
-  .hero.hero--wide-scene:has(> .hero-copy-drawer--closed) {
+  .hero.hero--wide-scene:not(.hero--phone):has(> .hero-copy-drawer--closed) {
     min-height: clamp(24rem, 52svh, 29rem);
     height: clamp(24rem, 52svh, 29rem);
     padding: 0 1rem;
   }
-  .hero.hero--wide-scene > .hero-copy-drawer--closed {
+  .hero.hero--wide-scene:not(.hero--phone) > .hero-copy-drawer--closed {
     position: absolute; top: 6.5rem; left: 1rem;
   }
 }

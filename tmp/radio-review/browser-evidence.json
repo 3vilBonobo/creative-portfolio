@@ -1,0 +1,198 @@
+[
+  {
+    "check": "reload silent / no element until Play",
+    "mediaCount": 0,
+    "status": "Ready when you are"
+  },
+  {
+    "check": "native playback",
+    "media": {
+      "currentTime": 12.494475,
+      "duration": 338.8,
+      "error": null,
+      "muted": false,
+      "paused": false,
+      "readyState": 4,
+      "src": "http://localhost:5173/audio/radio/404-fm/And%20still%20I%20call%20(Remix)%20(Remix)%20(Remastered).mp3"
+    },
+    "status": "On air"
+  },
+  {
+    "check": "volume zero",
+    "media": {
+      "currentTime": 12.690114,
+      "duration": 338.8,
+      "error": null,
+      "muted": false,
+      "paused": false,
+      "readyState": 4,
+      "src": "http://localhost:5173/audio/radio/404-fm/And%20still%20I%20call%20(Remix)%20(Remix)%20(Remastered).mp3"
+    },
+    "notes": 0
+  },
+  {
+    "check": "one-tap restore from zero",
+    "media": {
+      "currentTime": 13.081578,
+      "duration": 338.8,
+      "error": null,
+      "muted": false,
+      "paused": false,
+      "readyState": 4,
+      "src": "http://localhost:5173/audio/radio/404-fm/And%20still%20I%20call%20(Remix)%20(Remix)%20(Remastered).mp3"
+    }
+  },
+  {
+    "check": "mute",
+    "media": {
+      "currentTime": 13.489724,
+      "duration": 338.8,
+      "error": null,
+      "muted": true,
+      "paused": false,
+      "readyState": 4,
+      "src": "http://localhost:5173/audio/radio/404-fm/And%20still%20I%20call%20(Remix)%20(Remix)%20(Remastered).mp3"
+    }
+  },
+  {
+    "check": "pause",
+    "media": {
+      "currentTime": 14.001926,
+      "duration": 338.8,
+      "error": null,
+      "muted": false,
+      "paused": true,
+      "readyState": 4,
+      "src": "http://localhost:5173/audio/radio/404-fm/And%20still%20I%20call%20(Remix)%20(Remix)%20(Remastered).mp3"
+    }
+  },
+  {
+    "check": "keyboard skips offline without starting",
+    "text": "93.4 FM\nReady when you are",
+    "media": {
+      "currentTime": 0,
+      "duration": null,
+      "error": null,
+      "muted": false,
+      "paused": true,
+      "readyState": 0,
+      "src": "http://localhost:5173/audio/radio/404-fm/And%20still%20I%20call%20(Remix)%20(Remix)%20(Remastered).mp3"
+    }
+  },
+  {
+    "check": "optional mute shortcut",
+    "media": {
+      "currentTime": 0,
+      "duration": null,
+      "error": null,
+      "muted": true,
+      "paused": true,
+      "readyState": 0,
+      "src": "http://localhost:5173/audio/radio/404-fm/And%20still%20I%20call%20(Remix)%20(Remix)%20(Remastered).mp3"
+    }
+  },
+  {
+    "check": "shortcut ignores volume input",
+    "media": {
+      "currentTime": 0,
+      "duration": null,
+      "error": null,
+      "muted": false,
+      "paused": true,
+      "readyState": 0,
+      "src": "http://localhost:5173/audio/radio/404-fm/And%20still%20I%20call%20(Remix)%20(Remix)%20(Remastered).mp3"
+    }
+  },
+  {
+    "check": "dialog Tab wraps",
+    "active": null
+  },
+  {
+    "check": "minimize continues playback / focus restoration",
+    "media": {
+      "currentTime": 21.898866,
+      "duration": 338.8,
+      "error": null,
+      "muted": false,
+      "paused": false,
+      "readyState": 4,
+      "src": "http://localhost:5173/audio/radio/404-fm/And%20still%20I%20call%20(Remix)%20(Remix)%20(Remastered).mp3"
+    },
+    "active": "Open Athens radio"
+  },
+  {
+    "check": "one-tap mute inside telescope",
+    "media": {
+      "currentTime": 30.038303,
+      "duration": 338.8,
+      "error": null,
+      "muted": true,
+      "paused": false,
+      "readyState": 4,
+      "src": "http://localhost:5173/audio/radio/404-fm/And%20still%20I%20call%20(Remix)%20(Remix)%20(Remastered).mp3"
+    },
+    "zoom": "−\n1.6×\n+\n\nOPTICAL OBSERVATION\nCITY SIGNAL\nday mode · 0/4 anomalies logged\n\nEXIT TELESCOPE →\nLOOK AT THE CITY\nFind a hidden moment\nLOOK AT THE SKY\nSearch the atmosphere\nNEXT SIGNAL\nFind another view\n\nDRAG TO SCAN · WHEEL OR PINCH UP TO 6× · INSPECT THE FAINT BLINKING ANOMALIES\n\n93.4 FM\nPlaying · muted"
+  },
+  {
+    "check": "one-tap mute control works in native chess dialog",
+    "media": {
+      "currentTime": 38.883598,
+      "duration": 338.8,
+      "error": null,
+      "muted": false,
+      "paused": false,
+      "readyState": 4,
+      "src": "http://localhost:5173/audio/radio/404-fm/And%20still%20I%20call%20(Remix)%20(Remix)%20(Remastered).mp3"
+    }
+  },
+  {
+    "check": "aquarium opens with radio available",
+    "media": {
+      "currentTime": 63.808619,
+      "duration": 338.8,
+      "error": null,
+      "muted": false,
+      "paused": false,
+      "readyState": 4,
+      "src": "http://localhost:5173/audio/radio/404-fm/And%20still%20I%20call%20(Remix)%20(Remix)%20(Remastered).mp3"
+    },
+    "controls": 1
+  },
+  {
+    "check": "native missing-source error (temporary QA path)",
+    "status": "This transmission could not be loaded. Try again or choose another station.",
+    "media": {
+      "currentTime": 0,
+      "duration": null,
+      "error": null,
+      "muted": false,
+      "paused": true,
+      "readyState": 0,
+      "src": "http://localhost:5173/audio/radio/404-fm/qa-deliberately-missing.mp3"
+    }
+  },
+  {
+    "check": "explicit Tab wrap after refinement",
+    "active": "Mute radio"
+  },
+  {
+    "check": "mobile menu entry and return focus",
+    "active": "Athens radio ↗"
+  },
+  {
+    "check": "landscape immersive radio Tab containment",
+    "active": "Mute radio"
+  },
+  {
+    "check": "mobile global one-tap mute on another floor",
+    "media": {
+      "currentTime": 11.08227,
+      "duration": 338.8,
+      "error": null,
+      "muted": true,
+      "paused": false,
+      "readyState": 4,
+      "src": "http://localhost:5173/audio/radio/404-fm/And%20still%20I%20call%20(Remix)%20(Remix)%20(Remastered).mp3"
+    }
+  }
+]

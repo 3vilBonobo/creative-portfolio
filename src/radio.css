@@ -1,0 +1,107 @@
+/* Radio remains a utility: no changes to the floor compositions or scene plates. */
+.radio-global { position: fixed; z-index: 85; left: max(1rem, env(safe-area-inset-left)); bottom: max(1rem, env(safe-area-inset-bottom)); display: flex; align-items: center; border: 1px solid #ffffff29; background: #101817f5; color: #eee9e0; box-shadow: 0 4px 16px #0004; }
+.radio-global button, .radio-dialog button { cursor: pointer; color: inherit; }
+.radio-global button { display: flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; padding: .6rem; border: 0; background: transparent; }
+.radio-global button + button { border-left: 1px solid #ffffff20; }
+.radio-global svg, .radio-dialog button svg { width: 20px; height: 20px; flex-shrink: 0; }
+.radio-global .radio-global__open { gap: .5rem; padding-inline: .75rem; font: .65rem/1.3 "IBM Plex Mono", monospace; text-align: left; }
+.radio-global__open > svg { color: var(--radio-accent); }
+.radio-global small { display: block; margin-top: .15rem; font-size: .55rem; color: #b7bdb6; }
+.radio-global button[aria-pressed="true"] { color: var(--radio-accent); background: #ffffff09; }
+.radio-global button:hover, .radio-dialog button:hover { background-color: #ffffff0d; }
+.radio-global button:focus-visible, .radio-dialog :is(button,input):focus-visible { outline: 2px solid var(--radio-accent); outline-offset: -4px; }
+.radio-dialog { width: min(790px, calc(100% - 2rem)); max-width: none; max-height: calc(100dvh - 2rem); margin: auto; padding: 1.6rem; overflow: auto; border: 1px solid #67726966; border-radius: 8px; background: #101716; color: #eee9e0; box-shadow: 0 24px 100px #0009; font-family: "IBM Plex Mono", monospace; color-scheme: dark; }
+.radio-dialog::backdrop { background: #030807b8; backdrop-filter: blur(5px); }
+body:has(.radio-dialog[open]) { overflow: hidden; }
+html:has(.radio-dialog[open]) { scrollbar-gutter: stable; }
+.radio-heading { position: sticky; z-index: 2; top: -1.6rem; padding-block: .3rem .6rem; display: flex; justify-content: space-between; align-items: flex-start; gap: .5rem; background: #101716; }
+.radio-heading__actions { display: flex; flex-shrink: 0; gap: .15rem; }
+.radio-header-mute { display: grid; place-items: center; width: 44px; height: 44px; margin-top: -.5rem; border: 0; background: transparent; }
+.radio-eyebrow { margin: 0; color: #b4beb6; font: .65rem/1.5 "IBM Plex Mono", monospace; letter-spacing: .06em; text-transform: uppercase; }
+.radio-heading h2 { margin: .4rem 0 0; font: 600 clamp(1.6rem, 4vw, 2rem)/1.1 "Barlow Condensed", sans-serif; letter-spacing: .015em; }
+.radio-heading h2 span { color: var(--radio-accent); }
+.radio-dialog .radio-close { margin: -.5rem -.5rem 0 0; width: 44px; height: 44px; flex-shrink: 0; border: 0; background: transparent; font-size: 1.6rem; }
+.radio-purpose { margin: .6rem 0 1.4rem; color: #b4beb6; font-size: .65rem; line-height: 1.6; }
+.radio-layout { display: grid; grid-template-columns: 1fr 1.25fr; gap: 1.5rem; }
+.radio-stations > p { display: flex; justify-content: space-between; margin-bottom: .7rem; }
+.radio-stations button { display: flex; align-items: center; width: 100%; min-height: 67px; padding: .7rem .4rem; gap: .65rem; border: 0; border-bottom: 1px solid #ffffff18; background: transparent; text-align: left; }
+.radio-stations button[aria-pressed="true"] { background: #ffffff08; box-shadow: inset 2px 0 var(--station-accent); }
+.radio-stations__frequency { min-width: 3rem; color: var(--station-accent); font-size: .9rem; letter-spacing: -.04em; }
+.radio-stations__frequency small { display: block; margin-top: .2rem; color: #a8b2aa; font-size: .5rem; letter-spacing: .08em; }
+.radio-stations__name { flex: 1; font-size: .78rem; line-height: 1.5; }
+.radio-stations__name small { display: block; margin-top: .3rem; font-size: .62rem; color: #a7b1a9; }
+.radio-stations__dot { width: 4px; height: 4px; flex-shrink: 0; border-radius: 50%; background: var(--station-accent); opacity: .45; }
+.radio-stations button[aria-pressed="true"] .radio-stations__dot { opacity: 1; }
+.radio-channel { min-width: 0; }
+.radio-identity { position: relative; overflow: hidden; min-height: 208px; padding: 1.2rem; background: linear-gradient(140deg, color-mix(in srgb, var(--radio-accent) 13%, #15201e), #17201f); border-radius: 4px; animation: radio-tune .25s ease-out; }
+.radio-identity__top { display: flex; justify-content: space-between; gap: .5rem; color: var(--radio-accent); font-size: .62rem; }
+.radio-identity__mark { margin: 1rem 0 .5rem; color: var(--radio-accent); font: 500 2.5rem/1 "Barlow Condensed", sans-serif; letter-spacing: -.03em; }
+.radio-channel[data-station="404-fm"] .radio-identity__mark { font-family: "IBM Plex Mono", monospace; font-size: 2rem; letter-spacing: -.08em; }
+.radio-channel[data-station="unpaid-overtime"] .radio-identity__mark { font-family: Georgia, serif; font-style: italic; font-size: 2rem; }
+.radio-channel[data-station="common-disturbance"] .radio-identity__mark { font-weight: 700; letter-spacing: .06em; }
+.radio-channel[data-station="existential-fm"] .radio-identity__mark { font-family: Georgia, serif; font-style: italic; letter-spacing: .03em; }
+.radio-identity h3 { margin: 0; font: 600 1.45rem/1.15 "Barlow Condensed", sans-serif; text-transform: none; }
+.radio-genre { margin: .4rem 0 0; color: #bdc5be; font-size: .65rem; line-height: 1.6; }
+.radio-tagline { margin: 1rem 0 0; color: #e3e7de; font: .75rem/1.65 "IBM Plex Mono", monospace; }
+.radio-now { padding: 1rem 0 .25rem; min-height: 118px; }
+.radio-now__heading { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.radio-track-title { margin: .55rem 0 .3rem; font-size: .78rem; line-height: 1.6; overflow-wrap: anywhere; }
+.radio-artist { margin: 0; font-size: .65rem; line-height: 1.6; color: #b4beb6; }
+.radio-track-art { float: left; width: 40px; height: 40px; object-fit: cover; margin: .6rem .6rem 0 0; }
+.radio-status { min-height: 1.5em; margin: .6rem 0; color: var(--radio-accent); font-size: .6rem; line-height: 1.6; }
+.radio-transport { display: flex; align-items: center; justify-content: center; gap: .5rem; }
+.radio-transport button, .radio-volume button { display: inline-flex; justify-content: center; align-items: center; min-width: 44px; min-height: 44px; border: 1px solid #ffffff25; background: transparent; border-radius: 3px; font: .8rem "IBM Plex Mono", monospace; }
+.radio-transport .radio-play { flex: 1; gap: .6rem; background: var(--radio-accent); color: #111918; border-color: transparent; }
+.radio-transport .radio-play:hover { background: color-mix(in srgb, var(--radio-accent) 85%, white); }
+.radio-dialog button:disabled { opacity: .45; cursor: default; }
+.radio-volume { display: flex; align-items: center; gap: .6rem; margin-top: .6rem; font-size: .6rem; }
+.radio-volume button { border: 0; }
+.radio-volume input { min-width: 0; width: 100%; flex: 1; accent-color: var(--radio-accent); height: 44px; }
+.radio-volume output { min-width: 2.4rem; text-align: right; color: #b4beb6; }
+.radio-footer { margin-top: 1rem; padding-top: .9rem; border-top: 1px solid #ffffff1c; font-size: .6rem; line-height: 1.6; color: #b4beb6; }
+.radio-footer label { display: inline-flex; align-items: center; gap: .5rem; min-height: 32px; cursor: pointer; }
+.radio-footer input { accent-color: var(--radio-accent); }
+.radio-footer p { margin: .25rem 0; }.radio-footer small { font-size: .55rem; }
+.radio-footer kbd { color: #eee9e0; font: inherit; }
+.radio-equalizer { display: flex; align-items: center; gap: 2px; height: 16px; color: var(--radio-accent); }
+.radio-equalizer i { width: 2px; height: calc(4px + var(--bar) * 1px); background: currentColor; transform-origin: center; }
+.radio-equalizer.is-active i { animation: radio-bar 1.2s ease-in-out infinite alternate; animation-delay: calc(var(--bar) * -.21s); }
+.radio-laptop-map { position: absolute; z-index: 9; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.radio-laptop-map .radio-laptop-target .telescope-hotspot-target__halo { fill: url(#radio-discovery-halo); }
+.radio-laptop-screen { pointer-events: none; font-family: "IBM Plex Mono", monospace; opacity: .94; }
+.app-shell[data-time-phase="night"] .radio-laptop-screen { opacity: .86; filter: brightness(.83); }
+.radio-screen-bars rect { transform-box: fill-box; transform-origin: center bottom; }
+.radio-screen-bars.is-active rect { animation: radio-bar 1.2s ease-in-out infinite alternate; animation-delay: calc(var(--bar) * -.21s); }
+.radio-laptop-notes text { fill: var(--radio-accent); font: 14px Georgia, serif; opacity: 0; animation: radio-note 5.4s linear infinite; animation-delay: calc(var(--note) * -1.8s); }
+@keyframes radio-note { 0% { opacity: 0; transform: translate(0,0); } 20% { opacity: .55; } 75% { opacity: .35; } 100% { opacity: 0; transform: translate(5px,-38px); } }
+@keyframes radio-bar { to { transform: scaleY(.35); } }
+@keyframes radio-tune { from { opacity: .65; } to { opacity: 1; } }
+@media (max-width: 1100px) { .radio-global { bottom: calc(4.5rem + env(safe-area-inset-bottom)); } }
+@media (max-width: 600px) {
+  .radio-global { left: max(.65rem, env(safe-area-inset-left)); bottom: max(.65rem, env(safe-area-inset-bottom)); }
+  body:has(.hero--phone) .radio-global { bottom: max(.65rem, env(safe-area-inset-bottom)); }
+  .radio-global .radio-global__open { font-size: .6rem; }
+  .radio-dialog { width: calc(100% - 1rem); max-height: calc(100dvh - 1rem - env(safe-area-inset-top) - env(safe-area-inset-bottom)); padding: 1rem; }
+  .radio-layout { grid-template-columns: 1fr; gap: 1rem; }
+  .radio-channel { grid-row: 1; }
+  .radio-heading { top: -1rem; margin-top: -.25rem; padding-top: .5rem; }
+  .radio-heading__actions { gap: 0; }
+  .radio-heading .radio-eyebrow { font-size: .55rem; }
+  .radio-heading h2 { font-size: 1.5rem; }
+  .radio-header-mute { margin-top: 0; }.radio-dialog .radio-close { margin-top: 0; }
+  .radio-stations { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: .25rem; }
+  .radio-stations > p { grid-column: 1 / -1; margin-bottom: .25rem; }
+  .radio-stations button { min-height: 62px; padding: .5rem; gap: .5rem; }
+  .radio-stations__frequency { font-size: .8rem; min-width: 2.4rem; }
+  .radio-stations__name { font-size: .7rem; }.radio-stations__name small { font-size: .6rem; }
+  .radio-stations__dot { display: none; }
+  .radio-identity { min-height: 0; padding: 1rem; }.radio-identity__mark { margin-block: .75rem .4rem; }
+  .radio-tagline { margin-top: .65rem; }.radio-purpose { margin-bottom: 1rem; }
+}
+@media (max-height: 500px) and (orientation: landscape) { .radio-global { bottom: max(.5rem, env(safe-area-inset-bottom)); left: max(.65rem, env(safe-area-inset-left)); } }
+@media (max-width: 360px) { body:has(.radio-global) .environment-preview-toggle { bottom: calc(8rem + env(safe-area-inset-bottom)); } }
+@media (prefers-reduced-motion: reduce) {
+  .radio-laptop-notes { display: none; }
+  .radio-screen-bars.is-active rect, .radio-equalizer.is-active i, .radio-identity { animation: none; }
+  .radio-laptop-target * { transition: none !important; }
+}
