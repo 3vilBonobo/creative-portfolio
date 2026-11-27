@@ -50,7 +50,9 @@ function updateContentClearance() {
   windowed.value = !phone.value
     && window.matchMedia("(min-width: 1024px) and (min-height: 600px) and (hover: hover) and (pointer: fine)").matches
     && available >= 200;
-  paneHeight.value = Math.max(0, available);
+  paneHeight.value = Math.max(0, windowed.value
+    ? Math.floor(Math.min(available * 1.5, window.innerHeight - headerBottom - 32))
+    : available);
 }
 onMounted(() => {
   headerObserver = new ResizeObserver(updateContentClearance);
@@ -349,7 +351,7 @@ function onBackdropClick(event: MouseEvent) { if (event.target === detailDialog.
 .project-categories button b { margin-left: auto; padding-left: .5rem; font-size: .72rem; }
 .projects-showcase__metadata { display: none; }
 .projects-showcase__results { min-width: 0; padding: .75rem .75rem 2rem; border: clamp(.75rem, 1.2vw, 1.25rem) solid transparent; outline: 1px solid #a98d644d; border-radius: 3px; background: var(--projects-surface); }
-.projects--windowed { height: calc(100dvh - 1rem); min-height: 0; scroll-margin-top: 1rem; }
+.projects--windowed { height: calc(150dvh - 1.5rem); min-height: 0; scroll-margin-top: 1rem; }
 .projects--windowed .projects-showcase__rail { position: static; max-height: var(--projects-pane-height); overflow-y: auto; overscroll-behavior-y: contain; scrollbar-width: thin; }
 .projects--windowed .projects-showcase__results {
   height: auto;
