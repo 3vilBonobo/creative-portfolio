@@ -1,0 +1,393 @@
+[
+  {
+    "name": "1440x900 About tabs and keyboard",
+    "result": {
+      "states": [
+        {
+          "name": "Background",
+          "visiblePanels": 1,
+          "selected": "true"
+        },
+        {
+          "name": "Toolkit",
+          "visiblePanels": 1,
+          "selected": "true"
+        },
+        {
+          "name": "Approach",
+          "visiblePanels": 1,
+          "selected": "true"
+        }
+      ],
+      "home": "▤Background→",
+      "arrow": {
+        "focus": "⌘Toolkit→",
+        "outline": "rgb(112, 229, 237) solid 2px"
+      }
+    },
+    "status": "PASS"
+  },
+  {
+    "name": "1440x900 category filtering and project dialog",
+    "result": {
+      "states": [
+        {
+          "value": "professional",
+          "count": "5 projects / Professional Work",
+          "cards": 5
+        },
+        {
+          "value": "creative",
+          "count": "7 projects / Creative & Interactive",
+          "cards": 7
+        },
+        {
+          "value": "all",
+          "count": "12 projects / All Projects",
+          "cards": 12
+        }
+      ],
+      "expansions": [],
+      "reverse": {
+        "inside": false,
+        "text": "Skip to contentPORTFOLIO / ATHENSAboutProjectsExperienceContactFloors04Hero03Abo"
+      },
+      "closed": true,
+      "focusReturned": true
+    },
+    "status": "PASS"
+  },
+  {
+    "name": "1440x900 career roles and disclosure",
+    "result": [
+      {
+        "name": "Show Software Engineer at Agritrack SA, Jan 2025 — Present",
+        "expanded": null,
+        "pressed": "true"
+      },
+      {
+        "name": "Show Web Developer at Internet Now, Sep 2022 — Feb 2025",
+        "expanded": null,
+        "pressed": "true"
+      },
+      {
+        "name": "Show Frontend Developer at Freelance, May 2021 — Sep 2024",
+        "expanded": null,
+        "pressed": "true"
+      },
+      {
+        "name": "Show Lawyer at Boutsika & Associates, 2011 — Dec 2020",
+        "expanded": null,
+        "pressed": "true"
+      }
+    ],
+    "status": "PASS"
+  },
+  {
+    "name": "1440x900 logs",
+    "logs": []
+  },
+  {
+    "name": "820x1180 About tabs and keyboard",
+    "result": {
+      "states": [
+        {
+          "name": "Background",
+          "visiblePanels": 1,
+          "selected": "true"
+        },
+        {
+          "name": "Toolkit",
+          "visiblePanels": 1,
+          "selected": "true"
+        },
+        {
+          "name": "Approach",
+          "visiblePanels": 1,
+          "selected": "true"
+        }
+      ],
+      "home": "▤Background→",
+      "arrow": {
+        "focus": "⌘Toolkit→",
+        "outline": "rgb(112, 229, 237) solid 2px"
+      }
+    },
+    "status": "PASS"
+  },
+  {
+    "name": "820x1180 category filtering and project dialog",
+    "result": {
+      "states": [
+        {
+          "value": "professional",
+          "count": "5 projects / Professional Work",
+          "cards": 5
+        },
+        {
+          "value": "creative",
+          "count": "7 projects / Creative & Interactive",
+          "cards": 7
+        },
+        {
+          "value": "all",
+          "count": "12 projects / All Projects",
+          "cards": 12
+        }
+      ],
+      "expansions": [],
+      "reverse": {
+        "inside": false,
+        "text": "Skip to contentPORTFOLIO / ATHENSAboutProjectsExperienceContactFloors04Hero03Abo"
+      },
+      "closed": true,
+      "focusReturned": true
+    },
+    "status": "PASS"
+  },
+  {
+    "name": "820x1180 career roles and disclosure",
+    "result": [
+      {
+        "name": "Show Software Engineer at Agritrack SA, Jan 2025 — Present",
+        "expanded": "false",
+        "pressed": null
+      },
+      {
+        "name": "Show Web Developer at Internet Now, Sep 2022 — Feb 2025",
+        "expanded": "true",
+        "pressed": null
+      },
+      {
+        "name": "Show Frontend Developer at Freelance, May 2021 — Sep 2024",
+        "expanded": "true",
+        "pressed": null
+      },
+      {
+        "name": "Show Lawyer at Boutsika & Associates, 2011 — Dec 2020",
+        "expanded": "true",
+        "pressed": null
+      }
+    ],
+    "status": "PASS"
+  },
+  {
+    "name": "820x1180 logs",
+    "logs": []
+  },
+  {
+    "name": "390x844 About tabs and keyboard",
+    "result": {
+      "states": [
+        {
+          "name": "Background",
+          "visiblePanels": 1,
+          "selected": "true"
+        },
+        {
+          "name": "Toolkit",
+          "visiblePanels": 1,
+          "selected": "true"
+        },
+        {
+          "name": "Approach",
+          "visiblePanels": 1,
+          "selected": "true"
+        }
+      ],
+      "home": "▤Background→",
+      "arrow": {
+        "focus": "⌘Toolkit→",
+        "outline": "rgb(112, 229, 237) solid 2px"
+      }
+    },
+    "status": "PASS"
+  },
+  {
+    "name": "390x844 category filtering and project dialog",
+    "result": {
+      "states": [
+        {
+          "value": "professional",
+          "count": "5 projects / Professional Work",
+          "cards": 2
+        },
+        {
+          "value": "creative",
+          "count": "7 projects / Creative & Interactive",
+          "cards": 3
+        },
+        {
+          "value": "all",
+          "count": "12 projects / All Projects",
+          "cards": 5
+        }
+      ],
+      "expansions": [
+        "true",
+        "true"
+      ],
+      "reverse": {
+        "inside": true,
+        "text": "×"
+      },
+      "closed": true,
+      "focusReturned": true
+    },
+    "status": "PASS"
+  },
+  {
+    "name": "390x844 career roles and disclosure",
+    "result": [
+      {
+        "name": "Show Software Engineer at Agritrack SA, Jan 2025 — Present",
+        "expanded": "true",
+        "pressed": null
+      },
+      {
+        "name": "Show Web Developer at Internet Now, Sep 2022 — Feb 2025",
+        "expanded": "true",
+        "pressed": null
+      },
+      {
+        "name": "Show Frontend Developer at Freelance, May 2021 — Sep 2024",
+        "expanded": "true",
+        "pressed": null
+      },
+      {
+        "name": "Show Lawyer at Boutsika & Associates, 2011 — Dec 2020",
+        "expanded": "true",
+        "pressed": null
+      }
+    ],
+    "status": "PASS"
+  },
+  {
+    "name": "390x844 menu and anchor",
+    "status": "FAIL",
+    "error": "locator.click: Timeout 6000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('navigation', { name: 'Portfolio sections' }).getByRole('link', { name: 'Contact', exact: true })\u001b[22m\n"
+  },
+  {
+    "name": "phone telescope, discoveries and rotation",
+    "result": {
+      "before": "--inverse-zoom: 0.819672131147541; transform: translate3d(0px, 0px, 0px) scale(1.22);",
+      "afterArrow": "--inverse-zoom: 0.6172839506172839; transform: translate3d(0px, 0px, 0px) scale(1.62);",
+      "afterDrag": "--inverse-zoom: 0.6172839506172839; transform: translate3d(66.1149px, 0px, 0px) scale(1.62);",
+      "sourceRetained": true,
+      "focus": "Skip to contentPORTFOLIO / ATHENSMenu +AboutProjectsExperienceContactFloors04Hero03About02Projects01Experience00ContactView full artwork +Floor 04 / Athens studioIrinella BoutsikaFrontend developer.I turn complex problems into interfaces that make sense.View Projects ↗About me ↓Explore the full studioRotate your phone sideways for the immersive experience.My background in law taught me to question assumptions. Software engineering gave that curiosity something to build.Athens 01:09 · Clear · 16°C Scene previewExplore Studio +Telescope ↗Aquarium ↗Daily chess ↗Sudoku & puzzles ↗Pet Yannos ♡Irinella BoutsikaFrontend developer. I turn complex problems into interfaces that make sense. My background in law taught me to question assumptions. Software engineering gave that curiosity something to build. Explore. There’s morethan meets the eye. Five floors of my work, set in an interactive Athens. Some objects are more than scenery: try them. There are games, hidden details and plenty of Easter eggs to discover. Come back at a different hour. Or in different weather. This world follows Athens’ real time and weather. Daylight, rain and late nights each bring their own atmosphere. ‹Hide introScroll to descend ↓Level 03 · AboutAboutIrinella BoutsikaSoftware engineer by choice. Problem solver by nature.From law to software engineering, I've always been drawn to complex systems, difficult questions and creative solutions. Today, I turn that curiosity into software.Professional experience~5 yearsCore expertiseFrontend EngineeringBased inAthens, Greece▤Background→⌘Toolkit→◇Approach→01 / The journeyDifferent disciplines. Familiar questions.01Law & CriminologyAnalytical reasoning, investigation, human behaviour and navigating complex systems.02Software EngineeringBuilding production applications, designing interfaces and turning complicated requirements into dependable software.03Creative TechnologyInteractive storytelling, game development, creative coding and immersive environments. Sometimes, making something wonderfully strange is reason enough.Different tools, same obsession with understanding how things work.02 / Technical inventoryThe tools behind the thinking.Frontend EngineeringAngular · TypeScriptJavaScript · Vue · ReactApplication ArchitectureReactive programming · State managementComponent architecture · Offline workflowsBeyond the FrontendREST APIs · Java · Spring BootSQL · Database-backed workflowsBackend engineering is an expanding area of my professional practice.Engineering & ExplorationAutomated testing · Agentic developmentCreative coding · Interactive experiencesFrameworks change. Knowing how to think is the more portable skill.03 / Working principlesHow I think, build and collaborate.01Investigate firstUntangle complex workflows, data and the occasional bug with an unnecessarily elaborate backstory. Symptoms are rarely the whole story.02Build with intentPrioritise maintainability, usability and practical engineering decisions over unnecessary complexity.03Work with intelligenceUse AI and agentic development tools to accelerate engineering while retaining responsibility for architecture, decisions, verification and quality.04Stay curiousExperiment across technology, art and human experience. Interesting ideas rarely respect the boundaries of a single discipline.Good software should make life easier, not give complexity a prettier interface.Explore the full galleryRotate your phone sideways for the immersive experience.Selected Projects ↓Level02▰ ▰ ▰Portfolio / Selected workSelected ProjectsFrontend development, interactive experiences and creative web projects.////Browse projectsAll Projects (12)Creative & Interactive (7)Professional Work (5)▦All Projects12◇Creative & Interactive7⌘Professional Work5Technology overviewFrontendAngularVue 3ReactTypeScriptMotion & graphicsGSAPThree.jsSVGData & APIsREST APIsSQLAcross selected projects. Full stacks in Project Details.12 projects / All Projects★ FeaturedIn DevelopmentIn-development concept artGames & Interactive ExperiencesNERVE ENDINGInvestigate Meridian Systems, question MOTHER and uncover contradictions in a browser-based psychological horror game.Project Details ↗Professional Work5 projectsProject CompanionSoftware Engineering & Productivity ToolsLive ApplicationOpen project details›Enterprise Traceability PlatformProfessional Engineering · Production B2B SoftwareIllustrative interface conceptConfidential work · DetailsOpen project details›Dumb & Dahmer — Podcast AppProfessional Web Development · Audio & MediaLive ApplicationOpen project details›Athens TherapyProfessional Web DevelopmentOpen project details›OrthobyronOrthodontic Practice WebsiteOpen project details›Show fewer professional projects −Creative & Interactive6 projectsAthens Cyberpunk — Interactive PortfolioCreative Frontend & Interactive ExperiencesOpen project details›Where Is the ISS Now?Live ISS TrackerOpen project details›Madlen V — Interactive PoetryCreative Technology & Digital ArtOpen project details›Magic HerbsMagic Herbs SVG AnimationOpen project details›Fashion ShowFashion Show SVG AnimationOpen project details›Tip CalculatorTip Calculator AppOpen project details›Show fewer creative projects −12 of 12 projectsSelected work / Floor 02Explore the full exhibitionRotate your phone sideways for the immersive experience.Experience ↓Level 01 · ExperienceProfessional experience ///ExperienceAn unconventional career across software engineering, law and creative technology.Career chapters01 / 04 Select a roleJan 2025 — PresentSoftware EngineerAgritrack SA⌄I own substantial frontend work on a food and seafood traceability platform, including its UX/UI redesign, offline-capable workflows, and production debugging. I also contribute to Java/Spring Boot features.AngularTypeScriptRxJSIndexedDBDexieSelected contributions ⌄I redesigned the application's UX/UI and build reusable Angular components, reactive forms, and state management.I trace frontend and API failures, maintain automated checks, and contribute to Java and Spring Boot features.Sep 2022 — Feb 2025Web DeveloperInternet Now›I developed responsive websites and web applications using JavaScript, React, Vue, and WordPress, while maintaining existing code and improving performance.JavaScriptReactVueWordPressHTML/CSSSelected contributions ⌄I built custom frontend functionality and responsive interfaces using JavaScript, React, Vue, and WordPress.I investigated legacy code, maintained existing functionality, and improved website performance.May 2021 — Sep 2024Frontend DeveloperFreelance›I built responsive, accessible websites and created custom SVG graphics and web animations.SVGSelected contributions ⌄I built responsive, accessible interfaces and custom functionality for web projects.I created SVG graphics and web animations, exploring how movement changes the feel of an interface.2011 — Dec 2020LawyerBoutsika & Associates›I worked across criminal, property, immigration, and human rights law, including pro bono refugee cases.Selected contributions ⌄I managed legal matters involving client communication, negotiations, and case analysis.I worked on immigration and human rights cases, including pro bono refugee matters.Community & earlier work +Web Manager — Rainbow School NGONov 2021 — Jan 2025 · VolunteerI maintained the organisation's website content, functionality, visual presentation, and performance monitoring.Legal Counsellor and Founding Member — Enargeia NGONov 2013 — Jun 2014I contributed as a legal counsellor and founding member of the organisation.Seminar Tutor — Peri PsychisFeb 2013 — Jun 2014I taught seminars covering criminal law, criminology, and forensic psychology.Explore my work in Selected Projects ↗Explore the full career archiveRotate your phone sideways for the immersive experience.Software Engineer at Agritrack SALevel 00 · Athens · Street levelContact / 00ATH—GRContact. Good ideas startwith a hello.Building something interesting? Tell me what you’re working on.Start a conversation↗3vilbonobo@gmail.comX↗Instagram↗LinkedIn↗✦ Irinella Boutsika Frontend / Creative web DIRECT LINE ATHENS · FLOOR 00Explore the full streetRotate your phone sideways for the immersive experience.Back to the rooftopReturn to rooftopSomeone’s working late…© 2026 Irinella BoutsikaAthens conditions: 01:09 · 16°C · clearAthens, Greece · Level 00◐Scene previewScene preview Phone touch layout (Floors 04–00)Time Live Athens timedawndaygoldenHourdusknightWeather Live weatherclearpartlyCloudycloudyfograinstormsnowMoon phase Live moonNew moonYoung waxing sliverThin waxing crescentWaxing crescentWide waxing crescentFirst quarterEarly waxing gibbousWaxing gibbousNearly full · waxingFull moonNearly full · waningWaning gibbousLate waning gibbousLast quarterWide waning crescentWaning crescentThin waning crescentOld waning sliverBlack tomcatCat location Automatic · Coffee table · beside the chessboardRug · beside the deskCouch · cushionCoffee table · beside the chessboardCat pose Automatic · sleepingSitting · breathing, tail, head and blinkingSleeping · breathing and zzzCoffee table · beside the chessboard · sleepingChoose a location and pose, then click the cat in the hero to pet him. Awake cats randomly meow or purr. Sleeping cats purr, but repeated pets may annoy him; leave him alone for 12 seconds to calm down. Automatic changes hourly.Cat sound creditsExperience lighting Manual Experience lightsExperience wall lamp Steady · 100%Dim · 50%Minimum · 0%Experience ceiling light Steady · 100%Dim · 50%Minimum · 0%Attenuation of baked lighting. Reduced motion keeps both fixtures steady. Weather mask Sky mask Freeze parallaxWeather layer Hide precipitationReset to live\n    \n    \n      window.addEventListener(\"load\", function () {\n        window.setTimeout(function () {\n          var reveal = document.getElementById(\"page-reveal\");\n          if (reveal) reveal.classList.add(\"is-finished\");\n        }, 80);\n      }, { once: true });\n    \n  \n\nA coffee-table challengeThe daily chess.×0 pointsNext puzzle in 0h 50m",
+      "closed": true
+    },
+    "status": "PASS"
+  },
+  {
+    "name": "390x844 logs",
+    "logs": []
+  },
+  {
+    "name": "844x390 About tabs and keyboard",
+    "result": {
+      "states": [
+        {
+          "name": "Background",
+          "visiblePanels": 1,
+          "selected": "true"
+        },
+        {
+          "name": "Toolkit",
+          "visiblePanels": 1,
+          "selected": "true"
+        },
+        {
+          "name": "Approach",
+          "visiblePanels": 1,
+          "selected": "true"
+        }
+      ],
+      "home": "▤Background→",
+      "arrow": {
+        "focus": "⌘Toolkit→",
+        "outline": "rgb(112, 229, 237) solid 2px"
+      }
+    },
+    "status": "PASS"
+  },
+  {
+    "name": "844x390 category filtering and project dialog",
+    "result": {
+      "states": [
+        {
+          "value": "professional",
+          "count": "5 projects / Professional Work",
+          "cards": 2
+        },
+        {
+          "value": "creative",
+          "count": "7 projects / Creative & Interactive",
+          "cards": 3
+        },
+        {
+          "value": "all",
+          "count": "12 projects / All Projects",
+          "cards": 5
+        }
+      ],
+      "expansions": [
+        "true",
+        "true"
+      ],
+      "reverse": {
+        "inside": true,
+        "text": "×"
+      },
+      "closed": true,
+      "focusReturned": true
+    },
+    "status": "PASS"
+  },
+  {
+    "name": "844x390 career roles and disclosure",
+    "result": [
+      {
+        "name": "Show Software Engineer at Agritrack SA, Jan 2025 — Present",
+        "expanded": "false",
+        "pressed": null
+      },
+      {
+        "name": "Show Web Developer at Internet Now, Sep 2022 — Feb 2025",
+        "expanded": "true",
+        "pressed": null
+      },
+      {
+        "name": "Show Frontend Developer at Freelance, May 2021 — Sep 2024",
+        "expanded": "true",
+        "pressed": null
+      },
+      {
+        "name": "Show Lawyer at Boutsika & Associates, 2011 — Dec 2020",
+        "expanded": "true",
+        "pressed": null
+      }
+    ],
+    "status": "PASS"
+  },
+  {
+    "name": "844x390 menu and anchor",
+    "status": "FAIL",
+    "error": "locator.click: Timeout 6000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('navigation', { name: 'Portfolio sections' }).getByRole('link', { name: 'Contact', exact: true })\u001b[22m\n"
+  },
+  {
+    "name": "landscape immersive studio",
+    "result": {
+      "controls": [
+        "← Portfolio",
+        "View entire studio"
+      ],
+      "exited": true
+    },
+    "status": "PASS"
+  },
+  {
+    "name": "844x390 logs",
+    "logs": []
+  }
+]

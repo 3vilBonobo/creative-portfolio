@@ -1,0 +1,590 @@
+[
+  {
+    "width": 390,
+    "id": "about",
+    "top": 60.15625,
+    "height": 4923.203125,
+    "active": "about",
+    "scrollY": 2293,
+    "overflow": 0,
+    "header": {
+      "x": 0,
+      "y": 0,
+      "width": 390,
+      "height": 115.390625,
+      "top": 0,
+      "right": 390,
+      "bottom": 115.390625,
+      "left": 0
+    },
+    "headings": [
+      {
+        "text": "About",
+        "rect": {
+          "x": 40,
+          "y": 393.46875,
+          "width": 192.734375,
+          "height": 92.390625,
+          "top": 393.46875,
+          "right": 232.734375,
+          "bottom": 485.859375,
+          "left": 40
+        },
+        "font": "88px"
+      },
+      {
+        "text": "Different disciplines. Familiar questions.",
+        "rect": {
+          "x": 40,
+          "y": 2231.859375,
+          "width": 310,
+          "height": 222.75,
+          "top": 2231.859375,
+          "right": 350,
+          "bottom": 2454.609375,
+          "left": 40
+        },
+        "font": "46.4px"
+      },
+      {
+        "text": "The tools behind the thinking.",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "font": "46.4px"
+      },
+      {
+        "text": "How I think, build and collaborate.",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "font": "46.4px"
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "id": "projects",
+    "top": 60,
+    "height": 4149.515625,
+    "active": "projects",
+    "scrollY": 7375,
+    "overflow": 0,
+    "header": {
+      "x": 0,
+      "y": 0,
+      "width": 390,
+      "height": 115.390625,
+      "top": 0,
+      "right": 390,
+      "bottom": 115.390625,
+      "left": 0
+    },
+    "headings": [
+      {
+        "text": "Selected Projects",
+        "rect": {
+          "x": 159.796875,
+          "y": 183.515625,
+          "width": 198.203125,
+          "height": 243.1875,
+          "top": 183.515625,
+          "right": 358,
+          "bottom": 426.703125,
+          "left": 159.796875
+        },
+        "font": "64px"
+      },
+      {
+        "text": "Frontend",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "font": "32px"
+      },
+      {
+        "text": "Motion & graphics",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "font": "32px"
+      },
+      {
+        "text": "Data & APIs",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "font": "32px"
+      },
+      {
+        "text": "NERVE ENDING",
+        "rect": {
+          "x": 60.1875,
+          "y": 1141.140625,
+          "width": 269.625,
+          "height": 115.1875,
+          "top": 1141.140625,
+          "right": 329.8125,
+          "bottom": 1256.328125,
+          "left": 60.1875
+        },
+        "font": "57.6px"
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "id": "experience",
+    "top": 60.15625,
+    "height": 2195.515625,
+    "active": "experience",
+    "scrollY": 11683,
+    "overflow": 0,
+    "header": {
+      "x": 0,
+      "y": 0,
+      "width": 390,
+      "height": 115.390625,
+      "top": 0,
+      "right": 390,
+      "bottom": 115.390625,
+      "left": 0
+    },
+    "headings": [
+      {
+        "text": "Experience",
+        "rect": {
+          "x": 32,
+          "y": 317.75,
+          "width": 326,
+          "height": 166.40625,
+          "top": 317.75,
+          "right": 358,
+          "bottom": 484.15625,
+          "left": 32
+        },
+        "font": "83.2px"
+      },
+      {
+        "text": "Web Manager — Rainbow School NGO",
+        "rect": {
+          "x": 32,
+          "y": 1844.703125,
+          "width": 326,
+          "height": 92.453125,
+          "top": 1844.703125,
+          "right": 358,
+          "bottom": 1937.15625,
+          "left": 32
+        },
+        "font": "36.8px"
+      },
+      {
+        "text": "Legal Counsellor and Founding Member — Enargeia NGO",
+        "rect": {
+          "x": 32,
+          "y": 2338.15625,
+          "width": 326,
+          "height": 195.484375,
+          "top": 2338.15625,
+          "right": 358,
+          "bottom": 2533.640625,
+          "left": 32
+        },
+        "font": "36.8px"
+      },
+      {
+        "text": "Seminar Tutor — Peri Psychis",
+        "rect": {
+          "x": 32,
+          "y": 2840.390625,
+          "width": 326,
+          "height": 92.453125,
+          "top": 2840.390625,
+          "right": 358,
+          "bottom": 2932.84375,
+          "left": 32
+        },
+        "font": "36.8px"
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "id": "street",
+    "top": 60.3125,
+    "height": 976.328125,
+    "active": "street",
+    "scrollY": 14037,
+    "overflow": 0,
+    "header": {
+      "x": 0,
+      "y": 0,
+      "width": 390,
+      "height": 115.390625,
+      "top": 0,
+      "right": 390,
+      "bottom": 115.390625,
+      "left": 0
+    },
+    "headings": [
+      {
+        "text": "Contact. Good ideas startwith a hello.",
+        "rect": {
+          "x": 39,
+          "y": 347.84375,
+          "width": 312,
+          "height": 66.5,
+          "top": 347.84375,
+          "right": 351,
+          "bottom": 414.34375,
+          "left": 39
+        },
+        "font": "33.93px"
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "id": "about",
+    "top": 59.625,
+    "height": 4973.1875,
+    "active": "about",
+    "scrollY": 2123,
+    "overflow": 0,
+    "header": {
+      "x": 0,
+      "y": 0,
+      "width": 1440,
+      "height": 157.1875,
+      "top": 0,
+      "right": 1440,
+      "bottom": 157.1875,
+      "left": 0
+    },
+    "headings": [
+      {
+        "text": "About",
+        "rect": {
+          "x": 115.1875,
+          "y": 320.140625,
+          "width": 227.765625,
+          "height": 109.1875,
+          "top": 320.140625,
+          "right": 342.953125,
+          "bottom": 429.328125,
+          "left": 115.1875
+        },
+        "font": "104px"
+      },
+      {
+        "text": "Engineering mindset",
+        "rect": {
+          "x": 115.1875,
+          "y": 1598.671875,
+          "width": 691.1875,
+          "height": 52.796875,
+          "top": 1598.671875,
+          "right": 806.375,
+          "bottom": 1651.46875,
+          "left": 115.1875
+        },
+        "font": "44px"
+      },
+      {
+        "text": "Beyond the code",
+        "rect": {
+          "x": 115.1875,
+          "y": 2242.78125,
+          "width": 691.1875,
+          "height": 52.796875,
+          "top": 2242.78125,
+          "right": 806.375,
+          "bottom": 2295.578125,
+          "left": 115.1875
+        },
+        "font": "44px"
+      },
+      {
+        "text": "Different disciplines. Familiar questions.",
+        "rect": {
+          "x": 156.1875,
+          "y": 3240.875,
+          "width": 609.1875,
+          "height": 122.875,
+          "top": 3240.875,
+          "right": 765.375,
+          "bottom": 3363.75,
+          "left": 156.1875
+        },
+        "font": "51.2px"
+      },
+      {
+        "text": "The tools behind the thinking.",
+        "rect": {
+          "x": 156.1875,
+          "y": 3240.875,
+          "width": 609.1875,
+          "height": 61.4375,
+          "top": 3240.875,
+          "right": 765.375,
+          "bottom": 3302.3125,
+          "left": 156.1875
+        },
+        "font": "51.2px"
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "id": "projects",
+    "top": 60.453125,
+    "height": 18222.75,
+    "active": "projects",
+    "scrollY": 7270,
+    "overflow": 0,
+    "header": {
+      "x": 0,
+      "y": 0,
+      "width": 1440,
+      "height": 157.1875,
+      "top": 0,
+      "right": 1440,
+      "bottom": 157.1875,
+      "left": 0
+    },
+    "headings": [
+      {
+        "text": "SelectedProjects",
+        "rect": {
+          "x": 255.109375,
+          "y": 348.484375,
+          "width": 304.890625,
+          "height": 145.90625,
+          "top": 348.484375,
+          "right": 560,
+          "bottom": 494.390625,
+          "left": 255.109375
+        },
+        "font": "76.8px"
+      },
+      {
+        "text": "Frontend",
+        "rect": {
+          "x": 82.59375,
+          "y": 1164.046875,
+          "width": 319,
+          "height": 33.265625,
+          "top": 1164.046875,
+          "right": 401.59375,
+          "bottom": 1197.3125,
+          "left": 82.59375
+        },
+        "font": "20.8px"
+      },
+      {
+        "text": "Motion & graphics",
+        "rect": {
+          "x": 82.59375,
+          "y": 1357.40625,
+          "width": 319,
+          "height": 33.265625,
+          "top": 1357.40625,
+          "right": 401.59375,
+          "bottom": 1390.671875,
+          "left": 82.59375
+        },
+        "font": "20.8px"
+      },
+      {
+        "text": "Data & APIs",
+        "rect": {
+          "x": 82.59375,
+          "y": 1483.515625,
+          "width": 319,
+          "height": 33.265625,
+          "top": 1483.515625,
+          "right": 401.59375,
+          "bottom": 1516.78125,
+          "left": 82.59375
+        },
+        "font": "20.8px"
+      },
+      {
+        "text": "NERVE ENDING",
+        "rect": {
+          "x": 777.3125,
+          "y": 953.484375,
+          "width": 130.46875,
+          "height": 253.375,
+          "top": 953.484375,
+          "right": 907.78125,
+          "bottom": 1206.859375,
+          "left": 777.3125
+        },
+        "font": "57.6px"
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "id": "experience",
+    "top": 59.84375,
+    "height": 3313.71875,
+    "active": "experience",
+    "scrollY": 25668,
+    "overflow": 0,
+    "header": {
+      "x": 0,
+      "y": 0,
+      "width": 1440,
+      "height": 157.1875,
+      "top": 0,
+      "right": 1440,
+      "bottom": 157.1875,
+      "left": 0
+    },
+    "headings": [
+      {
+        "text": "Experience",
+        "rect": {
+          "x": 316.796875,
+          "y": 330.25,
+          "width": 699.171875,
+          "height": 96,
+          "top": 330.25,
+          "right": 1015.96875,
+          "bottom": 426.25,
+          "left": 316.796875
+        },
+        "font": "96px"
+      },
+      {
+        "text": "Software Engineer",
+        "rect": {
+          "x": 674.828125,
+          "y": 959.578125,
+          "width": 300.140625,
+          "height": 136.15625,
+          "top": 959.578125,
+          "right": 974.96875,
+          "bottom": 1095.734375,
+          "left": 674.828125
+        },
+        "font": "60.8px"
+      },
+      {
+        "text": "Web Manager — Rainbow School NGO",
+        "rect": {
+          "x": 316.796875,
+          "y": 3106.65625,
+          "width": 201.046875,
+          "height": 184.90625,
+          "top": 3106.65625,
+          "right": 517.84375,
+          "bottom": 3291.5625,
+          "left": 316.796875
+        },
+        "font": "36.8px"
+      },
+      {
+        "text": "Legal Counsellor and Founding Member — Enargeia NGO",
+        "rect": {
+          "x": 565.84375,
+          "y": 3106.65625,
+          "width": 201.0625,
+          "height": 298.515625,
+          "top": 3106.65625,
+          "right": 766.90625,
+          "bottom": 3405.171875,
+          "left": 565.84375
+        },
+        "font": "36.8px"
+      },
+      {
+        "text": "Seminar Tutor — Peri Psychis",
+        "rect": {
+          "x": 814.90625,
+          "y": 3106.65625,
+          "width": 201.0625,
+          "height": 143.96875,
+          "top": 3106.65625,
+          "right": 1015.96875,
+          "bottom": 3250.625,
+          "left": 814.90625
+        },
+        "font": "36.8px"
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "id": "street",
+    "top": 60.203125,
+    "height": 945.5,
+    "active": "street",
+    "scrollY": 29156,
+    "overflow": 0,
+    "header": {
+      "x": 0,
+      "y": 0,
+      "width": 1440,
+      "height": 157.1875,
+      "top": 0,
+      "right": 1440,
+      "bottom": 157.1875,
+      "left": 0
+    },
+    "headings": [
+      {
+        "text": "Contact. Good ideas startwith a hello.",
+        "rect": {
+          "x": 414.222900390625,
+          "y": 307.0228271484375,
+          "width": 259.90631103515625,
+          "height": 112.02902221679688,
+          "top": 307.0228271484375,
+          "right": 674.1292114257812,
+          "bottom": 419.0518493652344,
+          "left": 414.222900390625
+        },
+        "font": "37.44px"
+      }
+    ]
+  }
+]

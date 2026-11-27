@@ -1,0 +1,3049 @@
+[
+  {
+    "width": 1440,
+    "height": 900,
+    "initial": {
+      "viewport": [
+        1440,
+        900
+      ],
+      "coarse": false,
+      "document": {
+        "w": 1440,
+        "h": 9143
+      },
+      "phase": "night",
+      "floors": [
+        {
+          "id": "office",
+          "classes": "hero hero--wide-scene floor-section",
+          "x": 0,
+          "y": 0,
+          "w": 1440,
+          "h": 1060,
+          "words": 114
+        },
+        {
+          "id": "about",
+          "classes": "floor-section about",
+          "x": 0,
+          "y": 1220.796875,
+          "w": 1440,
+          "h": 1670.25,
+          "words": 241
+        },
+        {
+          "id": "projects",
+          "classes": "floor-section projects",
+          "x": 0,
+          "y": 3051.84375,
+          "w": 1440,
+          "h": 3780.6875,
+          "words": 551
+        },
+        {
+          "id": "experience",
+          "classes": "floor-section experience",
+          "x": 0,
+          "y": 6993.328125,
+          "w": 1440,
+          "h": 1110.890625,
+          "words": 172
+        },
+        {
+          "id": "street",
+          "classes": "floor-section contact-scene contact-scene--athens",
+          "x": 0,
+          "y": 8265.015625,
+          "w": 1440,
+          "h": 877.5,
+          "words": 86
+        }
+      ],
+      "transitions": [
+        {
+          "id": "transition-04-to-03",
+          "x": 0,
+          "y": 1060,
+          "w": 1440,
+          "h": 160.796875
+        },
+        {
+          "id": "transition-03-to-02",
+          "x": 0,
+          "y": 2891.046875,
+          "w": 1440,
+          "h": 160.796875
+        },
+        {
+          "id": "transition-02-to-01",
+          "x": 0,
+          "y": 6832.53125,
+          "w": 1440,
+          "h": 160.796875
+        },
+        {
+          "id": "transition-01-to-00",
+          "x": 0,
+          "y": 8104.21875,
+          "w": 1440,
+          "h": 160.796875
+        }
+      ],
+      "typography": [
+        {
+          "tag": "H1",
+          "class": "",
+          "text": "Irinella BoutsikaFrontend developer.",
+          "size": "64px",
+          "line": "62.72px",
+          "color": "rgb(255, 248, 233)",
+          "family": "\"Barlow Condensed\", sans-serif",
+          "width": 447.5625
+        },
+        {
+          "tag": "H2",
+          "class": "",
+          "text": "Explore. There’s morethan meets the eye.",
+          "size": "33.28px",
+          "line": "37.2736px",
+          "color": "rgb(112, 247, 255)",
+          "family": "\"Barlow Condensed\", sans-serif",
+          "width": 447.5625
+        },
+        {
+          "tag": "H2",
+          "class": "about__heading",
+          "text": "About",
+          "size": "52px",
+          "line": "54.6px",
+          "color": "rgb(242, 247, 250)",
+          "family": "\"Barlow Condensed\", sans-serif",
+          "width": 113.890625
+        },
+        {
+          "tag": "H2",
+          "class": "",
+          "text": "SelectedProjects",
+          "size": "53.28px",
+          "line": "50.616px",
+          "color": "rgb(241, 233, 220)",
+          "family": "\"Barlow Condensed\", sans-serif",
+          "width": 529.65625
+        },
+        {
+          "tag": "H2",
+          "class": "",
+          "text": "Experience",
+          "size": "60.48px",
+          "line": "60.48px",
+          "color": "rgb(240, 233, 218)",
+          "family": "\"Barlow Condensed\", sans-serif",
+          "width": 911.1875
+        },
+        {
+          "tag": "H2",
+          "class": "contact-screen__title",
+          "text": "Contact. Good ideas startwith a hello.",
+          "size": "37.44px",
+          "line": "36.6912px",
+          "color": "rgb(171, 245, 255)",
+          "family": "\"Barlow Condensed\", sans-serif",
+          "width": 259.90631103515625
+        },
+        {
+          "tag": "A",
+          "class": "contact-email",
+          "text": "Start a conversation↗3vilbonobo@gmail.com",
+          "size": "13.68px",
+          "line": "21.888px",
+          "color": "rgb(214, 246, 255)",
+          "family": "Manrope, sans-serif",
+          "width": 259.90631103515625
+        }
+      ],
+      "smallTargets": [
+        {
+          "text": "Return to office",
+          "tag": "A",
+          "x": 57.59375,
+          "y": 34.03125,
+          "w": 157.609375,
+          "h": 11.515625
+        },
+        {
+          "text": "Selected Projects ↗",
+          "tag": "A",
+          "x": 788.796875,
+          "y": 8017.734375,
+          "w": 131.375,
+          "h": 19
+        }
+      ],
+      "images": [
+        {
+          "src": "/hero/loft-v2/day.png",
+          "loaded": true,
+          "native": [
+            1672,
+            941
+          ],
+          "x": 0,
+          "y": 124.7890625,
+          "w": 1440,
+          "h": 810.421875
+        },
+        {
+          "src": "/hero/loft-v2/night.png",
+          "loaded": true,
+          "native": [
+            1671,
+            941
+          ],
+          "x": 0,
+          "y": 124.7890625,
+          "w": 1440,
+          "h": 810.421875
+        },
+        {
+          "src": "/environments/transitions/transition-04-to-03-universal.webp",
+          "loaded": true,
+          "native": [
+            2160,
+            216
+          ],
+          "x": 0,
+          "y": 1096,
+          "w": 1440,
+          "h": 88.796875
+        },
+        {
+          "src": "/environments/floor-03-about-corridor/v004/floor-03-about-corridor-base-desktop.webp",
+          "loaded": true,
+          "native": [
+            1672,
+            941
+          ],
+          "x": 0,
+          "y": 1221.796875,
+          "w": 1440,
+          "h": 810.421875
+        },
+        {
+          "src": "/about/irene-portrait.webp",
+          "loaded": true,
+          "native": [
+            799,
+            730
+          ],
+          "x": 837.052490234375,
+          "y": 1439.7276611328125,
+          "w": 255.3599853515625,
+          "h": 285.0748291015625
+        },
+        {
+          "src": "",
+          "loaded": false,
+          "native": [
+            0,
+            0
+          ],
+          "x": 0,
+          "y": 2927.046875,
+          "w": 1440,
+          "h": 88.796875
+        },
+        {
+          "src": "/projects/nerve-ending/concept-equipment-room-800.jpg",
+          "loaded": true,
+          "native": [
+            648,
+            405
+          ],
+          "x": 271.59375,
+          "y": 3355.59375,
+          "w": 487.828125,
+          "h": 372.734375
+        },
+        {
+          "src": "",
+          "loaded": false,
+          "native": [
+            0,
+            0
+          ],
+          "x": 271.59375,
+          "y": 3802.375,
+          "w": 283.203125,
+          "h": 176
+        },
+        {
+          "src": "",
+          "loaded": false,
+          "native": [
+            0,
+            0
+          ],
+          "x": 574.390625,
+          "y": 3802.375,
+          "w": 283.203125,
+          "h": 176
+        },
+        {
+          "src": "",
+          "loaded": false,
+          "native": [
+            0,
+            0
+          ],
+          "x": 877.1875,
+          "y": 3802.375,
+          "w": 283.203125,
+          "h": 176
+        },
+        {
+          "src": "",
+          "loaded": false,
+          "native": [
+            0,
+            0
+          ],
+          "x": 271.59375,
+          "y": 4494.96875,
+          "w": 283.203125,
+          "h": 176
+        },
+        {
+          "src": "",
+          "loaded": false,
+          "native": [
+            0,
+            0
+          ],
+          "x": 574.390625,
+          "y": 4494.96875,
+          "w": 283.203125,
+          "h": 176
+        },
+        {
+          "src": "",
+          "loaded": false,
+          "native": [
+            0,
+            0
+          ],
+          "x": 271.59375,
+          "y": 5247.421875,
+          "w": 283.203125,
+          "h": 176
+        },
+        {
+          "src": "",
+          "loaded": false,
+          "native": [
+            0,
+            0
+          ],
+          "x": 574.390625,
+          "y": 5247.421875,
+          "w": 283.203125,
+          "h": 176
+        },
+        {
+          "src": "",
+          "loaded": false,
+          "native": [
+            0,
+            0
+          ],
+          "x": 877.1875,
+          "y": 5247.421875,
+          "w": 283.203125,
+          "h": 176
+        },
+        {
+          "src": "",
+          "loaded": false,
+          "native": [
+            0,
+            0
+          ],
+          "x": 271.59375,
+          "y": 5940.015625,
+          "w": 283.203125,
+          "h": 176
+        },
+        {
+          "src": "",
+          "loaded": false,
+          "native": [
+            0,
+            0
+          ],
+          "x": 574.390625,
+          "y": 5940.015625,
+          "w": 283.203125,
+          "h": 176
+        },
+        {
+          "src": "",
+          "loaded": false,
+          "native": [
+            0,
+            0
+          ],
+          "x": 877.1875,
+          "y": 5940.015625,
+          "w": 283.203125,
+          "h": 176
+        },
+        {
+          "src": "",
+          "loaded": false,
+          "native": [
+            0,
+            0
+          ],
+          "x": 0,
+          "y": 6868.53125,
+          "w": 1440,
+          "h": 88.796875
+        },
+        {
+          "src": "",
+          "loaded": false,
+          "native": [
+            0,
+            0
+          ],
+          "x": 0,
+          "y": 8140.21875,
+          "w": 1440,
+          "h": 88.796875
+        },
+        {
+          "src": "",
+          "loaded": false,
+          "native": [
+            0,
+            0
+          ],
+          "x": 0,
+          "y": 8265.015625,
+          "w": 1440,
+          "h": 809.5
+        }
+      ],
+      "scrollAreas": [],
+      "resources": [
+        {
+          "name": "/hero/loft-v2/day.png",
+          "transfer": 3186578,
+          "encoded": 3186278,
+          "duration": 153.69999998807907,
+          "initiator": "link"
+        },
+        {
+          "name": "/assets/index-CMcRhaQr.js",
+          "transfer": 321189,
+          "encoded": 320889,
+          "duration": 531.5,
+          "initiator": "script"
+        },
+        {
+          "name": "/assets/index-YBR3Hct7.css",
+          "transfer": 55728,
+          "encoded": 55428,
+          "duration": 85.5,
+          "initiator": "link"
+        },
+        {
+          "name": "https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600&display=swap",
+          "transfer": 1329,
+          "encoded": 1029,
+          "duration": 142.2000000178814,
+          "initiator": "css"
+        },
+        {
+          "name": "/environments/transitions/concrete-upper.webp",
+          "transfer": 25248,
+          "encoded": 24948,
+          "duration": 25.30000001192093,
+          "initiator": "css"
+        },
+        {
+          "name": "/environments/transitions/concrete-lower.webp",
+          "transfer": 16414,
+          "encoded": 16114,
+          "duration": 33.19999998807907,
+          "initiator": "css"
+        },
+        {
+          "name": "/environments/floor-03-about-corridor/v003/floor-03-about-corridor-quiet-wall-tile.webp",
+          "transfer": 2616,
+          "encoded": 2316,
+          "duration": 21.299999982118607,
+          "initiator": "css"
+        },
+        {
+          "name": "/environments/floor-03-about-corridor/v004/floor-03-about-corridor-portrait-aperture-desktop.svg",
+          "transfer": 467,
+          "encoded": 167,
+          "duration": 36.30000001192093,
+          "initiator": "css"
+        },
+        {
+          "name": "/hero/loft-v2/sky-mask.svg",
+          "transfer": 1117,
+          "encoded": 817,
+          "duration": 72.80000001192093,
+          "initiator": "css"
+        },
+        {
+          "name": "/weather/cloud-bank.svg",
+          "transfer": 1304,
+          "encoded": 1004,
+          "duration": 72.5,
+          "initiator": "css"
+        },
+        {
+          "name": "/hero/loft-v2/weather-mask.svg",
+          "transfer": 746,
+          "encoded": 446,
+          "duration": 71.5,
+          "initiator": "css"
+        },
+        {
+          "name": "/environments/floor-02-projects/floor-02-projects-wall-continuation-desktop.webp",
+          "transfer": 2950,
+          "encoded": 2650,
+          "duration": 16.099999994039536,
+          "initiator": "css"
+        },
+        {
+          "name": "/environments/floor-02-projects/floor-02-projects-wall-base-desktop.webp",
+          "transfer": 107784,
+          "encoded": 107484,
+          "duration": 31.799999982118607,
+          "initiator": "css"
+        },
+        {
+          "name": "/environments/floor-02-projects/floor-02-projects-light-01-spill-desktop.png",
+          "transfer": 30008,
+          "encoded": 29708,
+          "duration": 47.099999994039536,
+          "initiator": "css"
+        },
+        {
+          "name": "/environments/floor-02-projects/floor-02-projects-light-01-emission-desktop.png",
+          "transfer": 9244,
+          "encoded": 8944,
+          "duration": 30.700000017881393,
+          "initiator": "css"
+        },
+        {
+          "name": "/environments/floor-00-contact/floor00-desktop-16x9-sky-mask.svg",
+          "transfer": 705,
+          "encoded": 405,
+          "duration": 16.099999994039536,
+          "initiator": "css"
+        },
+        {
+          "name": "/contact/mouse/house-mouse-gait.png",
+          "transfer": 1175001,
+          "encoded": 1174701,
+          "duration": 366.2000000178814,
+          "initiator": "css"
+        },
+        {
+          "name": "https://api.open-meteo.com/v1/forecast?latitude=37.9838&longitude=23.7275&current=temperature_2m%2Capparent_temperature%2Cprecipitation%2Crain%2Cweather_code%2Ccloud_cover%2Cwind_speed_10m%2Cis_day&daily=sunrise%2Csunset&timezone=Europe%2FAthens&forecast_days=1",
+          "transfer": 0,
+          "encoded": 0,
+          "duration": 213,
+          "initiator": "fetch"
+        },
+        {
+          "name": "/hero/loft-v2/night.png",
+          "transfer": 2272627,
+          "encoded": 2272327,
+          "duration": 529.8000000119209,
+          "initiator": "img"
+        },
+        {
+          "name": "/moon-realistic-warm.png",
+          "transfer": 2523220,
+          "encoded": 2522920,
+          "duration": 547.3000000119209,
+          "initiator": "image"
+        },
+        {
+          "name": "/hero/cat/black-tomcat-sprites.png",
+          "transfer": 1293668,
+          "encoded": 1293368,
+          "duration": 441.09999999403954,
+          "initiator": "image"
+        },
+        {
+          "name": "/projects/nerve-ending/concept-equipment-room-800.jpg",
+          "transfer": 171224,
+          "encoded": 170924,
+          "duration": 295,
+          "initiator": "img"
+        },
+        {
+          "name": "/environments/transitions/transition-04-to-03-universal.webp",
+          "transfer": 40468,
+          "encoded": 40168,
+          "duration": 128.2999999821186,
+          "initiator": "img"
+        },
+        {
+          "name": "/environments/floor-03-about-corridor/v004/floor-03-about-corridor-base-desktop.webp",
+          "transfer": 1693164,
+          "encoded": 1692864,
+          "duration": 410.30000001192093,
+          "initiator": "img"
+        },
+        {
+          "name": "/about/irene-portrait.webp",
+          "transfer": 62056,
+          "encoded": 61756,
+          "duration": 260.30000001192093,
+          "initiator": "img"
+        },
+        {
+          "name": "/favicon.svg",
+          "transfer": 769,
+          "encoded": 469,
+          "duration": 8,
+          "initiator": "other"
+        }
+      ]
+    },
+    "timing": {
+      "observers": {
+        "shifts": [
+          {
+            "start": 1653.9000000059605,
+            "duration": 0,
+            "value": 0.012901234567901236,
+            "recent": false
+          },
+          {
+            "start": 2132.2999999821186,
+            "duration": 0,
+            "value": 0.0012276797196502057,
+            "recent": false
+          }
+        ],
+        "longtasks": [
+          {
+            "start": 656.6999999880791,
+            "duration": 808
+          },
+          {
+            "start": 1555.9000000059605,
+            "duration": 71
+          },
+          {
+            "start": 1939.4000000059605,
+            "duration": 170
+          }
+        ],
+        "lcp": [
+          {
+            "start": 1992,
+            "duration": 0,
+            "size": 1116303,
+            "url": "http://127.0.0.1:4173/hero/loft-v2/day.png"
+          }
+        ]
+      },
+      "navigation": {
+        "name": "http://127.0.0.1:4173/",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 2155.199999988079,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "http/1.1",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "gzip",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 1.699999988079071,
+        "domainLookupStart": 1.699999988079071,
+        "domainLookupEnd": 1.699999988079071,
+        "connectStart": 1.699999988079071,
+        "secureConnectionStart": 0,
+        "connectEnd": 1.699999988079071,
+        "requestStart": 4.5,
+        "responseStart": 87.69999998807907,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 87.69999998807907,
+        "responseEnd": 88.7999999821186,
+        "transferSize": 1080,
+        "encodedBodySize": 780,
+        "decodedBodySize": 1548,
+        "responseStatus": 200,
+        "serverTiming": [],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 342.90000000596046,
+        "domContentLoadedEventStart": 1422.7999999821186,
+        "domContentLoadedEventEnd": 1463.4000000059605,
+        "domComplete": 2149.9000000059605,
+        "loadEventStart": 2150,
+        "loadEventEnd": 2155.199999988079,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "low"
+        }
+      },
+      "preview": false
+    },
+    "idleTwoSecondCpu": {
+      "TaskDuration": 0.560129,
+      "ScriptDuration": 0.006281,
+      "LayoutDuration": 0.0257,
+      "RecalcStyleDuration": 0.111698
+    },
+    "anchors": [
+      {
+        "id": "about",
+        "top": 15.796875,
+        "active": "about",
+        "header": 79.59375
+      },
+      {
+        "id": "projects",
+        "top": 15.84375,
+        "active": "projects",
+        "header": 79.59375
+      },
+      {
+        "id": "experience",
+        "top": 0.328125,
+        "active": "experience",
+        "header": 79.59375
+      },
+      {
+        "id": "street",
+        "top": 22.015625,
+        "active": "street",
+        "header": 79.59375
+      }
+    ],
+    "complete": {
+      "viewport": [
+        1440,
+        900
+      ],
+      "coarse": false,
+      "document": {
+        "w": 1440,
+        "h": 9143
+      },
+      "phase": "night",
+      "floors": [
+        {
+          "id": "office",
+          "classes": "hero hero--wide-scene floor-section",
+          "x": 0,
+          "y": 0,
+          "w": 1440,
+          "h": 1060,
+          "words": 19
+        },
+        {
+          "id": "about",
+          "classes": "floor-section about",
+          "x": 0,
+          "y": 1220.796875,
+          "w": 1440,
+          "h": 1670.25,
+          "words": 241
+        },
+        {
+          "id": "projects",
+          "classes": "floor-section projects",
+          "x": 0,
+          "y": 3051.84375,
+          "w": 1440,
+          "h": 3780.6875,
+          "words": 551
+        },
+        {
+          "id": "experience",
+          "classes": "floor-section experience",
+          "x": 0,
+          "y": 6993.328125,
+          "w": 1440,
+          "h": 1110.890625,
+          "words": 172
+        },
+        {
+          "id": "street",
+          "classes": "floor-section contact-scene contact-scene--athens",
+          "x": 0,
+          "y": 8265.015625,
+          "w": 1440,
+          "h": 877.5,
+          "words": 86
+        }
+      ],
+      "transitions": [
+        {
+          "id": "transition-04-to-03",
+          "x": 0,
+          "y": 1060,
+          "w": 1440,
+          "h": 160.796875
+        },
+        {
+          "id": "transition-03-to-02",
+          "x": 0,
+          "y": 2891.046875,
+          "w": 1440,
+          "h": 160.796875
+        },
+        {
+          "id": "transition-02-to-01",
+          "x": 0,
+          "y": 6832.53125,
+          "w": 1440,
+          "h": 160.796875
+        },
+        {
+          "id": "transition-01-to-00",
+          "x": 0,
+          "y": 8104.21875,
+          "w": 1440,
+          "h": 160.796875
+        }
+      ],
+      "typography": [
+        {
+          "tag": "H2",
+          "class": "about__heading",
+          "text": "About",
+          "size": "52px",
+          "line": "54.6px",
+          "color": "rgb(242, 247, 250)",
+          "family": "\"Barlow Condensed\", sans-serif",
+          "width": 113.890625
+        },
+        {
+          "tag": "H2",
+          "class": "",
+          "text": "SelectedProjects",
+          "size": "53.28px",
+          "line": "50.616px",
+          "color": "rgb(241, 233, 220)",
+          "family": "\"Barlow Condensed\", sans-serif",
+          "width": 529.65625
+        },
+        {
+          "tag": "H2",
+          "class": "",
+          "text": "Experience",
+          "size": "60.48px",
+          "line": "60.48px",
+          "color": "rgb(240, 233, 218)",
+          "family": "\"Barlow Condensed\", sans-serif",
+          "width": 911.1875
+        },
+        {
+          "tag": "H2",
+          "class": "contact-screen__title",
+          "text": "Contact. Good ideas startwith a hello.",
+          "size": "37.44px",
+          "line": "36.6912px",
+          "color": "rgb(171, 245, 255)",
+          "family": "\"Barlow Condensed\", sans-serif",
+          "width": 259.90631103515625
+        },
+        {
+          "tag": "A",
+          "class": "contact-email",
+          "text": "Start a conversation↗3vilbonobo@gmail.com",
+          "size": "13.68px",
+          "line": "21.888px",
+          "color": "rgb(214, 246, 255)",
+          "family": "Manrope, sans-serif",
+          "width": 259.90631103515625
+        }
+      ],
+      "smallTargets": [
+        {
+          "text": "Return to office",
+          "tag": "A",
+          "x": 57.59375,
+          "y": 8277.03125,
+          "w": 157.609375,
+          "h": 11.515625
+        },
+        {
+          "text": "Selected Projects ↗",
+          "tag": "A",
+          "x": 788.796875,
+          "y": 8017.734375,
+          "w": 131.375,
+          "h": 19
+        }
+      ],
+      "images": [
+        {
+          "src": "/hero/loft-v2/day.png",
+          "loaded": true,
+          "native": [
+            1672,
+            941
+          ],
+          "x": 0,
+          "y": 124.7890625,
+          "w": 1440,
+          "h": 810.421875
+        },
+        {
+          "src": "/hero/loft-v2/night.png",
+          "loaded": true,
+          "native": [
+            1671,
+            941
+          ],
+          "x": 0,
+          "y": 124.7890625,
+          "w": 1440,
+          "h": 810.421875
+        },
+        {
+          "src": "/environments/transitions/transition-04-to-03-universal.webp",
+          "loaded": true,
+          "native": [
+            2160,
+            216
+          ],
+          "x": 0,
+          "y": 1096,
+          "w": 1440,
+          "h": 88.796875
+        },
+        {
+          "src": "/environments/floor-03-about-corridor/v004/floor-03-about-corridor-base-desktop.webp",
+          "loaded": true,
+          "native": [
+            1672,
+            941
+          ],
+          "x": 0,
+          "y": 1221.796875,
+          "w": 1440,
+          "h": 810.421875
+        },
+        {
+          "src": "/about/irene-portrait.webp",
+          "loaded": true,
+          "native": [
+            799,
+            730
+          ],
+          "x": 837.052490234375,
+          "y": 1439.7275390625,
+          "w": 255.3599853515625,
+          "h": 285.07470703125
+        },
+        {
+          "src": "/environments/transitions/transition-03-to-02-universal.webp",
+          "loaded": true,
+          "native": [
+            2160,
+            216
+          ],
+          "x": 0,
+          "y": 2927.046875,
+          "w": 1440,
+          "h": 88.796875
+        },
+        {
+          "src": "/projects/nerve-ending/concept-equipment-room-800.jpg",
+          "loaded": true,
+          "native": [
+            648,
+            405
+          ],
+          "x": 271.59375,
+          "y": 3355.59375,
+          "w": 487.828125,
+          "h": 372.734375
+        },
+        {
+          "src": "/projects/project-companion.jpg",
+          "loaded": true,
+          "native": [
+            360,
+            250
+          ],
+          "x": 271.59375,
+          "y": 3802.375,
+          "w": 283.203125,
+          "h": 176
+        },
+        {
+          "src": "/projects/enterprise-traceability/complex-form.svg",
+          "loaded": true,
+          "native": [
+            1200,
+            760
+          ],
+          "x": 574.390625,
+          "y": 3802.375,
+          "w": 283.203125,
+          "h": 176
+        },
+        {
+          "src": "/projects/podcast-app.jpg",
+          "loaded": true,
+          "native": [
+            355,
+            200
+          ],
+          "x": 877.1875,
+          "y": 3802.375,
+          "w": 283.203125,
+          "h": 176
+        },
+        {
+          "src": "/projects/athens-therapy-800.jpg",
+          "loaded": true,
+          "native": [
+            360,
+            225
+          ],
+          "x": 271.59375,
+          "y": 4494.96875,
+          "w": 283.203125,
+          "h": 176
+        },
+        {
+          "src": "/projects/covers/orthobyron-cover.png",
+          "loaded": true,
+          "native": [
+            2511,
+            1256
+          ],
+          "x": 574.390625,
+          "y": 4494.96875,
+          "w": 283.203125,
+          "h": 176
+        },
+        {
+          "src": "/projects/athens-cyberpunk.jpg",
+          "loaded": true,
+          "native": [
+            355,
+            200
+          ],
+          "x": 271.59375,
+          "y": 5247.421875,
+          "w": 283.203125,
+          "h": 176
+        },
+        {
+          "src": "/projects/iss-tracker.webp",
+          "loaded": true,
+          "native": [
+            1440,
+            852
+          ],
+          "x": 574.390625,
+          "y": 5247.421875,
+          "w": 283.203125,
+          "h": 176
+        },
+        {
+          "src": "/projects/madlen-v-800.jpg",
+          "loaded": true,
+          "native": [
+            360,
+            225
+          ],
+          "x": 877.1875,
+          "y": 5247.421875,
+          "w": 283.203125,
+          "h": 176
+        },
+        {
+          "src": "/projects/magic-herbs.webp",
+          "loaded": true,
+          "native": [
+            1440,
+            852
+          ],
+          "x": 271.59375,
+          "y": 5940.015625,
+          "w": 283.203125,
+          "h": 176
+        },
+        {
+          "src": "/projects/fashion-show.webp",
+          "loaded": true,
+          "native": [
+            1440,
+            852
+          ],
+          "x": 574.390625,
+          "y": 5940.015625,
+          "w": 283.203125,
+          "h": 176
+        },
+        {
+          "src": "/projects/tip-calculator.webp",
+          "loaded": true,
+          "native": [
+            1440,
+            852
+          ],
+          "x": 877.1875,
+          "y": 5940.015625,
+          "w": 283.203125,
+          "h": 176
+        },
+        {
+          "src": "/environments/transitions/transition-02-to-01-universal.webp",
+          "loaded": true,
+          "native": [
+            2160,
+            216
+          ],
+          "x": 0,
+          "y": 6868.53125,
+          "w": 1440,
+          "h": 88.796875
+        },
+        {
+          "src": "/environments/floor-01-experience/floor-01-experience-wall-base-desktop.webp",
+          "loaded": true,
+          "native": [
+            1672,
+            941
+          ],
+          "x": 0,
+          "y": 6993.328125,
+          "w": 1440,
+          "h": 810.421875
+        },
+        {
+          "src": "/environments/floor-01-experience/floor-01-experience-wall-emission-desktop.png",
+          "loaded": true,
+          "native": [
+            69,
+            105
+          ],
+          "x": 160.1875,
+          "y": 7151.78125,
+          "w": 59.421875,
+          "h": 90.421875
+        },
+        {
+          "src": "/environments/floor-01-experience/floor-01-experience-wall-spill-desktop.png",
+          "loaded": true,
+          "native": [
+            243,
+            806
+          ],
+          "x": 83.53125,
+          "y": 7104.421875,
+          "w": 209.28125,
+          "h": 694.140625
+        },
+        {
+          "src": "/environments/floor-01-experience/floor-01-experience-ceiling-emission-desktop.png",
+          "loaded": true,
+          "native": [
+            353,
+            41
+          ],
+          "x": 856.0625,
+          "y": 7115.609375,
+          "w": 304.015625,
+          "h": 35.296875
+        },
+        {
+          "src": "/environments/floor-01-experience/floor-01-experience-ceiling-spill-desktop.png",
+          "loaded": true,
+          "native": [
+            326,
+            915
+          ],
+          "x": 866.40625,
+          "y": 7007.09375,
+          "w": 280.75,
+          "h": 788.015625
+        },
+        {
+          "src": "/environments/transitions/transition-01-to-00-universal.webp",
+          "loaded": true,
+          "native": [
+            2160,
+            216
+          ],
+          "x": 0,
+          "y": 8140.21875,
+          "w": 1440,
+          "h": 88.796875
+        },
+        {
+          "src": "/environments/floor-00-contact/floor00-desktop-16x9-night.webp",
+          "loaded": true,
+          "native": [
+            1448,
+            814
+          ],
+          "x": 0,
+          "y": 8265.015625,
+          "w": 1440,
+          "h": 809.5
+        }
+      ],
+      "scrollAreas": [],
+      "resources": [
+        {
+          "name": "/hero/loft-v2/day.png",
+          "transfer": 3186578,
+          "encoded": 3186278,
+          "duration": 153.69999998807907,
+          "initiator": "link"
+        },
+        {
+          "name": "/assets/index-CMcRhaQr.js",
+          "transfer": 321189,
+          "encoded": 320889,
+          "duration": 531.5,
+          "initiator": "script"
+        },
+        {
+          "name": "/assets/index-YBR3Hct7.css",
+          "transfer": 55728,
+          "encoded": 55428,
+          "duration": 85.5,
+          "initiator": "link"
+        },
+        {
+          "name": "https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600&display=swap",
+          "transfer": 1329,
+          "encoded": 1029,
+          "duration": 142.2000000178814,
+          "initiator": "css"
+        },
+        {
+          "name": "/environments/transitions/concrete-upper.webp",
+          "transfer": 25248,
+          "encoded": 24948,
+          "duration": 25.30000001192093,
+          "initiator": "css"
+        },
+        {
+          "name": "/environments/transitions/concrete-lower.webp",
+          "transfer": 16414,
+          "encoded": 16114,
+          "duration": 33.19999998807907,
+          "initiator": "css"
+        },
+        {
+          "name": "/environments/floor-03-about-corridor/v003/floor-03-about-corridor-quiet-wall-tile.webp",
+          "transfer": 2616,
+          "encoded": 2316,
+          "duration": 21.299999982118607,
+          "initiator": "css"
+        },
+        {
+          "name": "/environments/floor-03-about-corridor/v004/floor-03-about-corridor-portrait-aperture-desktop.svg",
+          "transfer": 467,
+          "encoded": 167,
+          "duration": 36.30000001192093,
+          "initiator": "css"
+        },
+        {
+          "name": "/hero/loft-v2/sky-mask.svg",
+          "transfer": 1117,
+          "encoded": 817,
+          "duration": 72.80000001192093,
+          "initiator": "css"
+        },
+        {
+          "name": "/weather/cloud-bank.svg",
+          "transfer": 1304,
+          "encoded": 1004,
+          "duration": 72.5,
+          "initiator": "css"
+        },
+        {
+          "name": "/hero/loft-v2/weather-mask.svg",
+          "transfer": 746,
+          "encoded": 446,
+          "duration": 71.5,
+          "initiator": "css"
+        },
+        {
+          "name": "/environments/floor-02-projects/floor-02-projects-wall-continuation-desktop.webp",
+          "transfer": 2950,
+          "encoded": 2650,
+          "duration": 16.099999994039536,
+          "initiator": "css"
+        },
+        {
+          "name": "/environments/floor-02-projects/floor-02-projects-wall-base-desktop.webp",
+          "transfer": 107784,
+          "encoded": 107484,
+          "duration": 31.799999982118607,
+          "initiator": "css"
+        },
+        {
+          "name": "/environments/floor-02-projects/floor-02-projects-light-01-spill-desktop.png",
+          "transfer": 30008,
+          "encoded": 29708,
+          "duration": 47.099999994039536,
+          "initiator": "css"
+        },
+        {
+          "name": "/environments/floor-02-projects/floor-02-projects-light-01-emission-desktop.png",
+          "transfer": 9244,
+          "encoded": 8944,
+          "duration": 30.700000017881393,
+          "initiator": "css"
+        },
+        {
+          "name": "/environments/floor-00-contact/floor00-desktop-16x9-sky-mask.svg",
+          "transfer": 705,
+          "encoded": 405,
+          "duration": 16.099999994039536,
+          "initiator": "css"
+        },
+        {
+          "name": "/contact/mouse/house-mouse-gait.png",
+          "transfer": 1175001,
+          "encoded": 1174701,
+          "duration": 366.2000000178814,
+          "initiator": "css"
+        },
+        {
+          "name": "https://api.open-meteo.com/v1/forecast?latitude=37.9838&longitude=23.7275&current=temperature_2m%2Capparent_temperature%2Cprecipitation%2Crain%2Cweather_code%2Ccloud_cover%2Cwind_speed_10m%2Cis_day&daily=sunrise%2Csunset&timezone=Europe%2FAthens&forecast_days=1",
+          "transfer": 0,
+          "encoded": 0,
+          "duration": 213,
+          "initiator": "fetch"
+        },
+        {
+          "name": "/hero/loft-v2/night.png",
+          "transfer": 2272627,
+          "encoded": 2272327,
+          "duration": 529.8000000119209,
+          "initiator": "img"
+        },
+        {
+          "name": "/moon-realistic-warm.png",
+          "transfer": 2523220,
+          "encoded": 2522920,
+          "duration": 547.3000000119209,
+          "initiator": "image"
+        },
+        {
+          "name": "/hero/cat/black-tomcat-sprites.png",
+          "transfer": 1293668,
+          "encoded": 1293368,
+          "duration": 441.09999999403954,
+          "initiator": "image"
+        },
+        {
+          "name": "/projects/nerve-ending/concept-equipment-room-800.jpg",
+          "transfer": 171224,
+          "encoded": 170924,
+          "duration": 295,
+          "initiator": "img"
+        },
+        {
+          "name": "/environments/transitions/transition-04-to-03-universal.webp",
+          "transfer": 40468,
+          "encoded": 40168,
+          "duration": 128.2999999821186,
+          "initiator": "img"
+        },
+        {
+          "name": "/environments/floor-03-about-corridor/v004/floor-03-about-corridor-base-desktop.webp",
+          "transfer": 1693164,
+          "encoded": 1692864,
+          "duration": 410.30000001192093,
+          "initiator": "img"
+        },
+        {
+          "name": "/about/irene-portrait.webp",
+          "transfer": 62056,
+          "encoded": 61756,
+          "duration": 260.30000001192093,
+          "initiator": "img"
+        },
+        {
+          "name": "/favicon.svg",
+          "transfer": 769,
+          "encoded": 469,
+          "duration": 8,
+          "initiator": "other"
+        },
+        {
+          "name": "/favicon.svg",
+          "transfer": 300,
+          "encoded": 469,
+          "duration": 5.800000011920929,
+          "initiator": "other"
+        },
+        {
+          "name": "/environments/transitions/transition-03-to-02-universal.webp",
+          "transfer": 80178,
+          "encoded": 79878,
+          "duration": 40.69999998807907,
+          "initiator": "img"
+        },
+        {
+          "name": "/favicon.svg",
+          "transfer": 300,
+          "encoded": 469,
+          "duration": 4.5999999940395355,
+          "initiator": "other"
+        },
+        {
+          "name": "/projects/project-companion.jpg",
+          "transfer": 51832,
+          "encoded": 51532,
+          "duration": 52.599999994039536,
+          "initiator": "img"
+        },
+        {
+          "name": "/projects/enterprise-traceability/complex-form.svg",
+          "transfer": 1747,
+          "encoded": 1447,
+          "duration": 50.30000001192093,
+          "initiator": "img"
+        },
+        {
+          "name": "/projects/podcast-app.jpg",
+          "transfer": 85017,
+          "encoded": 84717,
+          "duration": 45.80000001192093,
+          "initiator": "img"
+        },
+        {
+          "name": "/projects/athens-therapy-800.jpg",
+          "transfer": 66273,
+          "encoded": 65973,
+          "duration": 25.30000001192093,
+          "initiator": "img"
+        },
+        {
+          "name": "/projects/covers/orthobyron-cover.png",
+          "transfer": 3001464,
+          "encoded": 3001164,
+          "duration": 80.7999999821186,
+          "initiator": "img"
+        },
+        {
+          "name": "/favicon.svg",
+          "transfer": 300,
+          "encoded": 469,
+          "duration": 5.100000023841858,
+          "initiator": "other"
+        },
+        {
+          "name": "/projects/athens-cyberpunk.jpg",
+          "transfer": 123699,
+          "encoded": 123399,
+          "duration": 41.69999998807907,
+          "initiator": "img"
+        },
+        {
+          "name": "/projects/iss-tracker.webp",
+          "transfer": 47630,
+          "encoded": 47330,
+          "duration": 45.80000001192093,
+          "initiator": "img"
+        },
+        {
+          "name": "/projects/madlen-v-800.jpg",
+          "transfer": 54862,
+          "encoded": 54562,
+          "duration": 41.80000001192093,
+          "initiator": "img"
+        },
+        {
+          "name": "/projects/magic-herbs.webp",
+          "transfer": 48586,
+          "encoded": 48286,
+          "duration": 28.200000017881393,
+          "initiator": "img"
+        },
+        {
+          "name": "/projects/fashion-show.webp",
+          "transfer": 31488,
+          "encoded": 31188,
+          "duration": 29.299999982118607,
+          "initiator": "img"
+        },
+        {
+          "name": "/projects/tip-calculator.webp",
+          "transfer": 14918,
+          "encoded": 14618,
+          "duration": 30.19999998807907,
+          "initiator": "img"
+        },
+        {
+          "name": "/environments/transitions/transition-02-to-01-universal.webp",
+          "transfer": 83110,
+          "encoded": 82810,
+          "duration": 33.099999994039536,
+          "initiator": "img"
+        },
+        {
+          "name": "/environments/transitions/transition-01-to-00-universal.webp",
+          "transfer": 46624,
+          "encoded": 46324,
+          "duration": 48.69999998807907,
+          "initiator": "img"
+        },
+        {
+          "name": "/environments/floor-01-experience/floor-01-experience-wall-base-desktop.webp",
+          "transfer": 318312,
+          "encoded": 318012,
+          "duration": 88.2999999821186,
+          "initiator": "img"
+        },
+        {
+          "name": "/environments/floor-01-experience/floor-01-experience-wall-emission-desktop.png",
+          "transfer": 2610,
+          "encoded": 2310,
+          "duration": 63.599999994039536,
+          "initiator": "img"
+        },
+        {
+          "name": "/environments/floor-01-experience/floor-01-experience-wall-spill-desktop.png",
+          "transfer": 31197,
+          "encoded": 30897,
+          "duration": 72.69999998807907,
+          "initiator": "img"
+        },
+        {
+          "name": "/environments/floor-01-experience/floor-01-experience-ceiling-emission-desktop.png",
+          "transfer": 2248,
+          "encoded": 1948,
+          "duration": 72.19999998807907,
+          "initiator": "img"
+        },
+        {
+          "name": "/environments/floor-01-experience/floor-01-experience-ceiling-spill-desktop.png",
+          "transfer": 35392,
+          "encoded": 35092,
+          "duration": 88.19999998807907,
+          "initiator": "img"
+        },
+        {
+          "name": "/environments/floor-01-experience/floor-01-experience-wall-continuation-desktop.webp",
+          "transfer": 1396,
+          "encoded": 1096,
+          "duration": 33,
+          "initiator": "css"
+        },
+        {
+          "name": "/environments/floor-00-contact/floor00-desktop-16x9-night.webp",
+          "transfer": 401822,
+          "encoded": 401522,
+          "duration": 52,
+          "initiator": "img"
+        },
+        {
+          "name": "/favicon.svg",
+          "transfer": 300,
+          "encoded": 469,
+          "duration": 6.799999982118607,
+          "initiator": "other"
+        }
+      ]
+    },
+    "reduced": {
+      "matches": true,
+      "lamps": [
+        {
+          "class": "projects-environment",
+          "style": "--projects-scene-offset: 0px; --projects-lamp-intensity: 1;"
+        },
+        {
+          "class": "experience-environment",
+          "style": "aspect-ratio: 1672 / 941; --experience-wall-intensity: 1; --experience-ceiling-intensity: 1; --experience-plate-offset: 0px;"
+        }
+      ]
+    },
+    "text200": [
+      {
+        "id": "about",
+        "width": 1440,
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "pageOverflow": 0
+      },
+      {
+        "id": "projects",
+        "width": 1440,
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "pageOverflow": 0
+      },
+      {
+        "id": "experience",
+        "width": 1440,
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "pageOverflow": 0
+      },
+      {
+        "id": "street",
+        "width": 1440,
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "pageOverflow": 0
+      }
+    ],
+    "pageerrors": []
+  },
+  {
+    "width": 390,
+    "height": 844,
+    "initial": {
+      "viewport": [
+        390,
+        844
+      ],
+      "coarse": false,
+      "document": {
+        "w": 390,
+        "h": 6031
+      },
+      "phase": "night",
+      "floors": [
+        {
+          "id": "office",
+          "classes": "hero--phone hero--portrait hero hero--wide-scene floor-section",
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 996.359375,
+          "words": 66
+        },
+        {
+          "id": "about",
+          "classes": "floor-section about about--phone about--portrait",
+          "x": 0,
+          "y": 1085.671875,
+          "w": 390,
+          "h": 1416.578125,
+          "words": 134
+        },
+        {
+          "id": "projects",
+          "classes": "floor-section projects projects--phone projects--portrait",
+          "x": 0,
+          "y": 2591.5625,
+          "w": 390,
+          "h": 1570.125,
+          "words": 166
+        },
+        {
+          "id": "experience",
+          "classes": "floor-section experience experience--phone experience--portrait",
+          "x": 0,
+          "y": 4251,
+          "w": 390,
+          "h": 822.5,
+          "words": 78
+        },
+        {
+          "id": "street",
+          "classes": "floor-section contact-scene contact-scene--athens contact-scene--phone contact-scene--portrait",
+          "x": 0,
+          "y": 5162.8125,
+          "w": 390,
+          "h": 868.375,
+          "words": 80
+        }
+      ],
+      "transitions": [
+        {
+          "id": "transition-04-to-03",
+          "x": 0,
+          "y": 996.359375,
+          "w": 390,
+          "h": 89.3125
+        },
+        {
+          "id": "transition-03-to-02",
+          "x": 0,
+          "y": 2502.25,
+          "w": 390,
+          "h": 89.3125
+        },
+        {
+          "id": "transition-02-to-01",
+          "x": 0,
+          "y": 4161.6875,
+          "w": 390,
+          "h": 89.3125
+        },
+        {
+          "id": "transition-01-to-00",
+          "x": 0,
+          "y": 5073.5,
+          "w": 390,
+          "h": 89.3125
+        }
+      ],
+      "typography": [
+        {
+          "tag": "H1",
+          "class": "",
+          "text": "Irinella BoutsikaFrontend developer.",
+          "size": "39px",
+          "line": "39px",
+          "color": "rgb(255, 248, 233)",
+          "family": "\"Barlow Condensed\", sans-serif",
+          "width": 350
+        },
+        {
+          "tag": "H2",
+          "class": "about__heading",
+          "text": "About",
+          "size": "44px",
+          "line": "46.2px",
+          "color": "rgb(242, 247, 250)",
+          "family": "\"Barlow Condensed\", sans-serif",
+          "width": 96.375
+        },
+        {
+          "tag": "H2",
+          "class": "",
+          "text": "Selected Projects",
+          "size": "32px",
+          "line": "30.4px",
+          "color": "rgb(241, 233, 220)",
+          "family": "\"Barlow Condensed\", sans-serif",
+          "width": 293.59375
+        },
+        {
+          "tag": "H2",
+          "class": "",
+          "text": "Experience",
+          "size": "41.6px",
+          "line": "41.6px",
+          "color": "rgb(240, 233, 218)",
+          "family": "\"Barlow Condensed\", sans-serif",
+          "width": 358
+        },
+        {
+          "tag": "H2",
+          "class": "contact-screen__title",
+          "text": "Contact. Good ideas startwith a hello.",
+          "size": "33.93px",
+          "line": "33.2514px",
+          "color": "rgb(171, 245, 255)",
+          "family": "\"Barlow Condensed\", sans-serif",
+          "width": 312
+        },
+        {
+          "tag": "A",
+          "class": "contact-email",
+          "text": "Start a conversation↗3vilbonobo@gmail.com",
+          "size": "16px",
+          "line": "25.6px",
+          "color": "rgb(214, 246, 255)",
+          "family": "Manrope, sans-serif",
+          "width": 312
+        }
+      ],
+      "smallTargets": [
+        {
+          "text": "Return to office",
+          "tag": "A",
+          "x": 20,
+          "y": 4.796875,
+          "w": 120.96875,
+          "h": 9.59375
+        }
+      ],
+      "images": [
+        {
+          "src": "/hero/loft-mobile-v1/night-720.webp",
+          "loaded": true,
+          "native": [
+            390,
+            692
+          ],
+          "x": 0,
+          "y": 57,
+          "w": 390,
+          "h": 371.359375
+        },
+        {
+          "src": "/hero/loft-mobile-v1/rotate-phone.svg",
+          "loaded": true,
+          "native": [
+            150,
+            150
+          ],
+          "x": 20,
+          "y": 706.921875,
+          "w": 32,
+          "h": 32
+        },
+        {
+          "src": "/environments/transitions/transition-04-to-03-universal.webp",
+          "loaded": true,
+          "native": [
+            2160,
+            216
+          ],
+          "x": 0,
+          "y": 1016.359375,
+          "w": 390,
+          "h": 49.3125
+        },
+        {
+          "src": "/environments/floor-03-about-corridor/v003/floor-03-about-corridor-base-mobile.webp",
+          "loaded": true,
+          "native": [
+            1080,
+            1296
+          ],
+          "x": 35,
+          "y": 1048.671875,
+          "w": 320,
+          "h": 384
+        },
+        {
+          "src": "/about/irene-portrait.webp",
+          "loaded": true,
+          "native": [
+            799,
+            730
+          ],
+          "x": 39.281028747558594,
+          "y": 1112.8316650390625,
+          "w": 240.13534545898438,
+          "h": 231.1142578125
+        },
+        {
+          "src": "/hero/loft-mobile-v1/rotate-phone.svg",
+          "loaded": true,
+          "native": [
+            150,
+            150
+          ],
+          "x": 20,
+          "y": 2344.34375,
+          "w": 32,
+          "h": 32
+        },
+        {
+          "src": "",
+          "loaded": false,
+          "native": [
+            0,
+            0
+          ],
+          "x": 0,
+          "y": 2522.25,
+          "w": 390,
+          "h": 49.3125
+        },
+        {
+          "src": "/projects/nerve-ending/concept-equipment-room-800.jpg",
+          "loaded": true,
+          "native": [
+            390,
+            243
+          ],
+          "x": 17,
+          "y": 2851.578125,
+          "w": 356,
+          "h": 200.25
+        },
+        {
+          "src": "",
+          "loaded": false,
+          "native": [
+            0,
+            0
+          ],
+          "x": 25.796875,
+          "y": 3332.40625,
+          "w": 88,
+          "h": 66
+        },
+        {
+          "src": "",
+          "loaded": false,
+          "native": [
+            0,
+            0
+          ],
+          "x": 25.796875,
+          "y": 3457.859375,
+          "w": 88,
+          "h": 66
+        },
+        {
+          "src": "",
+          "loaded": false,
+          "native": [
+            0,
+            0
+          ],
+          "x": 25.796875,
+          "y": 3681.90625,
+          "w": 88,
+          "h": 66
+        },
+        {
+          "src": "",
+          "loaded": false,
+          "native": [
+            0,
+            0
+          ],
+          "x": 25.796875,
+          "y": 3787.5,
+          "w": 88,
+          "h": 66
+        },
+        {
+          "src": "/hero/loft-mobile-v1/rotate-phone.svg",
+          "loaded": true,
+          "native": [
+            150,
+            150
+          ],
+          "x": 16,
+          "y": 4008.59375,
+          "w": 32,
+          "h": 32
+        },
+        {
+          "src": "",
+          "loaded": false,
+          "native": [
+            0,
+            0
+          ],
+          "x": 0,
+          "y": 4181.6875,
+          "w": 390,
+          "h": 49.3125
+        },
+        {
+          "src": "/hero/loft-mobile-v1/rotate-phone.svg",
+          "loaded": true,
+          "native": [
+            150,
+            150
+          ],
+          "x": 16,
+          "y": 4990.515625,
+          "w": 32,
+          "h": 32
+        },
+        {
+          "src": "",
+          "loaded": false,
+          "native": [
+            0,
+            0
+          ],
+          "x": 0,
+          "y": 5093.5,
+          "w": 390,
+          "h": 49.3125
+        },
+        {
+          "src": "",
+          "loaded": false,
+          "native": [
+            0,
+            0
+          ],
+          "x": 0,
+          "y": 5162.8125,
+          "w": 390,
+          "h": 219.234375
+        },
+        {
+          "src": "/hero/loft-mobile-v1/rotate-phone.svg",
+          "loaded": true,
+          "native": [
+            150,
+            150
+          ],
+          "x": 16,
+          "y": 5813.28125,
+          "w": 32,
+          "h": 32
+        }
+      ],
+      "scrollAreas": [],
+      "resources": [
+        {
+          "name": "/assets/index-CMcRhaQr.js",
+          "transfer": 321189,
+          "encoded": 320889,
+          "duration": 96.09999999403954,
+          "initiator": "script"
+        },
+        {
+          "name": "/assets/index-YBR3Hct7.css",
+          "transfer": 55728,
+          "encoded": 55428,
+          "duration": 24,
+          "initiator": "link"
+        },
+        {
+          "name": "https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600&display=swap",
+          "transfer": 1329,
+          "encoded": 1029,
+          "duration": 187.2000000178814,
+          "initiator": "css"
+        },
+        {
+          "name": "/environments/transitions/concrete-upper.webp",
+          "transfer": 25248,
+          "encoded": 24948,
+          "duration": 10.5,
+          "initiator": "css"
+        },
+        {
+          "name": "/environments/transitions/concrete-lower.webp",
+          "transfer": 16414,
+          "encoded": 16114,
+          "duration": 11.300000011920929,
+          "initiator": "css"
+        },
+        {
+          "name": "/environments/floor-03-about-corridor/v003/floor-03-about-corridor-quiet-wall-tile.webp",
+          "transfer": 2616,
+          "encoded": 2316,
+          "duration": 10.899999976158142,
+          "initiator": "css"
+        },
+        {
+          "name": "/environments/floor-03-about-corridor/v003/floor-03-about-corridor-portrait-aperture-mobile.svg",
+          "transfer": 486,
+          "encoded": 186,
+          "duration": 26,
+          "initiator": "css"
+        },
+        {
+          "name": "/environments/floor-02-projects/floor-02-projects-wall-continuation-mobile.webp",
+          "transfer": 2120,
+          "encoded": 1820,
+          "duration": 18.900000005960464,
+          "initiator": "css"
+        },
+        {
+          "name": "/environments/floor-02-projects/floor-02-projects-wall-base-mobile.webp",
+          "transfer": 51086,
+          "encoded": 50786,
+          "duration": 21,
+          "initiator": "css"
+        },
+        {
+          "name": "/environments/floor-02-projects/floor-02-projects-light-01-spill-mobile.png",
+          "transfer": 22353,
+          "encoded": 22053,
+          "duration": 24,
+          "initiator": "css"
+        },
+        {
+          "name": "/environments/floor-02-projects/floor-02-projects-light-01-emission-mobile.png",
+          "transfer": 9482,
+          "encoded": 9182,
+          "duration": 22.900000005960464,
+          "initiator": "css"
+        },
+        {
+          "name": "/environments/floor-00-contact/floor00-desktop-16x9-sky-mask.svg",
+          "transfer": 705,
+          "encoded": 405,
+          "duration": 12.099999994039536,
+          "initiator": "css"
+        },
+        {
+          "name": "/weather/cloud-bank.svg",
+          "transfer": 1304,
+          "encoded": 1004,
+          "duration": 11.700000017881393,
+          "initiator": "css"
+        },
+        {
+          "name": "/contact/mouse/house-mouse-gait.png",
+          "transfer": 1175001,
+          "encoded": 1174701,
+          "duration": 13.900000005960464,
+          "initiator": "css"
+        },
+        {
+          "name": "https://api.open-meteo.com/v1/forecast?latitude=37.9838&longitude=23.7275&current=temperature_2m%2Capparent_temperature%2Cprecipitation%2Crain%2Cweather_code%2Ccloud_cover%2Cwind_speed_10m%2Cis_day&daily=sunrise%2Csunset&timezone=Europe%2FAthens&forecast_days=1",
+          "transfer": 0,
+          "encoded": 0,
+          "duration": 240.90000000596046,
+          "initiator": "fetch"
+        },
+        {
+          "name": "/hero/loft-mobile-v1/night-720.webp",
+          "transfer": 167782,
+          "encoded": 167482,
+          "duration": 20.099999994039536,
+          "initiator": "img"
+        },
+        {
+          "name": "/hero/loft-mobile-v1/rotate-phone.svg",
+          "transfer": 642,
+          "encoded": 342,
+          "duration": 23.899999976158142,
+          "initiator": "img"
+        },
+        {
+          "name": "/projects/nerve-ending/concept-equipment-room-800.jpg",
+          "transfer": 171224,
+          "encoded": 170924,
+          "duration": 8.400000005960464,
+          "initiator": "img"
+        },
+        {
+          "name": "/environments/transitions/transition-04-to-03-universal.webp",
+          "transfer": 40468,
+          "encoded": 40168,
+          "duration": 11.100000023841858,
+          "initiator": "img"
+        },
+        {
+          "name": "/environments/floor-03-about-corridor/v003/floor-03-about-corridor-base-mobile.webp",
+          "transfer": 131550,
+          "encoded": 131250,
+          "duration": 20.5,
+          "initiator": "img"
+        },
+        {
+          "name": "/about/irene-portrait.webp",
+          "transfer": 62056,
+          "encoded": 61756,
+          "duration": 10.900000005960464,
+          "initiator": "img"
+        },
+        {
+          "name": "/favicon.svg",
+          "transfer": 769,
+          "encoded": 469,
+          "duration": 4.9000000059604645,
+          "initiator": "other"
+        }
+      ]
+    },
+    "timing": {
+      "observers": {
+        "shifts": [
+          {
+            "start": 886.3000000119209,
+            "duration": 0,
+            "value": 0.01459283259585364,
+            "recent": false
+          },
+          {
+            "start": 934.4000000059605,
+            "duration": 0,
+            "value": 0.0006919659537288367,
+            "recent": false
+          }
+        ],
+        "longtasks": [
+          {
+            "start": 251.40000000596046,
+            "duration": 472
+          }
+        ],
+        "lcp": [
+          {
+            "start": 788,
+            "duration": 0,
+            "size": 144690,
+            "url": "http://127.0.0.1:4173/hero/loft-mobile-v1/night-720.webp"
+          }
+        ]
+      },
+      "navigation": {
+        "name": "http://127.0.0.1:4173/",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 985.8000000119209,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "http/1.1",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "gzip",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.9000000059604645,
+        "domainLookupStart": 0.9000000059604645,
+        "domainLookupEnd": 0.9000000059604645,
+        "connectStart": 0.9000000059604645,
+        "secureConnectionStart": 0,
+        "connectEnd": 0.9000000059604645,
+        "requestStart": 2.7000000178813934,
+        "responseStart": 9.600000023841858,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 9.600000023841858,
+        "responseEnd": 10.5,
+        "transferSize": 1080,
+        "encodedBodySize": 780,
+        "decodedBodySize": 1548,
+        "responseStatus": 200,
+        "serverTiming": [],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 251.40000000596046,
+        "domContentLoadedEventStart": 706.3000000119209,
+        "domContentLoadedEventEnd": 721.1000000238419,
+        "domComplete": 945.1000000238419,
+        "loadEventStart": 945.1000000238419,
+        "loadEventEnd": 985.8000000119209,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "low"
+        }
+      },
+      "preview": false
+    },
+    "idleTwoSecondCpu": {
+      "TaskDuration": 0.159283,
+      "ScriptDuration": 0.008726,
+      "LayoutDuration": 0,
+      "RecalcStyleDuration": 0.022064
+    },
+    "anchors": [
+      {
+        "id": "about",
+        "top": 55.671875,
+        "active": "about",
+        "header": 56
+      },
+      {
+        "id": "projects",
+        "top": 55.5625,
+        "active": "projects",
+        "header": 56
+      },
+      {
+        "id": "experience",
+        "top": 0,
+        "active": "experience",
+        "header": 56
+      },
+      {
+        "id": "street",
+        "top": 55.8125,
+        "active": "street",
+        "header": 56
+      }
+    ],
+    "complete": {
+      "viewport": [
+        390,
+        844
+      ],
+      "coarse": false,
+      "document": {
+        "w": 390,
+        "h": 6031
+      },
+      "phase": "night",
+      "floors": [
+        {
+          "id": "office",
+          "classes": "hero--phone hero--portrait hero hero--wide-scene floor-section",
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 996.359375,
+          "words": 66
+        },
+        {
+          "id": "about",
+          "classes": "floor-section about about--phone about--portrait",
+          "x": 0,
+          "y": 1085.671875,
+          "w": 390,
+          "h": 1416.578125,
+          "words": 134
+        },
+        {
+          "id": "projects",
+          "classes": "floor-section projects projects--phone projects--portrait",
+          "x": 0,
+          "y": 2591.5625,
+          "w": 390,
+          "h": 1570.125,
+          "words": 166
+        },
+        {
+          "id": "experience",
+          "classes": "floor-section experience experience--phone experience--portrait",
+          "x": 0,
+          "y": 4251,
+          "w": 390,
+          "h": 822.5,
+          "words": 78
+        },
+        {
+          "id": "street",
+          "classes": "floor-section contact-scene contact-scene--athens contact-scene--phone contact-scene--portrait",
+          "x": 0,
+          "y": 5162.8125,
+          "w": 390,
+          "h": 868.375,
+          "words": 80
+        }
+      ],
+      "transitions": [
+        {
+          "id": "transition-04-to-03",
+          "x": 0,
+          "y": 996.359375,
+          "w": 390,
+          "h": 89.3125
+        },
+        {
+          "id": "transition-03-to-02",
+          "x": 0,
+          "y": 2502.25,
+          "w": 390,
+          "h": 89.3125
+        },
+        {
+          "id": "transition-02-to-01",
+          "x": 0,
+          "y": 4161.6875,
+          "w": 390,
+          "h": 89.3125
+        },
+        {
+          "id": "transition-01-to-00",
+          "x": 0,
+          "y": 5073.5,
+          "w": 390,
+          "h": 89.3125
+        }
+      ],
+      "typography": [
+        {
+          "tag": "H1",
+          "class": "",
+          "text": "Irinella BoutsikaFrontend developer.",
+          "size": "39px",
+          "line": "39px",
+          "color": "rgb(255, 248, 233)",
+          "family": "\"Barlow Condensed\", sans-serif",
+          "width": 350
+        },
+        {
+          "tag": "H2",
+          "class": "about__heading",
+          "text": "About",
+          "size": "44px",
+          "line": "46.2px",
+          "color": "rgb(242, 247, 250)",
+          "family": "\"Barlow Condensed\", sans-serif",
+          "width": 96.375
+        },
+        {
+          "tag": "H2",
+          "class": "",
+          "text": "Selected Projects",
+          "size": "32px",
+          "line": "30.4px",
+          "color": "rgb(241, 233, 220)",
+          "family": "\"Barlow Condensed\", sans-serif",
+          "width": 293.59375
+        },
+        {
+          "tag": "H2",
+          "class": "",
+          "text": "Experience",
+          "size": "41.6px",
+          "line": "41.6px",
+          "color": "rgb(240, 233, 218)",
+          "family": "\"Barlow Condensed\", sans-serif",
+          "width": 358
+        },
+        {
+          "tag": "H2",
+          "class": "contact-screen__title",
+          "text": "Contact. Good ideas startwith a hello.",
+          "size": "33.93px",
+          "line": "33.2514px",
+          "color": "rgb(171, 245, 255)",
+          "family": "\"Barlow Condensed\", sans-serif",
+          "width": 312
+        },
+        {
+          "tag": "A",
+          "class": "contact-email",
+          "text": "Start a conversation↗3vilbonobo@gmail.com",
+          "size": "16px",
+          "line": "25.6px",
+          "color": "rgb(214, 246, 255)",
+          "family": "Manrope, sans-serif",
+          "width": 312
+        }
+      ],
+      "smallTargets": [
+        {
+          "text": "Return to office",
+          "tag": "A",
+          "x": 20,
+          "y": 5111.796875,
+          "w": 120.96875,
+          "h": 9.59375
+        }
+      ],
+      "images": [
+        {
+          "src": "/hero/loft-mobile-v1/night-720.webp",
+          "loaded": true,
+          "native": [
+            390,
+            692
+          ],
+          "x": 0,
+          "y": 57,
+          "w": 390,
+          "h": 371.359375
+        },
+        {
+          "src": "/hero/loft-mobile-v1/rotate-phone.svg",
+          "loaded": true,
+          "native": [
+            150,
+            150
+          ],
+          "x": 20,
+          "y": 706.921875,
+          "w": 32,
+          "h": 32
+        },
+        {
+          "src": "/environments/transitions/transition-04-to-03-universal.webp",
+          "loaded": true,
+          "native": [
+            2160,
+            216
+          ],
+          "x": 0,
+          "y": 1016.359375,
+          "w": 390,
+          "h": 49.3125
+        },
+        {
+          "src": "/environments/floor-03-about-corridor/v003/floor-03-about-corridor-base-mobile.webp",
+          "loaded": true,
+          "native": [
+            1080,
+            1296
+          ],
+          "x": 35,
+          "y": 1048.671875,
+          "w": 320,
+          "h": 384
+        },
+        {
+          "src": "/about/irene-portrait.webp",
+          "loaded": true,
+          "native": [
+            799,
+            730
+          ],
+          "x": 39.281028747558594,
+          "y": 1112.83154296875,
+          "w": 240.13534545898438,
+          "h": 231.1142578125
+        },
+        {
+          "src": "/hero/loft-mobile-v1/rotate-phone.svg",
+          "loaded": true,
+          "native": [
+            150,
+            150
+          ],
+          "x": 20,
+          "y": 2344.34375,
+          "w": 32,
+          "h": 32
+        },
+        {
+          "src": "/environments/transitions/transition-03-to-02-universal.webp",
+          "loaded": true,
+          "native": [
+            2160,
+            216
+          ],
+          "x": 0,
+          "y": 2522.25,
+          "w": 390,
+          "h": 49.3125
+        },
+        {
+          "src": "/projects/nerve-ending/concept-equipment-room-800.jpg",
+          "loaded": true,
+          "native": [
+            390,
+            243
+          ],
+          "x": 17,
+          "y": 2851.578125,
+          "w": 356,
+          "h": 200.25
+        },
+        {
+          "src": "/projects/project-companion.jpg",
+          "loaded": true,
+          "native": [
+            103,
+            72
+          ],
+          "x": 25.796875,
+          "y": 3332.40625,
+          "w": 88,
+          "h": 66
+        },
+        {
+          "src": "/projects/enterprise-traceability/complex-form.svg",
+          "loaded": true,
+          "native": [
+            1200,
+            760
+          ],
+          "x": 25.796875,
+          "y": 3457.859375,
+          "w": 88,
+          "h": 66
+        },
+        {
+          "src": "/projects/athens-cyberpunk.jpg",
+          "loaded": true,
+          "native": [
+            102,
+            57
+          ],
+          "x": 25.796875,
+          "y": 3681.90625,
+          "w": 88,
+          "h": 66
+        },
+        {
+          "src": "/projects/iss-tracker.webp",
+          "loaded": true,
+          "native": [
+            1440,
+            852
+          ],
+          "x": 25.796875,
+          "y": 3787.5,
+          "w": 88,
+          "h": 66
+        },
+        {
+          "src": "/hero/loft-mobile-v1/rotate-phone.svg",
+          "loaded": true,
+          "native": [
+            150,
+            150
+          ],
+          "x": 16,
+          "y": 4008.59375,
+          "w": 32,
+          "h": 32
+        },
+        {
+          "src": "/environments/transitions/transition-02-to-01-universal.webp",
+          "loaded": true,
+          "native": [
+            2160,
+            216
+          ],
+          "x": 0,
+          "y": 4181.6875,
+          "w": 390,
+          "h": 49.3125
+        },
+        {
+          "src": "/environments/floor-01-experience/floor-01-experience-wall-base-mobile.webp",
+          "loaded": true,
+          "native": [
+            941,
+            1672
+          ],
+          "x": 0,
+          "y": 4251,
+          "w": 390,
+          "h": 692.953125
+        },
+        {
+          "src": "/environments/floor-01-experience/floor-01-experience-wall-emission-mobile.png",
+          "loaded": true,
+          "native": [
+            59,
+            99
+          ],
+          "x": 52.625,
+          "y": 4349.625,
+          "w": 24.4375,
+          "h": 41.015625
+        },
+        {
+          "src": "/environments/floor-01-experience/floor-01-experience-wall-spill-mobile.png",
+          "loaded": true,
+          "native": [
+            188,
+            1426
+          ],
+          "x": 21.953125,
+          "y": 4327.671875,
+          "w": 77.90625,
+          "h": 590.984375
+        },
+        {
+          "src": "/environments/floor-01-experience/floor-01-experience-ceiling-emission-mobile.png",
+          "loaded": true,
+          "native": [
+            269,
+            41
+          ],
+          "x": 227.109375,
+          "y": 4337.203125,
+          "w": 111.484375,
+          "h": 16.984375
+        },
+        {
+          "src": "/environments/floor-01-experience/floor-01-experience-ceiling-spill-mobile.png",
+          "loaded": true,
+          "native": [
+            255,
+            1486
+          ],
+          "x": 229.59375,
+          "y": 4290.359375,
+          "w": 105.671875,
+          "h": 615.859375
+        },
+        {
+          "src": "/hero/loft-mobile-v1/rotate-phone.svg",
+          "loaded": true,
+          "native": [
+            150,
+            150
+          ],
+          "x": 16,
+          "y": 4990.515625,
+          "w": 32,
+          "h": 32
+        },
+        {
+          "src": "/environments/transitions/transition-01-to-00-universal.webp",
+          "loaded": true,
+          "native": [
+            2160,
+            216
+          ],
+          "x": 0,
+          "y": 5093.5,
+          "w": 390,
+          "h": 49.3125
+        },
+        {
+          "src": "/environments/floor-00-contact/floor00-desktop-16x9-night.webp",
+          "loaded": true,
+          "native": [
+            1448,
+            814
+          ],
+          "x": 0,
+          "y": 5162.8125,
+          "w": 390,
+          "h": 219.234375
+        },
+        {
+          "src": "/hero/loft-mobile-v1/rotate-phone.svg",
+          "loaded": true,
+          "native": [
+            150,
+            150
+          ],
+          "x": 16,
+          "y": 5813.28125,
+          "w": 32,
+          "h": 32
+        }
+      ],
+      "scrollAreas": [],
+      "resources": [
+        {
+          "name": "/assets/index-CMcRhaQr.js",
+          "transfer": 321189,
+          "encoded": 320889,
+          "duration": 96.09999999403954,
+          "initiator": "script"
+        },
+        {
+          "name": "/assets/index-YBR3Hct7.css",
+          "transfer": 55728,
+          "encoded": 55428,
+          "duration": 24,
+          "initiator": "link"
+        },
+        {
+          "name": "https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600&display=swap",
+          "transfer": 1329,
+          "encoded": 1029,
+          "duration": 187.2000000178814,
+          "initiator": "css"
+        },
+        {
+          "name": "/environments/transitions/concrete-upper.webp",
+          "transfer": 25248,
+          "encoded": 24948,
+          "duration": 10.5,
+          "initiator": "css"
+        },
+        {
+          "name": "/environments/transitions/concrete-lower.webp",
+          "transfer": 16414,
+          "encoded": 16114,
+          "duration": 11.300000011920929,
+          "initiator": "css"
+        },
+        {
+          "name": "/environments/floor-03-about-corridor/v003/floor-03-about-corridor-quiet-wall-tile.webp",
+          "transfer": 2616,
+          "encoded": 2316,
+          "duration": 10.899999976158142,
+          "initiator": "css"
+        },
+        {
+          "name": "/environments/floor-03-about-corridor/v003/floor-03-about-corridor-portrait-aperture-mobile.svg",
+          "transfer": 486,
+          "encoded": 186,
+          "duration": 26,
+          "initiator": "css"
+        },
+        {
+          "name": "/environments/floor-02-projects/floor-02-projects-wall-continuation-mobile.webp",
+          "transfer": 2120,
+          "encoded": 1820,
+          "duration": 18.900000005960464,
+          "initiator": "css"
+        },
+        {
+          "name": "/environments/floor-02-projects/floor-02-projects-wall-base-mobile.webp",
+          "transfer": 51086,
+          "encoded": 50786,
+          "duration": 21,
+          "initiator": "css"
+        },
+        {
+          "name": "/environments/floor-02-projects/floor-02-projects-light-01-spill-mobile.png",
+          "transfer": 22353,
+          "encoded": 22053,
+          "duration": 24,
+          "initiator": "css"
+        },
+        {
+          "name": "/environments/floor-02-projects/floor-02-projects-light-01-emission-mobile.png",
+          "transfer": 9482,
+          "encoded": 9182,
+          "duration": 22.900000005960464,
+          "initiator": "css"
+        },
+        {
+          "name": "/environments/floor-00-contact/floor00-desktop-16x9-sky-mask.svg",
+          "transfer": 705,
+          "encoded": 405,
+          "duration": 12.099999994039536,
+          "initiator": "css"
+        },
+        {
+          "name": "/weather/cloud-bank.svg",
+          "transfer": 1304,
+          "encoded": 1004,
+          "duration": 11.700000017881393,
+          "initiator": "css"
+        },
+        {
+          "name": "/contact/mouse/house-mouse-gait.png",
+          "transfer": 1175001,
+          "encoded": 1174701,
+          "duration": 13.900000005960464,
+          "initiator": "css"
+        },
+        {
+          "name": "https://api.open-meteo.com/v1/forecast?latitude=37.9838&longitude=23.7275&current=temperature_2m%2Capparent_temperature%2Cprecipitation%2Crain%2Cweather_code%2Ccloud_cover%2Cwind_speed_10m%2Cis_day&daily=sunrise%2Csunset&timezone=Europe%2FAthens&forecast_days=1",
+          "transfer": 0,
+          "encoded": 0,
+          "duration": 240.90000000596046,
+          "initiator": "fetch"
+        },
+        {
+          "name": "/hero/loft-mobile-v1/night-720.webp",
+          "transfer": 167782,
+          "encoded": 167482,
+          "duration": 20.099999994039536,
+          "initiator": "img"
+        },
+        {
+          "name": "/hero/loft-mobile-v1/rotate-phone.svg",
+          "transfer": 642,
+          "encoded": 342,
+          "duration": 23.899999976158142,
+          "initiator": "img"
+        },
+        {
+          "name": "/projects/nerve-ending/concept-equipment-room-800.jpg",
+          "transfer": 171224,
+          "encoded": 170924,
+          "duration": 8.400000005960464,
+          "initiator": "img"
+        },
+        {
+          "name": "/environments/transitions/transition-04-to-03-universal.webp",
+          "transfer": 40468,
+          "encoded": 40168,
+          "duration": 11.100000023841858,
+          "initiator": "img"
+        },
+        {
+          "name": "/environments/floor-03-about-corridor/v003/floor-03-about-corridor-base-mobile.webp",
+          "transfer": 131550,
+          "encoded": 131250,
+          "duration": 20.5,
+          "initiator": "img"
+        },
+        {
+          "name": "/about/irene-portrait.webp",
+          "transfer": 62056,
+          "encoded": 61756,
+          "duration": 10.900000005960464,
+          "initiator": "img"
+        },
+        {
+          "name": "/favicon.svg",
+          "transfer": 769,
+          "encoded": 469,
+          "duration": 4.9000000059604645,
+          "initiator": "other"
+        },
+        {
+          "name": "/favicon.svg",
+          "transfer": 300,
+          "encoded": 469,
+          "duration": 5.199999988079071,
+          "initiator": "other"
+        },
+        {
+          "name": "/environments/transitions/transition-03-to-02-universal.webp",
+          "transfer": 80178,
+          "encoded": 79878,
+          "duration": 5.9000000059604645,
+          "initiator": "img"
+        },
+        {
+          "name": "/favicon.svg",
+          "transfer": 300,
+          "encoded": 469,
+          "duration": 4.200000017881393,
+          "initiator": "other"
+        },
+        {
+          "name": "/projects/project-companion.jpg",
+          "transfer": 51832,
+          "encoded": 51532,
+          "duration": 9.5,
+          "initiator": "img"
+        },
+        {
+          "name": "/projects/enterprise-traceability/complex-form.svg",
+          "transfer": 1747,
+          "encoded": 1447,
+          "duration": 6.9000000059604645,
+          "initiator": "img"
+        },
+        {
+          "name": "/projects/athens-cyberpunk.jpg",
+          "transfer": 123699,
+          "encoded": 123399,
+          "duration": 6.4000000059604645,
+          "initiator": "img"
+        },
+        {
+          "name": "/projects/iss-tracker.webp",
+          "transfer": 47630,
+          "encoded": 47330,
+          "duration": 14.5,
+          "initiator": "img"
+        },
+        {
+          "name": "/environments/transitions/transition-02-to-01-universal.webp",
+          "transfer": 83110,
+          "encoded": 82810,
+          "duration": 14.800000011920929,
+          "initiator": "img"
+        },
+        {
+          "name": "/favicon.svg",
+          "transfer": 300,
+          "encoded": 469,
+          "duration": 4.300000011920929,
+          "initiator": "other"
+        },
+        {
+          "name": "/environments/floor-01-experience/floor-01-experience-wall-base-mobile.webp",
+          "transfer": 303090,
+          "encoded": 302790,
+          "duration": 42.79999998211861,
+          "initiator": "img"
+        },
+        {
+          "name": "/environments/floor-01-experience/floor-01-experience-wall-emission-mobile.png",
+          "transfer": 2274,
+          "encoded": 1974,
+          "duration": 30.700000017881393,
+          "initiator": "img"
+        },
+        {
+          "name": "/environments/floor-01-experience/floor-01-experience-wall-spill-mobile.png",
+          "transfer": 37297,
+          "encoded": 36997,
+          "duration": 39.69999998807907,
+          "initiator": "img"
+        },
+        {
+          "name": "/environments/floor-01-experience/floor-01-experience-ceiling-emission-mobile.png",
+          "transfer": 1982,
+          "encoded": 1682,
+          "duration": 31.5,
+          "initiator": "img"
+        },
+        {
+          "name": "/environments/floor-01-experience/floor-01-experience-ceiling-spill-mobile.png",
+          "transfer": 49153,
+          "encoded": 48853,
+          "duration": 49.20000001788139,
+          "initiator": "img"
+        },
+        {
+          "name": "/environments/floor-01-experience/floor-01-experience-wall-continuation-mobile.webp",
+          "transfer": 1098,
+          "encoded": 798,
+          "duration": 46.30000001192093,
+          "initiator": "css"
+        },
+        {
+          "name": "/environments/transitions/transition-01-to-00-universal.webp",
+          "transfer": 46624,
+          "encoded": 46324,
+          "duration": 19.200000017881393,
+          "initiator": "img"
+        },
+        {
+          "name": "/environments/floor-00-contact/floor00-desktop-16x9-night.webp",
+          "transfer": 401822,
+          "encoded": 401522,
+          "duration": 27.799999982118607,
+          "initiator": "img"
+        },
+        {
+          "name": "/favicon.svg",
+          "transfer": 300,
+          "encoded": 469,
+          "duration": 3.5,
+          "initiator": "other"
+        }
+      ]
+    },
+    "reduced": {
+      "matches": true,
+      "lamps": [
+        {
+          "class": "projects-environment",
+          "style": "--projects-scene-offset: 82px; --projects-lamp-intensity: 1;"
+        },
+        {
+          "class": "experience-environment",
+          "style": "aspect-ratio: 941 / 1672; --experience-wall-intensity: 1; --experience-ceiling-intensity: 1; --experience-plate-offset: 0px;"
+        }
+      ]
+    },
+    "text200": [
+      {
+        "id": "about",
+        "width": 390,
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "pageOverflow": 0
+      },
+      {
+        "id": "projects",
+        "width": 390,
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "pageOverflow": 0
+      },
+      {
+        "id": "experience",
+        "width": 390,
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "pageOverflow": 0
+      },
+      {
+        "id": "street",
+        "width": 390,
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "pageOverflow": 0
+      }
+    ],
+    "pageerrors": []
+  }
+]
