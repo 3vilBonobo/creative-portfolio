@@ -1,0 +1,29 @@
+Floor 02 compact catalogue — 27 November 2026
+Owner approved extending the changes to all screen sizes.
+
+Implemented:
+- One CSS-grid row per category initially: one column in portrait phones, two in phone landscape and portrait tablet, three in wider grids.
+- See more / See fewer controls for each category on every screen size. Remaining counts derive from catalogue and actual grid columns.
+- Removed the forced 31rem supporting-card body, minimum title/label heights, description clamp and stacked card actions. Supporting cards show artwork, category/type, title and details; descriptions, stacks, credits and live/source/LinkedIn links remain in the existing dialog.
+- Smaller featured cards across screen sizes. Existing artwork, labels, ordering and all 12 records preserved.
+- Desktop results panel uses its content height up to the original pane-height limit, avoiding unused black space below a filtered category.
+- Five changed implementation/test files: ProjectsSection.vue, ProjectCard.vue, MobileProjectPreview.vue, projectCatalogue.ts, project-catalogue.test.mjs.
+
+Measurements at the original 1632x1253 viewport:
+Supporting cards before: 705.25px. After: 315.95–384.19px (about 46–55% shorter).
+Featured before: 355.48px. After: 312.58px.
+390x844 portrait: one supporting project per category, 76px previews, 322.94px feature, 1191.48px default section.
+
+PASS: npm test with Node 22 — 44 tests, including five updated catalogue tests.
+PASS: Node 22 vue-tsc --noEmit.
+PASS: production build; existing large-bundle warning remains.
+PASS: browser at 320x568, 360x800, 390x844, 430x932, 667x375, 844x390, 932x430, 768x1024, 1180x820, 1440x900, 1920x1080 and original desktop viewport. Category counts equal actual grid columns; no sampled horizontal page overflow.
+PASS: independent expansion/collapse, filter behavior, all twelve distinct projects accessible after expansion.
+PASS: portrait-to-landscape with professional category expanded and enterprise details open retains filter, expanded state and dialog.
+PASS: Enter opens details/expansion; Escape closes and returns project focus; collapse preserves its button focus.
+PASS: Project Companion demo/source links and Madlen V credit/live/source links remain in dialogs. Project data and Floor 02 runtime assets unchanged against Git.
+PASS: filtered desktop results panel shrinks to content; expands only up to the existing maximum height. Final browser error-log query returned no entries for the checked flow.
+UNVERIFIED: physical devices, screen readers, third-party link availability, and native OS text-size/reduced-motion settings. Browser sizes and touch landscape were simulated with the existing Scene preview.
+
+Unrelated in-progress radio changes preserved. No assets generated, dependencies installed, Git staging, commit, push, merge, or deployment performed.
+Screenshots: before-desktop.jpg, after-desktop.jpg, after-desktop-category.jpg, after-portrait.jpg, after-landscape.jpg. Responsive measurements: responsive-checks.json.

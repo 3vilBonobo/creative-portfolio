@@ -2,6 +2,7 @@
 import { nextTick, onBeforeUnmount, onMounted, ref, watch } from "vue";
 import { useRadio } from "../composables/useRadio";
 import RadioIcon from "./RadioIcon.vue";
+import RadioArtwork from "./RadioArtwork.vue";
 import "../radio.css";
 
 const radio = useRadio();
@@ -24,7 +25,7 @@ watch(opened, async open => {
 });
 function dialogKeys(event: KeyboardEvent) {
   if (event.key !== "Tab" || !dialog.value) return;
-  const controls = [...dialog.value.querySelectorAll<HTMLElement>('button:not([disabled]), input:not([disabled]), [href], [tabindex="0"]')].filter(el => el.getClientRects().length);
+  const controls = [...dialog.value.querySelectorAll<HTMLElement>('button:not([disabled]), input:not([disabled]), summary, [href], [tabindex="0"]')].filter(el => el.getClientRects().length);
   const first = controls[0], last = controls[controls.length - 1];
   if (!first || !last) return;
   if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
@@ -56,53 +57,25 @@ onBeforeUnmount(() => { modalObserver?.disconnect(); window.removeEventListener(
 
 <template>
   <Teleport :to="utilityHost ?? 'body'">
-    <div class="radio-global" role="group" aria-label="Athens radio controls" :data-status="state.status" :style="{ '--radio-accent': station.accent }">
-      <button class="radio-global__open" type="button" aria-label="Open Athens radio" aria-haspopup="dialog" :aria-expanded="opened" :disabled="!!utilityHost" @click="radio.show">
-        <RadioIcon name="radio" /><span>{{ state.activated ? station.frequency + ' FM' : 'Radio' }}<small v-if="state.activated">{{ statusLabel }}</small></span>
-      </button>
-      <button v-if="state.activated" type="button" :aria-label="playing || busy ? 'Pause radio' : 'Resume radio'" :disabled="!track" @click="radio.togglePlayback"><RadioIcon :name="playing || busy ? 'pause' : 'play'" /></button>
+    <div class="radio-global" role="group" aria-label="Athens radio controls" :data-active="state.activated" :style="{ '--radio-accent': station.accent }">
+      <button class="radio-global__open" type="button" aria-label="Open Athens radio" aria-haspopup="dialog" :aria-expanded="opened" :disabled="!!utilityHost" @click="radio.show"><RadioArtwork :station="station" /><span>{{ state.activated ? station.name : 'Athens On Air' }}<small>{{ state.activated ? statusLabel : 'Find your frequency' }}</small></span></button>
+      <button v-if="state.activated" class="radio-global__play" type="button" :aria-label="playing || busy ? 'Pause radio' : 'Resume radio'" :disabled="!track" @click="radio.togglePlayback"><RadioIcon :name="playing || busy ? 'pause' : 'play'" /></button>
       <button type="button" :aria-label="state.muted || state.volume === 0 ? 'Unmute radio' : 'Mute radio'" :aria-pressed="state.muted" @click="radio.toggleMute"><RadioIcon :name="state.muted || state.volume === 0 ? 'muted' : 'sound'" /></button>
     </div>
   </Teleport>
   <Teleport to="body">
-    <dialog ref="dialog" class="radio-dialog" aria-labelledby="radio-title" aria-describedby="radio-purpose" :style="{ '--radio-accent': station.accent }" @keydown="dialogKeys" @cancel.prevent="radio.hide" @close="radio.hide" @click="event => { if (event.target === dialog) radio.hide(); }">
-      <header class="radio-heading">
-        <div><p class="radio-eyebrow">Independent metropolitan broadcasting</p><h2 id="radio-title">ATHENS <span>//</span> ON AIR</h2></div>
-        <div class="radio-heading__actions"><button class="radio-header-mute" type="button" :aria-label="state.muted || state.volume === 0 ? 'Unmute radio' : 'Mute radio'" :aria-pressed="state.muted" @click="radio.toggleMute"><RadioIcon :name="state.muted || state.volume === 0 ? 'muted' : 'sound'" /></button><button class="radio-close" type="button" autofocus aria-label="Minimize radio" @click="radio.hide">×</button></div>
-      </header>
-      <p id="radio-purpose" class="radio-purpose">Five frequencies. One very complicated city.</p>
-      <div class="radio-layout">
-        <nav class="radio-stations" aria-label="Radio stations">
-          <p class="radio-eyebrow">City frequencies <span>01—05</span></p>
-          <button v-for="item in stations" :key="item.id" type="button" :aria-pressed="station.id === item.id" :style="{ '--station-accent': item.accent }" @click="selectStation(item.id)">
-            <span class="radio-stations__frequency">{{ item.frequency }} <small>FM</small></span>
-            <span class="radio-stations__name">{{ item.name }}<small>{{ item.playlist.length ? 'Ready to tune in' : 'Transmission pending' }}</small></span>
-            <span class="radio-stations__dot" aria-hidden="true"></span>
-          </button>
-        </nav>
-        <section class="radio-channel" aria-labelledby="radio-station-name" :data-station="station.id" :data-audible="audible">
-          <div :key="station.id" class="radio-identity">
-            <div class="radio-identity__top"><span>{{ station.frequency }} FM / ATH—GR</span><span>{{ track ? 'Local signal' : 'Off air' }}</span></div>
-            <div class="radio-identity__mark" aria-hidden="true">{{ station.signature }}</div>
-            <h3 id="radio-station-name">{{ station.name }}</h3>
-            <p class="radio-genre">{{ station.genre }}</p>
-            <p class="radio-tagline">{{ station.description }}</p>
-          </div>
-          <div class="radio-now">
-            <div class="radio-now__heading"><span class="radio-eyebrow">{{ track ? 'On the playlist' : 'Stand by, Athens' }}</span><span class="radio-equalizer" :class="{ 'is-active': audible }" aria-hidden="true"><i v-for="n in 7" :key="n" :style="{ '--bar': n }"></i></span></div>
-            <template v-if="track"><img v-if="track.artwork" class="radio-track-art" :src="track.artwork" alt="" /><p class="radio-track-title">{{ track.title }}</p><p class="radio-artist">{{ track.artist }}</p></template>
-            <template v-else><p class="radio-track-title">Transmission pending</p><p class="radio-artist">The personality is here. The playlist is on its way.</p></template>
-            <p class="radio-status" role="status" aria-live="polite">{{ state.error ?? statusLabel }}</p>
-          </div>
-          <div class="radio-transport" role="group" aria-label="Playback">
-            <button type="button" aria-label="Previous station" @click="radio.cycle(-1)">←</button>
-            <button class="radio-play" type="button" :disabled="!track" :aria-label="playing || busy ? 'Pause radio' : 'Play radio'" @click="radio.togglePlayback"><RadioIcon :name="playing || busy ? 'pause' : 'play'" />{{ playing || busy ? 'Pause' : state.status === 'error' ? 'Retry' : 'Tune in' }}</button>
-            <button type="button" aria-label="Next station" @click="radio.cycle(1)">→</button>
-          </div>
-          <div class="radio-volume"><label for="radio-volume">Volume</label><input id="radio-volume" type="range" min="0" max="1" step="0.01" :value="state.volume" @input="radio.setVolume(Number(($event.target as HTMLInputElement).value))" /><output for="radio-volume">{{ Math.round(state.volume * 100) }}%</output></div>
-        </section>
-      </div>
-      <footer class="radio-footer"><label><input v-model="shortcuts" type="checkbox" /> Enable keyboard shortcuts</label><p><kbd>[</kbd> / <kbd>]</kbd> playable stations · <kbd>M</kbd> mute · <kbd>Esc</kbd> minimize</p><small>Shortcuts are off by default. Music continues when minimized.</small></footer>
+    <dialog ref="dialog" class="radio-dialog" aria-labelledby="radio-title" :style="{ '--radio-accent': station.accent, '--radio-ambient': station.ambient }" @keydown="dialogKeys" @cancel.prevent="radio.hide" @close="radio.hide" @click="event => { if (event.target === dialog) radio.hide(); }">
+      <header class="radio-heading"><h2 id="radio-title"><RadioIcon name="radio" />Athens <span>on air</span></h2><div class="radio-heading__actions"><button class="radio-header-mute" type="button" :aria-label="state.muted || state.volume === 0 ? 'Unmute radio' : 'Mute radio'" :aria-pressed="state.muted" @click="radio.toggleMute"><RadioIcon :name="state.muted || state.volume === 0 ? 'muted' : 'sound'" /></button><button class="radio-close" type="button" autofocus aria-label="Minimize radio" @click="radio.hide">×</button></div></header>
+      <section class="radio-feature" aria-labelledby="radio-station-name">
+        <div :key="station.id" class="radio-feature__art"><RadioArtwork :station="station" /></div>
+        <div class="radio-listening">
+          <div class="radio-station-identity"><span class="radio-frequency">{{ station.frequency }} FM <span>· Athens</span></span><h3 id="radio-station-name">{{ station.name }}</h3><p class="radio-tagline">{{ station.description }}</p></div>
+          <div class="radio-now"><template v-if="track"><p class="radio-track-title">{{ track.title }}</p><p class="radio-artist">{{ track.artist }}</p></template><p v-else class="radio-pending">Transmission pending</p><p v-if="track || state.error" class="radio-status" role="status" aria-live="polite">{{ state.error ?? statusLabel }}<span v-if="audible" class="radio-equalizer" aria-hidden="true"><i v-for="n in 4" :key="n" :style="{ '--bar': n }"></i></span></p><span v-else class="radio-sr" role="status">{{ station.name }}: transmission pending</span></div>
+          <div class="radio-controls"><div class="radio-transport" role="group" aria-label="Playback"><button type="button" aria-label="Previous station" @click="radio.cycle(-1)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5v14m13-14L9 12l10 7Z"/></svg></button><button class="radio-play" type="button" :disabled="!track" :aria-label="playing || busy ? 'Pause radio' : state.status === 'error' ? 'Retry radio' : 'Play radio'" @click="radio.togglePlayback"><RadioIcon :name="playing || busy ? 'pause' : 'play'" /></button><button type="button" aria-label="Next station" @click="radio.cycle(1)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 5v14M5 5l10 7-10 7Z"/></svg></button></div><div class="radio-volume"><RadioIcon :name="state.muted || state.volume === 0 ? 'muted' : 'sound'" /><label for="radio-volume" class="radio-sr">Volume</label><input id="radio-volume" type="range" min="0" max="1" step="0.01" :value="state.volume" :style="{ '--volume': (state.volume * 100) + '%' }" @input="radio.setVolume(Number(($event.target as HTMLInputElement).value))" /></div></div>
+        </div>
+      </section>
+      <nav class="radio-stations" aria-label="Radio stations"><div class="radio-directory-heading"><h4>Find your frequency</h4><span>Five sides of the city</span></div><div class="radio-station-list"><button v-for="item in stations" :key="item.id" type="button" :title="item.shortGenre" :aria-label="item.name + ', ' + item.frequency + ' FM' + (item.playlist.length ? '' : ', transmission pending')" :aria-pressed="station.id === item.id" :style="{ '--station-accent': item.accent }" @click="selectStation(item.id)"><RadioArtwork :station="item" /><span class="radio-stations__name">{{ item.name }}<small>{{ item.shortGenre }}</small></span><span class="radio-stations__frequency">{{ item.frequency }}<small>FM</small></span><span class="radio-stations__availability" :class="{ 'is-ready': item.playlist.length }" aria-hidden="true">{{ item.playlist.length ? '↗' : 'Soon' }}</span></button></div></nav>
+      <footer class="radio-footer"><p>{{ station.genre }}</p><details class="radio-help"><summary aria-label="Radio settings and keyboard shortcuts">Settings <span aria-hidden="true">⌄</span></summary><div><label><input v-model="shortcuts" type="checkbox" /> Enable keyboard shortcuts</label><p><kbd>[</kbd> / <kbd>]</kbd> playable stations · <kbd>M</kbd> mute<br /><kbd>Esc</kbd> minimize. Music keeps playing.</p></div></details></footer>
     </dialog>
   </Teleport>
 </template>

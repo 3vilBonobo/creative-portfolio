@@ -13,6 +13,7 @@ import { FLOOR } from "../config/floors";
 const detailDialog = ref<HTMLDialogElement | null>(null);
 const { phone, portrait, landscape } = usePhoneLayout();
 const expanded = ref<Record<CatalogueCategory, boolean>>({ professional: false, creative: false });
+const rowSize = ref(1);
 const sectionElement = ref<HTMLElement | null>(null);
 const contentClearance = ref(0);
 const showcaseHeader = ref<HTMLElement | null>(null);
@@ -26,6 +27,9 @@ function updateContentClearance() {
   const section = sectionElement.value;
   if (!section) return;
   const style = getComputedStyle(section);
+  // Follow the rendered CSS grid, including phone orientation and tablet rules.
+  const grid = section.querySelector<HTMLElement>(".projects-showcase__grid");
+  if (grid) rowSize.value = Math.max(1, getComputedStyle(grid).gridTemplateColumns.split(/\s+/).length);
   const headerBottom = document.querySelector(".site-header")?.getBoundingClientRect().bottom ?? 0;
   contentClearance.value = Math.max(0, Math.ceil(headerBottom + 16 - (parseFloat(style.scrollMarginTop) || 0) - (parseFloat(style.paddingTop) || 0)));
   const footer = showcaseFooter.value;
@@ -60,17 +64,18 @@ type ProjectCategory = "all" | "creative" | "professional";
 const category = ref<ProjectCategory>("all");
 watch(category, async () => {
   await nextTick();
+  updateContentClearance();
   if (windowed.value) projectResults.value?.scrollTo({ top: 0, behavior: "auto" });
 });
+watch([phone, landscape], async () => { await nextTick(); updateContentClearance(); });
 const featuredProject = computed(() => projects.find(project => project.id === "nerve-ending"));
 const creativeProjects = computed(() => categoryProjects(projects, "creative", featuredProject.value?.id));
 const professionalProjects = computed(() => categoryProjects(projects, "professional", featuredProject.value?.id));
-const creativeDisclosure = computed(() => projectDisclosure(creativeProjects.value, expanded.value.creative, phone.value));
-const professionalDisclosure = computed(() => projectDisclosure(professionalProjects.value, expanded.value.professional, phone.value));
-const displayedCount = computed(() => phone.value
-  ? (category.value !== "professional" ? creativeDisclosure.value.visible.length + (featuredProject.value ? 1 : 0) : 0)
+const creativeDisclosure = computed(() => projectDisclosure(creativeProjects.value, expanded.value.creative, rowSize.value));
+const professionalDisclosure = computed(() => projectDisclosure(professionalProjects.value, expanded.value.professional, rowSize.value));
+const displayedCount = computed(() => (category.value !== "professional" ? creativeDisclosure.value.visible.length + (featuredProject.value ? 1 : 0) : 0)
     + (category.value !== "creative" ? professionalDisclosure.value.visible.length : 0)
-  : visibleProjectCount.value);
+);
 async function toggleCategory(id: CatalogueCategory, event: Event) {
   const button = event.currentTarget as HTMLButtonElement;
   expanded.value[id] = !expanded.value[id];
@@ -172,16 +177,16 @@ function onBackdropClick(event: MouseEvent) { if (event.target === detailDialog.
           <section v-if="category !== 'creative' && professionalProjects.length" class="projects-showcase__group" aria-labelledby="professional-projects-title">
             <div class="projects-showcase__group-heading"><h3 id="professional-projects-title">Professional Work</h3><span>{{ professionalProjects.length }} {{ professionalProjects.length === 1 ? 'project' : 'projects' }}</span></div>
             <ol id="professional-project-list" class="projects-showcase__grid projects-showcase__grid--professional" aria-label="Professional projects"><li v-for="project in professionalDisclosure.visible" :key="project.id"><component :is="phone ? MobileProjectPreview : ProjectCard" :project="project" @details="openDetails" /></li></ol>
-            <button v-if="phone && professionalDisclosure.expandable" class="projects-showcase__more" type="button" :aria-expanded="expanded.professional" aria-controls="professional-project-list" @click="toggleCategory('professional', $event)">{{ expanded.professional ? 'Show fewer professional projects' : `Show ${professionalDisclosure.remaining} more professional projects` }} <span aria-hidden="true">{{ expanded.professional ? '−' : '+' }}</span></button>
+            <button v-if="professionalDisclosure.expandable" class="projects-showcase__more" type="button" :aria-expanded="expanded.professional" aria-controls="professional-project-list" @click="toggleCategory('professional', $event)">{{ expanded.professional ? 'See fewer professional projects' : `See ${professionalDisclosure.remaining} more professional projects` }} <span aria-hidden="true">{{ expanded.professional ? '−' : '+' }}</span></button>
           </section>
           <section v-if="category !== 'professional' && creativeProjects.length" class="projects-showcase__group" aria-labelledby="creative-projects-title">
             <div class="projects-showcase__group-heading"><h3 id="creative-projects-title">Creative &amp; Interactive</h3><span>{{ creativeProjects.length }} projects</span></div>
             <ol id="creative-project-list" class="projects-showcase__grid" aria-label="Creative and interactive projects"><li v-for="project in creativeDisclosure.visible" :key="project.id"><component :is="phone ? MobileProjectPreview : ProjectCard" :project="project" @details="openDetails" /></li></ol>
-            <button v-if="phone && creativeDisclosure.expandable" class="projects-showcase__more" type="button" :aria-expanded="expanded.creative" aria-controls="creative-project-list" @click="toggleCategory('creative', $event)">{{ expanded.creative ? 'Show fewer creative projects' : `Show ${creativeDisclosure.remaining} more creative projects` }} <span aria-hidden="true">{{ expanded.creative ? '−' : '+' }}</span></button>
+            <button v-if="creativeDisclosure.expandable" class="projects-showcase__more" type="button" :aria-expanded="expanded.creative" aria-controls="creative-project-list" @click="toggleCategory('creative', $event)">{{ expanded.creative ? 'See fewer creative projects' : `See ${creativeDisclosure.remaining} more creative projects` }} <span aria-hidden="true">{{ expanded.creative ? '−' : '+' }}</span></button>
           </section>
         </div>
       </div>
-      <footer ref="showcaseFooter" class="projects-showcase__footer"><span :role="phone ? 'status' : undefined">{{ displayedCount }} of {{ projects.length }} projects</span><span id="projects-scroll-hint">{{ windowed ? 'Scroll inside the project window ↓' : `Selected work / Floor ${FLOOR.projects.number}` }}</span></footer>
+      <footer ref="showcaseFooter" class="projects-showcase__footer"><span role="status">{{ displayedCount }} of {{ projects.length }} projects</span><span id="projects-scroll-hint">{{ windowed ? 'Scroll inside the project window ↓' : `Selected work / Floor ${FLOOR.projects.number}` }}</span></footer>
       <div v-if="portrait" class="mobile-office-rotation projects-rotation">
         <img src="/hero/loft-mobile-v1/rotate-phone.svg" alt="" aria-hidden="true" width="32" height="32">
         <p><strong>Explore the full exhibition</strong><span>Rotate your phone sideways for the immersive experience.</span></p>
@@ -213,7 +218,7 @@ function onBackdropClick(event: MouseEvent) { if (event.target === detailDialog.
             </section>
           </template>
           <p v-else>{{ selectedProject.shortDescription }}</p>
-          <p v-if="phone && selectedProject.credit">{{ selectedProject.credit }}</p>
+          <p v-if="selectedProject.credit">{{ selectedProject.credit }}</p>
           <div v-if="selectedProject.developmentDetails" class="project-development">
             <section aria-labelledby="development-concept-title"><h4 id="development-concept-title">Concept &amp; player experience</h4><p>{{ selectedProject.developmentDetails.concept }}</p></section>
             <section aria-labelledby="development-implemented-title"><h4 id="development-implemented-title">Implemented in the prototype</h4><ul><li v-for="item in selectedProject.developmentDetails.implemented" :key="item">{{ item }}</li></ul></section>
@@ -319,7 +324,8 @@ function onBackdropClick(event: MouseEvent) { if (event.target === detailDialog.
 .projects-showcase__results { min-width: 0; padding: .75rem .75rem 2rem; border: clamp(.75rem, 1.2vw, 1.25rem) solid #000; outline: 1px solid #c68a414d; border-radius: 3px; background: #000; }
 .projects--windowed .projects-showcase__rail { position: static; }
 .projects--windowed .projects-showcase__results {
-  height: var(--projects-pane-height);
+  height: auto;
+  max-height: var(--projects-pane-height);
   overflow-y: auto;
   scrollbar-gutter: stable;
   scrollbar-color: #dc9f45 #10171a;
@@ -337,7 +343,7 @@ function onBackdropClick(event: MouseEvent) { if (event.target === detailDialog.
 .projects-showcase__group-heading h3 { margin: 0; color: #e5d5be; text-transform: uppercase; font-size: .8rem; letter-spacing: .12em; }
 .projects-showcase__group-heading > span { color: #bfae95; font: .65rem "IBM Plex Mono", monospace; margin-left: auto; }
 .projects-showcase__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: stretch; grid-auto-rows: 1fr; gap: 1.1rem; list-style: none; padding: 0; margin: 0; }
-.projects-showcase__grid > li { min-width: 0; }
+.projects-showcase__grid > li { display: flex; min-width: 0; }
 
 .projects-showcase__footer { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between; border-top: 1px solid #ac8d6755; margin-top: 2rem; padding-top: 1rem; color: #c7b8a3; font: .65rem/1.8 "IBM Plex Mono", monospace; text-transform: uppercase; letter-spacing: .08em; }
 @media (min-width: 1400px) {
@@ -373,5 +379,6 @@ function onBackdropClick(event: MouseEvent) { if (event.target === detailDialog.
   .projects-showcase__mobile-category select:focus-visible { outline: 3px solid #8fe5e6; outline-offset: 3px; }
   .projects-showcase__grid { grid-template-columns: minmax(0, 1fr); }
 }
+.projects-showcase__more:focus-visible { outline: 3px solid #8fe5e6; outline-offset: 3px; }
 @media (prefers-reduced-motion: reduce) { .project-categories button { transition: none; } }
 </style>

@@ -16,12 +16,14 @@ export const RADIO_STATIONS: RadioStation[] = [
     id: "concrete-therapy", frequency: "88.6", name: "Concrete Therapy",
     description: "Because actual therapy has a waiting list.",
     genre: "Techno / Industrial / Underground electronic", accent: "#f28b80", signature: "CT_",
+    ambient: "#57282b", artworkStyle: "concrete", shortGenre: "Underground electronic",
     playlist: [],
   },
   {
     id: "404-fm", frequency: "93.4", name: "404 FM",
     description: "Genre not found. Please do not refresh.",
     genre: "Experimental / Glitch / Unconventional electronic", accent: "#c1a4fa", signature: "[404]",
+    ambient: "#423269", artworkStyle: "glitch", shortGenre: "Experimental & glitch",
     // Provisional home for the supplied track; move this entry to recategorize it.
     playlist: [RADIO_TRACKS.andStillICall],
   },
@@ -29,18 +31,21 @@ export const RADIO_STATIONS: RadioStation[] = [
     id: "unpaid-overtime", frequency: "97.2", name: "Unpaid Overtime",
     description: "Smooth sounds for questionable life choices.",
     genre: "Jazz / Soul / R&B / Downtempo", accent: "#eac184", signature: "after hours.",
+    ambient: "#5d4029", artworkStyle: "nocturne", shortGenre: "Jazz, soul & slow nights",
     playlist: [],
   },
   {
     id: "common-disturbance", frequency: "102.8", name: "Common Disturbance",
     description: "Your neighbours already hate us.",
     genre: "Dance / Electronic / Club music", accent: "#81dae2", signature: "CD↗",
+    ambient: "#174e5c", artworkStyle: "club", shortGenre: "Club & after dark",
     playlist: [],
   },
   {
     id: "existential-fm", frequency: "106.6", name: "Existential FM",
     description: "Still searching for meaning. Excellent reception, though.",
     genre: "Alternative / Indie / Atmospheric experimental", accent: "#a8c8a3", signature: "why?",
+    ambient: "#354b3e", artworkStyle: "haze", shortGenre: "Alternative & atmospheric",
     playlist: [],
   },
 ];

@@ -14,6 +14,11 @@ export interface RadioStation {
   description: string;
   genre: string;
   accent: string;
+  /** Owner-supplied square WebP/AVIF cover URL; omitted until covers arrive. */
+  artwork?: string;
+  ambient: string;
+  artworkStyle: "concrete" | "glitch" | "nocturne" | "club" | "haze";
+  shortGenre: string;
   /** A small typographic identity, editable alongside the station. */
   signature: string;
   playlist: RadioTrack[];

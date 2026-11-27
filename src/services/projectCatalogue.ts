@@ -1,6 +1,5 @@
 import type { Project } from "../types/content";
 
-export const INITIAL_PROJECTS = 2;
 export type CatalogueCategory = Project["category"];
 
 // Keep catalogue order; the feature has its own place in the exhibition.
@@ -8,7 +7,8 @@ export function categoryProjects(catalogue: readonly Project[], category: Catalo
   return catalogue.filter(project => project.category === category && project.id !== featuredId);
 }
 
-export function projectDisclosure<T>(items: readonly T[], expanded: boolean, compact: boolean) {
-  const visible = compact && !expanded ? items.slice(0, INITIAL_PROJECTS) : [...items];
-  return { visible, remaining: items.length - visible.length, expandable: items.length > INITIAL_PROJECTS };
+export function projectDisclosure<T>(items: readonly T[], expanded: boolean, columns: number) {
+  const rowSize = Math.max(1, Math.floor(columns));
+  const visible = expanded ? [...items] : items.slice(0, rowSize);
+  return { visible, remaining: items.length - visible.length, expandable: items.length > rowSize };
 }

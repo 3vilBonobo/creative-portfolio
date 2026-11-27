@@ -1,71 +1,53 @@
-/* Radio remains a utility: no changes to the floor compositions or scene plates. */
-.radio-global { position: fixed; z-index: 85; left: max(1rem, env(safe-area-inset-left)); bottom: max(1rem, env(safe-area-inset-bottom)); display: flex; align-items: center; border: 1px solid #ffffff29; background: #101817f5; color: #eee9e0; box-shadow: 0 4px 16px #0004; }
-.radio-global button, .radio-dialog button { cursor: pointer; color: inherit; }
-.radio-global button { display: flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; padding: .6rem; border: 0; background: transparent; }
-.radio-global button + button { border-left: 1px solid #ffffff20; }
-.radio-global svg, .radio-dialog button svg { width: 20px; height: 20px; flex-shrink: 0; }
-.radio-global .radio-global__open { gap: .5rem; padding-inline: .75rem; font: .65rem/1.3 "IBM Plex Mono", monospace; text-align: left; }
-.radio-global__open > svg { color: var(--radio-accent); }
-.radio-global small { display: block; margin-top: .15rem; font-size: .55rem; color: #b7bdb6; }
-.radio-global button[aria-pressed="true"] { color: var(--radio-accent); background: #ffffff09; }
-.radio-global button:hover, .radio-dialog button:hover { background-color: #ffffff0d; }
-.radio-global button:focus-visible, .radio-dialog :is(button,input):focus-visible { outline: 2px solid var(--radio-accent); outline-offset: -4px; }
-.radio-dialog { width: min(790px, calc(100% - 2rem)); max-width: none; max-height: calc(100dvh - 2rem); margin: auto; padding: 1.6rem; overflow: auto; border: 1px solid #67726966; border-radius: 8px; background: #101716; color: #eee9e0; box-shadow: 0 24px 100px #0009; font-family: "IBM Plex Mono", monospace; color-scheme: dark; }
-.radio-dialog::backdrop { background: #030807b8; backdrop-filter: blur(5px); }
-body:has(.radio-dialog[open]) { overflow: hidden; }
-html:has(.radio-dialog[open]) { scrollbar-gutter: stable; }
-.radio-heading { position: sticky; z-index: 2; top: -1.6rem; padding-block: .3rem .6rem; display: flex; justify-content: space-between; align-items: flex-start; gap: .5rem; background: #101716; }
-.radio-heading__actions { display: flex; flex-shrink: 0; gap: .15rem; }
-.radio-header-mute { display: grid; place-items: center; width: 44px; height: 44px; margin-top: -.5rem; border: 0; background: transparent; }
-.radio-eyebrow { margin: 0; color: #b4beb6; font: .65rem/1.5 "IBM Plex Mono", monospace; letter-spacing: .06em; text-transform: uppercase; }
-.radio-heading h2 { margin: .4rem 0 0; font: 600 clamp(1.6rem, 4vw, 2rem)/1.1 "Barlow Condensed", sans-serif; letter-spacing: .015em; }
-.radio-heading h2 span { color: var(--radio-accent); }
-.radio-dialog .radio-close { margin: -.5rem -.5rem 0 0; width: 44px; height: 44px; flex-shrink: 0; border: 0; background: transparent; font-size: 1.6rem; }
-.radio-purpose { margin: .6rem 0 1.4rem; color: #b4beb6; font-size: .65rem; line-height: 1.6; }
-.radio-layout { display: grid; grid-template-columns: 1fr 1.25fr; gap: 1.5rem; }
-.radio-stations > p { display: flex; justify-content: space-between; margin-bottom: .7rem; }
-.radio-stations button { display: flex; align-items: center; width: 100%; min-height: 67px; padding: .7rem .4rem; gap: .65rem; border: 0; border-bottom: 1px solid #ffffff18; background: transparent; text-align: left; }
-.radio-stations button[aria-pressed="true"] { background: #ffffff08; box-shadow: inset 2px 0 var(--station-accent); }
-.radio-stations__frequency { min-width: 3rem; color: var(--station-accent); font-size: .9rem; letter-spacing: -.04em; }
-.radio-stations__frequency small { display: block; margin-top: .2rem; color: #a8b2aa; font-size: .5rem; letter-spacing: .08em; }
-.radio-stations__name { flex: 1; font-size: .78rem; line-height: 1.5; }
-.radio-stations__name small { display: block; margin-top: .3rem; font-size: .62rem; color: #a7b1a9; }
-.radio-stations__dot { width: 4px; height: 4px; flex-shrink: 0; border-radius: 50%; background: var(--station-accent); opacity: .45; }
-.radio-stations button[aria-pressed="true"] .radio-stations__dot { opacity: 1; }
-.radio-channel { min-width: 0; }
-.radio-identity { position: relative; overflow: hidden; min-height: 208px; padding: 1.2rem; background: linear-gradient(140deg, color-mix(in srgb, var(--radio-accent) 13%, #15201e), #17201f); border-radius: 4px; animation: radio-tune .25s ease-out; }
-.radio-identity__top { display: flex; justify-content: space-between; gap: .5rem; color: var(--radio-accent); font-size: .62rem; }
-.radio-identity__mark { margin: 1rem 0 .5rem; color: var(--radio-accent); font: 500 2.5rem/1 "Barlow Condensed", sans-serif; letter-spacing: -.03em; }
-.radio-channel[data-station="404-fm"] .radio-identity__mark { font-family: "IBM Plex Mono", monospace; font-size: 2rem; letter-spacing: -.08em; }
-.radio-channel[data-station="unpaid-overtime"] .radio-identity__mark { font-family: Georgia, serif; font-style: italic; font-size: 2rem; }
-.radio-channel[data-station="common-disturbance"] .radio-identity__mark { font-weight: 700; letter-spacing: .06em; }
-.radio-channel[data-station="existential-fm"] .radio-identity__mark { font-family: Georgia, serif; font-style: italic; letter-spacing: .03em; }
-.radio-identity h3 { margin: 0; font: 600 1.45rem/1.15 "Barlow Condensed", sans-serif; text-transform: none; }
-.radio-genre { margin: .4rem 0 0; color: #bdc5be; font-size: .65rem; line-height: 1.6; }
-.radio-tagline { margin: 1rem 0 0; color: #e3e7de; font: .75rem/1.65 "IBM Plex Mono", monospace; }
-.radio-now { padding: 1rem 0 .25rem; min-height: 118px; }
-.radio-now__heading { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
-.radio-track-title { margin: .55rem 0 .3rem; font-size: .78rem; line-height: 1.6; overflow-wrap: anywhere; }
-.radio-artist { margin: 0; font-size: .65rem; line-height: 1.6; color: #b4beb6; }
-.radio-track-art { float: left; width: 40px; height: 40px; object-fit: cover; margin: .6rem .6rem 0 0; }
-.radio-status { min-height: 1.5em; margin: .6rem 0; color: var(--radio-accent); font-size: .6rem; line-height: 1.6; }
-.radio-transport { display: flex; align-items: center; justify-content: center; gap: .5rem; }
-.radio-transport button, .radio-volume button { display: inline-flex; justify-content: center; align-items: center; min-width: 44px; min-height: 44px; border: 1px solid #ffffff25; background: transparent; border-radius: 3px; font: .8rem "IBM Plex Mono", monospace; }
-.radio-transport .radio-play { flex: 1; gap: .6rem; background: var(--radio-accent); color: #111918; border-color: transparent; }
-.radio-transport .radio-play:hover { background: color-mix(in srgb, var(--radio-accent) 85%, white); }
-.radio-dialog button:disabled { opacity: .45; cursor: default; }
-.radio-volume { display: flex; align-items: center; gap: .6rem; margin-top: .6rem; font-size: .6rem; }
-.radio-volume button { border: 0; }
-.radio-volume input { min-width: 0; width: 100%; flex: 1; accent-color: var(--radio-accent); height: 44px; }
-.radio-volume output { min-width: 2.4rem; text-align: right; color: #b4beb6; }
-.radio-footer { margin-top: 1rem; padding-top: .9rem; border-top: 1px solid #ffffff1c; font-size: .6rem; line-height: 1.6; color: #b4beb6; }
-.radio-footer label { display: inline-flex; align-items: center; gap: .5rem; min-height: 32px; cursor: pointer; }
-.radio-footer input { accent-color: var(--radio-accent); }
-.radio-footer p { margin: .25rem 0; }.radio-footer small { font-size: .55rem; }
-.radio-footer kbd { color: #eee9e0; font: inherit; }
-.radio-equalizer { display: flex; align-items: center; gap: 2px; height: 16px; color: var(--radio-accent); }
-.radio-equalizer i { width: 2px; height: calc(4px + var(--bar) * 1px); background: currentColor; transform-origin: center; }
-.radio-equalizer.is-active i { animation: radio-bar 1.2s ease-in-out infinite alternate; animation-delay: calc(var(--bar) * -.21s); }
+/* The music product is scoped to radio classes; the scene keeps its own visual language. */
+.radio-dialog,.radio-global { font-family: Manrope, sans-serif; color: #f4f3f7; }
+.radio-dialog { box-sizing:border-box; width:min(1040px,calc(100% - 48px)); max-width:none; max-height:calc(100dvh - 40px); padding:24px 32px 18px; margin:auto; border:1px solid #ffffff16; border-radius:24px; background:radial-gradient(ellipse at 18% 0%,color-mix(in srgb,var(--radio-ambient) 75%,transparent),transparent 72%),#101115; box-shadow:0 32px 100px #000a; overflow:auto; color-scheme:dark; }
+.radio-dialog::backdrop { background:#030509b5; backdrop-filter:blur(12px); }
+body:has(.radio-dialog[open]) {overflow:hidden} html:has(.radio-dialog[open]) {scrollbar-gutter:stable}
+.radio-dialog :is(h2,h3,h4,p) {letter-spacing:normal;text-transform:none}
+.radio-dialog button,.radio-global button {font:inherit;color:inherit;cursor:pointer;border:0;background:transparent; display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px; padding:0; flex-shrink:0;}
+.radio-dialog button:disabled,.radio-global button:disabled {cursor:default;opacity:.4}
+.radio-dialog :is(button,input,summary):focus-visible,.radio-global button:focus-visible {outline:2px solid var(--radio-accent);outline-offset:3px}
+.radio-dialog svg,.radio-global svg {width:22px;height:22px;flex-shrink:0}
+.radio-heading {display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;gap:12px}
+.radio-heading h2 {display:flex;align-items:center;gap:7px;margin:0;font:600 18px/1.2 Manrope,sans-serif}
+.radio-heading h2>svg {color:var(--radio-accent);margin-right:5px}.radio-heading h2>span {font-weight:400;color:#bbb7c7}
+.radio-heading__actions {display:flex;gap:4px}.radio-heading__actions button {border-radius:50%;background:#ffffff07}.radio-heading .radio-close {font-size:28px;font-weight:400;color:#d2d0da}
+.radio-heading__actions button:hover,.radio-transport>button:not(.radio-play):hover {background:#ffffff12}
+.radio-feature {display:grid;grid-template-columns:380px minmax(0,1fr);gap:40px;align-items:center}
+.radio-feature__art {aspect-ratio:1; min-width:0;box-shadow:0 20px 50px #0006;border-radius:12px;animation:radio-reveal .4s ease both}
+.radio-art {display:block;position:relative;overflow:hidden;aspect-ratio:1;width:100%;border-radius:inherit;background:var(--cover-ambient);isolation:isolate;container-type:inline-size;flex-shrink:0}
+.radio-art>img {display:block;width:100%;height:100%;object-fit:cover}
+.radio-art__placeholder {display:block;position:absolute;inset:0;background:radial-gradient(ellipse at 80% 5%,var(--cover-accent),transparent 72%),linear-gradient(155deg,var(--cover-ambient),#080c16 95%)}
+.radio-art__texture {position:absolute;inset:0;opacity:.24;background:repeating-linear-gradient(0deg,transparent 0 3px,#ffffff0b 3px 4px);mix-blend-mode:soft-light}
+.radio-art__sculpture {position:absolute;width:78%;height:78%;left:20%;top:4%;border-radius:44% 14% 38% 8%;transform:rotate(-28deg);background:linear-gradient(135deg,#f3ebff 0%,var(--cover-accent) 16%,#29283e 29%,#e8d3ff 31%,var(--cover-ambient) 42%,#0f102a 54%,var(--cover-accent) 64%,#e8eaff 67%,#17132c 70%);box-shadow:inset -20px 4px 30px #08091b90,20px 20px 30px #070c1a80;clip-path:polygon(7% 0,80% 4%,100% 70%,54% 100%,34% 69%,1% 64%,29% 38%)}
+.radio-art__caption {position:absolute;inset:auto 9% 8%;color:#f9f1ff;font:500 clamp(5px,1vw,9px)/1.4 Manrope,sans-serif;letter-spacing:.12em}
+.radio-art__caption b {display:block;font:600 clamp(16px,4vw,44px)/1.2 Manrope,sans-serif;letter-spacing:-.07em;margin:5% 0 2%}.radio-art__caption small {font:inherit;opacity:.6;font-size:.75em}
+.radio-art[data-art="concrete"] .radio-art__sculpture {border-radius:0;clip-path:polygon(10% 0,77% 0,100% 40%,65% 40%,65% 100%,10% 100%,10% 65%,42% 65%,42% 35%,10% 35%);background:linear-gradient(120deg,#1e1117,#d9786b 25%,#ffc4aa 29%,#542f33 35%,#e8907f 68%,#2d1820 70%);transform:rotate(-15deg);}
+.radio-art[data-art="nocturne"] .radio-art__sculpture {clip-path:none;border-radius:50%;background:repeating-radial-gradient(ellipse at 35% 25%,#f8d79c 0%,#c68b51 3%,#51342a 5%,#0b0e15 9%,#181c25 12%);transform:rotate(-25deg) scale(1.1,.75);top:8%;left:26%;box-shadow:0 15px 30px #0009}
+.radio-art[data-art="nocturne"] .radio-art__caption b {font-family:Georgia,serif;font-style:italic;font-weight:400;letter-spacing:-.04em}
+.radio-art[data-art="club"] .radio-art__sculpture {clip-path:none;background:transparent;border:clamp(2px,4cqw,14px) solid #94f4ff;border-radius:50%;width:55%;height:70%;left:32%;transform:rotate(-35deg);box-shadow:inset 10px 0 15px #1a606b,10px 0 0 #123b59,18px 0 20px #0008}
+.radio-art[data-art="haze"] .radio-art__sculpture {clip-path:none;border-radius:50%;width:88%;height:55%;top:12%;left:30%;transform:rotate(-30deg);background:linear-gradient(15deg,#172c2c,#9fb29c 50%,#d7dcc1 52%,#415952 55%,#182825);filter:blur(3px);box-shadow:-15px 20px 40px #bdc8a144}
+.radio-art[data-art="haze"] .radio-art__caption b {font-family:Georgia,serif;font-weight:400;font-style:italic}
+.radio-listening {min-width:0}.radio-frequency {font:500 11px/1.5 'IBM Plex Mono',monospace;letter-spacing:.06em;color:var(--radio-accent)}.radio-frequency>span {color:#aaa6b4}
+.radio-station-identity h3 {font:600 clamp(30px,3.2vw,44px)/1.12 Manrope,sans-serif;margin:9px 0 12px;letter-spacing:-.055em}
+.radio-tagline {margin:0;color:#c5bfce;font-size:14px;line-height:1.6;max-width:400px}
+.radio-now {margin-top:26px;min-height:67px}.radio-track-title {font-size:15px;font-weight:600;line-height:1.4;margin:0 0 5px;max-width:450px}.radio-artist {font-size:13px;color:#aaa6b4;margin:0}.radio-status {display:flex;align-items:center;gap:9px;font-size:11px;color:#a6a1b4;margin:7px 0 0;line-height:1.4}.radio-pending {margin:0;color:#b7b1c0;font-size:14px}
+.radio-controls {display:flex;align-items:center;gap:28px;margin-top:14px}.radio-transport {display:flex;align-items:center;gap:12px}.radio-transport>button>svg {fill:none;stroke:currentColor;stroke-width:1.6;stroke-linejoin:round;stroke-linecap:round}.radio-transport>button {border-radius:50%;color:#d4d0dc}.radio-transport .radio-play {background:#f2ecff;color:#15121d;min-width:64px;min-height:64px;box-shadow:0 5px 20px #0003;transition:transform .18s,background .18s}.radio-play>svg {width:27px;height:27px}.radio-transport .radio-play:hover:not(:disabled) {background:var(--radio-accent);transform:scale(1.05)}.radio-transport .radio-play:disabled {opacity:.3;box-shadow:none}
+.radio-volume {display:flex;align-items:center;gap:10px;max-width:145px;flex:1;color:#9d97ad}.radio-volume>svg {width:17px;height:17px}.radio-volume input {appearance:none;-webkit-appearance:none;width:100%;min-width:40px;height:44px;background:transparent;cursor:pointer}.radio-volume input::-webkit-slider-runnable-track {height:3px;border-radius:4px;background:linear-gradient(to right,#d5cede var(--volume),#ffffff25 var(--volume))}.radio-volume input::-webkit-slider-thumb {appearance:none;-webkit-appearance:none;width:10px;height:10px;margin-top:-3.5px;border-radius:50%;background:#efebf5}.radio-volume input::-moz-range-track {height:3px;background:#ffffff25}.radio-volume input::-moz-range-progress {height:3px;background:#d5cede}.radio-volume input::-moz-range-thumb {border:0;width:10px;height:10px;background:#efebf5;border-radius:50%}
+.radio-stations {margin-top:32px}.radio-directory-heading {display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}.radio-directory-heading h4 {font:600 15px/1.4 Manrope,sans-serif;margin:0}.radio-directory-heading>span {font-size:11px;color:#85808f}
+.radio-station-list {display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}.radio-station-list>button {position:relative;display:grid;grid-template-columns:40px minmax(0,1fr);gap:8px;text-align:left;align-items:center;padding:10px;min-width:0;min-height:90px;border-radius:10px;background:#ffffff04;transition:background .2s}.radio-station-list>button:hover {background:#ffffff0b}.radio-station-list>button[aria-pressed="true"] {background:#ffffff10;box-shadow:inset 0 -2px var(--station-accent)}
+.radio-station-list .radio-art {width:40px;border-radius:5px;grid-row:1 / 3}.radio-station-list .radio-art__caption,.radio-global .radio-art__caption {display:none}.radio-stations__name {font-size:12px;line-height:1.3;font-weight:600;align-self:end}.radio-stations__name small {display:none}.radio-stations__frequency {font:10px 'IBM Plex Mono',monospace;color:#9991a8;align-self:start}.radio-stations__frequency small {font:inherit;margin-left:4px}.radio-stations__availability {position:absolute;right:8px;bottom:8px;font-size:8px;color:#a79db4;line-height:1}.radio-stations__availability.is-ready {display:none}.radio-station-list>button:not([aria-pressed="true"]):has(.is-ready) .radio-stations__frequency {color:var(--station-accent)}
+.radio-footer {display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:18px;position:relative;color:#8f899b;font-size:11px;min-height:30px}.radio-footer>p {margin:0;line-height:1.5}.radio-help {margin-left:auto;flex-shrink:0}.radio-help summary {cursor:pointer;padding:8px;list-style:none;min-height:30px;box-sizing:border-box;display:flex;align-items:center;gap:8px}.radio-help summary::-webkit-details-marker {display:none}.radio-help[open]>div {position:absolute;right:0;bottom:40px;z-index:4;width:250px;max-width:calc(100vw - 64px);padding:18px;background:#23212a;border:1px solid #ffffff15;border-radius:14px;box-shadow:0 12px 35px #0008;color:#d0c9dc;line-height:1.7}.radio-help label {display:flex;align-items:center;gap:8px;min-height:44px;font-size:12px}.radio-help input {accent-color:var(--radio-accent)}.radio-help kbd {font:inherit;color:white}
+.radio-sr {position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.radio-equalizer {display:inline-flex;align-items:center;gap:2px;height:12px;color:var(--radio-accent)}.radio-equalizer i {width:2px;height:calc(4px + var(--bar)*2px);background:currentColor;animation:radio-bar 1s ease-in-out infinite alternate;animation-delay:calc(var(--bar)*-.2s)}
+.radio-global {position:fixed;z-index:85;left:max(16px,env(safe-area-inset-left));bottom:max(16px,env(safe-area-inset-bottom));display:flex;align-items:center;gap:2px;padding:5px 7px 5px 5px;background:#17171eea;border:1px solid #ffffff15;border-radius:15px;box-shadow:0 8px 30px #0005;backdrop-filter:blur(18px)}
+.radio-global .radio-global__open {display:flex;gap:10px;justify-content:flex-start;padding-right:10px;text-align:left;min-width:0}.radio-global__open .radio-art {width:36px;border-radius:9px}.radio-global__open>span {font-size:11px;font-weight:600;max-width:140px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}.radio-global small {display:block;font-size:9px;font-weight:400;color:#a29aaa;margin-top:3px}.radio-global button:not(.radio-global__open) {border-radius:50%;min-width:44px;min-height:44px}.radio-global button:hover {background:#ffffff08}.radio-global .radio-global__play {color:#ece5f7}.radio-global svg {width:18px;height:18px}.radio-global button[aria-pressed="true"] {color:var(--radio-accent)}
+@keyframes radio-reveal {from{opacity:.5;transform:translateY(4px)}to{opacity:1;transform:none}}
+@media(min-width:601px) and (max-width:1100px) {.radio-global{bottom:calc(72px + env(safe-area-inset-bottom))}.radio-dialog{width:calc(100% - 32px);padding:22px}.radio-feature{grid-template-columns:minmax(220px,35%) minmax(0,1fr);gap:28px}.radio-controls{gap:14px}.radio-station-list{grid-template-columns:repeat(5,minmax(0,1fr))}.radio-station-list>button{display:flex;flex-direction:column;align-items:flex-start;gap:7px;padding:10px;min-height:135px}.radio-station-list .radio-art{width:42px}.radio-stations__name{align-self:auto}.radio-stations__frequency{align-self:auto}}
+@media(max-width:600px) {.radio-dialog{width:calc(100% - 16px);max-height:calc(100dvh - 16px - env(safe-area-inset-top) - env(safe-area-inset-bottom));padding:14px 18px;border-radius:22px;background:radial-gradient(ellipse at 50% 0%,var(--radio-ambient),transparent 65%),#101115}.radio-heading{margin-bottom:14px}.radio-heading h2{font-size:15px}.radio-heading h2>svg{width:18px}.radio-heading__actions{gap:0}.radio-feature{display:flex;flex-direction:column;gap:18px;align-items:stretch}.radio-feature__art{width:min(59vw,26svh,224px);align-self:center;border-radius:12px}.radio-listening{text-align:center}.radio-frequency{font-size:10px}.radio-station-identity h3{font-size:29px;margin:6px 0 7px}.radio-tagline{font-size:12px;line-height:1.5;margin:auto;max-width:290px}.radio-now{margin-top:17px;min-height:57px}.radio-track-title{font-size:13px;line-height:1.4;margin:0 auto 4px;max-width:300px}.radio-artist{font-size:12px}.radio-status{justify-content:center;font-size:10px;margin-top:5px}.radio-pending{font-size:13px}.radio-controls{justify-content:center;gap:16px;margin-top:8px}.radio-transport{gap:12px}.radio-transport .radio-play{min-width:60px;min-height:60px}.radio-volume{max-width:90px}.radio-stations{margin-top:24px;text-align:left}.radio-directory-heading h4{font-size:13px}.radio-directory-heading>span{display:none}.radio-station-list{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;padding:2px 2px 9px;scrollbar-width:thin;scrollbar-color:#ffffff20 transparent}.radio-station-list>button{display:grid;grid-template-columns:40px minmax(0,1fr);min-width:158px;max-width:158px;min-height:75px;scroll-snap-align:start;padding:9px;gap:6px 8px}.radio-stations__name{font-size:11px}.radio-stations__frequency{font-size:9px}.radio-footer{margin-top:9px;font-size:9px;gap:8px;min-height:30px}.radio-footer>p{max-width:230px}.radio-help summary{font-size:10px}.radio-global{left:max(10px,env(safe-area-inset-left));bottom:max(10px,env(safe-area-inset-bottom))}.radio-global__open>span{max-width:116px}.radio-global[data-active="false"] .radio-global__open small{display:none}.radio-global__open .radio-art{width:32px}}
+@media(max-height:600px) and (min-width:601px) {.radio-dialog{padding:16px 24px}.radio-heading{margin-bottom:12px}.radio-feature{grid-template-columns:190px minmax(0,1fr);gap:28px}.radio-station-identity h3{font-size:30px}.radio-now{margin-top:12px}.radio-stations{margin-top:18px}.radio-station-list>button{min-height:76px}.radio-global{bottom:max(8px,env(safe-area-inset-bottom))}}
+@media(max-width:360px) {body:has(.radio-global) .environment-preview-toggle{bottom:calc(80px + env(safe-area-inset-bottom))}.radio-volume{max-width:65px}.radio-controls{gap:6px}.radio-station-identity h3{font-size:26px}}
+@media(prefers-reduced-motion:reduce) {.radio-feature__art,.radio-equalizer i{animation:none}.radio-dialog button,.radio-station-list>button{transition:none}.radio-play:hover{transform:none!important}}
 .radio-laptop-map { position: absolute; z-index: 9; inset: 0; width: 100%; height: 100%; pointer-events: none; }
 .radio-laptop-map .radio-laptop-target .telescope-hotspot-target__halo { fill: url(#radio-discovery-halo); }
 .radio-laptop-screen { pointer-events: none; font-family: "IBM Plex Mono", monospace; opacity: .94; }
@@ -76,32 +58,7 @@ html:has(.radio-dialog[open]) { scrollbar-gutter: stable; }
 @keyframes radio-note { 0% { opacity: 0; transform: translate(0,0); } 20% { opacity: .55; } 75% { opacity: .35; } 100% { opacity: 0; transform: translate(5px,-38px); } }
 @keyframes radio-bar { to { transform: scaleY(.35); } }
 @keyframes radio-tune { from { opacity: .65; } to { opacity: 1; } }
-@media (max-width: 1100px) { .radio-global { bottom: calc(4.5rem + env(safe-area-inset-bottom)); } }
-@media (max-width: 600px) {
-  .radio-global { left: max(.65rem, env(safe-area-inset-left)); bottom: max(.65rem, env(safe-area-inset-bottom)); }
-  body:has(.hero--phone) .radio-global { bottom: max(.65rem, env(safe-area-inset-bottom)); }
-  .radio-global .radio-global__open { font-size: .6rem; }
-  .radio-dialog { width: calc(100% - 1rem); max-height: calc(100dvh - 1rem - env(safe-area-inset-top) - env(safe-area-inset-bottom)); padding: 1rem; }
-  .radio-layout { grid-template-columns: 1fr; gap: 1rem; }
-  .radio-channel { grid-row: 1; }
-  .radio-heading { top: -1rem; margin-top: -.25rem; padding-top: .5rem; }
-  .radio-heading__actions { gap: 0; }
-  .radio-heading .radio-eyebrow { font-size: .55rem; }
-  .radio-heading h2 { font-size: 1.5rem; }
-  .radio-header-mute { margin-top: 0; }.radio-dialog .radio-close { margin-top: 0; }
-  .radio-stations { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: .25rem; }
-  .radio-stations > p { grid-column: 1 / -1; margin-bottom: .25rem; }
-  .radio-stations button { min-height: 62px; padding: .5rem; gap: .5rem; }
-  .radio-stations__frequency { font-size: .8rem; min-width: 2.4rem; }
-  .radio-stations__name { font-size: .7rem; }.radio-stations__name small { font-size: .6rem; }
-  .radio-stations__dot { display: none; }
-  .radio-identity { min-height: 0; padding: 1rem; }.radio-identity__mark { margin-block: .75rem .4rem; }
-  .radio-tagline { margin-top: .65rem; }.radio-purpose { margin-bottom: 1rem; }
-}
-@media (max-height: 500px) and (orientation: landscape) { .radio-global { bottom: max(.5rem, env(safe-area-inset-bottom)); left: max(.65rem, env(safe-area-inset-left)); } }
-@media (max-width: 360px) { body:has(.radio-global) .environment-preview-toggle { bottom: calc(8rem + env(safe-area-inset-bottom)); } }
-@media (prefers-reduced-motion: reduce) {
-  .radio-laptop-notes { display: none; }
-  .radio-screen-bars.is-active rect, .radio-equalizer.is-active i, .radio-identity { animation: none; }
-  .radio-laptop-target * { transition: none !important; }
-}
+
+@media(prefers-reduced-motion:reduce){.radio-laptop-notes{display:none}.radio-screen-bars.is-active rect{animation:none}.radio-laptop-target *{transition:none!important}}
+
+@media(max-width:600px) and (max-height:740px) { .radio-heading { position:sticky;top:-14px;z-index:3;background:#17141ef0;backdrop-filter:blur(16px);border-radius:12px;padding-block:4px; } }

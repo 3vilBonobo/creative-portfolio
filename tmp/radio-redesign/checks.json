@@ -1,0 +1,87 @@
+{
+  "checks": [
+    {
+      "check": "native playback",
+      "media": {
+        "currentTime": 16.588196,
+        "paused": false,
+        "readyState": 4
+      },
+      "status": "On air"
+    },
+    {
+      "check": "Tab wraps from settings",
+      "focus": "Mute radio"
+    },
+    {
+      "check": "mute",
+      "media": {
+        "muted": true,
+        "paused": false
+      }
+    },
+    {
+      "check": "explicit pause",
+      "media": {
+        "currentTime": 36.934899,
+        "paused": true
+      },
+      "instances": 1
+    },
+    {
+      "check": "keyboard skips empty without autoplay",
+      "text": "404 FM\nReady when you are"
+    }
+  ],
+  "viewports": [
+    {
+      "dialogHeight": 697,
+      "height": 1080,
+      "overflowX": false,
+      "scrollHeight": 697,
+      "width": 1920
+    },
+    {
+      "dialogHeight": 697,
+      "height": 900,
+      "overflowX": false,
+      "scrollHeight": 697,
+      "width": 1440
+    },
+    {
+      "dialogHeight": 697,
+      "height": 768,
+      "overflowX": false,
+      "scrollHeight": 697,
+      "width": 1366
+    },
+    {
+      "dialogHeight": 640,
+      "height": 1024,
+      "overflowX": false,
+      "scrollHeight": 640,
+      "width": 768
+    },
+    {
+      "dialogHeight": 750,
+      "height": 844,
+      "overflowX": false,
+      "scrollHeight": 750,
+      "width": 390
+    },
+    {
+      "dialogHeight": 731,
+      "height": 800,
+      "overflowX": false,
+      "scrollHeight": 731,
+      "width": 360
+    },
+    {
+      "dialogHeight": 550,
+      "height": 568,
+      "overflowX": false,
+      "scrollHeight": 701,
+      "width": 320
+    }
+  ]
+}

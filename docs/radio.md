@@ -2,7 +2,21 @@
 
 The radio is an optional local-playlist experience. Open it from the laptop on
 Floor 04, the mobile **Explore Studio → Athens radio** action, or the persistent
-radio utility. Opening it is silent. Press **Tune in** to start music.
+mini-player. Opening it is silent. Press **Play** to start music.
+
+## Station cover artwork
+
+Each station in `src/data/radio.ts` supports `artwork: "/audio/radio/covers/your-cover.webp"`
+(or `.avif`). Add your square cover under `public/`, then set that one URL; the
+expanded player, station browser and mini-player all reuse it. No component edits
+are needed. Until custom covers arrive, `artworkStyle` selects a temporary CSS
+placeholder. Missing images also fall back to that placeholder.
+
+Keep `accent` and `ambient` alongside the cover as its curated palette: `accent`
+colors selected controls and `ambient` tints the player background. Colors are
+configured from the cover's identity, not extracted from image pixels at runtime.
+`shortGenre` is available for compact browsing metadata, while `genre` retains the
+full description. See [the visual redesign review](radio-ui-redesign.md).
 
 ## Adding, removing and reorganizing music
 

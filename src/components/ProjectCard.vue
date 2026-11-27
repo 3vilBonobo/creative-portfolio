@@ -21,13 +21,14 @@ const image = computed(() => props.project.cover ?? props.project.preview);
       <p class="work-panel__eyebrow">{{ project.categoryLabel ?? project.displayTitle }}</p>
       <h3 :id="`work-title-${project.id}`">{{ project.title }}</h3>
       <p class="work-panel__description">{{ project.cardDescription ?? project.shortDescription }}</p>
-      <p v-if="project.credit" class="work-panel__credit">{{ project.credit }}</p>
-      <ul v-if="project.technologies.length" class="work-panel__tags" aria-label="Technologies"><li v-for="technology in (featured ? project.technologies : project.technologies.slice(0, 3))" :key="technology">{{ technology }}</li><li v-if="!featured && project.technologies.length > 3" :aria-label="`${project.technologies.length - 3} additional technologies in Project Details`">+{{ project.technologies.length - 3 }} more</li></ul>
+      <p v-if="featured && project.credit" class="work-panel__credit">{{ project.credit }}</p>
+      <p v-if="!featured && project.caseStudy" class="work-panel__credit">Confidential work · See details</p>
+      <ul v-if="featured && project.technologies.length" class="work-panel__tags" aria-label="Technologies"><li v-for="technology in project.technologies" :key="technology">{{ technology }}</li></ul>
       <div class="work-panel__actions" :aria-label="`${project.title} actions`">
         <button type="button" @click="$emit('details', project, $event.currentTarget as HTMLElement)">Project Details <span aria-hidden="true">↗</span></button>
-        <a v-if="project.liveUrl" :href="project.liveUrl" target="_blank" rel="noreferrer">{{ project.liveLabel ?? "Live Demo" }} <span aria-hidden="true">↗</span></a>
-        <a v-if="project.repositoryUrl" :href="project.repositoryUrl" target="_blank" rel="noreferrer">Source Code <span aria-hidden="true">↗</span></a>
-        <a v-if="project.caseStudy" :href="project.caseStudy.experienceUrl" target="_blank" rel="noopener noreferrer" aria-label="View my professional experience on LinkedIn (opens in a new tab)">View my professional experience on LinkedIn <span aria-hidden="true">↗</span></a>
+        <a v-if="featured && project.liveUrl" :href="project.liveUrl" target="_blank" rel="noreferrer">{{ project.liveLabel ?? "Live Demo" }} <span aria-hidden="true">↗</span></a>
+        <a v-if="featured && project.repositoryUrl" :href="project.repositoryUrl" target="_blank" rel="noreferrer">Source Code <span aria-hidden="true">↗</span></a>
+        <a v-if="featured && project.caseStudy" :href="project.caseStudy.experienceUrl" target="_blank" rel="noopener noreferrer" aria-label="View my professional experience on LinkedIn (opens in a new tab)">View my professional experience on LinkedIn <span aria-hidden="true">↗</span></a>
       </div>
     </div>
   </article>
@@ -49,7 +50,7 @@ const image = computed(() => props.project.cover ?? props.project.preview);
 .work-panel--featured { display: grid; grid-template-columns: 55fr 45fr; border-color: #f6ab45; border-width: 1px 1px 2px; box-shadow: 0 0 0 1px #ffb43825, 0 14px 36px #0007; }
 
 .work-panel__media { position: relative; display: grid; place-items: center; aspect-ratio: 16 / 10; overflow: hidden; background: radial-gradient(ellipse at center, #293137, #0b1014 75%); border-bottom: 1px solid #ffffff20; }
-.work-panel--featured .work-panel__media { aspect-ratio: auto; min-height: 22rem; border-bottom: 0; border-right: 1px solid #ffb43855; }
+.work-panel--featured .work-panel__media { aspect-ratio: auto; min-height: 0; border-bottom: 0; border-right: 1px solid #ffb43855; }
 
 .work-panel__media img { display: block; width: 100%; height: 100%; min-height: 0; max-height: 100%; object-fit: contain; }
 .work-panel--featured .work-panel__media img { position: absolute; inset: 0; }
@@ -60,7 +61,7 @@ const image = computed(() => props.project.cover ?? props.project.preview);
 .work-panel__source strong { color: #cbbaf6; font-size: clamp(1.5rem, 2.5vw, 2.8rem); line-height: 1.05; letter-spacing: -.04em; }
 .work-panel__source span { font: .65rem "IBM Plex Mono", monospace; color: #ccc1e1; }
 .work-panel__content { display: flex; flex-direction: column; gap: .8rem; padding: clamp(1rem, 1.5vw, 1.6rem); min-width: 0; }
-.work-panel--featured .work-panel__content { padding: clamp(1.3rem, 2vw, 2.2rem); gap: 1rem; }
+.work-panel--featured .work-panel__content { padding: clamp(1rem, 1.5vw, 1.4rem); gap: .65rem; }
 .work-panel__eyebrow { margin: 0; font: .65rem/1.5 "IBM Plex Mono", monospace; color: var(--work-accent); letter-spacing: .08em; text-transform: uppercase; overflow-wrap: anywhere; }
 .work-panel h3 { margin: 0; color: #fff5e8; font-size: clamp(1.2rem, 1.5vw, 1.75rem); line-height: 1.1; font-weight: 850; letter-spacing: -.03em; text-transform: uppercase; overflow-wrap: anywhere; }
 .work-panel--featured h3 { font-size: clamp(1.8rem, 2.5vw, 3rem); }
@@ -77,19 +78,20 @@ const image = computed(() => props.project.cover ?? props.project.preview);
 .work-panel__actions :focus-visible { outline: 3px solid #8fe5e6; outline-offset: 3px; }
 .work-panel:focus-within { border-color: var(--work-accent); }
 
-/* A consistent supporting-card rhythm; full project copy remains in Details. */
-.work-panel:not(.work-panel--featured) { display: flex; flex-direction: column; height: 100%; }
-.work-panel:not(.work-panel--featured) .work-panel__content { flex: 1; min-height: 31rem; padding: 1rem 1rem 1.5rem; gap: .65rem; }
-.work-panel:not(.work-panel--featured) .work-panel__eyebrow { min-height: 3em; }
-.work-panel:not(.work-panel--featured) h3 { min-height: 2.2em; }
-.work-panel:not(.work-panel--featured) .work-panel__description { height: 4.95em; flex-shrink: 0; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; }
-.work-panel:not(.work-panel--featured) .work-panel__actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .5rem; min-height: 6rem; align-content: start; }
-.work-panel:not(.work-panel--featured) .work-panel__actions button { grid-column: 1 / -1; }
-.work-panel:not(.work-panel--featured) .work-panel__actions a:only-of-type { grid-column: 1 / -1; }
-.work-panel:not(.work-panel--featured) .work-panel__actions a, .work-panel:not(.work-panel--featured) .work-panel__actions button { min-width: 0; overflow-wrap: anywhere; }
+/* Supporting cards size to their preview and caption; full content and links
+   stay in the shared dialog rather than stretching every exhibition card. */
+.work-panel:not(.work-panel--featured) .work-panel__media { aspect-ratio: 16 / 9; }
+.work-panel:not(.work-panel--featured) { display: flex; flex-direction: column; width: 100%; height: 100%; }
+.work-panel:not(.work-panel--featured) .work-panel__media { flex-shrink: 0; }
+.work-panel:not(.work-panel--featured) .work-panel__content { flex: 1; padding: .8rem; gap: .55rem; }
+.work-panel:not(.work-panel--featured) h3 { font-size: clamp(1.1rem, 1.4vw, 1.4rem); }
+.work-panel:not(.work-panel--featured) .work-panel__description { color: #cdd3d1; font-size: .75rem; line-height: 1.55; }
+.work-panel:not(.work-panel--featured) .work-panel__actions { margin-top: auto; padding-top: 0; }
+.work-panel:not(.work-panel--featured) .work-panel__actions button { width: 100%; }
 
 @media (hover: hover) { .work-panel:hover { transform: translateY(-3px); border-color: var(--work-accent); box-shadow: 0 12px 30px #0008, 0 0 18px #ffb4380e; } .work-panel--cover:hover .work-panel__media img { transform: scale(1.025); } }
-@media (max-width: 980px) { .work-panel--featured { grid-template-columns: minmax(0, 1fr); } .work-panel--featured .work-panel__media { aspect-ratio: 16 / 10; min-height: 0; border-right: 0; border-bottom: 1px solid #ffb43855; } }
+@media (max-width: 980px) { .work-panel--featured { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); } }
+@media (max-width: 620px) { .work-panel--featured { grid-template-columns: minmax(0, 1fr); } .work-panel--featured .work-panel__media { aspect-ratio: 21 / 9; border-right: 0; border-bottom: 1px solid #ffb43855; } }
 @media (max-width: 620px) { .work-panel__content, .work-panel--featured .work-panel__content { padding: 1.1rem; } .work-panel__actions { display: grid; grid-template-columns: minmax(0, 1fr); } .work-panel__actions a, .work-panel__actions button { width: 100%; } .work-panel__description { font-size: .95rem; } }
 @media (prefers-reduced-motion: reduce) { .work-panel, .work-panel__media img, .work-panel__actions a, .work-panel__actions button { transition: none; } .work-panel:hover, .work-panel--cover:hover .work-panel__media img { transform: none; } }
 </style>

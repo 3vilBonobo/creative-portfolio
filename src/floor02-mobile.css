@@ -25,7 +25,7 @@
 .projects.projects--phone .projects-showcase__group-heading { gap: .4rem; padding-bottom: .55rem; margin-bottom: .65rem; }
 .projects.projects--phone .projects-showcase__group-heading h3 { font-size: .7rem; line-height: 1.5; letter-spacing: .08em; }
 .projects.projects--phone .projects-showcase__group-heading > span { font-size: .6rem; }
-.projects.projects--phone .projects-showcase__grid { grid-template-columns: minmax(0, 1fr); grid-auto-rows: auto; gap: .6rem; }
+.projects.projects--phone .projects-showcase__grid { grid-template-columns: minmax(0, 1fr); grid-auto-rows: 1fr; gap: .6rem; }
 .projects.projects--phone .projects-showcase__grid > li { container-type: inline-size; }
 .projects-showcase__more { display: flex; align-items: center; justify-content: space-between; gap: .6rem; width: 100%; min-height: 44px; margin-top: .5rem; padding: .65rem; border: 1px solid #b894565e; background: #11191be8; color: #f3ce8e; font: .7rem/1.5 "IBM Plex Mono", monospace; text-align: left; cursor: pointer; }
 .projects.projects--phone .projects-showcase__footer { margin-top: 1rem; gap: .5rem; padding-top: .7rem; font-size: .55rem; }
