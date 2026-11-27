@@ -22,6 +22,7 @@ const showcaseFooter = ref<HTMLElement | null>(null);
 const projectResults = ref<HTMLElement | null>(null);
 const windowed = ref(false);
 const paneHeight = ref(0);
+const sectionHeight = ref(0);
 let headerObserver: ResizeObserver | undefined;
 function updateContentClearance() {
   const section = sectionElement.value;
@@ -53,12 +54,22 @@ function updateContentClearance() {
   paneHeight.value = Math.max(0, windowed.value
     ? Math.floor(Math.min(available * 1.5, window.innerHeight - headerBottom - 32))
     : available);
+  if (windowed.value) {
+    const contentBottom = footer.getBoundingClientRect().bottom - section.getBoundingClientRect().top;
+    const expandedHeight = 1.5 * (window.innerHeight - (parseFloat(style.scrollMarginTop) || 0));
+    const bottomPadding = (parseFloat(style.paddingBottom) || 0) + (parseFloat(style.borderBottomWidth) || 0);
+    // Halve the original unused space without changing the catalogue viewport.
+    // Use the original height so observer updates cannot repeatedly halve it.
+    sectionHeight.value = contentBottom + Math.max(bottomPadding, (expandedHeight - contentBottom) / 2);
+  }
 }
 onMounted(() => {
   headerObserver = new ResizeObserver(updateContentClearance);
   const header = document.querySelector(".site-header");
   if (header) headerObserver.observe(header);
   if (sectionElement.value) headerObserver.observe(sectionElement.value);
+  const layout = sectionElement.value?.querySelector(".projects-showcase__layout");
+  if (layout) headerObserver.observe(layout);
   for (const element of [showcaseHeader.value, categoryRail.value, showcaseFooter.value]) {
     if (element) headerObserver.observe(element);
   }
@@ -164,7 +175,7 @@ function onBackdropClick(event: MouseEvent) { if (event.target === detailDialog.
 </script>
 
 <template>
-  <section ref="sectionElement" :id="FLOOR.projects.id" class="floor-section projects" :class="{ 'projects--windowed': windowed, 'projects--phone': phone, 'projects--portrait': portrait, 'projects--landscape': landscape }" :data-floor-number="FLOOR.projects.number" aria-labelledby="projects-title">
+  <section ref="sectionElement" :id="FLOOR.projects.id" class="floor-section projects" :class="{ 'projects--windowed': windowed, 'projects--phone': phone, 'projects--portrait': portrait, 'projects--landscape': landscape }" :style="windowed && sectionHeight ? { '--projects-section-height': `${sectionHeight}px` } : undefined" :data-floor-number="FLOOR.projects.number" aria-labelledby="projects-title">
     <ProjectsEnvironment />
     <div class="projects-showcase" :style="{ '--projects-ui-clearance': `${contentClearance}px`, '--projects-pane-height': `${paneHeight}px` }">
       <header ref="showcaseHeader" class="projects-showcase__header">
@@ -351,7 +362,7 @@ function onBackdropClick(event: MouseEvent) { if (event.target === detailDialog.
 .project-categories button b { margin-left: auto; padding-left: .5rem; font-size: .72rem; }
 .projects-showcase__metadata { display: none; }
 .projects-showcase__results { min-width: 0; padding: .75rem .75rem 2rem; border: clamp(.75rem, 1.2vw, 1.25rem) solid transparent; outline: 1px solid #a98d644d; border-radius: 3px; background: var(--projects-surface); }
-.projects--windowed { height: calc(150dvh - 1.5rem); min-height: 0; scroll-margin-top: 1rem; }
+.projects--windowed { height: var(--projects-section-height, calc(150dvh - 1.5rem)); min-height: 0; scroll-margin-top: 1rem; }
 .projects--windowed .projects-showcase__rail { position: static; max-height: var(--projects-pane-height); overflow-y: auto; overscroll-behavior-y: contain; scrollbar-width: thin; }
 .projects--windowed .projects-showcase__results {
   height: auto;
