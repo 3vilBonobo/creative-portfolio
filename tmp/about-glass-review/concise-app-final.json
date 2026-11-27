@@ -1,0 +1,317 @@
+[
+  {
+    "actual": [
+      1920,
+      1080
+    ],
+    "clipped": 0,
+    "inactive": true,
+    "name": "Background",
+    "noLevelLabel": true,
+    "overflow": false,
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "actual": [
+      1920,
+      1080
+    ],
+    "clipped": 0,
+    "inactive": true,
+    "name": "Toolkit",
+    "noLevelLabel": true,
+    "overflow": false,
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "actual": [
+      1920,
+      1080
+    ],
+    "clipped": 0,
+    "inactive": true,
+    "name": "Approach",
+    "noLevelLabel": true,
+    "overflow": false,
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "actual": [
+      1440,
+      900
+    ],
+    "clipped": 0,
+    "inactive": true,
+    "name": "Background",
+    "noLevelLabel": true,
+    "overflow": false,
+    "size": [
+      1440,
+      900
+    ]
+  },
+  {
+    "actual": [
+      1440,
+      900
+    ],
+    "clipped": 0,
+    "inactive": true,
+    "name": "Toolkit",
+    "noLevelLabel": true,
+    "overflow": false,
+    "size": [
+      1440,
+      900
+    ]
+  },
+  {
+    "actual": [
+      1440,
+      900
+    ],
+    "clipped": 0,
+    "inactive": true,
+    "name": "Approach",
+    "noLevelLabel": true,
+    "overflow": false,
+    "size": [
+      1440,
+      900
+    ]
+  },
+  {
+    "actual": [
+      1180,
+      820
+    ],
+    "clipped": 0,
+    "inactive": true,
+    "name": "Background",
+    "noLevelLabel": true,
+    "overflow": false,
+    "size": [
+      1180,
+      820
+    ]
+  },
+  {
+    "actual": [
+      1180,
+      820
+    ],
+    "clipped": 0,
+    "inactive": true,
+    "name": "Toolkit",
+    "noLevelLabel": true,
+    "overflow": false,
+    "size": [
+      1180,
+      820
+    ]
+  },
+  {
+    "actual": [
+      1180,
+      820
+    ],
+    "clipped": 0,
+    "inactive": true,
+    "name": "Approach",
+    "noLevelLabel": true,
+    "overflow": false,
+    "size": [
+      1180,
+      820
+    ]
+  },
+  {
+    "actual": [
+      820,
+      1180
+    ],
+    "clipped": 0,
+    "inactive": true,
+    "name": "Background",
+    "noLevelLabel": true,
+    "overflow": false,
+    "size": [
+      820,
+      1180
+    ]
+  },
+  {
+    "actual": [
+      820,
+      1180
+    ],
+    "clipped": 0,
+    "inactive": true,
+    "name": "Toolkit",
+    "noLevelLabel": true,
+    "overflow": false,
+    "size": [
+      820,
+      1180
+    ]
+  },
+  {
+    "actual": [
+      820,
+      1180
+    ],
+    "clipped": 0,
+    "inactive": true,
+    "name": "Approach",
+    "noLevelLabel": true,
+    "overflow": false,
+    "size": [
+      820,
+      1180
+    ]
+  },
+  {
+    "actual": [
+      390,
+      844
+    ],
+    "clipped": 0,
+    "inactive": true,
+    "name": "Background",
+    "noLevelLabel": true,
+    "overflow": false,
+    "size": [
+      390,
+      844
+    ]
+  },
+  {
+    "actual": [
+      390,
+      844
+    ],
+    "clipped": 0,
+    "inactive": true,
+    "name": "Toolkit",
+    "noLevelLabel": true,
+    "overflow": false,
+    "size": [
+      390,
+      844
+    ]
+  },
+  {
+    "actual": [
+      390,
+      844
+    ],
+    "clipped": 0,
+    "inactive": true,
+    "name": "Approach",
+    "noLevelLabel": true,
+    "overflow": false,
+    "size": [
+      390,
+      844
+    ]
+  },
+  {
+    "actual": [
+      844,
+      390
+    ],
+    "clipped": 0,
+    "inactive": true,
+    "name": "Background",
+    "noLevelLabel": true,
+    "overflow": false,
+    "size": [
+      844,
+      390
+    ]
+  },
+  {
+    "actual": [
+      844,
+      390
+    ],
+    "clipped": 0,
+    "inactive": true,
+    "name": "Toolkit",
+    "noLevelLabel": true,
+    "overflow": false,
+    "size": [
+      844,
+      390
+    ]
+  },
+  {
+    "actual": [
+      844,
+      390
+    ],
+    "clipped": 0,
+    "inactive": true,
+    "name": "Approach",
+    "noLevelLabel": true,
+    "overflow": false,
+    "size": [
+      844,
+      390
+    ]
+  },
+  {
+    "actual": [
+      320,
+      568
+    ],
+    "clipped": 0,
+    "inactive": true,
+    "name": "Background",
+    "noLevelLabel": true,
+    "overflow": false,
+    "size": [
+      320,
+      568
+    ]
+  },
+  {
+    "actual": [
+      320,
+      568
+    ],
+    "clipped": 0,
+    "inactive": true,
+    "name": "Toolkit",
+    "noLevelLabel": true,
+    "overflow": false,
+    "size": [
+      320,
+      568
+    ]
+  },
+  {
+    "actual": [
+      320,
+      568
+    ],
+    "clipped": 0,
+    "inactive": true,
+    "name": "Approach",
+    "noLevelLabel": true,
+    "overflow": false,
+    "size": [
+      320,
+      568
+    ]
+  }
+]

@@ -35,13 +35,21 @@ function updateContentClearance() {
   const footer = showcaseFooter.value;
   const header = showcaseHeader.value;
   if (!footer || !header) return;
+  const layout = section.querySelector<HTMLElement>(".projects-showcase__layout");
+  const rail = categoryRail.value;
+  const stackedRail = layout && rail && getComputedStyle(layout).gridTemplateColumns.split(/\s+/).length === 1
+    ? rail.offsetHeight + (parseFloat(getComputedStyle(layout).rowGap) || 0) : 0;
   const available = Math.floor(window.innerHeight
+    - (parseFloat(style.scrollMarginTop) || 0)
+    - (parseFloat(style.borderTopWidth) || 0) - (parseFloat(style.borderBottomWidth) || 0)
     - (parseFloat(style.paddingTop) || 0) - (parseFloat(style.paddingBottom) || 0)
     - contentClearance.value - header.offsetHeight - footer.offsetHeight
-    - (parseFloat(getComputedStyle(footer).marginTop) || 0));
-  // Retain document flow when the fixed UI or enlarged text leaves too little room.
-  windowed.value = window.matchMedia("(min-width: 1400px) and (min-height: 780px)").matches
-    && available >= 360 && (categoryRail.value?.scrollHeight ?? 0) <= available;
+    - (parseFloat(getComputedStyle(footer).marginTop) || 0) - stackedRail);
+  // Standard desktop windows retain a contained catalogue; touch layouts and
+  // exceptionally short/enlarged-text windows keep accessible document flow.
+  windowed.value = !phone.value
+    && window.matchMedia("(min-width: 1024px) and (min-height: 600px) and (hover: hover) and (pointer: fine)").matches
+    && available >= 200;
   paneHeight.value = Math.max(0, available);
 }
 onMounted(() => {
@@ -76,16 +84,26 @@ const professionalDisclosure = computed(() => projectDisclosure(professionalProj
 const displayedCount = computed(() => (category.value !== "professional" ? creativeDisclosure.value.visible.length + (featuredProject.value ? 1 : 0) : 0)
     + (category.value !== "creative" ? professionalDisclosure.value.visible.length : 0)
 );
+function revealCatalogueControl(control: HTMLElement) {
+  const pane = projectResults.value;
+  const bounds = control.getBoundingClientRect();
+  if (windowed.value && pane?.contains(control)) {
+    const viewport = pane.getBoundingClientRect();
+    const top = viewport.top + pane.clientTop + 12;
+    const bottom = viewport.top + pane.clientTop + pane.clientHeight - 12;
+    const delta = bounds.top < top ? bounds.top - top : bounds.bottom > bottom ? bounds.bottom - bottom : 0;
+    if (delta) pane.scrollBy({ top: delta, behavior: "instant" });
+    return;
+  }
+  const header = document.querySelector(".site-header")?.getBoundingClientRect().bottom ?? 64;
+  if (bounds.top < header || bounds.bottom > window.innerHeight) control.scrollIntoView({ block: "center", behavior: "instant" });
+}
 async function toggleCategory(id: CatalogueCategory, event: Event) {
   const button = event.currentTarget as HTMLButtonElement;
   expanded.value[id] = !expanded.value[id];
   await nextTick();
   button.focus({ preventScroll: true });
-  if (!expanded.value[id]) {
-    const bounds = button.getBoundingClientRect();
-    const header = document.querySelector(".site-header")?.getBoundingClientRect().bottom ?? 64;
-    if (bounds.top < header || bounds.bottom > window.innerHeight) button.scrollIntoView({ block: "center", behavior: "instant" });
-  }
+  if (!expanded.value[id]) revealCatalogueControl(button);
 }
 // Both orientations keep the same preview and dialog nodes. Compensate for
 // upstream floor height changes without resetting catalogue state on rotation.
@@ -135,13 +153,9 @@ function onDialogClose() {
   selectedProject.value = null;
   const trigger = triggerElement.value?.isConnected ? triggerElement.value
     : projectId ? sectionElement.value?.querySelector<HTMLElement>(`[data-project-id="${projectId}"] button, button[data-project-id="${projectId}"]`) : null;
-  if (phone.value) trigger?.focus({ preventScroll: true });
+  if (phone.value || windowed.value) trigger?.focus({ preventScroll: true });
   else trigger?.focus();
-  if (phone.value && trigger) {
-    const bounds = trigger.getBoundingClientRect();
-    const header = document.querySelector(".site-header")?.getBoundingClientRect().bottom ?? 64;
-    if (bounds.top < header || bounds.bottom > innerHeight) trigger.scrollIntoView({ block: "center", behavior: "instant" });
-  }
+  if ((phone.value || windowed.value) && trigger) revealCatalogueControl(trigger);
 }
 function onBackdropClick(event: MouseEvent) { if (event.target === detailDialog.value) closeDetails(); }
 
@@ -157,7 +171,7 @@ function onBackdropClick(event: MouseEvent) { if (event.target === detailDialog.
         <p class="projects-showcase__intro">Frontend development, interactive experiences and creative web projects.<span aria-hidden="true">////</span></p>
       </header>
       <div class="projects-showcase__layout">
-        <aside ref="categoryRail" class="projects-showcase__rail" aria-label="Project browsing">
+        <aside ref="categoryRail" class="projects-showcase__rail" :tabindex="windowed ? 0 : undefined" aria-label="Project browsing">
           <label class="projects-showcase__mobile-category">Browse projects<select v-model="category" aria-controls="projects-results"><option v-for="item in categories" :key="item.id" :value="item.id">{{ item.label }} ({{ item.count }})</option></select></label>
           <nav class="project-categories" aria-label="Project categories">
             <button v-for="item in categories" :key="item.id" type="button" :aria-pressed="category === item.id" aria-controls="projects-results" @click="category = item.id"><span class="project-categories__symbol" aria-hidden="true">{{ item.symbol }}</span><span>{{ item.label }}</span><b>{{ item.count }}</b></button>
@@ -335,17 +349,20 @@ function onBackdropClick(event: MouseEvent) { if (event.target === detailDialog.
 .project-categories button b { margin-left: auto; padding-left: .5rem; font-size: .72rem; }
 .projects-showcase__metadata { display: none; }
 .projects-showcase__results { min-width: 0; padding: .75rem .75rem 2rem; border: clamp(.75rem, 1.2vw, 1.25rem) solid transparent; outline: 1px solid #a98d644d; border-radius: 3px; background: var(--projects-surface); }
-.projects--windowed .projects-showcase__rail { position: static; }
+.projects--windowed { height: calc(100dvh - 1rem); min-height: 0; scroll-margin-top: 1rem; }
+.projects--windowed .projects-showcase__rail { position: static; max-height: var(--projects-pane-height); overflow-y: auto; overscroll-behavior-y: contain; scrollbar-width: thin; }
 .projects--windowed .projects-showcase__results {
   height: auto;
   max-height: var(--projects-pane-height);
   overflow-y: auto;
+  overscroll-behavior-y: contain;
   scrollbar-gutter: stable;
   scrollbar-color: var(--projects-amber-border) #10171a;
   scroll-padding-block: .75rem;
   scroll-padding-block-end: 2rem;
 }
-.projects--windowed .projects-showcase__results:focus-visible {
+.projects--windowed .projects-showcase__results:focus-visible,
+.projects--windowed .projects-showcase__rail:focus-visible {
   outline: 2px solid #8fe5e6;
   outline-offset: 4px;
 }
@@ -393,5 +410,8 @@ function onBackdropClick(event: MouseEvent) { if (event.target === detailDialog.
   .projects-showcase__grid { grid-template-columns: minmax(0, 1fr); }
 }
 .projects-showcase__more:focus-visible { outline: 3px solid #8fe5e6; outline-offset: 3px; }
+@media (min-width: 1024px) and (min-height: 600px) and (hover: hover) and (pointer: fine) {
+  .projects:not(.projects--phone) { padding-top: clamp(1.5rem, 4vh, 3rem); padding-bottom: clamp(1.25rem, 3vh, 2rem); }
+}
 @media (prefers-reduced-motion: reduce) { .project-categories button { transition: none; } }
 </style>

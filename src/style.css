@@ -3002,6 +3002,35 @@ button:focus-visible {
 .about__scene-portrait { position: absolute; inset: 0; margin: 0; mask-size: 100% 100%; mask-repeat: no-repeat; -webkit-mask-size: 100% 100%; -webkit-mask-repeat: no-repeat; }
 .about__photo-plane { position: absolute; top: 0; left: 0; width: 438px; height: 730px; overflow: hidden; transform-origin: 0 0; }
 .about__photo-plane img { position: absolute; top: 0; left: -204px; width: 799px; height: 730px; max-width: none; }
+/* Project the screen finish with the photo, inside the existing aperture mask.
+   Only the light band moves; the portrait and its brightness remain steady. */
+@media (min-width: 1301px) {
+  .about:not(.about--phone) .about__photo-plane::before,
+  .about:not(.about--phone) .about__photo-plane::after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
+  }
+  .about:not(.about--phone) .about__photo-plane::before {
+    inset: -35% 0 auto;
+    height: 35%;
+    background: linear-gradient(180deg, transparent, #99e9f912 42%, #d5fff51f 52%, transparent);
+    animation: about-screen-sweep 12s linear infinite;
+  }
+  .about:not(.about--phone) .about__photo-plane::after {
+    inset: 0;
+    background: repeating-linear-gradient(0deg, #081d2826 0 1px, transparent 1px 6px), repeating-linear-gradient(90deg, #8cf4ed09 0 1px, transparent 1px 6px);
+    box-shadow: inset 0 0 24px #8cf4ed14;
+  }
+}
+@keyframes about-screen-sweep {
+  from { transform: translateY(0); }
+  to { transform: translateY(390%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .about:not(.about--phone) .about__photo-plane::before { animation: none; display: none; }
+}
 .about__layout { position: relative; z-index: 1; width: 49%; margin-left: 7%; min-height: max(92svh, calc(var(--about-scene-height) * .9)); padding-block: clamp(6rem, 10svh, 8rem) clamp(3rem, 6svh, 5rem); display: grid; align-items: center; overflow-wrap: anywhere; }
 .about__reading-surface { min-width: 0; padding: clamp(1.5rem, 2.4vw, 3rem); border: 1px solid #b4cac52b; border-radius: .625rem; background: #101514f5; box-shadow: 0 16px 48px #00000038; }
 @supports ((backdrop-filter: blur(8px)) or (-webkit-backdrop-filter: blur(8px))) {

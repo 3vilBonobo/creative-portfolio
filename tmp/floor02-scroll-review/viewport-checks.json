@@ -1,0 +1,68 @@
+[
+  {
+    "horizontalOverflow": false,
+    "overflow": "auto",
+    "paneHeight": 339,
+    "sectionHeight": 752,
+    "viewport": [
+      1024,
+      768
+    ],
+    "windowed": true
+  },
+  {
+    "horizontalOverflow": false,
+    "overflow": "auto",
+    "paneHeight": 322,
+    "sectionHeight": 752,
+    "viewport": [
+      1366,
+      768
+    ],
+    "windowed": true
+  },
+  {
+    "horizontalOverflow": false,
+    "overflow": "auto",
+    "paneHeight": 548,
+    "sectionHeight": 884,
+    "viewport": [
+      1440,
+      900
+    ],
+    "windowed": true
+  },
+  {
+    "horizontalOverflow": false,
+    "overflow": "auto",
+    "paneHeight": 690,
+    "sectionHeight": 1064,
+    "viewport": [
+      1920,
+      1080
+    ],
+    "windowed": true
+  },
+  {
+    "horizontalOverflow": false,
+    "overflow": "visible",
+    "paneHeight": 1493.265625,
+    "sectionHeight": 2008.25,
+    "viewport": [
+      768,
+      1024
+    ],
+    "windowed": false
+  },
+  {
+    "horizontalOverflow": false,
+    "overflow": "visible",
+    "paneHeight": 859.21875,
+    "sectionHeight": 1320.09375,
+    "viewport": [
+      390,
+      844
+    ],
+    "windowed": false
+  }
+]
