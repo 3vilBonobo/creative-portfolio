@@ -1,4 +1,16 @@
 /* All masks and effects use the source artwork's coordinate system. */
+.scene-environment--hero { --environment-time-wash: transparent; --environment-weather-wash: transparent; --environment-time-blend: multiply; --environment-weather-blend: multiply; }
+.scene-environment--hero[data-phase="dawn"] { --environment-time-wash: #d4957430; --environment-time-blend: soft-light; }
+.scene-environment--hero[data-phase="goldenHour"] { --environment-time-wash: #f0a04b3d; --environment-time-blend: soft-light; }
+.scene-environment--hero[data-phase="dusk"] { --environment-time-wash: #293b5842; }
+.scene-environment--hero[data-phase="night"] { --environment-time-wash: #06132140; }
+.scene-environment--hero[data-weather="partlyCloudy"] { --environment-weather-wash: #51657516; }
+.scene-environment--hero[data-weather="cloudy"] { --environment-weather-wash: #45535d36; }
+.scene-environment--hero[data-weather="fog"] { --environment-weather-wash: #aebdc436; }
+.scene-environment--hero[data-weather="rain"] { --environment-weather-wash: #31495b28; }
+.scene-environment--hero[data-weather="storm"] { --environment-weather-wash: #14283a48; }
+.scene-environment--hero[data-weather="snow"] { --environment-weather-wash: #9ab4c52e; }
+.scene-environment--hero[data-weather="fog"], .scene-environment--hero[data-weather="snow"] { --environment-weather-blend: screen; }
 .scene-environment { position: absolute; inset: 0; pointer-events: none; --scene-top: #70a9ce; --scene-horizon: #e3ddd0; --cloud-tint: 1; }
 .scene-environment[data-phase="dawn"] { --scene-top: #72869f; --scene-horizon: #f4bf9e; --cloud-tint: .88; }
 .scene-environment[data-phase="goldenHour"] { --scene-top: #7b9eaf; --scene-horizon: #f2ba77; --cloud-tint: .92; }
@@ -16,9 +28,16 @@
 .scene-environment[data-phase="dawn"] .scene-environment__grade { background: #c2a4b71a; }
 .scene-environment[data-phase="goldenHour"] .scene-environment__grade { background: #eeae6930; mix-blend-mode: multiply; }
 .scene-environment[data-phase="dusk"] .scene-environment__grade { background: #29395124; }
-.scene-environment[data-weather="cloudy"] .scene-environment__grade { background: #36435330; }
-.scene-environment[data-weather="rain"] .scene-environment__grade { background: #263b5050; }
-.scene-environment[data-weather="storm"] .scene-environment__grade { background: #14263b88; }
+.scene-environment[data-weather="cloudy"] .scene-environment__grade,
+.scene-environment[data-weather="rain"] .scene-environment__grade,
+.scene-environment[data-weather="storm"] .scene-environment__grade,
+.scene-environment[data-weather="snow"] .scene-environment__grade { background: var(--environment-weather-wash); }
+.scene-environment--hero .scene-environment__sky::before,
+.scene-environment--hero .scene-environment__sky::after { content: ""; position: absolute; inset: 0; pointer-events: none; }
+.scene-environment--hero .scene-environment__sky::before { z-index: 1; background: var(--environment-time-wash); mix-blend-mode: var(--environment-time-blend); }
+.scene-environment--hero .scene-environment__sky::after { z-index: 2; background: var(--environment-weather-wash); mix-blend-mode: multiply; }
+.scene-environment--hero .scene-environment__grade::after { content: ""; position: absolute; inset: 0; background: var(--environment-time-wash); mix-blend-mode: var(--environment-time-blend); pointer-events: none; }
+.hero-scene .weather-clouds { opacity: calc(var(--effect-cloud) * .6); }
 .weather-clouds { position: absolute; inset: 15% 0 58%; opacity: var(--effect-cloud); filter: brightness(var(--cloud-tint)); }
 .weather-cloud-bank { position: absolute; width: 200%; height: 100%; background: url('/weather/cloud-bank.svg') 0 0 / 50% 100% repeat-x; animation: weather-cloud-transit var(--cloud-duration) linear infinite; animation-play-state: var(--cloud-play); }
 .weather-cloud-bank--far { top: 12%; opacity: .55; height: 70%; animation-duration: calc(var(--cloud-duration) * 1.65); animation-delay: -90s; }
@@ -62,6 +81,18 @@
 /* The entire street is outdoors. Only sky replacement needs a skyline mask. */
 .scene-environment--alley .scene-environment__exterior,
 .contact-scene__time-treatment { mask: none; }
+
+/* Interior artwork keeps its authored lighting and colour in every weather phase. */
+.about__scene-grade,
+.projects-environment__plate::before,
+.projects-environment__plate::after,
+.experience-environment__plate::before,
+.experience-environment__plate::after {
+  display: none;
+}
+.experience-environment__plate { isolation: isolate; }
+.experience-environment__base { position: relative; z-index: 0; }
+.experience-environment__attenuation { z-index: 3; }
 .contact-scene__stage > .contact-scene__precipitation {
   position: absolute; inset: 0; z-index: 5; mask: none; clip-path: none; pointer-events: none;
 }

@@ -65,11 +65,11 @@ function measureScene() {
   sceneWidth.value = scene.value?.getBoundingClientRect().width ?? 0;
 }
 watch([portrait, landscape], async () => { measureScene(); await nextTick(); measureScene(); });
-const activeTab = ref<"background" | "toolkit" | "approach">("background");
+const activeTab = ref<"background" | "toolkit" | "approach">("toolkit");
 const tabButtons = ref<HTMLButtonElement[]>([]);
 const tabs = [
-  { id: "background", label: "Background", icon: "M6 5a2 2 0 1 0 0 .01M18 17a2 2 0 1 0 0 .01M6 7v7a4 4 0 0 0 4 4h6M8 5h6a4 4 0 0 1 4 4v6" },
   { id: "toolkit", label: "Toolkit", icon: "m8 6-6 6 6 6m8-12 6 6-6 6m-3-15-2 18" },
+  { id: "background", label: "Background", icon: "M6 5a2 2 0 1 0 0 .01M18 17a2 2 0 1 0 0 .01M6 7v7a4 4 0 0 0 4 4h6M8 5h6a4 4 0 0 1 4 4v6" },
   { id: "approach", label: "Approach", icon: "M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-5-4-2 6-6 2 2-6 6-2Z" },
 ] as const;
 const toolkitGroups = [
@@ -159,6 +159,7 @@ onBeforeUnmount(() => {
     <div class="about__scene-window">
     <div ref="scene" class="about__scene">
       <img class="about__scene-base" :src="assetRoot + artwork.filename" :width="artwork.export_size[0]" :height="artwork.export_size[1]" alt="" aria-hidden="true" loading="lazy">
+      <div class="about__scene-grade" />
       <figure class="about__scene-portrait" :style="{ maskImage: `url('${apertureUrl}')`, WebkitMaskImage: `url('${apertureUrl}')` }">
         <div class="about__photo-plane" :style="{ transform: portraitTransform }"><img src="/about/irene-portrait.webp" width="799" height="730" alt="Portrait of Irinella" loading="lazy"></div>
       </figure>

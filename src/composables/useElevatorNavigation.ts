@@ -9,7 +9,6 @@ export const cinematicMotion = { duration: 1.25, ease: "power1.inOut" } as const
 export function useElevatorNavigation() {
   const activeFloor = ref<string>(FLOORS[0].id);
   const cinematicActive = ref(false);
-  const nativeMode = ref(false);
   let query: MediaQueryList | undefined;
   let building: HTMLElement | null = null;
   let sections: HTMLElement[] = [];
@@ -46,14 +45,12 @@ export function useElevatorNavigation() {
     }
     return chain;
   };
-  const clearDestination = () => document.querySelectorAll("[data-elevator-destination]").forEach(element => element.removeAttribute("data-elevator-destination"));
   const updateActive = (index: number) => {
     activeIndex = index;
     destinationIndex = index;
     activeFloor.value = FLOORS[index].id;
     sections.forEach((section, sectionIndex) => section.toggleAttribute("data-camera-active", sectionIndex === index));
     document.documentElement.classList.remove("camera-travelling");
-    clearDestination();
   };
   const settleAt = (index: number) => {
     travel?.kill();
@@ -64,7 +61,7 @@ export function useElevatorNavigation() {
   const travelTo = (index: number, explicit = false) => {
     if (!cinematicActive.value || !building || index < 0 || index >= sections.length || modalOpen()) return;
     if (travel && !explicit) return;
-    if (index === activeIndex && !travel) { clearDestination(); return; }
+    if (index === activeIndex && !travel) return;
     travel?.kill();
     destinationIndex = index;
     activeFloor.value = FLOORS[index].id;
@@ -122,7 +119,6 @@ export function useElevatorNavigation() {
     const index = FLOORS.findIndex(floor => floor.id === decodeURIComponent(anchor.hash.slice(1)));
     if (index < 0) return;
     event.preventDefault();
-    anchor.setAttribute("data-elevator-destination", "");
     history.pushState(null, "", anchor.hash);
     travelTo(index, true);
   };
@@ -144,7 +140,7 @@ export function useElevatorNavigation() {
     if (index >= 0) travelTo(index, true);
   };
   const activate = () => {
-    if (!building || cinematicActive.value || nativeMode.value || !query?.matches) return;
+    if (!building || cinematicActive.value || !query?.matches) return;
     const hashIndex = FLOORS.findIndex(floor => `#${floor.id}` === location.hash);
     const nearest = sections.reduce((best, section, index) =>
       Math.abs(section.offsetTop - scrollY) < Math.abs(sections[best].offsetTop - scrollY) ? index : best, 0);
@@ -173,11 +169,9 @@ export function useElevatorNavigation() {
     sections.forEach(section => section.removeAttribute("data-camera-active"));
     if (building) gsap.set(building, { clearProps: "transform" });
     requestAnimationFrame(() => window.scrollTo({ top: sections[activeIndex]?.offsetTop ?? 0, behavior: "instant" }));
-    clearDestination();
   };
-  const syncMode = () => { if (query?.matches && !nativeMode.value) activate(); else deactivate(); };
+  const syncMode = () => { if (query?.matches) activate(); else deactivate(); };
   const onResize = () => { if (cinematicActive.value) settleAt(destinationIndex); };
-  const toggleMode = () => { nativeMode.value = !nativeMode.value; syncMode(); };
 
   onMounted(() => {
     gsap.registerPlugin(Observer);
@@ -206,5 +200,5 @@ export function useElevatorNavigation() {
     window.removeEventListener("hashchange", onHistory);
     window.removeEventListener("resize", onResize);
   });
-  return { activeFloor, cinematicActive, nativeMode, toggleMode };
+  return { activeFloor, cinematicActive };
 }

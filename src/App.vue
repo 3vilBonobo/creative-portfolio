@@ -13,14 +13,14 @@ import { useActiveFloor } from "./composables/useActiveFloor";
 import { useElevatorNavigation } from "./composables/useElevatorNavigation";
 import { FLOORS, FLOOR_TRANSITIONS } from "./config/floors";
 const { activeFloor: nativeActiveFloor } = useActiveFloor(FLOORS.map(({ id }) => id));
-const { activeFloor: cameraFloor, cinematicActive, nativeMode, toggleMode } = useElevatorNavigation();
+const { activeFloor: cameraFloor, cinematicActive } = useElevatorNavigation();
 const activeFloor = computed(() => cinematicActive.value ? cameraFloor.value : nativeActiveFloor.value);
 </script>
 
 <template>
   <AppShell :data-active-floor="activeFloor">
     <a class="skip-link" href="#main-content">Skip to content</a><SiteNavigation :active-floor="activeFloor" />
-    <FloorNavigator :floors="FLOORS" :active-floor="activeFloor" :native-mode="nativeMode" @toggle-mode="toggleMode" />
+    <FloorNavigator :floors="FLOORS" :active-floor="activeFloor" />
     <main id="main-content" tabindex="-1">
       <OfficeHero /><FloorTransition :transition="FLOOR_TRANSITIONS[0]!" /><AboutSection />
       <FloorTransition :transition="FLOOR_TRANSITIONS[1]!" /><ProjectsSection />

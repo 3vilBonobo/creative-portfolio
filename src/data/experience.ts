@@ -47,15 +47,21 @@ export const communityExperience: ExperienceEntry[] = [
     highlights: [], technologies: [], current: false,
   },
   {
-    id: "enargeia-ngo", role: "Legal Counsellor and Founding Member", company: "Enargeia NGO",
+    id: "enargeia-ngo", role: "Founding Member & Legal Counsellor", company: "Enargeia NGO",
     startDate: "2013-11", endDate: "2014-06", dateLabel: "Nov 2013 — Jun 2014",
-    summary: "As a founding member, I contributed legal counselling and support to the organisation.",
+    summary: "I helped establish the NGO and provided legal counsel and support to the organisation.",
     highlights: [], technologies: [], current: false,
   },
   {
-    id: "peri-psychis", role: "Seminar Tutor", company: "Peri Psychis",
+    id: "peri-psychis", role: "Seminar Tutor in Criminology", company: "Peri Psychis",
     startDate: "2013-02", endDate: "2014-06", dateLabel: "Feb 2013 — Jun 2014",
     summary: "I taught seminars in criminal law, criminology, and forensic psychology.",
+    highlights: [], technologies: [], current: false,
+  },
+  {
+    id: "mechatronics-training", role: "Mechatronics Technician", company: "IEK AKMI",
+    startDate: "", endDate: "", dateLabel: "Training",
+    summary: "I hold a mechatronics diploma from IEK AKMI and work on car and motorcycle repairs and Arduino projects with sensors.",
     highlights: [], technologies: [], current: false,
   },
 ];

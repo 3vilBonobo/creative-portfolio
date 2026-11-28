@@ -13,7 +13,10 @@ export const aboutContent = {
   panels: {
     background: {
       title: "From case files to code.",
-      paragraphs: ["Law and criminology shaped how I investigate problems, understand people and untangle complex systems. Software gave those instincts something to build."],
+      paragraphs: [
+        "Law and criminology shaped how I investigate problems, understand people and untangle complex systems. Software gave those instincts something to build.",
+        "Years in legal practice taught me to research carefully, weigh evidence, and explain complex ideas clearly.",
+      ],
     },
     toolkit: {
       title: "",
@@ -23,6 +26,7 @@ export const aboutContent = {
       title: "Curious first. Methodical second.",
       paragraphs: [
         "Question the obvious. Understand the problem. Build something reliable and intuitive — with a little room for the unexpected.",
+        "I make room for feedback, test the details, and keep refining until the experience feels clear and natural.",
       ],
     },
   },

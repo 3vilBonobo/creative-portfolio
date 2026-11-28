@@ -3,7 +3,7 @@
 .experience.experience--phone { scroll-margin-top: 0; }
 .experience--phone .experience__scene { min-height: 0; }
 .experience--phone .experience__content {
-  width: auto; margin: 0;
+  width: auto; max-height: none; margin: 0;
   padding: 6rem max(1rem, env(safe-area-inset-right)) max(1.5rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
   grid-template-columns: minmax(0, 1fr); gap: .75rem;
 }
@@ -54,6 +54,7 @@ body:has(.experience--phone) { min-width: 0; }
 .experience--landscape .experience__heading { margin-left: 0; }
 .experience--landscape .experience__heading h2 { font-size: 2.25rem; }
 .experience--landscape .experience__intro { max-width: 42rem; }
+.experience--phone.experience--landscape .experience__shade { inset: 0; background: linear-gradient(90deg, #08111355, #08111344); }
 /* Reflow the same list and panel nodes: native disclosures survive rotation.
    At narrow landscape widths or enlarged text, retain the inline accordion. */
 @container career-archive (min-width: 46rem) {

@@ -59,9 +59,13 @@ onBeforeUnmount(() => {
           <source v-if="!phone" media="(min-aspect-ratio: 2/1) and (min-width: 1800px)" :srcset="`${root}floor00-ultrawide-${lighting}.webp`" width="1916" height="821">
           <img class="contact-scene__plate" :src="`${root}floor00-${phone ? phonePlate : 'desktop-16x9'}-${lighting}.webp`" :width="landscape ? 1916 : 1448" :height="landscape ? 821 : 814" alt="" loading="lazy" decoding="async">
         </picture>
+        <div class="contact-scene__time-treatment" />
+        <WeatherEffects mode="atmosphere" :state="state" :intensity="previewIntensity" :paused="paused" />
         <div class="contact-sky"><WeatherEffects mode="sky" :state="state" :intensity="previewIntensity" :paused="paused" /></div>
         <div class="contact-practical" />
         <div class="contact-night-veil" />
+        <div class="contact-scene__wetness" />
+        <div class="contact-scene__readability" />
       </div>
       <WeatherEffects class="contact-scene__precipitation" mode="precipitation" :state="state" :intensity="previewIntensity" :paused="paused" />
       <div class="contact-scene__layout">
@@ -111,6 +115,7 @@ onBeforeUnmount(() => {
 .contact-sky :deep(.weather-effects) { position: absolute; inset: 0; --cloud-tint: .8; }
 .contact-sky :deep(.weather-clouds) { inset: 0; opacity: calc(var(--effect-cloud) * .5); background: none; }
 .contact-sky :deep(.weather-cloud-bank) { top: 14%; height: 40%; background-size: 50% 100%; }
+.contact-sky :deep(.weather-clouds--dense) { background: linear-gradient(#465565ed, #74808ba8 62%, transparent); }
 .contact-sky :deep(.weather-storm-light), .contact-sky :deep(.weather-lightning) { display: none; }
 .contact-scene[data-phase="night"] .contact-sky :deep(.weather-clouds), .contact-scene[data-phase="dusk"] .contact-sky :deep(.weather-clouds) { filter: brightness(.3) saturate(.5); }
 .contact-night-veil { background: #000; opacity: 0; transition: opacity .6s ease; }
@@ -119,6 +124,10 @@ onBeforeUnmount(() => {
 /* Attenuate the existing emitter and spill rather than drawing a new light. */
 .contact-practical { position: absolute; left: 28%; top: 14%; width: 17%; height: 15%; background: radial-gradient(ellipse, #000b, #0005 35%, transparent 70%); opacity: .04; pointer-events: none; }
 .contact-scene[data-phase="night"] .contact-practical { animation: contact-lamp 19s ease-in-out infinite; animation-play-state: v-bind('paused ? "paused" : "running"'); }
+.contact-scene[data-weather="rain"] .contact-sky { background: linear-gradient(#253747b8, #394a5c87 55%, #39495630); }
+.contact-scene[data-weather="storm"] .contact-sky { background: linear-gradient(#172638e8, #273a4bdd 58%, #293a4a66); }
+.contact-scene[data-weather="rain"] .contact-sky :deep(.weather-clouds--dense),
+.contact-scene[data-weather="storm"] .contact-sky :deep(.weather-clouds--dense) { inset: -8% -5% 25%; opacity: .92; background: linear-gradient(#2d3d4df7 0%, #465564e8 52%, #5a6672b8 78%, transparent); }
 @keyframes contact-lamp { 0%, 76%, 84%, 100% { opacity: .04; } 78%, 81% { opacity: .65; } 79.5%, 82% { opacity: .15; } }
 .contact-scene__layout { position: absolute; inset: 0; display: block; padding: 0; min-height: 0; }
 .exit-door { left: 10%; top: 28%; width: 14%; height: 58%; padding: 0; border: 0; background: transparent; box-shadow: none; cursor: pointer; }
@@ -382,5 +391,23 @@ onBeforeUnmount(() => {
 .contact-scene--landscape .contact-email { grid-column: 2; grid-row: 1; }
 .contact-scene--landscape .contact-socials { grid-column: 2; grid-row: 2; }
 .contact-scene--landscape .contact-screen__signature { grid-column: 2; grid-row: 3; }
+@media (min-width: 761px) and (max-width: 1300px) and (max-height: 500px) and (orientation: landscape) {
+  .contact-scene--phone.contact-scene--landscape { --street-art-height: 100svh; }
+  .contact-scene--phone.contact-scene--landscape { min-height: 100svh; }
+  .contact-scene--phone.contact-scene--landscape .contact-scene__stage { position: relative; width: 100%; height: 100svh; overflow: hidden; }
+  .contact-scene--phone.contact-scene--landscape .contact-scene__art { inset: 0; width: 100%; height: 100%; }
+  .contact-scene--phone.contact-scene--landscape .contact-scene__plate { object-fit: cover; }
+  .contact-scene--phone.contact-scene--landscape .contact-scene__layout { position: absolute; inset: 0; display: flex; align-items: end; justify-content: center; padding: 0 max(1rem, env(safe-area-inset-right)) max(.75rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left)); }
+  .contact-scene--phone.contact-scene--landscape .contact-panel { width: min(100%, 900px); padding: 5px; background: #071113d9; backdrop-filter: blur(5px); }
+  .contact-scene--phone.contact-scene--landscape .contact-screen { padding: 8px 12px; gap: 4px 16px; }
+  .contact-scene--phone.contact-scene--landscape .contact-screen__title { font-size: clamp(1.25rem, 4.6vh, 2rem); line-height: 1; }
+  .contact-scene--phone.contact-scene--landscape .contact-screen__copy { font-size: clamp(.72rem, 2.2vh, .9rem); line-height: 1.3; }
+  .contact-scene--phone.contact-scene--landscape .contact-email { min-height: 42px; padding: 6px 9px; font-size: .85rem; }
+  .contact-scene--phone.contact-scene--landscape .contact-email small { font-size: .65rem; }
+  .contact-scene--phone.contact-scene--landscape .contact-socials a { min-height: 36px; }
+  .contact-scene--phone.contact-scene--landscape .contact-screen__signature { display: none; }
+  .contact-scene--phone.contact-scene--landscape .exit-door { z-index: 1; margin-top: calc(var(--street-art-height) * .25); }
+  .contact-scene--phone.contact-scene--landscape :deep(.mouse-world) { display: none; }
+}
 
 </style>

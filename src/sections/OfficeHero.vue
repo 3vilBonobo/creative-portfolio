@@ -10,11 +10,14 @@ import DailyPuzzleBook from "../components/hero/DailyPuzzleBook.vue";
 import DailyChessPuzzle from "../components/hero/DailyChessPuzzle.vue";
 import AquariumExperience from "../components/hero/AquariumExperience.vue";
 import RadioLaptop from "../components/hero/RadioLaptop.vue";
+import AthensArcade from "../components/hero/AthensArcade.vue";
 import { useRadio } from "../composables/useRadio";
+import { useEnvironment } from "../composables/useEnvironment";
 import { FLOOR } from "../config/floors";
 
 const { portrait, landscape, phone } = usePhoneLayout();
 const radio = useRadio();
+const { state } = useEnvironment();
 const hero = ref<HTMLElement>();
 const orientationDialog = ref<HTMLDialogElement>();
 const orientationPromptOpen = ref(false);
@@ -22,23 +25,24 @@ const telescope = ref<InstanceType<typeof TelescopeExperience>>();
 const aquarium = ref<InstanceType<typeof AquariumExperience>>();
 const chess = ref<InstanceType<typeof DailyChessPuzzle>>();
 const sudoku = ref<InstanceType<typeof DailyPuzzleBook>>();
+const arcade = ref<InstanceType<typeof AthensArcade>>();
 const cat = ref<InstanceType<typeof HeroCat>>();
 const studioRequested = ref(false);
 const studioContained = ref(false);
 const portraitExpanded = ref(false);
 const immersive = computed(() => studioRequested.value && landscape.value);
-const discoveryOpen = computed(() => !!(telescope.value?.open || aquarium.value?.open || chess.value?.open || sudoku.value?.open));
+const discoveryOpen = computed(() => !!(telescope.value?.open || aquarium.value?.open || chess.value?.open || sudoku.value?.open || arcade.value?.open));
 const ORIENTATION_CHOICE_KEY = "portfolio-mobile-orientation-choice";
 let enterStudioAfterRotation = false;
 let mounted = false;
 let returnFocus: HTMLElement | null = null;
 let studioScroll = 0;
 let previousOverflow = "";
-function discover(kind: "telescope" | "aquarium" | "chess" | "sudoku" | "cat", event: Event) {
+function discover(kind: "telescope" | "aquarium" | "chess" | "sudoku" | "arcade" | "cat", event: Event) {
   if (kind === "cat") cat.value?.pet();
   else {
     returnFocus = event.currentTarget as HTMLElement;
-    ({ telescope, aquarium, chess, sudoku })[kind].value?.show();
+    ({ telescope, aquarium, chess, sudoku, arcade })[kind].value?.show();
   }
 }
 async function enterStudio() {
@@ -104,7 +108,7 @@ watch(discoveryOpen, async open => {
 function keepDialogFocus(event: KeyboardEvent) {
   if (radio.opened.value) return;
   if (!phone.value || (!orientationDialog.value?.open && !discoveryOpen.value && !immersive.value) || event.key !== "Tab") return;
-  const dialog = orientationDialog.value?.open ? orientationDialog.value : discoveryOpen.value ? document.querySelector<HTMLElement>('.telescope-app, .aquarium-app, .puzzle-book, dialog[open].chess-dialog') : hero.value;
+  const dialog = orientationDialog.value?.open ? orientationDialog.value : discoveryOpen.value ? document.querySelector<HTMLElement>('.telescope-app, .aquarium-app, .puzzle-book, dialog[open].chess-dialog, dialog[open].athens-arcade') : hero.value;
   const controls = dialog ? [...dialog.querySelectorAll<HTMLElement>('a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex="0"]')].filter(el => el.getClientRects().length && !el.closest('[inert]')) : [];
   const first = controls[0], last = controls[controls.length - 1];
   if (!first || !last) return;
@@ -112,53 +116,32 @@ function keepDialogFocus(event: KeyboardEvent) {
   else if (!event.shiftKey && (document.activeElement === last || !dialog?.contains(document.activeElement))) { event.preventDefault(); first.focus(); }
 }
 const showIntroduction = ref(true);
-const introductionPanel = ref<HTMLElement | null>(null);
+let heroVisibilityObserver: IntersectionObserver | undefined;
+let heroHasBeenVisible = false;
 function collapseIntroduction() {
   if (!phone.value && showIntroduction.value) showIntroduction.value = false;
 }
 
-let previousScrollY = 0;
-let downwardTravel = 0;
-
 function toggleIntroduction() {
   showIntroduction.value = !showIntroduction.value;
-  downwardTravel = 0;
-  previousScrollY = window.scrollY;
-}
-
-function handleScroll() {
-  if (phone.value) return;
-  const scrollY = Math.max(0, window.scrollY);
-  const movement = scrollY - previousScrollY;
-
-  if (movement > 0) downwardTravel += movement;
-  else if (movement < 0) downwardTravel = 0;
-
-  // Keep the introduction visible through the first couple of wheel movements.
-  // Using travelled distance also keeps this consistent for trackpads, keyboard
-  // scrolling, and scrollbar dragging without intercepting native scroll input.
-  // Let visitors finish copy that extends below the fold on narrow or short
-  // screens before dismissing it as they continue down to the next floor.
-  const panelBottom = introductionPanel.value?.getBoundingClientRect().bottom ?? 0;
-  const needsReadingScroll = window.matchMedia("(max-width: 760px)").matches
-    || panelBottom + scrollY > window.innerHeight;
-  if (showIntroduction.value && downwardTravel >= 280 && (!needsReadingScroll || panelBottom <= 0)) {
-    collapseIntroduction();
-  }
-
-  previousScrollY = scrollY;
 }
 
 onMounted(() => {
   mounted = true;
   void openOrientationPrompt();
   document.addEventListener("keydown", keepDialogFocus);
-  previousScrollY = window.scrollY;
-  window.addEventListener("scroll", handleScroll, { passive: true });
+  if (hero.value && !phone.value && "IntersectionObserver" in window) {
+    heroVisibilityObserver = new IntersectionObserver(([entry]) => {
+      if (!entry) return;
+      if (entry.intersectionRatio >= 0.5) heroHasBeenVisible = true;
+      else if (heroHasBeenVisible) collapseIntroduction();
+    }, { threshold: [0.5] });
+    heroVisibilityObserver.observe(hero.value);
+  }
 });
 
 onBeforeUnmount(() => {
-  window.removeEventListener("scroll", handleScroll);
+  heroVisibilityObserver?.disconnect();
   document.removeEventListener("keydown", keepDialogFocus);
   if (immersive.value) document.documentElement.style.overflow = previousOverflow;
 });
@@ -175,6 +158,7 @@ onBeforeUnmount(() => {
         <DailyPuzzleBook ref="sudoku" :hotspots="!portrait" />
         <DailyChessPuzzle ref="chess" :hotspots="!portrait" />
         <AquariumExperience ref="aquarium" :hotspots="!portrait" />
+        <AthensArcade ref="arcade" :hotspots="!portrait" />
         <RadioLaptop v-if="!portrait" />
       </div>
       <button v-if="landscape && !immersive" class="mobile-studio-enter" type="button" @click.stop="enterStudio">Explore studio <span aria-hidden="true">↗</span></button>
@@ -195,6 +179,7 @@ onBeforeUnmount(() => {
           <button type="button" @click="discover('aquarium', $event)">Aquarium <span aria-hidden="true">↗</span></button>
           <button type="button" @click="discover('chess', $event)">Daily chess <span aria-hidden="true">↗</span></button>
           <button type="button" @click="discover('sudoku', $event)">Sudoku & puzzles <span aria-hidden="true">↗</span></button>
+          <button type="button" aria-haspopup="dialog" @click="discover('arcade', $event)">Athens arcade <span aria-hidden="true">↗</span></button>
           <button type="button" @click="discover('cat', $event)">Pet Yannos <span aria-hidden="true">♡</span></button>
           <button type="button" aria-haspopup="dialog" @click="radio.show">Athens radio <span aria-hidden="true">↗</span></button>
         </div>
@@ -211,10 +196,9 @@ onBeforeUnmount(() => {
         <button v-else type="button" class="mobile-orientation-dialog__secondary" @click="browseFloors">Browse the floors</button>
       </div>
     </dialog>
-    <div v-show="!phone" class="hero-copy-drawer" :class="{ 'hero-copy-drawer--closed': !showIntroduction }">
+    <div v-show="!phone" class="hero-copy-drawer" :class="{ 'hero-copy-drawer--closed': !showIntroduction }" :data-phase="state.timePhase">
       <div
         id="hero-introduction"
-        ref="introductionPanel"
         class="hero__content hero__plate"
         data-parallax="-2"
         :aria-hidden="!showIntroduction"
@@ -273,52 +257,116 @@ onBeforeUnmount(() => {
 
 <style scoped>
 .hero-copy-drawer {
+  --intro-panel: #101614f5;
+  --intro-frame: #d8c79d48;
+  --intro-edge: #d8a452;
+  --intro-name: #f2b65f;
+  --intro-location: #c2c9c2;
+  --intro-cyan: #91d8d2;
+  --intro-heading: #f4eee2;
+  --intro-body: #d5d8d1;
+  --intro-strong: #f4eee2;
+  --intro-warm: #f0b45c;
+  --intro-cue-bg: #141e1d;
+  --intro-cue-border: #8ed8d033;
+  --intro-cue-text: #edf0e9;
+  --intro-note: #aeb9b1;
+  --intro-toggle-bg: #111918ee;
+  --intro-toggle-text: #e8e1d4;
   width: clamp(32rem, 50vw, 50rem);
   max-width: calc(100% - 3rem);
   container: hero-intro / inline-size;
+  transition: color .5s ease;
+}
+
+.hero-copy-drawer[data-phase="goldenHour"] {
+  --intro-name: #ffc06d;
+  --intro-edge: #e7a950;
+  --intro-warm: #f2b057;
+}
+
+.hero-copy-drawer[data-phase="dusk"] {
+  --intro-panel: #13131bf5;
+  --intro-frame: #d7b7da55;
+  --intro-edge: #e3a85d;
+  --intro-name: #ffc16d;
+  --intro-location: #d3cbd2;
+  --intro-cyan: #a2dcd9;
+  --intro-heading: #f5eee9;
+  --intro-body: #d7d2d7;
+  --intro-strong: #f5eee9;
+  --intro-warm: #f0b35f;
+  --intro-cue-bg: #191720;
+  --intro-cue-border: #d7b7da38;
+  --intro-cue-text: #eee9ef;
+  --intro-note: #bcb4c0;
+  --intro-toggle-bg: #15141dee;
+  --intro-toggle-text: #eee9ef;
+}
+
+.hero-copy-drawer[data-phase="night"] {
+  --intro-panel: #100d1bf5;
+  --intro-frame: #a77acb61;
+  --intro-edge: #ed5dc6;
+  --intro-name: #ff7bd5;
+  --intro-location: #c8bfd6;
+  --intro-cyan: #79edf4;
+  --intro-heading: #f5effb;
+  --intro-body: #d8d1e2;
+  --intro-strong: #f8f3ff;
+  --intro-warm: #ff79d5;
+  --intro-cue-bg: #171322;
+  --intro-cue-border: #a77acb48;
+  --intro-cue-text: #efe8f6;
+  --intro-note: #b5aabd;
+  --intro-toggle-bg: #151020f2;
+  --intro-toggle-text: #eee7f5;
 }
 
 .hero-copy-drawer .hero__plate {
   display: grid;
-  gap: clamp(.8rem, 1.25vw, 1.1rem);
+  gap: clamp(.65rem, 1vw, .9rem);
   width: 100%;
-  padding: clamp(1.2rem, 1.8vw, 1.7rem);
-  border-color: #d8c79d48;
-  border-left: 2px solid #d8a452;
-  background: linear-gradient(145deg, #101614f5, #111918eb 72%, #0c1212f2);
+  padding: clamp(1.1rem, 1.8vw, 1.55rem);
+  border: 1px solid var(--intro-frame);
+  border-left: 2px solid var(--intro-edge);
+  background: linear-gradient(145deg, var(--intro-panel), color-mix(in srgb, var(--intro-panel) 94%, #253431) 72%, var(--intro-panel));
   box-shadow: 0 1.5rem 4rem #0008, inset 0 1px #ffffff10, inset 0 -1px #0005;
   backdrop-filter: blur(13px);
   text-shadow: none;
+  transition: color .5s ease, border-color .5s ease, background .5s ease;
 }
 
 .hero-copy-drawer .hero__plate::before { display: none; }
 .hero__opening { min-width: 0; }
 .hero__identity { display: grid; grid-template-columns: 1fr auto; align-items: baseline; gap: .15rem .8rem; }
 .hero__identity p { margin: 0; }
-.hero__identity-name { color: #f2b65f; font: 600 .78rem/1.45 "IBM Plex Mono", monospace; letter-spacing: .08em; text-transform: uppercase; }
-.hero__identity-location { color: #d0d7ce; font: .67rem/1.45 "IBM Plex Mono", monospace; letter-spacing: .08em; text-transform: uppercase; }
-.hero__identity-role { grid-column: 1 / -1; color: #9bded7; font: 500 .7rem/1.55 "IBM Plex Mono", monospace; letter-spacing: .045em; text-transform: uppercase; }
-.hero__identity-role span { padding-inline: .2rem; color: #efb25c; }
+.hero__identity-name { color: var(--intro-name); font: 600 .78rem/1.45 "IBM Plex Mono", monospace; letter-spacing: .08em; text-transform: uppercase; }
+.hero__identity-location { color: var(--intro-location); font: .67rem/1.45 "IBM Plex Mono", monospace; letter-spacing: .08em; text-transform: uppercase; }
+.hero__identity-role { grid-column: 1 / -1; color: var(--intro-cyan); font: 500 .7rem/1.55 "IBM Plex Mono", monospace; letter-spacing: .045em; text-transform: uppercase; }
+.hero__identity-role span { padding-inline: .2rem; color: var(--intro-warm); }
 .hero-copy-drawer .hero__headline {
-  margin: .65rem 0 0;
-  color: #f4eee2;
-  font: 500 clamp(2rem, 4.9cqi, 2.8rem)/1 "Barlow Condensed", sans-serif;
-  letter-spacing: -.018em;
+  max-width: 22ch;
+  margin: .55rem 0 0;
+  color: var(--intro-heading);
+  font: 750 clamp(2rem, 4.55cqi, 2.7rem)/1.08 Manrope, sans-serif;
+  letter-spacing: -.055em;
   text-transform: none;
   overflow-wrap: normal;
 }
-.hero__punchline { margin: .45rem 0 0; color: #9bded7; font: 500 clamp(1rem, 3cqi, 1.18rem)/1.35 Manrope, sans-serif; }
-.hero__personal-section, .hero__world { min-width: 0; padding-top: .85rem; border-top: 1px solid #d8c79d48; }
-.hero__personal-section h2, .hero__world h2 { margin: 0 0 .55rem; color: #f4eee2; font: 650 clamp(1rem, 2.8cqi, 1.15rem)/1.3 Manrope, sans-serif; letter-spacing: -.018em; text-transform: none; }
-.hero__personal-section p, .hero__world p { margin: .55rem 0 0; color: #e0e2dc; font: 400 clamp(.9rem, 2.1cqi, 1rem)/1.55 Manrope, sans-serif; }
-.hero__personal-section strong { color: #f0e7d3; font-weight: 650; }
-.hero__world h2 { color: #f0b45c; }
-.hero__exploration { min-width: 0; padding: .8rem 1rem; background: #192623f2; }
-.hero__exploration-cues { display: grid; gap: .7rem; margin: 0; padding: 0; list-style: none; }
-.hero__exploration-cues li { display: flex; align-items: center; gap: .6rem; min-width: 0; color: #edf0e9; font: 500 clamp(.84rem, 2.1cqi, .94rem)/1.4 Manrope, sans-serif; }
-.hero__exploration-cues svg { flex: 0 0 1.05rem; width: 1.05rem; height: 1.05rem; fill: none; stroke: #91d8d2; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.hero__punchline { margin: .4rem 0 0; color: var(--intro-cyan); font: 600 clamp(1rem, 2.7cqi, 1.18rem)/1.35 Manrope, sans-serif; }
+.hero__personal-section, .hero__world { min-width: 0; padding-top: .75rem; border-top: 1px solid var(--intro-frame); }
+.hero__personal-section h2, .hero__world h2 { margin: 0 0 .45rem; color: var(--intro-heading); font: 700 clamp(.98rem, 2.65cqi, 1.12rem)/1.35 Manrope, sans-serif; letter-spacing: -.025em; text-transform: none; }
+.hero__personal-section p, .hero__world p { margin: .45rem 0 0; color: var(--intro-body); font: 400 clamp(.9rem, 2.1cqi, 1rem)/1.52 Manrope, sans-serif; }
+.hero__personal-section strong { color: var(--intro-strong); font-weight: 700; }
+.hero__world h2 { color: var(--intro-warm); }
+.hero__exploration { min-width: 0; padding: .35rem .8rem; border: 1px solid var(--intro-cue-border); background: var(--intro-cue-bg); transition: background-color .5s ease, border-color .5s ease; }
+.hero__exploration-cues { display: grid; gap: 0; margin: 0; padding: 0; list-style: none; }
+.hero__exploration-cues li { display: flex; align-items: center; gap: .6rem; min-width: 0; padding: .42rem 0; color: var(--intro-cue-text); font: 500 clamp(.84rem, 2.1cqi, .94rem)/1.4 Manrope, sans-serif; }
+.hero__exploration-cues li + li { border-top: 1px solid var(--intro-cue-border); }
+.hero__exploration-cues svg { flex: 0 0 1.05rem; width: 1.05rem; height: 1.05rem; fill: none; stroke: var(--intro-cyan); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
 .hero__exploration-cues li > span { min-width: 0; }
-.hero-copy-drawer .hero__cat-note { margin: .1rem 0 0; color: #c1c9c0; font: italic .68rem/1.4 Manrope, sans-serif; }
+.hero-copy-drawer .hero__cat-note { margin: .05rem 0 0; color: var(--intro-note); font: italic .68rem/1.4 Manrope, sans-serif; }
 
 @media (max-height: 800px) and (min-width: 761px) {
   .hero-copy-drawer { width: clamp(34rem, 54vw, 50rem); }
@@ -327,7 +375,7 @@ onBeforeUnmount(() => {
   .hero__punchline { margin-top: .2rem; font-size: clamp(.94rem, 2.5cqi, 1.05rem); }
   .hero__personal-section, .hero__world { padding-top: .5rem; }
   .hero__personal-section h2, .hero__world h2 { margin-bottom: .3rem; font-size: clamp(.94rem, 2.5cqi, 1.02rem); }
-  .hero__personal-section p, .hero__world p { margin-top: .3rem; font-size: clamp(.82rem, 1.9cqi, .88rem); line-height: 1.4; }
+  .hero__personal-section p, .hero__world p { margin-top: .3rem; font-size: clamp(.84rem, 1.9cqi, .9rem); line-height: 1.4; }
   .hero__exploration { padding: .55rem .7rem; }
   .hero__exploration-cues { gap: .4rem; }
   .hero__exploration-cues li { gap: .45rem; font-size: clamp(.78rem, 1.9cqi, .84rem); }
@@ -358,21 +406,21 @@ onBeforeUnmount(() => {
   width: auto;
   min-height: 2.55rem;
   padding: .45rem .7rem;
-  border: 1px solid #d8c79d45;
+  border: 1px solid var(--intro-frame);
   border-left: 0;
-  background: #111918ee;
-  color: #e8e1d4;
+  background: var(--intro-toggle-bg);
+  color: var(--intro-toggle-text);
   transition: border-color .18s ease, background-color .18s ease, color .18s ease;
 }
 
 .hero-copy-toggle:hover {
-  border-color: #91d8d2;
-  background: #172421f5;
-  color: #b8f0e9;
+  border-color: var(--intro-cyan);
+  background: color-mix(in srgb, var(--intro-toggle-bg), var(--intro-cyan) 12%);
+  color: var(--intro-cyan);
 }
 
 .hero-copy-toggle:focus-visible {
-  outline: 2px solid #91d8d2;
+  outline: 2px solid var(--intro-cyan);
   outline-offset: 3px;
 }
 

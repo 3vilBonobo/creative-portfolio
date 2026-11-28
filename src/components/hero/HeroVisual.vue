@@ -66,6 +66,7 @@ onBeforeUnmount(() => {
     <div class="hero-scene" :data-phase="state.timePhase">
       <picture class="hero-scene__plate hero-scene__plate--day"><img :src="HERO_SCENE.day" :width="HERO_SCENE.width" :height="HERO_SCENE.height" alt="" fetchpriority="high"></picture>
       <picture class="hero-scene__plate hero-scene__plate--night" :style="{ opacity: nightOpacity }"><img :src="HERO_SCENE.night" :width="HERO_SCENE.width" :height="HERO_SCENE.height" alt="" decoding="async" @error="nightFailed = true"></picture>
+      <div class="hero-scene__visibility-lift" :style="{ backgroundImage: `url('${nightOpacity > .4 ? HERO_SCENE.night : HERO_SCENE.day}')` }" />
       <SceneEnvironment scene="hero" :state="state" :intensity="previewIntensity" :paused="effectsPaused" :precipitation="!hiddenHeroLayers.includes('exteriorPrecipitation')" />
       <MoonSky :state="state" :preview-phase="previewMoonPhase" :preview-progress="previewMoonProgress" :paused="effectsPaused" :style="{ opacity: nightOpacity }" />
       <svg class="hero-scene__acropolis-light" viewBox="0 0 1672 941" :style="{ opacity: nightOpacity }">

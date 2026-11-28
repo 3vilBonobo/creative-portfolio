@@ -17,11 +17,6 @@ const compactWidth = ref(matchMedia("(max-width: 760px)").matches);
 const compact = computed(() => compactWidth.value || phone.value);
 let layoutQuery: MediaQueryList | undefined;
 const activeEntry = computed(() => experience[activeIndex.value]!);
-const skillGroups = [
-  { label: "Frontend & platform", icon: "⌘", items: [...new Set(experience.flatMap(entry => entry.technologies).concat("Java", "Spring Boot"))] },
-  { label: "Interface & delivery", icon: "✳", items: ["UX/UI redesign", "Responsive interfaces", "Accessible web", "Offline workflows", "Performance improvement", "SVG & web animation"] },
-  { label: "Analysis & communication", icon: "◇", items: ["Requirements analysis", "API troubleshooting", "Client communication", "Legal research", "Case analysis", "Teaching"] },
-] as const;
 
 function selectEntry(index: number) {
   selectExperienceChapter(archive, index, experience.length, compact.value);
@@ -66,17 +61,8 @@ onBeforeUnmount(() => layoutQuery?.removeEventListener("change", updateLayout));
           <template #detail="{ entry }"><ExperienceDetail :entry="entry" compact :phone="phone" :contributions-open="contributions[entry.id]" @contributions-toggle="contributions[entry.id] = $event" /></template>
         </ExperienceTimeline>
         <article v-if="!compact" :key="activeEntry.id" id="experience-detail" class="experience__details" aria-labelledby="experience-detail-title"><ExperienceDetail :entry="activeEntry" /></article>
-        <section class="experience__skills" aria-labelledby="experience-skills-title">
-          <div class="experience__skills-heading"><span aria-hidden="true">✳</span><h3 id="experience-skills-title">Skills I bring</h3><p>Engineering, craft, and the experience behind both.</p></div>
-          <div class="experience__skill-groups">
-            <section v-for="group in skillGroups" :key="group.label" class="experience__skill-group" :class="`experience__skill-group--${group.label.startsWith('Frontend') ? 'frontend' : group.label.startsWith('Interface') ? 'design' : 'analysis'}`">
-              <h4><span aria-hidden="true">{{ group.icon }}</span>{{ group.label }}</h4>
-              <ul><li v-for="item in group.items" :key="item">{{ item }}</li></ul>
-            </section>
-          </div>
-        </section>
         <details class="experience__community">
-          <summary><span class="experience__community-title"><span aria-hidden="true">◎</span> Community, law &amp; teaching</span><span aria-hidden="true">+</span></summary>
+          <summary><span class="experience__community-title"><span aria-hidden="true">◎</span> Community, teaching &amp; hands-on work</span><span aria-hidden="true">+</span></summary>
           <ul>
             <li v-for="entry in communityExperience" :key="entry.id">
               <h3>{{ entry.role }} <span>— {{ entry.company }}</span></h3>
