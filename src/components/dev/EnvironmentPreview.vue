@@ -8,6 +8,7 @@ import { CAT_SPOTS } from "../../config/heroCat";
 import { experienceManualLights, experienceWallPreview, experienceCeilingPreview, resetExperienceLightPreview } from "../../composables/useExperienceLightPreview";
 const { previewCatSpot, previewCatPose, catScene, timePhases, weatherConditions, previewTimePhase, previewWeather, previewMoonPhase, previewMoonProgress, hiddenHeroLayers, showExteriorMask, showInteriorMask, freezeParallax, resetPreview } = useEnvironment();
 const isOpen = ref(false);
+const { previewChristmas } = useEnvironment();
 const previewMoon = computed(() => previewMoonPhase.value === null ? null : getPreviewMoonAppearance(previewMoonPhase.value, previewMoonProgress.value));
 const customMoonPhase = computed(() => previewMoonPhase.value !== null && !MOON_PHASES.some(phase => phase.value === previewMoonPhase.value));
 function selectMoonPhase() {
@@ -26,6 +27,13 @@ function selectMoonPhase() {
       <select v-model="previewTimePhase">
         <option :value="null">Live Athens time</option>
         <option v-for="phase in timePhases" :key="phase" :value="phase">{{ phase }}</option>
+      </select>
+    </label>
+    <label>Christmas tree
+      <select v-model="previewChristmas">
+        <option :value="null">Automatic · Dec 1–Jan 7, Athens</option>
+        <option :value="true">Show tree</option>
+        <option :value="false">Hide tree</option>
       </select>
     </label>
     <label>Weather

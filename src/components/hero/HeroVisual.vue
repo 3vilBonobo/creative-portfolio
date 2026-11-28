@@ -7,6 +7,7 @@ import { useEnvironment } from "../../composables/useEnvironment";
 import HeroClock from "./HeroClock.vue";
 import HeroMonitorAnimations from "./HeroMonitorAnimations.vue";
 import HeroExterior from "./HeroExterior.vue";
+import ChristmasTree from "./ChristmasTree.vue";
 import "../../hero-scene.css";
 
 const props = defineProps<{ compact?: boolean }>();
@@ -65,6 +66,7 @@ onBeforeUnmount(() => {
       <picture class="hero-scene__plate hero-scene__plate--day"><img :src="HERO_SCENE.day" :width="HERO_SCENE.width" :height="HERO_SCENE.height" alt="" fetchpriority="high"></picture>
       <picture class="hero-scene__plate hero-scene__plate--night" :style="{ opacity: nightOpacity }"><img :src="HERO_SCENE.night" :width="HERO_SCENE.width" :height="HERO_SCENE.height" alt="" decoding="async" @error="nightFailed = true"></picture>
       <HeroExterior :paused="effectsPaused" />
+      <ChristmasTree :paused="effectsPaused" />
       <div class="hero-scene__clock"><HeroClock /></div>
       <div class="hero-scene__monitors"><HeroMonitorAnimations :paused="effectsPaused" /></div>
     </div>

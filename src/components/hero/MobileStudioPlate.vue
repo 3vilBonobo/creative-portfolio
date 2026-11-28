@@ -2,6 +2,7 @@
 import { computed } from "vue";
 import { useEnvironment } from "../../composables/useEnvironment";
 import HeroExterior from "./HeroExterior.vue";
+import ChristmasTree from "./ChristmasTree.vue";
 const { state } = useEnvironment();
 const expanded = defineModel<boolean>("expanded", { default: false });
 const variant = computed(() => ["night", "dusk"].includes(state.value.timePhase) ? "night" : "day");
@@ -16,6 +17,7 @@ const base = "/hero/loft-mobile-v1/";
         sizes="100vw" width="941" height="1672" fetchpriority="high"
         alt="An Athens studio overlooking the Acropolis, with a developer at the workstation, a telescope and a cat on the sofa." />
       <HeroExterior portrait />
+      <ChristmasTree portrait />
     </div>
     <button type="button" :aria-expanded="expanded" @click.stop="expanded = !expanded">
       {{ expanded ? 'Frame the studio' : 'View full artwork' }} <span aria-hidden="true">{{ expanded ? '−' : '+' }}</span>

@@ -10,6 +10,7 @@ import { createSnake, deleteSnakeSave, readSnakeSave, saveSnake, snakeLevel, sna
 import { aimInvaderPlayer, createInvaders, deleteInvadersSave, fireInvaderShot, invaderEnemyVolleySize, INVADERS_PLAYER_Y, moveInvaderPlayer, readInvadersSave, saveInvaders, stepInvaders } from '../../services/rooftopInvaders';
 import { readArcadeRecords, recordArcadeHighScore } from '../../services/arcadeRecords';
 import { createCourier, deleteCourierSave, readCourierSave, saveCourier, stepCourier } from '../../services/orbitalCourier';
+import { createPinball, deletePinballSave, launchPinball, PINBALL_BUMPERS, PINBALL_HEIGHT, PINBALL_TARGETS, PINBALL_WIDTH, readPinballSave, savePinball, stepPinball } from '../../services/midnightPinball';
 
 defineProps<{ hotspots?: boolean }>();
 const open = ref(false);
@@ -38,7 +39,7 @@ const courierStars = Array.from({ length: 58 }, (_, index) => ({
   r: index % 11 === 0 ? 1.8 : index % 4 === 0 ? 1.2 : .7,
   opacity: .2 + ((index * 13) % 7) * .09,
 }));
-const pinball = reactive({ ball:{x:360,y:220,vx:130,vy:-100}, flippers:0, score:0 });
+const pinball = reactive(createPinball());
 const saveKeyFor = (name: ArcadeGame) => `athens-arcade:${name}:v1`;
 const level = computed(() => breakoutLevel(game.level, BREAKOUT_LEVELS));
 const records = ref(readArcadeRecords(storage));
@@ -54,7 +55,7 @@ const gameInstructions: Record<ArcadeGame, { keyboard: string; pointer: string; 
   snake: { keyboard: 'Arrows / WASD · Space start · P pause', pointer: 'Choose direction with the pad', touch: 'Tap the direction pad to turn' },
   invaders: { keyboard: '← → / A D · hold Space to fire · P pause', pointer: 'Move to aim · hold click to fire', touch: 'Drag to steer · hold FIRE to shoot' },
   asteroids: { keyboard: '← → / A D turn · ↑ / W thrust · hold Space fire · P pause', pointer: 'Aim with mouse · hold click to fire', touch: 'Drag to aim · hold FIRE to shoot' },
-  pinball: { keyboard: 'Space / ↑ / Enter to flip', pointer: 'Click the table to flip', touch: 'Tap the table or FLIP button' },
+  pinball: { keyboard: 'Space launch · ← → / A D flippers · P pause', pointer: 'Click the lower left/right to flip · plunger lane to launch', touch: 'Use separate launch and left/right flipper buttons' },
 };
 function finishRun(name: ArcadeGame, score: number, level: number) {
   if (recordArcadeHighScore(storage, name, score, level)) records.value = readArcadeRecords(storage);
@@ -115,6 +116,14 @@ const arcadeMessage = computed(() => {
     if (arcadeStatus.value === 'lost') return 'Courier down. Your best score is on record.';
     return 'Wave cleared. The next belt is already moving.';
   }
+  if (selectedGame.value === 'pinball') {
+    if (arcadeStatus.value === 'ready') return 'Night shift at the periptero. Launch with SPACE; left and right flippers are separate.';
+    if (arcadeStatus.value === 'playing' && pinball.ballOnShooter) return 'Ball back in the plunger lane. Hit LAUNCH BALL and mind the cat.';
+    if (arcadeStatus.value === 'playing') return `Street heat ${pinball.level} · bump the drinks, tag the grill, and save the ball.`;
+    if (arcadeStatus.value === 'paused') return 'Even the souvlaki queue can wait. Game paused.';
+    if (arcadeStatus.value === 'lost') return 'Last order, last ball. Your best score is on record.';
+    return 'Kiosk closed. The neighborhood has your high score.';
+  }
   return arcadeStatus.value === 'ready' ? `SECTOR ${arcadeLevel.value} · ${gameTaglines[selectedGame.value]}` : arcadeStatus.value === 'playing' ? gameTaglines[selectedGame.value] : arcadeStatus.value === 'won' ? 'Athens is safe. Go on, have a victory koulouri.' : arcadeStatus.value === 'lost' ? 'The city forgives you. The drones do not.' : 'Paused. Even legends hydrate.';
 });
 let frame = 0, previousTime = 0;
@@ -153,10 +162,18 @@ function play() {
     void audio.resume().then(() => { if (open.value && snake.status === 'playing') audio.cue('launch'); });
     saveExtra(); if (!frame) frame = requestAnimationFrame(tick); return;
   }
-  if (selectedGame.value === 'asteroids' || selectedGame.value === 'pinball') {
+  if (selectedGame.value === 'asteroids') {
     if (arcadeStatus.value === 'lost' || arcadeStatus.value === 'won') resetExtra();
-    if (selectedGame.value === 'asteroids') { arcadeLevel.value = orbital.level; arcadeScore.value = orbital.score; }
+    arcadeLevel.value = orbital.level; arcadeScore.value = orbital.score;
     arcadeStatus.value = 'playing';
+    void audio.resume().then(() => { if (open.value && arcadeStatus.value === 'playing') audio.cue('launch'); });
+    if (!frame) frame = requestAnimationFrame(tick);
+    return;
+  }
+  if (selectedGame.value === 'pinball') {
+    if (arcadeStatus.value === 'lost' || arcadeStatus.value === 'won') resetExtra();
+    arcadeStatus.value = 'playing';
+    if (pinball.ballOnShooter) launchPinball(pinball);
     void audio.resume().then(() => { if (open.value && arcadeStatus.value === 'playing') audio.cue('launch'); });
     if (!frame) frame = requestAnimationFrame(tick);
     return;
@@ -185,7 +202,7 @@ function resetExtra() {
   Object.assign(snake, createSnake()); snakeElapsed = 0;
   Object.assign(invaders, createInvaders());
   Object.assign(orbital, createCourier());
-  pinball.ball = { x: 360, y: 220, vx: 130, vy: -100 }; pinball.flippers = 0; pinball.score = 0;
+  Object.assign(pinball, createPinball());
 }
 function tickExtra(dt:number, time:number) {
   if (selectedGame.value==='snake') {
@@ -238,11 +255,87 @@ function tickExtra(dt:number, time:number) {
     }
     if (events.hit || events.lifeLost || events.waveCleared || events.gameOver || time - lastSave >= 2000) lastSave = time;
   }
-  if(selectedGame.value==='pinball'){const b=pinball.ball;b.x+=b.vx*dt;b.y+=b.vy*dt;b.vy+=(300+Math.min(180,(arcadeLevel.value-1)*14))*dt;if(b.x<12||b.x>708)b.vx*=-1;if(b.y<15)b.vy=Math.abs(b.vy);if(b.y>410){arcadeStatus.value='lost';finishRun('pinball',arcadeScore.value,arcadeLevel.value);}for(const [x,y,r] of [[180,180,35],[540,180,35],[360,130,28]] as const)if(Math.hypot(b.x-x,b.y-y)<r){const a=Math.atan2(b.y-y,b.x-x);b.vx=Math.cos(a)*Math.hypot(b.vx,b.vy)*1.04;b.vy=Math.sin(a)*Math.hypot(b.vx,b.vy)*1.04;arcadeScore.value+=10;}if(pinball.flippers){b.vy=-Math.abs(b.vy)-140;arcadeScore.value+=5;pinball.flippers=0;}if(arcadeScore.value>=arcadeLevel.value*250)arcadeLevel.value++;}
+  if (selectedGame.value === 'pinball') {
+    const events = stepPinball(pinball, {
+      left: held.has('pinball-left'),
+      right: held.has('pinball-right'),
+    }, dt);
+    arcadeLevel.value = pinball.level;
+    arcadeScore.value = pinball.score;
+    if (events.targetHits || events.bumperHits) audio.cue('brick');
+    else if (events.flipperHit || events.slingHit || events.bounced) audio.cue('bounce');
+    if (events.levelUp || events.streetCombo) audio.cue('win');
+    if (events.drain) audio.cue('miss');
+    if (events.gameOver) {
+      arcadeStatus.value = 'lost';
+      finishRun('pinball', pinball.score, pinball.level);
+      saveExtra();
+    } else if (events.bumperHits || events.targetHits || events.flipperHit || events.slingHit || events.drain || events.levelUp || events.streetCombo || time - lastSave >= 2000) {
+      saveExtra();
+    }
+    if (events.bumperHits || events.targetHits || events.flipperHit || events.slingHit || events.drain || events.levelUp || events.streetCombo || time - lastSave >= 2000) lastSave = time;
+  }
 }
-function changeGame(g:ArcadeGame){if(g===selectedGame.value)return;pause();selectedGame.value=g;resetExtra();if(g==='snake'){const restoredSnake=readSnakeSave(storage);if(restoredSnake)Object.assign(snake,restoredSnake);arcadeLevel.value=snake.level;arcadeScore.value=snake.score;arcadeStatus.value=snake.status;hasSave.value=!!restoredSnake;saveMessage.value=restoredSnake?'Signal Snake progress loaded from this device.':'Signal Snake saves on this device.';return;}if(g==='invaders'){const restoredInvaders=readInvadersSave(storage);if(restoredInvaders)Object.assign(invaders,restoredInvaders);arcadeLevel.value=invaders.level;arcadeScore.value=invaders.score;arcadeStatus.value=invaders.status;hasSave.value=!!restoredInvaders;saveMessage.value=restoredInvaders?'Rooftop Invaders progress loaded from this device.':'Rooftop Invaders saves on this device.';return;}if(g==='asteroids'){const saved=readCourierSave(storage);if(saved)Object.assign(orbital,saved);arcadeLevel.value=orbital.level;arcadeScore.value=orbital.score;arcadeStatus.value='ready';hasSave.value=!!saved;saveMessage.value=saved?'Orbital Courier progress loaded from this device.':'Orbital Courier saves on this device.';return;}const saved=storage?.getItem(saveKeyFor(g));if(saved){try{const s=JSON.parse(saved);arcadeLevel.value=s.level;arcadeScore.value=s.score;}catch{}}}
-function saveExtra(){if(selectedGame.value==='snake'){const ok=saveSnake(storage,snake);saveMessage.value=ok?`Signal Snake · sector ${snake.level} saved on this device.`:'Local save unavailable. You can still play.';hasSave.value=ok||hasSave.value;return;}if(selectedGame.value==='invaders'){const ok=saveInvaders(storage,invaders);saveMessage.value=ok?`Rooftop Invaders · wave ${invaders.level} saved on this device.`:'Local save unavailable. You can still play.';hasSave.value=ok||hasSave.value;return;}if(selectedGame.value==='asteroids'){const ok=saveCourier(storage,orbital);saveMessage.value=ok?`Orbital Courier · wave ${orbital.level} saved on this device.`:'Local save unavailable. You can still play.';hasSave.value=ok||hasSave.value;return;}try{storage?.setItem(saveKeyFor(selectedGame.value),JSON.stringify({level:arcadeLevel.value,score:arcadeScore.value,snake,invaders,orbital,pinball}));saveMessage.value=`${gameNames[selectedGame.value]} progress saved on this device.`;hasSave.value=true;}catch{saveMessage.value='Local save unavailable. You can still play.'}}
-function deleteExtra(){if(selectedGame.value==='snake'){if(deleteSnakeSave(storage)){Object.assign(snake,createSnake());arcadeLevel.value=1;arcadeScore.value=0;arcadeStatus.value='ready';hasSave.value=false;confirmDelete.value=false;saveMessage.value='Signal Snake save deleted. Fresh city, fresh start.';}else saveMessage.value='Could not delete this local save.';return;}if(selectedGame.value==='invaders'){if(deleteInvadersSave(storage)){Object.assign(invaders,createInvaders());arcadeLevel.value=1;arcadeScore.value=0;arcadeStatus.value='ready';hasSave.value=false;confirmDelete.value=false;saveMessage.value='Rooftop Invaders save deleted. Fresh skyline, fresh start.';}else saveMessage.value='Could not delete this local save.';return;}if(selectedGame.value==='asteroids'){if(deleteCourierSave(storage)){Object.assign(orbital,createCourier());arcadeLevel.value=1;arcadeScore.value=0;arcadeStatus.value='ready';hasSave.value=false;confirmDelete.value=false;saveMessage.value='Orbital Courier save deleted. Fresh orbit, fresh start.';}else saveMessage.value='Could not delete this local save.';return;}try{storage?.removeItem(saveKeyFor(selectedGame.value));resetExtra();hasSave.value=false;confirmDelete.value=false;saveMessage.value='Game save deleted. Fresh city, fresh start.';}catch{saveMessage.value='Could not delete this local save.'}}
+function changeGame(g: ArcadeGame) {
+  if (g === selectedGame.value) return;
+  pause(); selectedGame.value = g; resetExtra();
+  if (g === 'snake') {
+    const saved = readSnakeSave(storage); if (saved) Object.assign(snake, saved);
+    arcadeLevel.value = snake.level; arcadeScore.value = snake.score; arcadeStatus.value = snake.status;
+    hasSave.value = !!saved; saveMessage.value = saved ? 'Signal Snake progress loaded from this device.' : 'Signal Snake saves on this device.'; return;
+  }
+  if (g === 'invaders') {
+    const saved = readInvadersSave(storage); if (saved) Object.assign(invaders, saved);
+    arcadeLevel.value = invaders.level; arcadeScore.value = invaders.score; arcadeStatus.value = invaders.status;
+    hasSave.value = !!saved; saveMessage.value = saved ? 'Rooftop Invaders progress loaded from this device.' : 'Rooftop Invaders saves on this device.'; return;
+  }
+  if (g === 'asteroids') {
+    const saved = readCourierSave(storage); if (saved) Object.assign(orbital, saved);
+    arcadeLevel.value = orbital.level; arcadeScore.value = orbital.score; arcadeStatus.value = 'ready';
+    hasSave.value = !!saved; saveMessage.value = saved ? 'Orbital Courier progress loaded from this device.' : 'Orbital Courier saves on this device.'; return;
+  }
+  if (g === 'pinball') {
+    const saved = readPinballSave(storage); if (saved) Object.assign(pinball, saved);
+    arcadeLevel.value = pinball.level; arcadeScore.value = pinball.score; arcadeStatus.value = 'ready';
+    hasSave.value = !!saved; saveMessage.value = saved ? 'Midnight Pinball progress loaded from this device.' : 'Midnight Pinball saves on this device.';
+  }
+}
+function saveExtra() {
+  if (selectedGame.value === 'snake') {
+    const ok = saveSnake(storage, snake); saveMessage.value = ok ? `Signal Snake · sector ${snake.level} saved on this device.` : 'Local save unavailable. You can still play.'; hasSave.value = ok || hasSave.value; return;
+  }
+  if (selectedGame.value === 'invaders') {
+    const ok = saveInvaders(storage, invaders); saveMessage.value = ok ? `Rooftop Invaders · wave ${invaders.level} saved on this device.` : 'Local save unavailable. You can still play.'; hasSave.value = ok || hasSave.value; return;
+  }
+  if (selectedGame.value === 'asteroids') {
+    const ok = saveCourier(storage, orbital); saveMessage.value = ok ? `Orbital Courier · wave ${orbital.level} saved on this device.` : 'Local save unavailable. You can still play.'; hasSave.value = ok || hasSave.value; return;
+  }
+  if (selectedGame.value === 'pinball') {
+    const ok = savePinball(storage, pinball); saveMessage.value = ok ? `Midnight Pinball · street heat ${pinball.level} saved on this device.` : 'Local save unavailable. You can still play.'; hasSave.value = ok || hasSave.value; return;
+  }
+  try { storage?.setItem(saveKeyFor(selectedGame.value), JSON.stringify({ level: arcadeLevel.value, score: arcadeScore.value, snake, invaders, orbital, pinball })); saveMessage.value = `${gameNames[selectedGame.value]} progress saved on this device.`; hasSave.value = true; }
+  catch { saveMessage.value = 'Local save unavailable. You can still play.'; }
+}
+function deleteExtra() {
+  if (selectedGame.value === 'snake') {
+    if (deleteSnakeSave(storage)) { Object.assign(snake, createSnake()); arcadeLevel.value = 1; arcadeScore.value = 0; arcadeStatus.value = 'ready'; hasSave.value = false; confirmDelete.value = false; saveMessage.value = 'Signal Snake save deleted. Fresh city, fresh start.'; }
+    else saveMessage.value = 'Could not delete this local save.'; return;
+  }
+  if (selectedGame.value === 'invaders') {
+    if (deleteInvadersSave(storage)) { Object.assign(invaders, createInvaders()); arcadeLevel.value = 1; arcadeScore.value = 0; arcadeStatus.value = 'ready'; hasSave.value = false; confirmDelete.value = false; saveMessage.value = 'Rooftop Invaders save deleted. Fresh skyline, fresh start.'; }
+    else saveMessage.value = 'Could not delete this local save.'; return;
+  }
+  if (selectedGame.value === 'asteroids') {
+    if (deleteCourierSave(storage)) { Object.assign(orbital, createCourier()); arcadeLevel.value = 1; arcadeScore.value = 0; arcadeStatus.value = 'ready'; hasSave.value = false; confirmDelete.value = false; saveMessage.value = 'Orbital Courier save deleted. Fresh orbit, fresh start.'; }
+    else saveMessage.value = 'Could not delete this local save.'; return;
+  }
+  if (selectedGame.value === 'pinball') {
+    if (deletePinballSave(storage)) { Object.assign(pinball, createPinball()); arcadeLevel.value = 1; arcadeScore.value = 0; arcadeStatus.value = 'ready'; hasSave.value = false; confirmDelete.value = false; saveMessage.value = 'Midnight Pinball save deleted. Fresh night, fresh start.'; }
+    else saveMessage.value = 'Could not delete this local save.'; return;
+  }
+  try { storage?.removeItem(saveKeyFor(selectedGame.value)); resetExtra(); hasSave.value = false; confirmDelete.value = false; saveMessage.value = 'Game save deleted. Fresh city, fresh start.'; }
+  catch { saveMessage.value = 'Could not delete this local save.'; }
+}
 function pause() { if(selectedGame.value==='snake'&&snake.status==='playing'){snake.status='paused';arcadeStatus.value='paused';stop();saveExtra();} else if(selectedGame.value==='invaders'&&invaders.status==='playing'){invaders.status='paused';arcadeStatus.value='paused';stop();saveExtra();} else if(selectedGame.value!=='breakout'&&arcadeStatus.value==='playing'){arcadeStatus.value='paused';stop();saveExtra();} if (game.status === 'playing') { game.status = 'paused'; stop(); if (savingStarted) saveProgress(); } audio.suspend(); }
 function reset() { stop(); audio.suspend(); Object.assign(game, createBreakout(1, BREAKOUT_LEVELS[0])); confirmRestart.value = false; if (savingStarted) saveProgress(); }
 function restartJourney() { if (confirmRestart.value) reset(); else { pause(); confirmRestart.value = true; } }
@@ -296,11 +389,18 @@ function keydown(event: KeyboardEvent) {
     }
     if (key === 'p') { event.preventDefault(); event.stopPropagation(); if (arcadeStatus.value === 'playing') pause(); else if (arcadeStatus.value === 'paused') play(); return; }
   }
-  if (selectedGame.value === 'pinball' && [' ', 'ArrowUp', 'Enter'].includes(key)) {
-    if (target?.closest('button') && (key === ' ' || key === 'Enter')) return;
-    event.preventDefault(); event.stopPropagation();
-    if (arcadeStatus.value !== 'playing') play(); else pinball.flippers = 1;
-    return;
+  if (selectedGame.value === 'pinball') {
+    if (key === 'p') { event.preventDefault(); event.stopPropagation(); if (arcadeStatus.value === 'playing') pause(); else if (arcadeStatus.value === 'paused') play(); return; }
+    if (['ArrowLeft', 'a', 'ArrowRight', 'd'].includes(key)) {
+      event.preventDefault(); event.stopPropagation();
+      held.add(key === 'ArrowLeft' || key === 'a' ? 'pinball-left' : 'pinball-right'); return;
+    }
+    if (key === ' ' || key === 'Enter') {
+      if (target?.closest('button')) return;
+      event.preventDefault(); event.stopPropagation();
+      if (arcadeStatus.value !== 'playing') play(); else launchFromPlunger();
+      return;
+    }
   }
   if (target?.closest('button')) return;
   if (['ArrowLeft', 'ArrowRight', 'a', 'd'].includes(key)) {
@@ -314,11 +414,34 @@ function keydown(event: KeyboardEvent) {
 function keyup(event: KeyboardEvent) {
   const key = event.key.length === 1 ? event.key.toLowerCase() : event.key;
   held.delete(key);
+  if (selectedGame.value === 'pinball') {
+    if (key === 'ArrowLeft' || key === 'a') held.delete('pinball-left');
+    if (key === 'ArrowRight' || key === 'd') held.delete('pinball-right');
+  }
   if (key === ' ') held.delete('courier-fire');
 }
 function toggleGame() { if (playing.value) pause(); else play(); }
 function steer(direction: SnakeDirection) { steerSnake(snake, direction); }
 function fireInvaders() { if (invaders.status === 'playing' && fireInvaderShot(invaders)) audio.cue('launch'); }
+function launchFromPlunger() {
+  if (arcadeStatus.value !== 'playing') { play(); return; }
+  if (launchPinball(pinball)) { audio.cue('launch'); saveExtra(); }
+}
+function holdPinballFlipper(event: PointerEvent, side: 'left' | 'right') {
+  (event.currentTarget as HTMLElement).setPointerCapture(event.pointerId);
+  held.add(`pinball-${side}`);
+}
+function releasePinballFlippers() { held.delete('pinball-left'); held.delete('pinball-right'); }
+function pinballPointerDown(event: PointerEvent) {
+  (event.currentTarget as HTMLElement).setPointerCapture(event.pointerId);
+  if (arcadeStatus.value !== 'playing') { play(); return; }
+  const bounds = (event.currentTarget as HTMLElement).getBoundingClientRect();
+  const x = (event.clientX - bounds.left) / bounds.width * PINBALL_WIDTH;
+  const y = (event.clientY - bounds.top) / bounds.height * PINBALL_HEIGHT;
+  if (pinball.ballOnShooter) { if (x > 370 && y > 560) launchFromPlunger(); return; }
+  if (y > 580 && x < 220) held.add('pinball-left');
+  else if (y > 580 && x > 220 && x < 370) held.add('pinball-right');
+}
 function holdCourierControl(event: PointerEvent, control: 'ArrowLeft' | 'ArrowRight' | 'courier-thrust' | 'courier-fire') { (event.currentTarget as HTMLElement).setPointerCapture(event.pointerId); held.add(control); }
 function releaseCourierControl(control: 'ArrowLeft' | 'ArrowRight' | 'courier-thrust' | 'courier-fire') { held.delete(control); }
 function aimCourier(event: PointerEvent) {
@@ -371,9 +494,9 @@ defineExpose({ open, show });
             <p class="arcade-eyebrow">01 / SELECT YOUR SIGNAL</p>
             <button v-for="g in games" :key="g" class="arcade-game-choice" :aria-pressed="selectedGame===g" @click="changeGame(g)"><span aria-hidden="true">{{ {breakout:'▰',snake:'〰',invaders:'✦',asteroids:'✧',pinball:'●'}[g] }}</span><b>{{ gameNames[g] }}</b><small>{{ {breakout:'REFLEX',snake:'ROUTE PLANNING',invaders:'DEFENCE',asteroids:'PILOTING',pinball:'PHYSICS'}[g] }}</small></button>
           </aside>
-          <section class="arcade-machine" :aria-labelledby="'arcade-game-title'">
+          <section class="arcade-machine" :class="{ 'pinball-machine': selectedGame==='pinball' }" :aria-labelledby="'arcade-game-title'">
             <div class="arcade-machine__title"><h3 id="arcade-game-title">{{ gameNames[selectedGame].toUpperCase() }}</h3><span>{{ selectedGame==='invaders' ? `ATH / 04 · FIRE ×${invaders.weaponLevel} · THREAT ×${invaderEnemyVolleySize(invaders.level)}` : 'ATH / 04' }}</span></div>
-            <div class="arcade-stats"><span>SCORE <b>{{ String(selectedGame==='breakout'?game.score:arcadeScore).padStart(4, '0') }}</b></span><span>BEST <b>{{ String(personalBest).padStart(4, '0') }}</b></span><span>{{ selectedGame==='snake'?'LENGTH':'LIVES' }} <b>{{ selectedGame==='breakout'?game.lives:selectedGame==='snake'?snake.body.length:selectedGame==='invaders'?invaders.lives:selectedGame==='asteroids'?`${'♥'.repeat(orbital.lives)}${'♡'.repeat(3-orbital.lives)}`:'♡♡♡' }}</b></span><span>{{ selectedGame==='invaders'?'DRONES':'LEVEL' }} <b>{{ selectedGame==='invaders'?String(invaders.enemies.length).padStart(2, '0'):String(selectedGame==='breakout'?game.level:arcadeLevel).padStart(2, '0') }}</b></span></div>
+            <div class="arcade-stats"><span>SCORE <b>{{ String(selectedGame==='breakout'?game.score:arcadeScore).padStart(4, '0') }}</b></span><span>BEST <b>{{ String(personalBest).padStart(4, '0') }}</b></span><span>{{ selectedGame==='snake'?'LENGTH':'LIVES' }} <b>{{ selectedGame==='breakout'?game.lives:selectedGame==='snake'?snake.body.length:selectedGame==='invaders'?invaders.lives:selectedGame==='asteroids'?`${'♥'.repeat(orbital.lives)}${'♡'.repeat(3-orbital.lives)}`:`${'♥'.repeat(pinball.lives)}${'♡'.repeat(Math.max(0,5-pinball.lives))}` }}</b></span><span>{{ selectedGame==='invaders'?'DRONES':'LEVEL' }} <b>{{ selectedGame==='invaders'?String(invaders.enemies.length).padStart(2, '0'):String(selectedGame==='breakout'?game.level:selectedGame==='pinball'?pinball.level:arcadeLevel).padStart(2, '0') }}</b></span></div>
             <div v-if="selectedGame==='breakout'" class="arcade-screen">
               <svg ref="court" class="arcade-court" viewBox="0 0 720 440" role="group" aria-label="Neon Breakout playfield" aria-describedby="arcade-controls arcade-status" tabindex="0" @pointerdown="pointerDown" @pointermove="pointer" @lostpointercapture="held.clear()" @blur="held.clear()" @pointercancel="held.clear()">
                 <defs><pattern id="arcade-grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#6de4ef" stroke-opacity=".07" /></pattern></defs>
@@ -441,10 +564,10 @@ defineExpose({ open, show });
               </svg>
               <div v-if="invaders.status!=='playing'" class="arcade-screen__notice" aria-hidden="true"><span>{{ invaders.status==='ready'?`WAVE ${String(invaders.level).padStart(2,'0')} · ${invaders.weaponLevel===1?'LOCK AND LOAD':invaders.weaponLevel===2?invaders.level===2?'TWIN FIRE UNLOCKED':'TWIN FIRE ACTIVE':invaders.level===5?'TRIPLE FIRE UNLOCKED':'TRIPLE FIRE ACTIVE'}`:invaders.status==='paused'?'PAUSED':invaders.status==='won'?'WAVE CLEARED':'SKYLINE BREACHED' }}</span></div>
             </div>
-            <div v-else class="arcade-screen extra-screen" @pointermove="selectedGame==='asteroids'?aimCourier($event):undefined" @pointerdown="event=>{if(selectedGame==='asteroids'&&arcadeStatus==='playing')holdCourierControl(event,'courier-fire');if(selectedGame==='pinball')pinball.flippers=1}" @pointerup="held.delete('courier-fire');pinball.flippers=0" @pointercancel="held.delete('courier-fire');pinball.flippers=0" @lostpointercapture="held.delete('courier-fire');pinball.flippers=0">
-              <svg viewBox="0 0 720 440" preserveAspectRatio="xMidYMid meet" role="img" :aria-label="`${gameNames[selectedGame]} playfield`">
+            <div v-else class="arcade-screen extra-screen" :class="{ 'pinball-screen': selectedGame==='pinball' }" @pointermove="selectedGame==='asteroids'?aimCourier($event):undefined" @pointerdown="selectedGame==='asteroids'?(arcadeStatus==='playing'?holdCourierControl($event,'courier-fire'):undefined):pinballPointerDown($event)" @pointerup="held.delete('courier-fire');releasePinballFlippers()" @pointercancel="held.delete('courier-fire');releasePinballFlippers()" @lostpointercapture="held.delete('courier-fire');releasePinballFlippers()">
+              <svg :viewBox="selectedGame==='asteroids'?'0 0 720 440':'0 0 440 720'" preserveAspectRatio="xMidYMid meet" role="img" :aria-label="`${gameNames[selectedGame]} playfield`">
                 <defs><radialGradient id="courier-space" cx="50%" cy="46%" r="78%"><stop stop-color="#151a36"/><stop offset="1" stop-color="#070b16"/></radialGradient><filter id="courier-glow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
-                <rect width="720" height="440" :fill="selectedGame==='asteroids'?'url(#courier-space)':'#0b1020'"/>
+                <rect :width="selectedGame==='asteroids'?720:440" :height="selectedGame==='asteroids'?440:720" :fill="selectedGame==='asteroids'?'url(#courier-space)':'#0b1020'"/>
                 <g v-if="selectedGame==='asteroids'" aria-hidden="true">
                   <circle v-for="(star,index) in courierStars" :key="`star-${index}`" :cx="star.x" :cy="star.y" :r="star.r" fill="#b8deff" :opacity="star.opacity"/>
                   <path d="M72 310Q180 205 282 270T485 194T680 245M94 116Q196 70 300 124T512 90T660 130" fill="none" stroke="#7e82cf" stroke-opacity=".09" stroke-width="2"/>
@@ -452,8 +575,20 @@ defineExpose({ open, show });
                   <text x="24" y="34" fill="#a4eee0" font-size="12" font-family="monospace" letter-spacing="2">ATHENS ORBITAL · WAVE {{ String(orbital.level).padStart(2,'0') }}</text>
                 </g>
                 <g v-else aria-hidden="true">
-                  <path d="M0 390V300L100 260L180 320L260 240L360 280L460 220L560 280L640 230L720 280V440H0Z" fill="#17243a" stroke="#457081"/>
-                  <text x="24" y="34" fill="#a4eee0" font-size="14" font-family="monospace">{{ ['MONASTIRAKI','PSYRRI','SYNTAGMA','EXARCHIA','GAZI','PIRAEUS','KOLONAKI','LYCABETTUS','ACROPOLIS','ATHENS'][arcadeLevel-1] }} // NIGHT SHIFT</text>
+                  <image href="/city/arcade/midnight-pinball-playfield.jpg" x="0" y="0" width="440" height="720" preserveAspectRatio="xMidYMid slice"/>
+                  <rect width="440" height="720" fill="#080b18" opacity=".12"/>
+                  <path d="M34 52H367V665M34 52V565M34 565L76 640M367 565L324 640M78 565L132 625M324 565L308 625" fill="none" stroke="#e6c5a6" stroke-opacity=".68" stroke-width="4"/>
+                  <path d="M375 50V684M410 50V684M34 684H180M260 684H367" fill="none" stroke="#8ff5e4" stroke-opacity=".85" stroke-width="3"/>
+                  <path d="M184 684Q220 665 256 684" fill="none" stroke="#ff78c8" stroke-width="5"/>
+                  <text x="50" y="70" fill="#fff0c1" font-size="11" font-family="monospace" letter-spacing="1.2">NIGHT SHIFT · ΠΕΡΙΠΤΕΡΟ RUN</text>
+                  <text x="357" y="70" text-anchor="end" fill="#a4eee0" font-size="10" font-family="monospace">HEAT {{ String(pinball.level).padStart(2,'0') }}</text>
+                  <text x="385" y="145" text-anchor="middle" fill="#b7fff3" font-size="8" font-family="monospace" transform="rotate(90 385 145)">PLUNGER LANE</text>
+                  <g fill="#fff1b7" fill-opacity=".84" stroke="#f381ce" stroke-width="2">
+                    <circle cx="108" cy="92" r="10"/><circle cx="220" cy="92" r="10"/><circle cx="332" cy="92" r="10"/>
+                  </g>
+                  <text x="220" y="122" text-anchor="middle" fill="#fff4d8" font-size="8" font-family="monospace">ROLLOVER LANES</text>
+                  <text x="54" y="612" fill="#ffb9dd" font-size="8" font-family="monospace" transform="rotate(-70 54 612)">OUTLANE</text>
+                  <text x="342" y="612" fill="#ffb9dd" font-size="8" font-family="monospace" transform="rotate(70 342 612)">OUTLANE</text>
                 </g>
                 <g v-if="selectedGame==='asteroids'" filter="url(#courier-glow)">
                   <g v-for="rock in orbital.rocks" :key="rock.id" :transform="`translate(${rock.x} ${rock.y}) rotate(${rock.rotation})`">
@@ -468,16 +603,33 @@ defineExpose({ open, show });
                     <path d="M-4 7L0 1L4 7" fill="none" stroke="#fff0c1" stroke-width="1.5"/>
                   </g>
                 </g>
-                <g v-else>
-                  <path d="M80 380Q360 455 640 380L600 70H120Z" fill="#17172d" stroke="#df92ff" stroke-width="5"/>
-                  <circle v-for="(b,i) in [[180,180],[540,180],[360,130]]" :key="i" :cx="b[0]" :cy="b[1]" r="35" fill="#143d47" stroke="#a4eee0" stroke-width="5"/>
-                  <circle :cx="pinball.ball.x" :cy="pinball.ball.y" r="9" fill="#fff2bf"/>
-                  <path d="M270 370l70 -24M450 370l-70 -24" stroke="#fc83bd" stroke-width="18" stroke-linecap="round"/>
-                  <text x="24" y="420" fill="#d9e3ff">Space / tap to flip · click bumpers for points</text>
+                <g v-else filter="url(#courier-glow)">
+                  <g v-for="(bumper,index) in PINBALL_BUMPERS" :key="`pinball-bumper-${index}`" :transform="`translate(${bumper.x} ${bumper.y})`">
+                    <circle :r="bumper.radius+10" fill="#0b1524" fill-opacity=".9" stroke="#8ff5e4" stroke-width="2" :stroke-opacity=".46+pinball.bumperFlash[index]"/>
+                    <circle :r="bumper.radius" fill="#54254d" stroke="#ff85cf" stroke-width="4" :stroke-opacity=".56+pinball.bumperFlash[index]"/>
+                    <circle :r="bumper.radius*.62" fill="#183c43" stroke="#ffe29a" stroke-width="2"/>
+                    <circle r="4" fill="#fff8dd"/><path :d="`M${-bumper.radius*.55} 0H${bumper.radius*.55}M0 ${-bumper.radius*.55}V${bumper.radius*.55}`" stroke="#e0c7ff" stroke-width="2"/>
+                  </g>
+                  <g v-for="(target,index) in PINBALL_TARGETS" :key="`street-target-${index}`" :transform="`translate(${target.x} ${target.y})`" :opacity="pinball.hitTargets[index] ? 0.45 : 1">
+                    <rect x="-26" y="-13" width="52" height="26" rx="4" fill="#101a2b" stroke="#ffe09c" stroke-width="2"/>
+                    <text y="4" text-anchor="middle" fill="#fff2cb" font-size="8" font-family="monospace">{{ ['FRAPPE','PITA','THE CAT'][index] }}</text>
+                  </g>
+                  <path d="M72 574L126 526L157 582Z" fill="#f38bd2" fill-opacity=".74" stroke="#ffe5a9" stroke-width="3"/>
+                  <path d="M368 574L314 526L283 582Z" fill="#f38bd2" fill-opacity=".74" stroke="#ffe5a9" stroke-width="3"/>
+                  <path d="M132 641L216 618M308 641L224 618" stroke="#291a35" stroke-width="24" stroke-linecap="round"/>
+                  <path :d="`M132 641L216 ${pinball.leftFlipper ? 584 : 618}M308 641L224 ${pinball.rightFlipper ? 584 : 618}`" stroke="#fb83d0" stroke-width="15" stroke-linecap="round"/>
+                  <circle cx="132" cy="641" r="10" fill="#ffe3a2" stroke="#fff6d9" stroke-width="3"/>
+                  <circle cx="308" cy="641" r="10" fill="#ffe3a2" stroke="#fff6d9" stroke-width="3"/>
+                  <path d="M196 687Q220 674 244 687" fill="none" stroke="#ff79ca" stroke-width="7"/>
+                  <g v-if="pinball.ballInShooterLane" opacity=".95"><path d="M393 645V112" stroke="#fff1b7" stroke-opacity=".55" stroke-width="2" stroke-dasharray="4 10"/><path d="M386 155l7-14 7 14" fill="none" stroke="#fff1b7" stroke-width="3"/></g>
+                  <circle :cx="pinball.ball.x" :cy="pinball.ball.y" r="14" fill="#ffce7a" fill-opacity=".24"/>
+                  <circle :cx="pinball.ball.x" :cy="pinball.ball.y" r="7" fill="#fff8de" stroke="#ff9ed7" stroke-width="2"/>
+                  <path v-if="!pinball.ballOnShooter && Math.hypot(pinball.ball.vx,pinball.ball.vy)>270" :d="`M${pinball.ball.x-pinball.ball.vx*.018} ${pinball.ball.y-pinball.ball.vy*.018}L${pinball.ball.x} ${pinball.ball.y}`" fill="none" stroke="#fff2bf" stroke-opacity=".7" stroke-width="3"/>
+                  <text x="220" y="708" text-anchor="middle" fill="#fff1d1" font-size="9" font-family="monospace">← / A LEFT FLIP · RIGHT / D → · SPACE LAUNCH</text>
                 </g>
                 <text v-if="selectedGame==='asteroids'" x="24" y="420" fill="#d9e3ff" font-size="10" font-family="monospace">TURN · THRUST · FIRE · WRAP · RESPAWN {{ orbital.lives }} / 3</text>
               </svg>
-              <div v-if="arcadeStatus!=='playing'" class="arcade-screen__notice"><span>{{ arcadeStatus==='paused'?'PAUSED':arcadeStatus==='won'?'ATHENS SAVED':arcadeStatus==='lost'?'FLIGHT ENDED':selectedGame==='asteroids'?`WAVE ${String(orbital.level).padStart(2,'0')} · ${orbital.rocks.length} ROCKS INBOUND`:`SECTOR ${arcadeLevel} · ${gameTaglines[selectedGame]}` }}</span></div>
+              <div v-if="arcadeStatus!=='playing'" class="arcade-screen__notice"><span>{{ arcadeStatus==='paused'?'PAUSED':arcadeStatus==='won'?'ATHENS SAVED':arcadeStatus==='lost'?selectedGame==='pinball'?'LAST ORDER · GAME OVER':'FLIGHT ENDED':selectedGame==='asteroids'?`WAVE ${String(orbital.level).padStart(2,'0')} · ${orbital.rocks.length} ROCKS INBOUND`:selectedGame==='pinball'?`BALL ${pinball.lives} · READY AT THE PLUNGER`:`SECTOR ${arcadeLevel} · ${gameTaglines[selectedGame]}` }}</span></div>
             </div>
             <div class="arcade-action-bar">
               <p id="arcade-status" class="arcade-status" role="status">{{ selectedGame==='breakout'?message:arcadeMessage }}</p>
@@ -508,8 +660,10 @@ defineExpose({ open, show });
                 <button aria-label="Hold fire" @pointerdown.prevent="holdCourierControl($event,'courier-fire')" @pointerup="releaseCourierControl('courier-fire')" @pointercancel="releaseCourierControl('courier-fire')" @lostpointercapture="releaseCourierControl('courier-fire')">HOLD FIRE</button>
                 <button aria-label="Turn right" @pointerdown.prevent="holdCourierControl($event,'ArrowRight')" @pointerup="releaseCourierControl('ArrowRight')" @pointercancel="releaseCourierControl('ArrowRight')" @lostpointercapture="releaseCourierControl('ArrowRight')">↷</button>
               </div>
-              <div v-else class="arcade-touch-buttons" role="group" aria-label="Midnight Pinball touch controls">
-                <button class="pinball-flip" @pointerdown.prevent="pinball.flippers=1" @pointerup="pinball.flippers=0" @pointercancel="pinball.flippers=0">HOLD TO FLIP</button>
+              <div v-else class="arcade-touch-buttons pinball-controls" role="group" aria-label="Midnight Pinball controls">
+                <button aria-label="Hold left flipper" @pointerdown.prevent="holdPinballFlipper($event,'left')" @pointerup="releasePinballFlippers" @pointercancel="releasePinballFlippers" @lostpointercapture="releasePinballFlippers">◀ FLIP</button>
+                <button class="pinball-launch" aria-label="Launch or serve the ball" @click="launchFromPlunger">LAUNCH</button>
+                <button aria-label="Hold right flipper" @pointerdown.prevent="holdPinballFlipper($event,'right')" @pointerup="releasePinballFlippers" @pointercancel="releasePinballFlippers" @lostpointercapture="releasePinballFlippers">FLIP ▶</button>
               </div>
             </section>
             <details class="arcade-settings">
@@ -670,7 +824,8 @@ defineExpose({ open, show });
 .athens-arcade .arcade-control-deck .invaders-fire { min-width: 102px; border-color: #ffb4df; background: linear-gradient(120deg,#ffb4df,#f2d8a1); color: #10151c; font-weight: 700; }
 .athens-arcade .arcade-control-deck .snake-controls button { width: 42px; min-width: 42px; min-height: 36px; height: 36px; padding: 0; font-size: 18px; }
 .snake-controls > div { display: flex; gap: 5px; }
-.athens-arcade .arcade-control-deck .pinball-flip { min-width: 112px; border-color: #c49ae8; color: #f3d5ff; }
+.athens-arcade .pinball-controls button { min-width: 78px; padding-inline: 10px; touch-action: none; user-select: none; }
+.athens-arcade .pinball-controls .pinball-launch { min-width: 88px; border-color: #ffd79a; background: linear-gradient(120deg,#ffd79a,#ffb7dc); color: #171521; font-weight: 700; }
 .arcade-settings { flex: 0 0 auto; border: 1px solid #384455; border-radius: 6px; background: #111823; }
 .arcade-settings summary { display: flex; align-items: center; justify-content: space-between; min-height: 38px; padding: 0 12px; color: #dce4ef; cursor: pointer; font: 11px 'IBM Plex Mono', monospace; list-style-position: inside; }
 .arcade-settings summary span { color: #9eaabd; font: 10px 'IBM Plex Sans', sans-serif; }
@@ -725,6 +880,20 @@ defineExpose({ open, show });
 @media (max-height: 760px) {
   .arcade-header { margin-bottom: 8px; padding-bottom: 8px; }
   .arcade-footer { display: none; }
+}
+.pinball-machine { display: grid; grid-template-columns: minmax(230px, .9fr) minmax(300px, 1.55fr); grid-template-rows: auto auto minmax(0, 1fr) auto auto; align-items: center; gap: 10px 18px; }
+.pinball-machine > .arcade-machine__title, .pinball-machine > .arcade-stats { grid-column: 1 / -1; }
+.pinball-machine > .pinball-screen { grid-column: 1; grid-row: 3 / 6; justify-self: center; width: auto; height: min(62dvh, 460px); max-height: calc(100dvh - 220px); aspect-ratio: 440 / 720; box-shadow: 0 8px 24px #0009, 0 0 0 2px #2a1c2d; }
+.pinball-machine > .arcade-action-bar { grid-column: 2; grid-row: 3; align-self: end; }
+.pinball-machine > .arcade-control-deck { grid-column: 2; grid-row: 4; grid-template-columns: minmax(0, 1fr); }
+.pinball-machine > .arcade-settings { grid-column: 2; grid-row: 5; align-self: start; }
+.pinball-screen > svg { display: block; width: 100%; height: 100%; }
+.athens-arcade--focused .pinball-machine { display: flex; }
+.athens-arcade--focused .pinball-machine > .pinball-screen { width: auto; height: min(calc(100dvh - 190px), 650px); max-height: calc(100dvh - 190px); aspect-ratio: 440 / 720; }
+@media (max-width: 700px) {
+  .pinball-machine { display: flex; }
+  .pinball-machine > .pinball-screen { height: min(58dvh, 480px); max-height: calc(100dvh - 260px); }
+  .athens-arcade--focused .pinball-machine > .pinball-screen { height: min(calc(100dvh - 190px), 650px); max-height: calc(100dvh - 190px); }
 }
 </style>
   if (selectedGame.value !== 'breakout') { if (arcadeStatus.value === 'lost' || arcadeStatus.value === 'won') resetExtra(); arcadeStatus.value = 'playing'; if (!frame) frame = requestAnimationFrame(tick); return; }

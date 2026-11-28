@@ -59,7 +59,7 @@ const views = ["sunny", "cloudy", "sunset", "dusk", "night"] as const;
           <foreignObject width="1966" height="800">
             <div xmlns="http://www.w3.org/1999/xhtml" class="hero-exterior__effects" :data-phase="state.timePhase">
               <WeatherEffects mode="sky" :state="state" :intensity="previewIntensity" :paused="effectsPaused" />
-              <MoonSky photo-space :state="state" :preview-phase="previewMoonPhase" :preview-progress="previewMoonProgress" :paused="effectsPaused" />
+              <MoonSky v-if="state.timePhase === 'night'" photo-space :state="state" :preview-phase="previewMoonPhase" :preview-progress="previewMoonProgress" :paused="effectsPaused" />
               <AcropolisLightBeams :visible="lit" :paused="effectsPaused" />
             </div>
           </foreignObject>

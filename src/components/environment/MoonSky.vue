@@ -16,10 +16,8 @@ const arcY = computed(() => props.photoSpace
   : 42 - Math.sin(moon.value.progress * Math.PI) * 17);
 const cloudiness = computed(() => getWeatherEffectValues(props.state).cloud);
 const moonOpacity = computed(() => {
-  if (!moon.value.visible) return 0;
-  const base = props.state.timePhase === "night" ? .98
-    : props.state.timePhase === "dusk" ? .94
-      : props.state.timePhase === "dawn" ? .84 : .8;
+  if (!moon.value.visible || props.state.timePhase !== "night") return 0;
+  const base = .98;
   // Keep a readable lunar disc through the weather tint; cloud layers still
   // soften the sky, but should not make an above-horizon Moon disappear.
   return Math.max(.72, base - cloudiness.value * .12);
