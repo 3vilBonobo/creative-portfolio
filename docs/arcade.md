@@ -26,6 +26,17 @@ snake; clearing a district starts the next route with a short courier again.
 Walls, blockers and the snake's own body end a run. Direction keys and the
 on-screen pad use the same queued-turn rule, and Space starts or resumes play.
 
+Rooftop Invaders is a ten-wave defense run. Hold Space, mouse-click, or the touch
+fire button to keep up a steady, straight-ahead stream; each volley stays in its
+lane. The skiff starts with one bolt, unlocks twin bolts at wave two and triple
+bolts at wave five. Losing a life drops the weapon one tier, and later wave
+rewards restore the unlocked tier. Enemy volleys widen to two lanes at wave four
+and three at wave eight, while their firing cadence and formation speed rise.
+Formations grow from fifteen to forty-five drones and later waves add armored
+commanders. A formation reaching the roof or losing all three lives ends the
+run. Clearing a wave awards a bonus and pauses at the next ready screen; the
+last wave wins the run.
+
 ## Local progress
 
 One save per game is stored for the current browser profile/device, without an
@@ -59,17 +70,17 @@ Artwork is currently SVG geometry. Custom billboard sprites, paddle artwork,
 drone silhouettes and skyline details can be added without changing the physics.
 Respect reduced motion for decorative effects; ball movement is the gameplay.
 
-## Suggested next cartridges
+## Cartridge roadmap
 
-These are design proposals, not implemented modes. Relative effort assumes
-short, single-screen games using the same shell and no backend.
+Two cartridges are playable. Remaining proposals are scoped for short,
+single-screen games using the same shell and no backend.
 
-| Order | Game | Athens treatment | Effort | Useful custom art |
+| Order | Game | Athens treatment | Effort | Useful custom art | Status |
 | --- | --- | --- | --- | --- |
-| 1 | Signal Snake | Collect data packets around a city grid | Lowest | Packet icons and metro-style grid |
-| 2 | Rooftop Invaders | Protect antennas from waves of drones | Low–medium | Two or three drone sprites, rooftop turret |
-| 3 | Orbital Courier | Dodge debris above Athens | Medium | Courier craft, debris silhouettes |
-| 4 | Midnight Pinball | Hit neon signs, metro bumpers and antenna ramps | Higher | Table art, flippers, bumpers |
+| 1 | Signal Snake | Collect data packets around a city grid | Lowest | Packet icons and metro-style grid | Playable |
+| 2 | Rooftop Invaders | Protect antennas from waves of drones | Low–medium | Drone sprites, rooftop skiff | Playable |
+| 3 | Orbital Courier | Dodge debris above Athens | Medium | Courier craft, debris silhouettes | Planned |
+| 4 | Midnight Pinball | Hit neon signs, metro bumpers and antenna ramps | Higher | Table art, flippers, bumpers | Planned |
 
 Pinball should follow the simpler games: stable contacts, flipper impulses,
 table tuning and touch controls need more iteration than Breakout's bounded

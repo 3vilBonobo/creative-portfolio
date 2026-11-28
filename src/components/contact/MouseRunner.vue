@@ -32,7 +32,7 @@ const runnerStyle = computed(() => ({
   // Bring the body in front of the opening before turning in place.
   left: `calc(${pose.value.approach * 100}% - ${pose.value.approach * 48}px - var(--mouse-size) * ${1 - pose.value.approach * .38})`,
   opacity: props.active ? pose.value.opacity : 0,
-  transform: `translateY(calc(var(--mouse-size) * ${pose.value.depthOffset})) scale(${pose.value.scale})`,
+  transform: `translateY(calc(var(--mouse-size) * ${pose.value.depthOffset} - var(--floor-depth) * ${1 - pose.value.approach})) scale(${pose.value.scale})`,
 }));
 const spriteStyle = computed(() => {
   const column = pose.value.frame % 4;

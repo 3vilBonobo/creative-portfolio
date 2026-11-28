@@ -4,12 +4,14 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { aboutContent, aboutProfile } from "../data/about";
 import { usePhoneLayout } from "../composables/usePhoneLayout";
+import { useEnvironment } from "../composables/useEnvironment";
 import { FLOOR } from "../config/floors";
 import geometry from "../../public/environments/floor-03-about-corridor/v003/geometry.json";
 import desktopGeometry from "../../public/environments/floor-03-about-corridor/v004/geometry.json";
 
 const root = ref<HTMLElement>();
 const { portrait, landscape, phone } = usePhoneLayout();
+const { state } = useEnvironment();
 type Profile = keyof typeof geometry.profiles;
 const scene = ref<HTMLElement>();
 const profileQueries = ["(max-width: 760px)", "(max-width: 1100px) and (orientation: portrait)", "(max-width: 1300px)"];
@@ -155,7 +157,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <section :id="FLOOR.about.id" ref="root" class="floor-section about" :class="{ 'about--phone': phone, 'about--portrait': portrait, 'about--landscape': landscape }" :data-floor-number="FLOOR.about.number" :data-artwork-profile="profile" :style="sceneStyle" aria-labelledby="about-title">
+  <section :id="FLOOR.about.id" ref="root" class="floor-section about" :class="{ 'about--phone': phone, 'about--portrait': portrait, 'about--landscape': landscape }" :data-floor-number="FLOOR.about.number" :data-phase="state.timePhase" :data-artwork-profile="profile" :style="sceneStyle" aria-labelledby="about-title">
     <div class="about__scene-window">
     <div ref="scene" class="about__scene">
       <img class="about__scene-base" :src="assetRoot + artwork.filename" :width="artwork.export_size[0]" :height="artwork.export_size[1]" alt="" aria-hidden="true" loading="lazy">

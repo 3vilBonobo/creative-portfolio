@@ -1,8 +1,8 @@
-export const ATHENS = { latitude: 37.9838, longitude: 23.7275, timeZone: "Europe/Athens" } as const;
+export const ATHENS = { latitude: 37.9755, longitude: 23.7349, timeZone: "Europe/Athens" } as const;
 
 export const WEATHER_API_ENDPOINT = "https://api.open-meteo.com/v1/forecast";
 export const WEATHER_CACHE_KEY = "portfolio:athens-weather:v1";
-export const WEATHER_CACHE_TTL_MS = 15 * 60 * 1000;
+export const WEATHER_CACHE_TTL_MS = 5 * 60 * 1000;
 
 export const SOLAR_PHASE_INTERVALS = {
   dawnBeforeSunrise: 45,

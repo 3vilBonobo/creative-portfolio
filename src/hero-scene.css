@@ -29,8 +29,12 @@
   opacity: 0;
   transition: opacity .35s ease;
 }
+.app-shell[data-weather="partlyCloudy"] .hero-scene__visibility-lift { opacity: .24; }
+.app-shell[data-weather="cloudy"] .hero-scene__visibility-lift,
+.app-shell[data-weather="fog"] .hero-scene__visibility-lift,
 .app-shell[data-weather="rain"] .hero-scene__visibility-lift,
-.app-shell[data-weather="storm"] .hero-scene__visibility-lift { opacity: 1; }
+.app-shell[data-weather="storm"] .hero-scene__visibility-lift,
+.app-shell[data-weather="snow"] .hero-scene__visibility-lift { opacity: .62; }
 .hero-scene[data-phase="goldenHour"] .hero-scene__plate--day { filter: sepia(.08) saturate(1.04); }
 .hero-visual--wide .hero-scene .scene-environment--hero {
   z-index: 2;
@@ -40,7 +44,7 @@
 /* The plates already contain real skies. Weather adds movement without erasing them. */
 .hero-scene .scene-clear-sky { display: none; }
 .hero-scene .scene-environment__grade { display: block; }
-.hero-scene .weather-clouds { inset: 18% 12% 66%; opacity: calc(var(--effect-cloud) * .16); overflow: hidden; }
+.hero-scene .weather-clouds { inset: 18% 12% 66%; opacity: calc(var(--effect-cloud) * .16); overflow: hidden; mask-image: linear-gradient(to bottom, #000 0 44%, transparent 100%); }
 .hero-scene .weather-clouds--dense { background: none; }
 .hero-scene .weather-clouds--dense .weather-cloud-bank { top: 0; height: 100%; }
 .hero-scene .weather-cloud-bank { animation-duration: clamp(95s, var(--cloud-duration), 220s); }

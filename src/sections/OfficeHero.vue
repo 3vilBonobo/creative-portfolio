@@ -268,7 +268,6 @@ onBeforeUnmount(() => {
   --intro-strong: #f4eee2;
   --intro-warm: #f0b45c;
   --intro-cue-bg: #141e1d;
-  --intro-cue-border: #8ed8d033;
   --intro-cue-text: #edf0e9;
   --intro-note: #aeb9b1;
   --intro-toggle-bg: #111918ee;
@@ -297,7 +296,6 @@ onBeforeUnmount(() => {
   --intro-strong: #f5eee9;
   --intro-warm: #f0b35f;
   --intro-cue-bg: #191720;
-  --intro-cue-border: #d7b7da38;
   --intro-cue-text: #eee9ef;
   --intro-note: #bcb4c0;
   --intro-toggle-bg: #15141dee;
@@ -316,7 +314,6 @@ onBeforeUnmount(() => {
   --intro-strong: #f8f3ff;
   --intro-warm: #ff79d5;
   --intro-cue-bg: #171322;
-  --intro-cue-border: #a77acb48;
   --intro-cue-text: #efe8f6;
   --intro-note: #b5aabd;
   --intro-toggle-bg: #151020f2;
@@ -360,10 +357,9 @@ onBeforeUnmount(() => {
 .hero__personal-section p, .hero__world p { margin: .45rem 0 0; color: var(--intro-body); font: 400 clamp(.9rem, 2.1cqi, 1rem)/1.52 Manrope, sans-serif; }
 .hero__personal-section strong { color: var(--intro-strong); font-weight: 700; }
 .hero__world h2 { color: var(--intro-warm); }
-.hero__exploration { min-width: 0; padding: .35rem .8rem; border: 1px solid var(--intro-cue-border); background: var(--intro-cue-bg); transition: background-color .5s ease, border-color .5s ease; }
+.hero__exploration { min-width: 0; padding: .35rem .8rem; background: var(--intro-cue-bg); transition: background-color .5s ease; }
 .hero__exploration-cues { display: grid; gap: 0; margin: 0; padding: 0; list-style: none; }
 .hero__exploration-cues li { display: flex; align-items: center; gap: .6rem; min-width: 0; padding: .42rem 0; color: var(--intro-cue-text); font: 500 clamp(.84rem, 2.1cqi, .94rem)/1.4 Manrope, sans-serif; }
-.hero__exploration-cues li + li { border-top: 1px solid var(--intro-cue-border); }
 .hero__exploration-cues svg { flex: 0 0 1.05rem; width: 1.05rem; height: 1.05rem; fill: none; stroke: var(--intro-cyan); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
 .hero__exploration-cues li > span { min-width: 0; }
 .hero-copy-drawer .hero__cat-note { margin: .05rem 0 0; color: var(--intro-note); font: italic .68rem/1.4 Manrope, sans-serif; }

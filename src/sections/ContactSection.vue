@@ -80,9 +80,9 @@ onBeforeUnmount(() => {
             <p class="contact-screen__copy">I build thoughtful interfaces and immersive web experiences. Have something in mind? Let’s talk.</p>
             <a class="contact-email" href="mailto:3vilbonobo@gmail.com"><span>Email Irinella</span><span aria-hidden="true">↗</span><small>3vilbonobo@gmail.com</small></a>
             <nav id="contact-socials" class="contact-socials" aria-label="Irinella's social profiles">
-              <a href="https://x.com/Irinella_b" target="_blank" rel="noopener noreferrer" aria-label="Visit Irinella on X"><span>X</span><span aria-hidden="true">↗</span></a>
-              <a href="https://www.instagram.com/irinella_b/" target="_blank" rel="noopener noreferrer" aria-label="Visit Irinella on Instagram"><span>Instagram</span><span aria-hidden="true">↗</span></a>
-              <a href="https://www.linkedin.com/in/irinella-boutsika/" target="_blank" rel="noopener noreferrer" aria-label="Visit Irinella on LinkedIn"><span>LinkedIn</span><span aria-hidden="true">↗</span></a>
+              <a href="https://x.com/Irinella_b" target="_blank" rel="noopener noreferrer" aria-label="Visit Irinella on X"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18.9 1.15h3.68L14.54 10.1 24 22.26h-7.4l-5.8-7.59-6.64 7.59H.47L9.2 12.3 0 1.15h7.59l5.24 6.93 6.07-6.93Zm-1.29 19.06h2.04L6.61 3.09H4.42l13.19 17.12Z"/></svg><span>X</span><span aria-hidden="true">↗</span></a>
+              <a href="https://www.instagram.com/irinella_b/" target="_blank" rel="noopener noreferrer" aria-label="Visit Irinella on Instagram"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle class="contact-socials__icon-dot" cx="17.5" cy="6.5" r=".8"/></svg><span>Instagram</span><span aria-hidden="true">↗</span></a>
+              <a href="https://www.linkedin.com/in/irinella-boutsika/" target="_blank" rel="noopener noreferrer" aria-label="Visit Irinella on LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM3.56 9h3.56v11.45H3.56V9ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg><span>LinkedIn</span><span aria-hidden="true">↗</span></a>
             </nav>
             <p class="contact-screen__signature"><span aria-hidden="true">✦</span> Irinella Boutsika</p>
           </div>
@@ -132,7 +132,7 @@ onBeforeUnmount(() => {
 .contact-scene__layout { position: absolute; inset: 0; display: block; padding: 0; min-height: 0; }
 .exit-door { left: 10%; top: 28%; width: 14%; height: 58%; padding: 0; border: 0; background: transparent; box-shadow: none; cursor: pointer; }
 .exit-door:hover { background: transparent; box-shadow: none; }
-:deep(.mouse-world) { position: absolute; inset: 0; height: auto; margin: 0; background: none; border: 0; --hole-x: 41%; --floor-y: 94%; }
+:deep(.mouse-world) { position: absolute; inset: 0; height: auto; margin: 0; background: none; border: 0; --hole-x: 54%; --floor-y: 86%; --hatch-yaw: -24deg; --hatch-slope: -3deg; }
 /* Mirror the whole approach lane, keeping the gait and turn pointed toward its doorway. */
 :deep(.mouse-world__track) { left: calc(var(--hole-x) - 48px); width: calc(100% - var(--hole-x) + 48px); transform: scaleX(-1); }
 @keyframes contact-signal { 0%, 94%, 97%, 100% { opacity: 1; } 95%, 98% { opacity: .65; } }
@@ -141,19 +141,21 @@ onBeforeUnmount(() => {
   .contact-sky { mask-image: url('/environments/floor-00-contact/floor00-ultrawide-sky-mask.svg'); }
   .contact-practical { left: 27%; top: 8%; width: 13%; height: 17%; }
   .exit-door { left: 10%; top: 25%; width: 13%; height: 65%; }
+  :deep(.mouse-world) { --hole-x: 55%; --floor-y: 88%; --hatch-yaw: -28deg; --hatch-slope: -2deg; }
 }
 @media (min-width: 601px) and (max-width: 1100px) {
   .contact-scene__stage { aspect-ratio: 1448/1086; }
   .contact-sky { mask-image: url('/environments/floor-00-contact/floor00-tablet-sky-mask.svg'); }
   .contact-practical { left: 27%; top: 18%; width: 15%; height: 13%; }
   .exit-door { left: 10%; top: 32%; width: 14%; height: 48%; }
+  :deep(.mouse-world) { --hole-x: 57%; --floor-y: 76%; --hatch-yaw: -27deg; --hatch-slope: -3deg; }
 }
 @media (max-width: 900px) {
   .contact-scene__stage { aspect-ratio: auto; }
   .contact-scene__art { bottom: auto; height: auto; aspect-ratio: 1448/1086; }
   .contact-scene__layout { position: relative; inset: auto; height: auto; display: flex; flex-direction: column; padding: calc(1086 / 1448 * 100% + 16px) 20px 28px; }
   .exit-door { position: absolute; left: 10%; top: 0; margin-top: 24%; width: 14%; height: 36cqi; }
-  :deep(.mouse-world) { position: relative; inset: auto; width: 100%; height: 90px; margin: 0; background: none; border: 0; --hole-x: 50%; --floor-y: 82%; --mouse-size: 52px; }
+  :deep(.mouse-world) { position: absolute; inset: 0 auto auto 0; width: 100%; aspect-ratio: 1448 / 1086; height: auto; margin: 0; background: none; border: 0; --hole-x: 57%; --floor-y: 76%; --mouse-size: 52px; --hatch-yaw: -27deg; --hatch-slope: -3deg; }
   :deep(.mouse-world) { background: linear-gradient(#0a101155, #0a101122), url('/environments/floor-00-contact/floor00-tablet-day.webp') center bottom / 100% auto; }
   .contact-scene[data-phase="night"] :deep(.mouse-world), .contact-scene[data-phase="dusk"] :deep(.mouse-world) { background-image: linear-gradient(#0a101155, #0a101122), url('/environments/floor-00-contact/floor00-tablet-night.webp'); }
   .contact-scene__precipitation { max-height: 75cqi; }
@@ -167,7 +169,7 @@ onBeforeUnmount(() => {
   .contact-scene[data-phase="night"] .contact-practical { left: 35%; top: 27%; }
   .contact-scene__layout { position: relative; inset: auto; height: auto; display: flex; flex-direction: column; padding: calc(1672 / 941 * 100% + 16px) 20px 28px; }
   .exit-door { position: absolute; left: 9%; top: 0; margin-top: 103%; width: 17%; height: 33cqi; }
-  :deep(.mouse-world) { position: relative; inset: auto; width: 100%; height: 90px; margin: 0; background: none; border: 0; --hole-x: 50%; --floor-y: 82%; --mouse-size: 52px; }
+  :deep(.mouse-world) { position: absolute; inset: 0 auto auto 0; width: 100%; aspect-ratio: 941 / 1672; height: auto; margin: 0; background: none; border: 0; --hole-x: 59%; --floor-y: 70%; --mouse-size: 52px; --hatch-yaw: -20deg; --hatch-slope: -5deg; }
   :deep(.mouse-world) { background: linear-gradient(#0a101155, #0a101122), url('/environments/floor-00-contact/floor00-mobile-day.webp') center bottom / 100% auto; }
   .contact-scene[data-phase="night"] :deep(.mouse-world), .contact-scene[data-phase="dusk"] :deep(.mouse-world) { background-image: linear-gradient(#0a101155, #0a101122), url('/environments/floor-00-contact/floor00-mobile-night.webp'); }
   .contact-scene__precipitation { max-height: 177.68cqi; }
@@ -251,6 +253,18 @@ onBeforeUnmount(() => {
     radial-gradient(ellipse at 0 95%, #b5a28c12, transparent 23%),
     linear-gradient(177deg, transparent 0 87%, #b6dce509 87.1%, transparent 87.4%);
 }
+.contact-scene[data-phase="dusk"] .contact-screen {
+  border-color: #d7b7da55;
+  border-top-color: #a2dcd9a6;
+  background: radial-gradient(ellipse at 100% 70%, #7c3c732e, transparent 58%), linear-gradient(125deg, #11111bf2, #0d0b14f5 60%, #17101bf0);
+  box-shadow: inset 0 0 0 2px #08070e, inset 2px 4px 12px #000b, inset -1px -1px 1px #a32b7138, 0 -1px 9px #a2dcd938, 2px 0 10px #db63b122;
+}
+.contact-scene[data-phase="night"] .contact-screen {
+  border-color: #a77acb61;
+  border-top-color: #79edf4b8;
+  background: radial-gradient(ellipse at 100% 70%, #a12c7a35, transparent 58%), linear-gradient(125deg, #100d1bf5, #0b0913f7 60%, #180d20f2);
+  box-shadow: inset 0 0 0 2px #08060f, inset 2px 4px 12px #000b, inset -1px -1px 1px #a32b7146, 0 -1px 11px #79edf448, 2px 0 12px #ed5dc62e;
+}
 .contact-screen > * { flex-shrink: 0; }
 .contact-screen__title { margin: 0; color: #abf5ff; font: 500 clamp(28px, 2.6cqi, 68px)/.98 "Barlow Condensed", sans-serif; text-transform: uppercase; letter-spacing: .015em; text-shadow: 0 0 2px #c8f3fb88, 0 0 8px #2fbedf66, 0 0 20px #22a9d02e, 0 1px 1px #000; }
 .contact-screen__title em { color: #ff8ec8; font-style: normal; text-shadow: 0 0 3px #ffd6e866, 0 0 10px #ee358d66, 0 0 22px #dd318a33; }
@@ -261,6 +275,9 @@ onBeforeUnmount(() => {
 .contact-socials { display: flex; flex-wrap: wrap; gap: .35cqi; }
 .contact-socials a { position: static; display: flex; align-items: center; justify-content: space-between; gap: .35rem; flex: 1; min-width: 44px; width: auto; height: auto; min-height: 50px; padding: .3rem .45rem; border: 1px solid color-mix(in srgb, var(--social-neon) 56%, transparent); border-radius: 3px; background: color-mix(in srgb, var(--social-neon) 8%, #060b15); color: var(--social-neon); box-shadow: inset 0 0 10px color-mix(in srgb, var(--social-neon) 10%, transparent), 0 0 8px color-mix(in srgb, var(--social-neon) 18%, transparent); text-shadow: 0 0 7px color-mix(in srgb, var(--social-neon) 60%, transparent); text-decoration: none; font: 400 clamp(10px, .7cqi, 15px)/1.4 "IBM Plex Mono", monospace; transition: border-color .2s, background .2s, box-shadow .2s, transform .2s; }
 .contact-socials a > span { position: static; width: auto; height: auto; overflow: visible; clip: auto; }
+.contact-socials a > svg { display: block; flex: 0 0 1em; width: 1em; height: 1em; fill: currentColor; }
+.contact-socials a:nth-child(2) > svg { fill: none; stroke: currentColor; stroke-width: 1.8; }
+.contact-socials a:nth-child(2) > svg .contact-socials__icon-dot { fill: currentColor; stroke: none; }
 .contact-socials a:nth-child(1) { --social-neon: #eafaff; }
 .contact-socials a:nth-child(2) { --social-neon: #ff8ec8; }
 .contact-socials a:nth-child(3) { --social-neon: #76caff; }
@@ -363,9 +380,9 @@ onBeforeUnmount(() => {
 /* A local wall threshold replaces the duplicated photograph of the pavement.
    The original mouse and accessible hatch retain their lifecycle and dialog. */
 .contact-scene--phone :deep(.mouse-world) {
-  position: relative; inset: auto; flex: 0 0 44px; width: 100%; height: 44px;
+  position: absolute; inset: 0 auto auto 0; flex: none; width: 100%; height: var(--street-art-height);
   margin: 0; border: 0; background: none !important;
-  --hole-x: 82%; --floor-y: 88%; --mouse-size: 48px;
+  --hole-x: 54%; --floor-y: 86%; --mouse-size: 52px; --hatch-yaw: -24deg; --hatch-slope: -3deg;
 }
 .contact-scene--phone :deep(.mouse-world:not(.mouse-world--night)) { display: none; }
 .contact-scene--phone :deep(.mouse-hatch__hint) { opacity: 1; left: auto; right: 100%; bottom: 0; transform: none; font-size: 11px; }
@@ -397,6 +414,7 @@ onBeforeUnmount(() => {
   .contact-scene--phone.contact-scene--landscape .contact-scene__stage { position: relative; width: 100%; height: 100svh; overflow: hidden; }
   .contact-scene--phone.contact-scene--landscape .contact-scene__art { inset: 0; width: 100%; height: 100%; }
   .contact-scene--phone.contact-scene--landscape .contact-scene__plate { object-fit: cover; }
+  .contact-scene--phone.contact-scene--landscape :deep(.mouse-world) { --hole-x: 54%; --floor-y: 86%; --hatch-yaw: -24deg; --hatch-slope: -3deg; }
   .contact-scene--phone.contact-scene--landscape .contact-scene__layout { position: absolute; inset: 0; display: flex; align-items: end; justify-content: center; padding: 0 max(1rem, env(safe-area-inset-right)) max(.75rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left)); }
   .contact-scene--phone.contact-scene--landscape .contact-panel { width: min(100%, 900px); padding: 5px; background: #071113d9; backdrop-filter: blur(5px); }
   .contact-scene--phone.contact-scene--landscape .contact-screen { padding: 8px 12px; gap: 4px 16px; }
@@ -407,7 +425,6 @@ onBeforeUnmount(() => {
   .contact-scene--phone.contact-scene--landscape .contact-socials a { min-height: 36px; }
   .contact-scene--phone.contact-scene--landscape .contact-screen__signature { display: none; }
   .contact-scene--phone.contact-scene--landscape .exit-door { z-index: 1; margin-top: calc(var(--street-art-height) * .25); }
-  .contact-scene--phone.contact-scene--landscape :deep(.mouse-world) { display: none; }
 }
 
 </style>

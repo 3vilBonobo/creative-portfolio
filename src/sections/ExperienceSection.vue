@@ -6,10 +6,12 @@ import ExperienceEnvironment from "../components/experience/ExperienceEnvironmen
 import { experience, communityExperience } from "../data/experience";
 import { FLOOR } from "../config/floors";
 import { usePhoneLayout } from "../composables/usePhoneLayout";
+import { useEnvironment } from "../composables/useEnvironment";
 import { createExperienceArchive, selectExperienceChapter } from "../services/experienceArchive";
 import "../floor01-mobile.css";
 
 const { phone, portrait, landscape } = usePhoneLayout();
+const { state } = useEnvironment();
 const archive = reactive(createExperienceArchive(phone.value));
 const { activeIndex, expanded, contributions } = toRefs(archive);
 const status = ref<HTMLElement>();
@@ -43,7 +45,7 @@ onBeforeUnmount(() => layoutQuery?.removeEventListener("change", updateLayout));
 </script>
 
 <template>
-  <section :id="FLOOR.experience.id" class="floor-section experience" :class="{ 'experience--phone': phone, 'experience--portrait': portrait, 'experience--landscape': landscape }" :data-floor-number="FLOOR.experience.number" aria-labelledby="experience-title">
+  <section :id="FLOOR.experience.id" class="floor-section experience" :class="{ 'experience--phone': phone, 'experience--portrait': portrait, 'experience--landscape': landscape }" :data-floor-number="FLOOR.experience.number" :data-phase="state.timePhase" aria-labelledby="experience-title">
     <div class="experience__scene">
       <ExperienceEnvironment :phone-landscape="landscape" />
       <div class="experience__shade" aria-hidden="true"></div>
