@@ -16,8 +16,8 @@ export const aboutContent = {
       paragraphs: ["Law and criminology shaped how I investigate problems, understand people and untangle complex systems. Software gave those instincts something to build."],
     },
     toolkit: {
-      title: "Code, design & a few rabbit holes.",
-      paragraphs: ["Angular, TypeScript, Vue and React. UX/UI, creative coding and interactive storytelling — with growing curiosity about the systems behind the screen."],
+      title: "",
+      paragraphs: [],
     },
     approach: {
       title: "Curious first. Methodical second.",

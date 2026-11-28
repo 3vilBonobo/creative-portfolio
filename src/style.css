@@ -3059,18 +3059,15 @@ button:focus-visible {
 .about__profile-panel h3 { margin: 0 0 .65rem; color: var(--about-cream); font: 600 1.375rem/1.25 "Barlow Condensed", sans-serif; }
 .about__profile-panel p { max-width: 65ch; margin: 0 0 .75rem; color: var(--about-copy); font-size: .9375rem; line-height: 1.7; }
 .about__profile-panel p:last-child { margin-bottom: 0; }
-.about__toolkit { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .65rem; margin-top: 1rem; }
-.about__toolkit-group { min-width: 0; padding: .75rem; border: 1px solid color-mix(in srgb, var(--toolkit-accent) 34%, transparent); border-radius: .55rem; background: linear-gradient(145deg, color-mix(in srgb, var(--toolkit-accent) 9%, #101719), #0b1014e8 72%); box-shadow: inset 0 1px #ffffff0b; }
-.about__toolkit-group h4 { display: flex; align-items: center; gap: .45rem; margin: 0 0 .65rem; color: var(--toolkit-accent); font: 600 .68rem/1.3 "IBM Plex Mono", monospace; letter-spacing: .035em; text-transform: uppercase; }
-.about__toolkit-group h4 > span { font-size: 1rem; line-height: 1; }
-.about__toolkit-group ul { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .4rem .2rem; margin: 0; padding: 0; list-style: none; }
-.about__toolkit-group li { position: relative; display: flex; min-width: 0; flex-direction: column; align-items: center; gap: .3rem; padding: .25rem .1rem; border-radius: .35rem; color: var(--about-copy); text-align: center; cursor: help; transition: background-color 150ms ease, transform 150ms ease; }
-.about__toolkit-group li:hover, .about__toolkit-group li:focus-visible { z-index: 2; transform: translateY(-2px); background: #ffffff0b; outline: none; }
-.about__toolkit-group li:focus-visible { box-shadow: 0 0 0 2px var(--toolkit-accent); }
+.about__toolkit { margin-top: .85rem; }
+.about__toolkit-list { display: grid; grid-template-columns: repeat(11, minmax(0, 1fr)); gap: .25rem; margin: 0; padding: .4rem; border: 1px solid #b4cac52b; border-radius: .5rem; background: #101a19; list-style: none; }
+.about__toolkit-list li { position: relative; display: flex; min-width: 0; flex-direction: column; align-items: center; justify-content: center; gap: .18rem; min-height: 3.4rem; padding: .2rem .05rem; border-radius: .35rem; color: var(--about-copy); text-align: center; cursor: help; transition: background-color 150ms ease, transform 150ms ease; }
+.about__toolkit-list li:hover, .about__toolkit-list li:focus-visible { z-index: 2; transform: translateY(-2px); background: #ffffff0b; outline: none; }
+.about__toolkit-list li:focus-visible { box-shadow: 0 0 0 2px var(--toolkit-accent); }
 .about__tool-mark { display: grid; width: 1.8rem; height: 1.8rem; place-items: center; border: 1px solid color-mix(in srgb, var(--tool-color) 45%, transparent); border-radius: .45rem; color: var(--tool-color); background: color-mix(in srgb, var(--tool-color) 16%, #111820); box-shadow: 0 0 .9rem color-mix(in srgb, var(--tool-color) 19%, transparent), inset 0 1px #ffffff19; font: 700 .77rem/1 "IBM Plex Mono", monospace; letter-spacing: -.06em; }
-.about__tool-name { max-width: 100%; font: 500 .6rem/1.2 "IBM Plex Sans", sans-serif; }
-.about__toolkit-group li::after { position: absolute; bottom: calc(100% - .1rem); left: 50%; z-index: 5; width: max-content; max-width: 12rem; padding: .4rem .55rem; border: 1px solid color-mix(in srgb, var(--toolkit-accent) 55%, transparent); border-radius: .35rem; color: var(--about-cream); background: #0b1014f5; box-shadow: 0 .4rem 1rem #0008; content: attr(data-tooltip); font: 500 .68rem/1.35 "IBM Plex Mono", monospace; opacity: 0; pointer-events: none; transform: translate(-50%, .25rem); transition: opacity 120ms ease, transform 120ms ease; }
-.about__toolkit-group li:hover::after, .about__toolkit-group li:focus-visible::after { opacity: 1; transform: translate(-50%, 0); }
+.about__tool-name { max-width: 100%; color: #dce3dc; font: 500 .54rem/1.15 "IBM Plex Sans", sans-serif; overflow-wrap: anywhere; }
+.about__toolkit-list li::after { position: absolute; bottom: calc(100% - .1rem); left: 50%; z-index: 5; width: max-content; max-width: 12rem; padding: .4rem .55rem; border: 1px solid color-mix(in srgb, var(--toolkit-accent) 55%, transparent); border-radius: .35rem; color: var(--about-cream); background: #0b1014f5; box-shadow: 0 .4rem 1rem #0008; content: attr(data-tooltip); font: 500 .68rem/1.35 "IBM Plex Mono", monospace; opacity: 0; pointer-events: none; transform: translate(-50%, .25rem); transition: opacity 120ms ease, transform 120ms ease; }
+.about__toolkit-list li:hover::after, .about__toolkit-list li:focus-visible::after { opacity: 1; transform: translate(-50%, 0); }
 @keyframes about-panel-settle { from { opacity: .65; } to { opacity: 1; } }
 /* All desktop states determine intrinsic height; inactive states cannot receive focus. */
 @media (min-width: 1301px) {
@@ -3086,8 +3083,8 @@ button:focus-visible {
 }
 @media (max-width: 760px) {
   .about { scroll-margin-top: calc(3.5rem + env(safe-area-inset-top)); }
-  .about__scene-window { position: relative; display: block; height: 11rem; overflow: clip; }
-  .about__scene { width: 200px; inset: -1.5rem 0 auto auto; margin: 0; }
+  .about__scene-window { position: relative; display: block; height: clamp(18rem, 78vw, 20rem); overflow: clip; }
+  .about__scene { width: min(100%, 440px); inset: -2.5rem 0 auto auto; margin: 0; }
   .about__layout { width: auto; min-height: 0; margin: 0; padding: 0 max(.75rem, env(safe-area-inset-right)) calc(2.5rem + env(safe-area-inset-bottom)) max(.75rem, env(safe-area-inset-left)); }
   .about__reading-surface { padding: 1.25rem; border-radius: .5rem; box-shadow: 0 8px 24px #00000026; }
   .about__name { font-size: .875rem; }
@@ -3095,13 +3092,12 @@ button:focus-visible {
   .about__statement { font-size: 2rem; margin-top: 1.25rem; }
   .about__introduction { font-size: 1rem; line-height: 1.65; }
   .about__tabs button { flex-basis: 5.5rem; flex-direction: column; gap: .25rem; min-width: max-content; font-size: .75rem; padding-inline: .25rem; }
-  .about__toolkit { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .5rem; }
-  .about__toolkit-group { padding: .65rem .45rem; }
-  .about__toolkit-group ul { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .about__toolkit-list { grid-template-columns: repeat(7, minmax(0, 1fr)); gap: .2rem; }
+  .about__toolkit-list li { min-height: 3.25rem; }
 }
 @media (max-width: 420px) {
-  .about__toolkit { grid-template-columns: 1fr; }
-  .about__toolkit-group ul { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .about__toolkit-list { grid-template-columns: repeat(7, minmax(0, 1fr)); gap: .12rem; padding: .25rem; }
+  .about__tool-mark { width: 1.5rem; height: 1.5rem; font-size: .68rem; }
 }
 /* Touch landscape uses the already selected desktop plate at a modest scale. */
 .about.about--landscape .about__scene-window { height: 10rem; }

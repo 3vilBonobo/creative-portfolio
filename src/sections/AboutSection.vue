@@ -110,6 +110,11 @@ const toolkitGroups = [
     ],
   },
 ] as const;
+type ToolkitTool = (typeof toolkitGroups)[number]["tools"][number];
+const toolkitHighlights: ToolkitTool[] = toolkitGroups.reduce<ToolkitTool[]>(
+  (tools, group) => tools.concat([...group.tools]),
+  [],
+);
 let context: gsap.Context | undefined;
 
 function selectTab(id: typeof activeTab.value, focus = false) {
@@ -174,18 +179,15 @@ onBeforeUnmount(() => {
           </div>
           <div class="about__panels">
             <section v-for="tab in tabs" :id="`about-panel-${tab.id}`" :key="tab.id" class="about__profile-panel" :class="{ 'is-active': activeTab === tab.id }" :inert="activeTab !== tab.id" :aria-hidden="activeTab !== tab.id" role="tabpanel" :aria-labelledby="`about-tab-${tab.id}`" tabindex="0">
-              <h3>{{ aboutContent.panels[tab.id].title }}</h3>
+              <h3 v-if="aboutContent.panels[tab.id].title">{{ aboutContent.panels[tab.id].title }}</h3>
               <p v-for="paragraph in aboutContent.panels[tab.id].paragraphs" :key="paragraph">{{ paragraph }}</p>
               <div v-if="tab.id === 'toolkit'" class="about__toolkit" aria-label="Tools and technologies">
-                <section v-for="group in toolkitGroups" :key="group.id" class="about__toolkit-group" :style="{ '--toolkit-accent': group.accent }" :aria-labelledby="`about-toolkit-${group.id}`">
-                  <h4 :id="`about-toolkit-${group.id}`"><span aria-hidden="true">{{ group.icon }}</span>{{ group.label }}</h4>
-                  <ul>
-                    <li v-for="tool in group.tools" :key="tool.name" tabindex="0" :data-tooltip="tool.detail" :aria-label="`${tool.name}: ${tool.detail}`">
-                      <span class="about__tool-mark" :style="{ '--tool-color': tool.color }" aria-hidden="true">{{ tool.mark }}</span>
-                      <span class="about__tool-name">{{ tool.name }}</span>
-                    </li>
-                  </ul>
-                </section>
+                <ul class="about__toolkit-list">
+                  <li v-for="tool in toolkitHighlights" :key="tool.name" tabindex="0" :style="{ '--tool-color': tool.color, '--toolkit-accent': tool.color }" :data-tooltip="`${tool.name} · ${tool.detail}`" :aria-label="`${tool.name}: ${tool.detail}`">
+                    <span class="about__tool-mark" aria-hidden="true">{{ tool.mark }}</span>
+                    <span class="about__tool-name" aria-hidden="true">{{ tool.name }}</span>
+                  </li>
+                </ul>
               </div>
             </section>
           </div>
