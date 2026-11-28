@@ -89,7 +89,10 @@ export function getMoonAppearance(now: Date): MoonAppearance {
   const progress = nearestMoonArc(now);
   const phase = clamp(illumination.phase);
   return {
-    visible: progress !== null && position.altitude > -.035 && illumination.fraction > .015,
+    // SunCalc's moonrise event accounts for refraction and the Moon's radius;
+    // keep the rendered disc close to that apparent horizon instead of
+    // revealing it while its center is still almost two degrees below it.
+    visible: progress !== null && position.altitude > -.003 && illumination.fraction > .003,
     progress: progress ?? .5,
     illumination: clamp(illumination.fraction),
     phase,
