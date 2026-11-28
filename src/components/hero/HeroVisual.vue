@@ -6,13 +6,11 @@ import { HERO_SCENE } from "../../config/heroScene";
 import { useEnvironment } from "../../composables/useEnvironment";
 import HeroClock from "./HeroClock.vue";
 import HeroMonitorAnimations from "./HeroMonitorAnimations.vue";
-import AcropolisLightBeams from "./AcropolisLightBeams.vue";
-import MoonSky from "../environment/MoonSky.vue";
-import SceneEnvironment from "../environment/SceneEnvironment.vue";
+import HeroExterior from "./HeroExterior.vue";
 import "../../hero-scene.css";
 
 const props = defineProps<{ compact?: boolean }>();
-const { state, previewMoonPhase, previewMoonProgress, previewIntensity, hiddenHeroLayers, showExteriorMask, showInteriorMask, freezeParallax } = useEnvironment();
+const { state, freezeParallax } = useEnvironment();
 const root = ref<HTMLElement>();
 const documentHidden = ref(document.visibilityState === "hidden");
 const nearViewport = ref(true);
@@ -66,19 +64,9 @@ onBeforeUnmount(() => {
     <div class="hero-scene" :data-phase="state.timePhase">
       <picture class="hero-scene__plate hero-scene__plate--day"><img :src="HERO_SCENE.day" :width="HERO_SCENE.width" :height="HERO_SCENE.height" alt="" fetchpriority="high"></picture>
       <picture class="hero-scene__plate hero-scene__plate--night" :style="{ opacity: nightOpacity }"><img :src="HERO_SCENE.night" :width="HERO_SCENE.width" :height="HERO_SCENE.height" alt="" decoding="async" @error="nightFailed = true"></picture>
-      <div class="hero-scene__visibility-lift" :style="{ backgroundImage: `url('${nightOpacity > .4 ? HERO_SCENE.night : HERO_SCENE.day}')` }" />
-      <SceneEnvironment scene="hero" :state="state" :intensity="previewIntensity" :paused="effectsPaused" :precipitation="!hiddenHeroLayers.includes('exteriorPrecipitation')" />
-      <MoonSky :state="state" :preview-phase="previewMoonPhase" :preview-progress="previewMoonProgress" :paused="effectsPaused" :style="{ opacity: nightOpacity }" />
-      <svg class="hero-scene__acropolis-light" viewBox="0 0 1672 941" :style="{ opacity: nightOpacity }">
-        <defs><radialGradient id="wide-acropolis-light"><stop stop-color="#ffd59b" stop-opacity=".3"/><stop offset=".45" stop-color="#efbd78" stop-opacity=".12"/><stop offset="1" stop-color="#efbd78" stop-opacity="0"/></radialGradient></defs>
-        <ellipse cx="811" cy="326" rx="47" ry="13" fill="url(#wide-acropolis-light)" />
-        <ellipse cx="715" cy="334" rx="27" ry="12" fill="url(#wide-acropolis-light)" />
-      </svg>
-      <AcropolisLightBeams :visible="nightOpacity > .4" :paused="effectsPaused" :style="{ opacity: nightOpacity }" />
+      <HeroExterior :paused="effectsPaused" />
       <div class="hero-scene__clock"><HeroClock /></div>
       <div class="hero-scene__monitors"><HeroMonitorAnimations :paused="effectsPaused" /></div>
-      <div v-if="showExteriorMask" class="hero-scene__mask hero-scene__mask--weather" />
-      <div v-if="showInteriorMask" class="hero-scene__mask hero-scene__mask--sky" />
     </div>
   </div>
 </template>

@@ -1,6 +1,6 @@
 export const CAT_SPOTS = [
-  { id: "rug", label: "Rug · beside the desk", x: 1030, y: 824, scale: 1 },
-  { id: "couch", label: "Couch · cushion", x: 230, y: 675, scale: .85 },
+  { id: "rug", label: "Rug · beside the desk", x: 1030, y: 824, scale: .9 },
+  { id: "couch", label: "Couch · cushion", x: 230, y: 675, scale: .765 },
 ] as const;
 export type CatSpot = (typeof CAT_SPOTS)[number]["id"];
 export type CatPose = "sitting" | "sleeping";

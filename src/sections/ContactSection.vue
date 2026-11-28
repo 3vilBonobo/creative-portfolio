@@ -86,6 +86,11 @@ onBeforeUnmount(() => {
             </nav>
             <p class="contact-screen__signature"><span aria-hidden="true">✦</span> Irinella Boutsika</p>
           </div>
+          <div class="contact-panel__weather" :data-weather="state.weatherCondition" aria-hidden="true">
+            <div class="contact-panel__weather-grade" />
+            <WeatherEffects mode="atmosphere" :state="state" :intensity="previewIntensity" :paused="paused" />
+            <WeatherEffects mode="precipitation" :state="state" :intensity="previewIntensity" :paused="paused" />
+          </div>
         </div>
         <a class="exit-door" :href="`#${FLOOR.office.id}`" aria-label="Enter the building and return to the rooftop"><span class="sr-only">Return to rooftop</span></a>
         <MouseEasterEgg />
@@ -132,7 +137,7 @@ onBeforeUnmount(() => {
 .contact-scene__layout { position: absolute; inset: 0; display: block; padding: 0; min-height: 0; }
 .exit-door { left: 10%; top: 28%; width: 14%; height: 58%; padding: 0; border: 0; background: transparent; box-shadow: none; cursor: pointer; }
 .exit-door:hover { background: transparent; box-shadow: none; }
-:deep(.mouse-world) { position: absolute; inset: 0; height: auto; margin: 0; background: none; border: 0; --hole-x: 54%; --floor-y: 86%; --hatch-yaw: -24deg; --hatch-slope: -3deg; }
+:deep(.mouse-world) { position: absolute; inset: 0; height: auto; margin: 0; background: none; border: 0; --hole-x: 43%; --floor-y: 96%; --hatch-yaw: -24deg; --hatch-slope: -3deg; }
 /* Mirror the whole approach lane, keeping the gait and turn pointed toward its doorway. */
 :deep(.mouse-world__track) { left: calc(var(--hole-x) - 48px); width: calc(100% - var(--hole-x) + 48px); transform: scaleX(-1); }
 @keyframes contact-signal { 0%, 94%, 97%, 100% { opacity: 1; } 95%, 98% { opacity: .65; } }
@@ -141,21 +146,21 @@ onBeforeUnmount(() => {
   .contact-sky { mask-image: url('/environments/floor-00-contact/floor00-ultrawide-sky-mask.svg'); }
   .contact-practical { left: 27%; top: 8%; width: 13%; height: 17%; }
   .exit-door { left: 10%; top: 25%; width: 13%; height: 65%; }
-  :deep(.mouse-world) { --hole-x: 55%; --floor-y: 88%; --hatch-yaw: -28deg; --hatch-slope: -2deg; }
+  :deep(.mouse-world) { --hole-x: 43%; --floor-y: 91%; --floor-depth: clamp(6px, 3cqi, 46px); --hatch-yaw: -28deg; --hatch-slope: -2deg; }
 }
 @media (min-width: 601px) and (max-width: 1100px) {
   .contact-scene__stage { aspect-ratio: 1448/1086; }
   .contact-sky { mask-image: url('/environments/floor-00-contact/floor00-tablet-sky-mask.svg'); }
   .contact-practical { left: 27%; top: 18%; width: 15%; height: 13%; }
   .exit-door { left: 10%; top: 32%; width: 14%; height: 48%; }
-  :deep(.mouse-world) { --hole-x: 57%; --floor-y: 76%; --hatch-yaw: -27deg; --hatch-slope: -3deg; }
+  :deep(.mouse-world) { --hole-x: 43%; --floor-y: 88%; --hatch-yaw: -27deg; --hatch-slope: -3deg; }
 }
 @media (max-width: 900px) {
   .contact-scene__stage { aspect-ratio: auto; }
   .contact-scene__art { bottom: auto; height: auto; aspect-ratio: 1448/1086; }
   .contact-scene__layout { position: relative; inset: auto; height: auto; display: flex; flex-direction: column; padding: calc(1086 / 1448 * 100% + 16px) 20px 28px; }
   .exit-door { position: absolute; left: 10%; top: 0; margin-top: 24%; width: 14%; height: 36cqi; }
-  :deep(.mouse-world) { position: absolute; inset: 0 auto auto 0; width: 100%; aspect-ratio: 1448 / 1086; height: auto; margin: 0; background: none; border: 0; --hole-x: 57%; --floor-y: 76%; --mouse-size: 52px; --hatch-yaw: -27deg; --hatch-slope: -3deg; }
+  :deep(.mouse-world) { position: absolute; inset: 0 auto auto 0; width: 100%; aspect-ratio: 1448 / 1086; height: auto; margin: 0; background: none; border: 0; --hole-x: 43%; --floor-y: 88%; --mouse-size: 52px; --hatch-yaw: -27deg; --hatch-slope: -3deg; }
   :deep(.mouse-world) { background: linear-gradient(#0a101155, #0a101122), url('/environments/floor-00-contact/floor00-tablet-day.webp') center bottom / 100% auto; }
   .contact-scene[data-phase="night"] :deep(.mouse-world), .contact-scene[data-phase="dusk"] :deep(.mouse-world) { background-image: linear-gradient(#0a101155, #0a101122), url('/environments/floor-00-contact/floor00-tablet-night.webp'); }
   .contact-scene__precipitation { max-height: 75cqi; }
@@ -169,7 +174,7 @@ onBeforeUnmount(() => {
   .contact-scene[data-phase="night"] .contact-practical { left: 35%; top: 27%; }
   .contact-scene__layout { position: relative; inset: auto; height: auto; display: flex; flex-direction: column; padding: calc(1672 / 941 * 100% + 16px) 20px 28px; }
   .exit-door { position: absolute; left: 9%; top: 0; margin-top: 103%; width: 17%; height: 33cqi; }
-  :deep(.mouse-world) { position: absolute; inset: 0 auto auto 0; width: 100%; aspect-ratio: 941 / 1672; height: auto; margin: 0; background: none; border: 0; --hole-x: 59%; --floor-y: 70%; --mouse-size: 52px; --hatch-yaw: -20deg; --hatch-slope: -5deg; }
+  :deep(.mouse-world) { position: absolute; inset: 0 auto auto 0; width: 100%; aspect-ratio: 941 / 1672; height: auto; margin: 0; background: none; border: 0; --hole-x: 32%; --floor-y: 88%; --mouse-size: 52px; --hatch-yaw: -20deg; --hatch-slope: -5deg; }
   :deep(.mouse-world) { background: linear-gradient(#0a101155, #0a101122), url('/environments/floor-00-contact/floor00-mobile-day.webp') center bottom / 100% auto; }
   .contact-scene[data-phase="night"] :deep(.mouse-world), .contact-scene[data-phase="dusk"] :deep(.mouse-world) { background-image: linear-gradient(#0a101155, #0a101122), url('/environments/floor-00-contact/floor00-mobile-night.webp'); }
   .contact-scene__precipitation { max-height: 177.68cqi; }
@@ -253,6 +258,20 @@ onBeforeUnmount(() => {
     radial-gradient(ellipse at 0 95%, #b5a28c12, transparent 23%),
     linear-gradient(177deg, transparent 0 87%, #b6dce509 87.1%, transparent 87.4%);
 }
+.contact-panel__weather {
+  position: absolute; z-index: 4; inset: var(--rim-top) var(--rim-side) var(--rim-bottom);
+  overflow: hidden; border-radius: 2px; pointer-events: none;
+}
+.contact-panel__weather-grade, .contact-panel__weather :deep(.weather-effects) { position: absolute; inset: 0; }
+.contact-panel__weather-grade { z-index: 0; transition: background .6s ease; }
+.contact-panel__weather[data-weather="cloudy"] .contact-panel__weather-grade { background: linear-gradient(120deg, #a5bac00b, #aab6c019 55%, #b1c3c50b); }
+.contact-panel__weather[data-weather="fog"] .contact-panel__weather-grade { background: linear-gradient(120deg, #c7d6d51c, #c7d6d528 55%, #b3c2c21b); }
+.contact-panel__weather[data-weather="rain"] .contact-panel__weather-grade { background: linear-gradient(120deg, #4389a01a, #345d7b20 55%, #4287a01b); }
+.contact-panel__weather[data-weather="storm"] .contact-panel__weather-grade { background: linear-gradient(120deg, #344b681f, #24364d2a 55%, #304a651f); }
+.contact-panel__weather[data-weather="snow"] .contact-panel__weather-grade { background: linear-gradient(120deg, #b6d1dc18, #b9cedb26 55%, #bfd5de18); }
+.contact-panel__weather :deep(.weather-effects) { z-index: 1; clip-path: none; -webkit-mask: none; mask: none; }
+.contact-panel__weather :deep(.weather-fog--far) { top: 0; left: -8%; width: 116%; height: 100%; opacity: calc(var(--effect-strength) * .22); }
+.contact-panel__weather :deep(.weather-fog--near) { top: 24%; left: -8%; width: 116%; height: 76%; opacity: calc(var(--effect-strength) * .12); }
 .contact-scene[data-phase="dusk"] .contact-screen {
   border-color: #d7b7da55;
   border-top-color: #a2dcd9a6;
@@ -382,10 +401,10 @@ onBeforeUnmount(() => {
 .contact-scene--phone :deep(.mouse-world) {
   position: absolute; inset: 0 auto auto 0; flex: none; width: 100%; height: var(--street-art-height);
   margin: 0; border: 0; background: none !important;
-  --hole-x: 54%; --floor-y: 86%; --mouse-size: 52px; --hatch-yaw: -24deg; --hatch-slope: -3deg;
+  --hole-x: 43%; --floor-y: 96%; --mouse-size: 52px; --hatch-yaw: -24deg; --hatch-slope: -3deg;
 }
 .contact-scene--phone :deep(.mouse-world:not(.mouse-world--night)) { display: none; }
-.contact-scene--phone :deep(.mouse-hatch__hint) { opacity: 1; left: auto; right: 100%; bottom: 0; transform: none; font-size: 11px; }
+.contact-scene--phone :deep(.mouse-hatch__hint) { opacity: 1; left: 50%; right: auto; bottom: 115%; transform: translateX(-50%); font-size: 10px; }
 .contact-scene--phone :deep(.alley-footer) {
   min-height: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 20px;
   padding: 14px max(16px, env(safe-area-inset-right)) max(18px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
@@ -414,7 +433,7 @@ onBeforeUnmount(() => {
   .contact-scene--phone.contact-scene--landscape .contact-scene__stage { position: relative; width: 100%; height: 100svh; overflow: hidden; }
   .contact-scene--phone.contact-scene--landscape .contact-scene__art { inset: 0; width: 100%; height: 100%; }
   .contact-scene--phone.contact-scene--landscape .contact-scene__plate { object-fit: cover; }
-  .contact-scene--phone.contact-scene--landscape :deep(.mouse-world) { --hole-x: 54%; --floor-y: 86%; --hatch-yaw: -24deg; --hatch-slope: -3deg; }
+  .contact-scene--phone.contact-scene--landscape :deep(.mouse-world) { --hole-x: 43%; --floor-y: 91%; --hatch-yaw: -28deg; --hatch-slope: -2deg; }
   .contact-scene--phone.contact-scene--landscape .contact-scene__layout { position: absolute; inset: 0; display: flex; align-items: end; justify-content: center; padding: 0 max(1rem, env(safe-area-inset-right)) max(.75rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left)); }
   .contact-scene--phone.contact-scene--landscape .contact-panel { width: min(100%, 900px); padding: 5px; background: #071113d9; backdrop-filter: blur(5px); }
   .contact-scene--phone.contact-scene--landscape .contact-screen { padding: 8px 12px; gap: 4px 16px; }

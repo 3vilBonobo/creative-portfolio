@@ -4,9 +4,11 @@ import { advanceBreakout, createBreakout, launchBreakout, movePaddle, stepBreako
 import { createArcadeAudio } from '../../services/arcadeAudio';
 import { ARCADE_AUDIO } from '../../data/arcadeAudio';
 import { BREAKOUT_LEVELS } from '../../data/breakoutLevels';
+import { breakoutLevel } from '../../services/breakoutDifficulty.mjs';
 import { deleteArcadeProgress, readArcadeProgress, saveArcadeProgress } from '../../services/arcadeProgress';
 import { createSnake, deleteSnakeSave, readSnakeSave, saveSnake, snakeLevel, snakeTickSeconds, steerSnake, stepSnake, type SnakeDirection } from '../../services/signalSnake';
 import { aimInvaderPlayer, createInvaders, deleteInvadersSave, fireInvaderShot, invaderEnemyVolleySize, INVADERS_PLAYER_Y, moveInvaderPlayer, readInvadersSave, saveInvaders, stepInvaders } from '../../services/rooftopInvaders';
+import { readArcadeRecords, recordArcadeHighScore } from '../../services/arcadeRecords';
 
 defineProps<{ hotspots?: boolean }>();
 const open = ref(false);
@@ -31,7 +33,25 @@ const invaders = reactive(createInvaders());
 const orbital = reactive({ ship: {x:360,y:220,a:-Math.PI/2}, shots: [] as {x:number;y:number;vx:number;vy:number}[], rocks: Array.from({length:7},(_,i)=>({x:(i*103+77)%720,y:(i*59+31)%440,r:12+i%3*5,vx:30+i*4,vy:18+i*3})), keys:new Set<string>() });
 const pinball = reactive({ ball:{x:360,y:220,vx:130,vy:-100}, flippers:0, score:0 });
 const saveKeyFor = (name: ArcadeGame) => `athens-arcade:${name}:v1`;
-const level = computed(() => BREAKOUT_LEVELS[game.level - 1]!);
+const level = computed(() => breakoutLevel(game.level, BREAKOUT_LEVELS));
+const records = ref(readArcadeRecords(storage));
+const personalBest = computed(() => records.value[selectedGame.value]?.score ?? 0);
+const playing = computed(() => selectedGame.value === 'breakout' ? game.status === 'playing'
+  : selectedGame.value === 'snake' ? snake.status === 'playing'
+    : selectedGame.value === 'invaders' ? invaders.status === 'playing' : arcadeStatus.value === 'playing');
+const paused = computed(() => selectedGame.value === 'breakout' ? game.status === 'paused'
+  : selectedGame.value === 'snake' ? snake.status === 'paused'
+    : selectedGame.value === 'invaders' ? invaders.status === 'paused' : arcadeStatus.value === 'paused');
+const gameInstructions: Record<ArcadeGame, { keyboard: string; pointer: string; touch: string }> = {
+  breakout: { keyboard: '← → / A D · Space launch · P pause', pointer: 'Move to steer · click to launch', touch: 'Drag across the board to guide the paddle' },
+  snake: { keyboard: 'Arrows / WASD · Space start · P pause', pointer: 'Choose direction with the pad', touch: 'Tap the direction pad to turn' },
+  invaders: { keyboard: '← → / A D · hold Space to fire · P pause', pointer: 'Move to aim · hold click to fire', touch: 'Drag to steer · hold FIRE to shoot' },
+  asteroids: { keyboard: '← → / A D turn · ↑ / W thrust · Space fire', pointer: 'Move to steer · click to fire', touch: 'Drag to steer · tap to fire' },
+  pinball: { keyboard: 'Space / ↑ / Enter to flip', pointer: 'Click the table to flip', touch: 'Tap the table or FLIP button' },
+};
+function finishRun(name: ArcadeGame, score: number, level: number) {
+  if (recordArcadeHighScore(storage, name, score, level)) records.value = readArcadeRecords(storage);
+}
 const hasSave = ref(!!restored.state);
 const saveMessage = ref(restored.message ?? (restored.state ? 'Saved game loaded. Resume when ready.' : 'Progress stays on this browser/device.'));
 const confirmDelete = ref(false);
@@ -63,7 +83,7 @@ async function configureAudio() {
   audioError.value = ok ? '' : 'Audio unavailable in this browser. You can keep playing silently.';
   if (ok) audio.cue('bounce');
 }
-const message = computed(() => ({ ready: `${level.value.district} · ${level.value.name}. Launch when ready.`, playing: 'Clear the billboards. Double lines need two hits.', paused: 'Taking a breather. Your city can wait.', cleared: `Sector ${game.level} cleared. Next stop: ${BREAKOUT_LEVELS[game.level]?.district}.`, lost: 'Signal lost. Retry this sector or restart the journey.', won: 'All ten sectors clear. The night is yours.' })[game.status]);
+const message = computed(() => ({ ready: `${level.value.district} · ${level.value.name}. Launch when ready.`, playing: 'Clear the billboards. Double lines need two hits.', paused: 'Taking a breather. Your city can wait.', cleared: `Sector ${game.level} cleared. Next stop: ${breakoutLevel(game.level + 1, BREAKOUT_LEVELS).district}.`, lost: 'Signal lost. Your best run is saved on this device.', won: 'City cleared. The night is yours.' })[game.status]);
 const arcadeMessage = computed(() => {
   if (selectedGame.value === 'breakout') return message.value;
   if (selectedGame.value === 'snake') {
@@ -78,7 +98,7 @@ const arcadeMessage = computed(() => {
     if (invaders.status === 'ready') return `Wave ${invaders.level} · ${fireLabel} · ${invaderEnemyVolleySize(invaders.level) === 1 ? 'one hostile lane' : `${invaderEnemyVolleySize(invaders.level)}-shot enemy volleys`}.`;
     if (invaders.status === 'playing') return `${invaders.weaponLevel === 1 ? 'Single' : invaders.weaponLevel === 2 ? 'Twin' : 'Triple'} fire · hold Space or FIRE for a steady stream.`;
     if (invaders.status === 'paused') return 'Turret cooling down. The rooftop is still yours.';
-    if (invaders.status === 'won') return 'Ten waves down. The Acropolis remains gloriously unbothered.';
+    if (invaders.status === 'won') return 'Wave cleared. The Acropolis remains gloriously unbothered.';
     return 'The drones filed a change of address. Give the roof another go.';
   }
   return arcadeStatus.value === 'ready' ? `SECTOR ${arcadeLevel.value} · ${gameTaglines[selectedGame.value]}` : arcadeStatus.value === 'playing' ? gameTaglines[selectedGame.value] : arcadeStatus.value === 'won' ? 'Athens is safe. Go on, have a victory koulouri.' : arcadeStatus.value === 'lost' ? 'The city forgives you. The drones do not.' : 'Paused. Even legends hydrate.';
@@ -100,8 +120,9 @@ function tick(time: number) {
     if (active) frame = requestAnimationFrame(tick); else stop();
     return;
   }
-  const score = game.score, lives = game.lives, vx = game.vx, vy = game.vy;
+  const score = game.score, lives = game.lives, vx = game.vx, vy = game.vy, status = game.status;
   stepBreakout(game, dt, BREAKOUT_LEVELS.length);
+  if (status === 'playing' && game.status === 'lost') finishRun('breakout', game.score, game.level);
   if (game.status === 'won' || game.status === 'cleared') audio.cue('win');
   else if (game.lives < lives) audio.cue('miss');
   else if (game.score > score) audio.cue('brick');
@@ -117,6 +138,13 @@ function play() {
     snake.status = 'playing'; arcadeStatus.value = 'playing'; arcadeLevel.value = snake.level; arcadeScore.value = snake.score;
     void audio.resume().then(() => { if (open.value && snake.status === 'playing') audio.cue('launch'); });
     saveExtra(); if (!frame) frame = requestAnimationFrame(tick); return;
+  }
+  if (selectedGame.value === 'asteroids' || selectedGame.value === 'pinball') {
+    if (arcadeStatus.value === 'lost' || arcadeStatus.value === 'won') resetExtra();
+    arcadeStatus.value = 'playing';
+    void audio.resume().then(() => { if (open.value && arcadeStatus.value === 'playing') audio.cue('launch'); });
+    if (!frame) frame = requestAnimationFrame(tick);
+    return;
   }
   if (selectedGame.value === 'invaders') {
     if (invaders.status === 'won' || invaders.status === 'lost') Object.assign(invaders, createInvaders());
@@ -137,18 +165,28 @@ function play() {
   if (!frame) frame = requestAnimationFrame(tick);
   court.value?.focus({ preventScroll: true });
 }
-function resetExtra() { arcadeLevel.value = 1; arcadeScore.value = 0; arcadeStatus.value = 'ready'; Object.assign(snake, createSnake()); snakeElapsed=0; Object.assign(invaders,createInvaders());orbital.shots.length=0;pinball.ball={x:360,y:220,vx:130,vy:-100}; }
+function resetExtra() {
+  arcadeLevel.value = 1; arcadeScore.value = 0; arcadeStatus.value = 'ready';
+  Object.assign(snake, createSnake()); snakeElapsed = 0;
+  Object.assign(invaders, createInvaders());
+  Object.assign(orbital.ship, { x: 360, y: 220, a: -Math.PI / 2 });
+  orbital.shots.length = 0;
+  orbital.rocks.splice(0, orbital.rocks.length, ...Array.from({ length: 7 }, (_, i) => ({ x: (i * 103 + 77) % 720, y: (i * 59 + 31) % 440, r: 12 + i % 3 * 5, vx: 30 + i * 4, vy: 18 + i * 3 })));
+  pinball.ball = { x: 360, y: 220, vx: 130, vy: -100 }; pinball.flippers = 0; pinball.score = 0;
+}
 function tickExtra(dt:number, time:number) {
   if (selectedGame.value==='snake') {
     snakeElapsed += dt;
     if (snakeElapsed < snakeTickSeconds(snake.level)) return;
     snakeElapsed = 0;
+    const oldStatus = snake.status;
     const result = stepSnake(snake);
     arcadeLevel.value = snake.level; arcadeScore.value = snake.score; arcadeStatus.value = snake.status;
     if (result === 'snack') audio.cue('brick');
     else if (result === 'sector') audio.cue('win');
     else if (result === 'won') audio.cue('win');
     else if (result === 'lost') audio.cue('miss');
+    if (oldStatus === 'playing' && snake.status === 'lost') finishRun('snake', snake.score, snake.level);
     if (result !== 'idle' && (result !== 'moved' || time - lastSave >= 2000 || snake.status !== 'playing')) { saveExtra(); lastSave = time; }
     if (snake.status !== 'playing') { stop(); return; }
   }
@@ -158,14 +196,15 @@ function tickExtra(dt:number, time:number) {
     moveInvaderPlayer(invaders,Math.max(-1,Math.min(1,axis)) as -1|0|1,dt);
     if (held.has('inv-fire')) fireInvaders();
     const events=stepInvaders(invaders,dt);
+    if(oldStatus==='playing'&&invaders.status==='lost')finishRun('invaders',invaders.score,invaders.level);
     arcadeLevel.value=invaders.level; arcadeScore.value=invaders.score; arcadeStatus.value=invaders.status;
     for(const event of events){if(event==='hit')audio.cue('brick');else if(event==='life'||event==='lost')audio.cue('miss');else if(event==='wave'||event==='won')audio.cue('win');}
     if(invaders.score!==oldScore||invaders.lives!==oldLives||invaders.level!==oldLevel||invaders.status!==oldStatus||time-lastSave>=2000){saveExtra();lastSave=time;}
   }
-  if(selectedGame.value==='asteroids'){const k=orbital.keys;if(k.has('ArrowLeft')||k.has('a'))orbital.ship.a-=3*dt;if(k.has('ArrowRight')||k.has('d'))orbital.ship.a+=3*dt;if(k.has('ArrowUp')||k.has('w')){orbital.ship.x+=Math.cos(orbital.ship.a)*150*dt;orbital.ship.y+=Math.sin(orbital.ship.a)*150*dt;}orbital.ship.x=(orbital.ship.x+720)%720;orbital.ship.y=(orbital.ship.y+440)%440;for(const r of orbital.rocks){r.x=(r.x+r.vx*dt+720)%720;r.y=(r.y+r.vy*dt+440)%440;if(Math.hypot(r.x-orbital.ship.x,r.y-orbital.ship.y)<r.r+9)arcadeStatus.value='lost';}for(const s of orbital.shots){s.x+=s.vx*dt;s.y+=s.vy*dt;}orbital.shots=orbital.shots.filter(s=>s.x>=0&&s.x<=720&&s.y>=0&&s.y<=440);for(const s of orbital.shots)for(let i=orbital.rocks.length-1;i>=0;i--){const r=orbital.rocks[i];if(Math.hypot(s.x-r.x,s.y-r.y)<r.r){orbital.rocks.splice(i,1);s.x=-1;arcadeScore.value+=15;}}if(!orbital.rocks.length)advanceExtra();}
-  if(selectedGame.value==='pinball'){const b=pinball.ball;b.x+=b.vx*dt;b.y+=b.vy*dt;b.vy+=300*dt;if(b.x<12||b.x>708)b.vx*=-1;if(b.y<15)b.vy=Math.abs(b.vy);if(b.y>410){arcadeStatus.value='lost';}for(const [x,y,r] of [[180,180,35],[540,180,35],[360,130,28]] as const)if(Math.hypot(b.x-x,b.y-y)<r){const a=Math.atan2(b.y-y,b.x-x);b.vx=Math.cos(a)*Math.hypot(b.vx,b.vy)*1.04;b.vy=Math.sin(a)*Math.hypot(b.vx,b.vy)*1.04;arcadeScore.value+=10;}if(pinball.flippers){b.vy=-Math.abs(b.vy)-140;arcadeScore.value+=5;pinball.flippers=0;}}
+  if(selectedGame.value==='asteroids'){const k=orbital.keys;if(k.has('ArrowLeft')||k.has('a'))orbital.ship.a-=3*dt;if(k.has('ArrowRight')||k.has('d'))orbital.ship.a+=3*dt;if(k.has('ArrowUp')||k.has('w')){orbital.ship.x+=Math.cos(orbital.ship.a)*150*dt;orbital.ship.y+=Math.sin(orbital.ship.a)*150*dt;}orbital.ship.x=(orbital.ship.x+720)%720;orbital.ship.y=(orbital.ship.y+440)%440;for(const r of orbital.rocks){r.x=(r.x+r.vx*dt+720)%720;r.y=(r.y+r.vy*dt+440)%440;if(Math.hypot(r.x-orbital.ship.x,r.y-orbital.ship.y)<r.r+9){arcadeStatus.value='lost';finishRun('asteroids',arcadeScore.value,arcadeLevel.value);}}for(const s of orbital.shots){s.x+=s.vx*dt;s.y+=s.vy*dt;}orbital.shots=orbital.shots.filter(s=>s.x>=0&&s.x<=720&&s.y>=0&&s.y<=440);for(const s of orbital.shots)for(let i=orbital.rocks.length-1;i>=0;i--){const r=orbital.rocks[i];if(Math.hypot(s.x-r.x,s.y-r.y)<r.r){orbital.rocks.splice(i,1);s.x=-1;arcadeScore.value+=15;}}if(!orbital.rocks.length)advanceExtra();}
+  if(selectedGame.value==='pinball'){const b=pinball.ball;b.x+=b.vx*dt;b.y+=b.vy*dt;b.vy+=(300+Math.min(180,(arcadeLevel.value-1)*14))*dt;if(b.x<12||b.x>708)b.vx*=-1;if(b.y<15)b.vy=Math.abs(b.vy);if(b.y>410){arcadeStatus.value='lost';finishRun('pinball',arcadeScore.value,arcadeLevel.value);}for(const [x,y,r] of [[180,180,35],[540,180,35],[360,130,28]] as const)if(Math.hypot(b.x-x,b.y-y)<r){const a=Math.atan2(b.y-y,b.x-x);b.vx=Math.cos(a)*Math.hypot(b.vx,b.vy)*1.04;b.vy=Math.sin(a)*Math.hypot(b.vx,b.vy)*1.04;arcadeScore.value+=10;}if(pinball.flippers){b.vy=-Math.abs(b.vy)-140;arcadeScore.value+=5;pinball.flippers=0;}if(arcadeScore.value>=arcadeLevel.value*250)arcadeLevel.value++;}
 }
-function advanceExtra(){if(arcadeLevel.value>=10){arcadeStatus.value='won';return;}arcadeLevel.value++;arcadeScore.value+=50;arcadeStatus.value='ready';if(selectedGame.value==='asteroids'){orbital.rocks.splice(0,orbital.rocks.length,...Array.from({length:7+arcadeLevel.value},(_,i)=>({x:(i*103+77)%720,y:(i*59+31)%440,r:12+i%3*5,vx:30+i*4,vy:18+i*3})));}}
+function advanceExtra(){arcadeLevel.value++;arcadeScore.value+=50;arcadeStatus.value='ready';if(selectedGame.value==='asteroids'){const count=Math.min(20,7+arcadeLevel.value);orbital.rocks.splice(0,orbital.rocks.length,...Array.from({length:count},(_,i)=>({x:(i*103+77)%720,y:(i*59+31)%440,r:12+i%3*5,vx:(30+i*4)*(1+Math.min(1.2,(arcadeLevel.value-1)*.04)),vy:(18+i*3)*(1+Math.min(1.2,(arcadeLevel.value-1)*.04))})));}}
 function changeGame(g:ArcadeGame){if(g===selectedGame.value)return;pause();selectedGame.value=g;resetExtra();if(g==='snake'){const restoredSnake=readSnakeSave(storage);if(restoredSnake)Object.assign(snake,restoredSnake);arcadeLevel.value=snake.level;arcadeScore.value=snake.score;arcadeStatus.value=snake.status;hasSave.value=!!restoredSnake;saveMessage.value=restoredSnake?'Signal Snake progress loaded from this device.':'Signal Snake saves on this device.';return;}if(g==='invaders'){const restoredInvaders=readInvadersSave(storage);if(restoredInvaders)Object.assign(invaders,restoredInvaders);arcadeLevel.value=invaders.level;arcadeScore.value=invaders.score;arcadeStatus.value=invaders.status;hasSave.value=!!restoredInvaders;saveMessage.value=restoredInvaders?'Rooftop Invaders progress loaded from this device.':'Rooftop Invaders saves on this device.';return;}const saved=storage?.getItem(saveKeyFor(g));if(saved){try{const s=JSON.parse(saved);arcadeLevel.value=s.level;arcadeScore.value=s.score;}catch{}}}
 function saveExtra(){if(selectedGame.value==='snake'){const ok=saveSnake(storage,snake);saveMessage.value=ok?`Signal Snake · sector ${snake.level} saved on this device.`:'Local save unavailable. You can still play.';hasSave.value=ok||hasSave.value;return;}if(selectedGame.value==='invaders'){const ok=saveInvaders(storage,invaders);saveMessage.value=ok?`Rooftop Invaders · wave ${invaders.level} saved on this device.`:'Local save unavailable. You can still play.';hasSave.value=ok||hasSave.value;return;}try{storage?.setItem(saveKeyFor(selectedGame.value),JSON.stringify({level:arcadeLevel.value,score:arcadeScore.value,snake,invaders,orbital,pinball}));saveMessage.value=`${gameNames[selectedGame.value]} progress saved on this device.`;hasSave.value=true;}catch{saveMessage.value='Local save unavailable. You can still play.'}}
 function deleteExtra(){if(selectedGame.value==='snake'){if(deleteSnakeSave(storage)){Object.assign(snake,createSnake());arcadeLevel.value=1;arcadeScore.value=0;arcadeStatus.value='ready';hasSave.value=false;confirmDelete.value=false;saveMessage.value='Signal Snake save deleted. Fresh city, fresh start.';}else saveMessage.value='Could not delete this local save.';return;}if(selectedGame.value==='invaders'){if(deleteInvadersSave(storage)){Object.assign(invaders,createInvaders());arcadeLevel.value=1;arcadeScore.value=0;arcadeStatus.value='ready';hasSave.value=false;confirmDelete.value=false;saveMessage.value='Rooftop Invaders save deleted. Fresh skyline, fresh start.';}else saveMessage.value='Could not delete this local save.';return;}try{storage?.removeItem(saveKeyFor(selectedGame.value));resetExtra();hasSave.value=false;confirmDelete.value=false;saveMessage.value='Game save deleted. Fresh city, fresh start.';}catch{saveMessage.value='Could not delete this local save.'}}
@@ -201,7 +240,7 @@ function keydown(event: KeyboardEvent) {
     // Keep native Space activation on the main game action and direction buttons.
     // Everywhere else, Space starts/resumes or pauses even while a library/close
     // button still owns focus after the player selects Snake.
-    if (key === ' ' && target?.closest('.arcade-primary, .snake-controls button')) return;
+    if (key === ' ' && target?.closest('button')) return;
     event.preventDefault(); event.stopPropagation();
     if (snake.status === 'playing') pause(); else play();
     return;
@@ -210,6 +249,22 @@ function keydown(event: KeyboardEvent) {
     if (['ArrowLeft','ArrowRight','a','d'].includes(key)) { event.preventDefault();event.stopPropagation();held.add(key);return; }
     if (key === ' ') { event.preventDefault();event.stopPropagation();if(invaders.status==='playing'){held.add('inv-fire');if(!event.repeat)fireInvaders();}else if(!event.repeat){play();held.add('inv-fire');fireInvaders();}return; }
     if (key === 'p') { event.preventDefault();event.stopPropagation();if(invaders.status==='playing')pause();else if(invaders.status==='paused')play();return; }
+  }
+  if (selectedGame.value === 'asteroids') {
+    if (key === ' ' && target?.closest('button')) return;
+    if (['ArrowLeft','ArrowRight','a','d','ArrowUp','w'].includes(key)) { event.preventDefault(); event.stopPropagation(); orbital.keys.add(key); return; }
+    if (key === ' ') {
+      event.preventDefault(); event.stopPropagation();
+      if (arcadeStatus.value !== 'playing') play();
+      else orbital.shots.push({ x: orbital.ship.x, y: orbital.ship.y, vx: Math.cos(orbital.ship.a) * 350, vy: Math.sin(orbital.ship.a) * 350 });
+      return;
+    }
+  }
+  if (selectedGame.value === 'pinball' && [' ', 'ArrowUp', 'Enter'].includes(key)) {
+    if (target?.closest('button') && (key === ' ' || key === 'Enter')) return;
+    event.preventDefault(); event.stopPropagation();
+    if (arcadeStatus.value !== 'playing') play(); else pinball.flippers = 1;
+    return;
   }
   if (target?.closest('button')) return;
   if (['ArrowLeft', 'ArrowRight', 'a', 'd'].includes(key)) {
@@ -220,8 +275,16 @@ function keydown(event: KeyboardEvent) {
     if (game.status === 'playing') pause(); else play();
   }
 }
+function keyup(event: KeyboardEvent) {
+  const key = event.key.length === 1 ? event.key.toLowerCase() : event.key;
+  held.delete(key); orbital.keys.delete(key);
+}
+function toggleGame() { if (playing.value) pause(); else play(); }
 function steer(direction: SnakeDirection) { steerSnake(snake, direction); }
 function fireInvaders() { if (invaders.status === 'playing' && fireInvaderShot(invaders)) audio.cue('launch'); }
+function fireAsteroid() { if (arcadeStatus.value === 'playing') orbital.shots.push({ x: orbital.ship.x, y: orbital.ship.y, vx: Math.cos(orbital.ship.a) * 350, vy: Math.sin(orbital.ship.a) * 350 }); }
+function holdArcadeKey(event: PointerEvent, key: string) { (event.currentTarget as HTMLElement).setPointerCapture(event.pointerId); held.add(key); }
+function releaseArcadeKey(key: string) { held.delete(key); }
 function aimInvaders(event: PointerEvent) { const svg=(event.currentTarget as HTMLElement).querySelector('svg');const rect=svg?.getBoundingClientRect();if(rect)aimInvaderPlayer(invaders,(event.clientX-rect.left)/rect.width*720); }
 function invaderPointerDown(event: PointerEvent) { (event.currentTarget as HTMLElement).setPointerCapture(event.pointerId);aimInvaders(event);if(invaders.status==='playing'){held.add('inv-fire');fireInvaders();}else play(); }
 function holdInvaderMove(event: PointerEvent,direction:'left'|'right') { (event.currentTarget as HTMLElement).setPointerCapture(event.pointerId);held.add(`inv-${direction}`); }
@@ -249,7 +312,7 @@ defineExpose({ open, show });
     </g>
   </svg>
   <Teleport to="body">
-    <dialog ref="dialog" class="athens-arcade" :class="{ 'athens-arcade--focused': focused }" aria-labelledby="arcade-title" @cancel.prevent="close" @close="close" @click="event => { if (event.target === dialog) close(); }" @keydown="keydown" @keyup="event => held.delete(event.key === ' ' ? 'inv-fire' : event.key.length === 1 ? event.key.toLowerCase() : event.key)">
+    <dialog ref="dialog" class="athens-arcade" :class="{ 'athens-arcade--focused': focused }" aria-labelledby="arcade-title" @cancel.prevent="close" @close="close" @click="event => { if (event.target === dialog) close(); }" @keydown="keydown" @keyup="keyup">
       <div class="arcade-shell">
         <header class="arcade-header">
           <div><p class="arcade-eyebrow">ATHENS UNDERGROUND · FREE PLAY</p><h2 id="arcade-title">After hours<span> // arcade</span></h2></div>
@@ -262,7 +325,7 @@ defineExpose({ open, show });
           </aside>
           <section class="arcade-machine" :aria-labelledby="'arcade-game-title'">
             <div class="arcade-machine__title"><h3 id="arcade-game-title">{{ gameNames[selectedGame].toUpperCase() }}</h3><span>{{ selectedGame==='invaders' ? `ATH / 04 · FIRE ×${invaders.weaponLevel} · THREAT ×${invaderEnemyVolleySize(invaders.level)}` : 'ATH / 04' }}</span></div>
-            <div class="arcade-stats"><span>SCORE <b>{{ String(selectedGame==='breakout'?game.score:arcadeScore).padStart(4, '0') }}</b></span><span>{{ selectedGame==='snake'?'LENGTH':'LIVES' }} <b>{{ selectedGame==='breakout'?game.lives:selectedGame==='snake'?snake.body.length:selectedGame==='invaders'?invaders.lives:'♡♡♡' }}</b></span><span>{{ selectedGame==='invaders'?'DRONES':'SECTOR' }} <b>{{ selectedGame==='invaders'?String(invaders.enemies.length).padStart(2, '0'):String(selectedGame==='breakout'?game.level:arcadeLevel).padStart(2, '0')+'/10' }}</b></span></div>
+            <div class="arcade-stats"><span>SCORE <b>{{ String(selectedGame==='breakout'?game.score:arcadeScore).padStart(4, '0') }}</b></span><span>BEST <b>{{ String(personalBest).padStart(4, '0') }}</b></span><span>{{ selectedGame==='snake'?'LENGTH':'LIVES' }} <b>{{ selectedGame==='breakout'?game.lives:selectedGame==='snake'?snake.body.length:selectedGame==='invaders'?invaders.lives:'♡♡♡' }}</b></span><span>{{ selectedGame==='invaders'?'DRONES':'LEVEL' }} <b>{{ selectedGame==='invaders'?String(invaders.enemies.length).padStart(2, '0'):String(selectedGame==='breakout'?game.level:arcadeLevel).padStart(2, '0') }}</b></span></div>
             <div v-if="selectedGame==='breakout'" class="arcade-screen">
               <svg ref="court" class="arcade-court" viewBox="0 0 720 440" role="group" aria-label="Neon Breakout playfield" aria-describedby="arcade-controls arcade-status" tabindex="0" @pointerdown="pointerDown" @pointermove="pointer" @lostpointercapture="held.clear()" @blur="held.clear()" @pointercancel="held.clear()">
                 <defs><pattern id="arcade-grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#6de4ef" stroke-opacity=".07" /></pattern></defs>
@@ -328,39 +391,63 @@ defineExpose({ open, show });
                 <path d="M0 406H720" stroke="#63d9d2" stroke-opacity=".35"/>
                 <text x="16" y="428" fill="#c5bfd8" font-family="monospace" font-size="9">← → / A D TO PILOT · HOLD SPACE TO FIRE · P TO PAUSE</text>
               </svg>
-              <div v-if="invaders.status!=='playing'" class="arcade-screen__notice" aria-hidden="true"><span>{{ invaders.status==='ready'?`WAVE ${String(invaders.level).padStart(2,'0')} · ${invaders.weaponLevel===1?'LOCK AND LOAD':invaders.weaponLevel===2?invaders.level===2?'TWIN FIRE UNLOCKED':'TWIN FIRE ACTIVE':invaders.level===5?'TRIPLE FIRE UNLOCKED':'TRIPLE FIRE ACTIVE'}`:invaders.status==='paused'?'PAUSED':invaders.status==='won'?'TEN WAVES CLEARED':'SKYLINE BREACHED' }}</span></div>
+              <div v-if="invaders.status!=='playing'" class="arcade-screen__notice" aria-hidden="true"><span>{{ invaders.status==='ready'?`WAVE ${String(invaders.level).padStart(2,'0')} · ${invaders.weaponLevel===1?'LOCK AND LOAD':invaders.weaponLevel===2?invaders.level===2?'TWIN FIRE UNLOCKED':'TWIN FIRE ACTIVE':invaders.level===5?'TRIPLE FIRE UNLOCKED':'TRIPLE FIRE ACTIVE'}`:invaders.status==='paused'?'PAUSED':invaders.status==='won'?'WAVE CLEARED':'SKYLINE BREACHED' }}</span></div>
             </div>
-            <div v-else class="arcade-screen extra-screen" @pointermove="event=>{if(selectedGame==='asteroids'){const r=(event.currentTarget as HTMLElement).getBoundingClientRect();orbital.ship.x=(event.clientX-r.left)/r.width*720;orbital.ship.y=(event.clientY-r.top)/r.height*440}}" @pointerdown="event=>{if(selectedGame==='asteroids'){const rect=(event.currentTarget as HTMLElement).getBoundingClientRect();orbital.shots.push({x:(event.clientX-rect.left)/rect.width*720,y:(event.clientY-rect.top)/rect.height*440,vx:0,vy:-350})}if(selectedGame==='pinball')pinball.flippers=1}">
+            <div v-else class="arcade-screen extra-screen" @pointermove="event=>{if(selectedGame==='asteroids'){const r=(event.currentTarget as HTMLElement).getBoundingClientRect();orbital.ship.x=(event.clientX-r.left)/r.width*720;orbital.ship.y=(event.clientY-r.top)/r.height*440}}" @pointerdown="event=>{if(selectedGame==='asteroids')fireAsteroid();if(selectedGame==='pinball')pinball.flippers=1}" @pointerup="pinball.flippers=0" @pointercancel="pinball.flippers=0">
               <svg viewBox="0 0 720 440" preserveAspectRatio="xMidYMid meet" :aria-label="`${gameNames[selectedGame]} playfield`"><rect width="720" height="440" fill="#0b1020"/><path d="M0 390V300L100 260L180 320L260 240L360 280L460 220L560 280L640 230L720 280V440H0Z" fill="#17243a" stroke="#457081"/><text x="24" y="34" fill="#a4eee0" font-size="14" font-family="monospace">{{ ['MONASTIRAKI','PSYRRI','SYNTAGMA','EXARCHIA','GAZI','PIRAEUS','KOLONAKI','LYCABETTUS','ACROPOLIS','ATHENS'][arcadeLevel-1] }} // NIGHT SHIFT</text>
-              <g v-if="selectedGame==='asteroids'"><path :d="`M${orbital.ship.x} ${orbital.ship.y-12}l-9 22 9-5 9 5z`" fill="#a4eee0"/><circle v-for="(r,i) in orbital.rocks" :key="i" :cx="r.x" :cy="r.y" :r="r.r" fill="#38314f" stroke="#c69bdf"/><circle v-for="(s,i) in orbital.shots" :key="i" :cx="s.x" :cy="s.y" r="3" fill="#ffe69a"/><text x="24" y="420" fill="#d9e3ff">Point to steer · click to launch a pulse</text></g>
+              <g v-if="selectedGame==='asteroids'"><path :transform="`translate(${orbital.ship.x} ${orbital.ship.y}) rotate(${orbital.ship.a*180/Math.PI+90})`" d="M0-12L-9 10L0 5L9 10Z" fill="#a4eee0"/><circle v-for="(r,i) in orbital.rocks" :key="i" :cx="r.x" :cy="r.y" :r="r.r" fill="#38314f" stroke="#c69bdf"/><circle v-for="(s,i) in orbital.shots" :key="i" :cx="s.x" :cy="s.y" r="3" fill="#ffe69a"/><text x="24" y="420" fill="#d9e3ff">Move to steer · click to fire</text></g>
               <g v-else><path d="M80 380Q360 455 640 380L600 70H120Z" fill="#17172d" stroke="#df92ff" stroke-width="5"/><circle v-for="(b,i) in [[180,180],[540,180],[360,130]]" :key="i" :cx="b[0]" :cy="b[1]" r="35" fill="#143d47" stroke="#a4eee0" stroke-width="5"/><circle :cx="pinball.ball.x" :cy="pinball.ball.y" r="9" fill="#fff2bf"/><path d="M270 370l70 -24M450 370l-70 -24" stroke="#fc83bd" stroke-width="18" stroke-linecap="round"/><text x="24" y="420" fill="#d9e3ff">Space / tap to flip · click bumpers for points</text></g></svg>
               <div v-if="arcadeStatus!=='playing'" class="arcade-screen__notice"><span>{{ arcadeStatus==='paused'?'PAUSED':arcadeStatus==='won'?'ATHENS SAVED':arcadeStatus==='lost'?'OOPS, ATHENS':`SECTOR ${arcadeLevel} · ${gameTaglines[selectedGame]}` }}</span></div>
             </div>
-            <p id="arcade-status" class="arcade-status" role="status">{{ selectedGame==='breakout'?message:arcadeMessage }}</p>
-            <div class="arcade-actions"><button v-if="selectedGame!=='invaders' || invaders.status!=='playing'" class="arcade-primary" @click="confirmRestart = false; game.status === 'playing' && selectedGame==='breakout' || arcadeStatus==='playing' ? pause() : play()">{{ (game.status === 'playing'&&selectedGame==='breakout')||arcadeStatus==='playing' ? 'Pause' : (game.status === 'paused'&&selectedGame==='breakout')||arcadeStatus==='paused' ? 'Resume shift' : 'Start / next sector' }} <span aria-hidden="true">↗</span></button><button @click="selectedGame==='breakout'?restartJourney():(resetExtra(),saveExtra())">Restart game</button></div>
-            <div v-if="selectedGame==='invaders'" class="invaders-controls" role="group" aria-label="Rooftop Invaders touch controls">
-              <button aria-label="Pilot left" @pointerdown.prevent="holdInvaderMove($event,'left')" @pointerup="releaseInvaderMove('left')" @pointercancel="releaseInvaderMove('left')" @lostpointercapture="releaseInvaderMove('left')">←</button>
-              <button class="invaders-fire" :disabled="invaders.status!=='playing'" @pointerdown.prevent="held.add('inv-fire')" @pointerup="held.delete('inv-fire')" @pointercancel="held.delete('inv-fire')" @lostpointercapture="held.delete('inv-fire')" @click="fireInvaders">HOLD TO FIRE ✦</button>
-              <button aria-label="Pilot right" @pointerdown.prevent="holdInvaderMove($event,'right')" @pointerup="releaseInvaderMove('right')" @pointercancel="releaseInvaderMove('right')" @lostpointercapture="releaseInvaderMove('right')">→</button>
-              <button v-if="invaders.status==='playing'" class="invaders-pause" @click="pause">PAUSEⅡ</button>
+            <div class="arcade-action-bar">
+              <p id="arcade-status" class="arcade-status" role="status">{{ selectedGame==='breakout'?message:arcadeMessage }}</p>
+              <div class="arcade-actions"><button class="arcade-primary" @click="confirmRestart = false; toggleGame()">{{ playing ? 'Pause' : paused ? 'Resume' : selectedGame==='breakout'&&game.status==='cleared' ? 'Next level' : 'Start game' }} <span aria-hidden="true">↗</span></button><button @click="selectedGame==='breakout'?restartJourney():(resetExtra(),saveExtra())">Restart</button></div>
             </div>
-            <div v-if="selectedGame==='snake'" class="snake-controls" role="group" aria-label="Signal Snake direction controls">
-              <span class="snake-controls__hint">TURN THE LITTLE COURIER</span>
-              <button aria-label="Turn up" @click="steer('up')">↑</button>
-              <div><button aria-label="Turn left" @click="steer('left')">←</button><button aria-label="Turn down" @click="steer('down')">↓</button><button aria-label="Turn right" @click="steer('right')">→</button></div>
-            </div>
-            <p id="arcade-controls" class="arcade-controls">{{ selectedGame==='snake'?'Arrow keys / WASD or the direction pad · P pauses · Esc leaves':selectedGame==='invaders'?'← → / A D to pilot · Hold Space to fire · P pauses · Esc leaves':'← → / A D to move · Space to launch or pause' }}<br />{{ selectedGame==='snake'?'Collect the glowing data packets. Walls and your own tail end the run.':selectedGame==='invaders'?'Mouse: move to steer, click-and-hold to fire straight up · Touch: drag to steer and hold FIRE':'Touch or mouse: slide across the playfield. Esc to leave.' }}</p>
-            <div class="arcade-audio" role="group" aria-label="Game audio">
-              <button :aria-pressed="effects" @click="effects = !effects; configureAudio()">Sound FX: {{ effects ? 'on' : 'off' }}</button>
-              <button :aria-pressed="music" @click="music = !music; configureAudio()">Music: {{ music ? 'on' : 'off' }}</button>
-              <label>Volume <input v-model.number="volume" type="range" min="0" max="1" step=".05" aria-label="Game audio volume" @input="configureAudio" /></label>
-            </div>
-            <p v-if="audioError" class="arcade-controls" role="status">{{ audioError }}</p>
-            <div class="arcade-save" role="group" aria-label="Local game progress">
-              <p role="status">{{ saveMessage }}</p>
-              <div v-if="!confirmDelete"><button class="arcade-save-save" @click="selectedGame==='breakout'?saveProgress():saveExtra()">Save progress</button><button class="arcade-save-delete" :disabled="selectedGame==='breakout'?!hasSave && !restored.message:!hasSave" @click="selectedGame==='breakout'?askDelete():(confirmDelete=true)">Delete saved progress</button></div>
-              <div v-else><span>Delete this game’s local save and start fresh?</span><button class="arcade-save-confirm" @click="selectedGame==='breakout'?deleteProgress():deleteExtra()">Yes, delete save</button><button @click="keepSave">Keep save</button></div>
-            </div>
+            <section class="arcade-control-deck" aria-label="How to play">
+              <div class="arcade-control-guide" id="arcade-controls">
+                <div><small>KEYBOARD</small><span>{{ gameInstructions[selectedGame].keyboard }}</span></div>
+                <div><small>MOUSE</small><span>{{ gameInstructions[selectedGame].pointer }}</span></div>
+                <div><small>TOUCH</small><span>{{ gameInstructions[selectedGame].touch }}</span></div>
+              </div>
+              <div v-if="selectedGame==='breakout'" class="arcade-touch-buttons" role="group" aria-label="Breakout touch controls">
+                <button aria-label="Move paddle left" @pointerdown.prevent="holdArcadeKey($event,'ArrowLeft')" @pointerup="releaseArcadeKey('ArrowLeft')" @pointercancel="releaseArcadeKey('ArrowLeft')" @lostpointercapture="releaseArcadeKey('ArrowLeft')">←</button>
+                <button aria-label="Move paddle right" @pointerdown.prevent="holdArcadeKey($event,'ArrowRight')" @pointerup="releaseArcadeKey('ArrowRight')" @pointercancel="releaseArcadeKey('ArrowRight')" @lostpointercapture="releaseArcadeKey('ArrowRight')">→</button>
+              </div>
+              <div v-else-if="selectedGame==='snake'" class="snake-controls" role="group" aria-label="Signal Snake direction pad">
+                <button aria-label="Turn up" @click="steer('up')">↑</button>
+                <div><button aria-label="Turn left" @click="steer('left')">←</button><button aria-label="Turn down" @click="steer('down')">↓</button><button aria-label="Turn right" @click="steer('right')">→</button></div>
+              </div>
+              <div v-else-if="selectedGame==='invaders'" class="invaders-controls" role="group" aria-label="Rooftop Invaders touch controls">
+                <button aria-label="Pilot left" @pointerdown.prevent="holdInvaderMove($event,'left')" @pointerup="releaseInvaderMove('left')" @pointercancel="releaseInvaderMove('left')" @lostpointercapture="releaseInvaderMove('left')">←</button>
+                <button class="invaders-fire" :disabled="invaders.status!=='playing'" @pointerdown.prevent="held.add('inv-fire');fireInvaders()" @pointerup="held.delete('inv-fire')" @pointercancel="held.delete('inv-fire')" @lostpointercapture="held.delete('inv-fire')">HOLD FIRE ✦</button>
+                <button aria-label="Pilot right" @pointerdown.prevent="holdInvaderMove($event,'right')" @pointerup="releaseInvaderMove('right')" @pointercancel="releaseInvaderMove('right')" @lostpointercapture="releaseInvaderMove('right')">→</button>
+              </div>
+              <div v-else-if="selectedGame==='asteroids'" class="arcade-touch-buttons" role="group" aria-label="Orbital Courier touch controls">
+                <button aria-label="Turn left" @pointerdown.prevent="holdArcadeKey($event,'ArrowLeft')" @pointerup="releaseArcadeKey('ArrowLeft')" @pointercancel="releaseArcadeKey('ArrowLeft')">↶</button>
+                <button aria-label="Thrust" @pointerdown.prevent="holdArcadeKey($event,'ArrowUp')" @pointerup="releaseArcadeKey('ArrowUp')" @pointercancel="releaseArcadeKey('ArrowUp')">THRUST</button>
+                <button aria-label="Fire" @pointerdown.prevent="fireAsteroid">FIRE</button>
+                <button aria-label="Turn right" @pointerdown.prevent="holdArcadeKey($event,'ArrowRight')" @pointerup="releaseArcadeKey('ArrowRight')" @pointercancel="releaseArcadeKey('ArrowRight')">↷</button>
+              </div>
+              <div v-else class="arcade-touch-buttons" role="group" aria-label="Midnight Pinball touch controls">
+                <button class="pinball-flip" @pointerdown.prevent="pinball.flippers=1" @pointerup="pinball.flippers=0" @pointercancel="pinball.flippers=0">HOLD TO FLIP</button>
+              </div>
+            </section>
+            <details class="arcade-settings">
+              <summary>Audio &amp; local save <span>Sound, volume, progress controls</span></summary>
+              <div class="arcade-settings-panel">
+                <div class="arcade-audio" role="group" aria-label="Game audio">
+                  <button :aria-pressed="effects" @click="effects = !effects; configureAudio()">Sound FX {{ effects ? 'On' : 'Off' }}</button>
+                  <button :aria-pressed="music" @click="music = !music; configureAudio()">Music {{ music ? 'On' : 'Off' }}</button>
+                  <label>Volume <input v-model.number="volume" type="range" min="0" max="1" step=".05" aria-label="Game audio volume" @input="configureAudio" /></label>
+                  <span v-if="audioError" role="status">{{ audioError }}</span>
+                </div>
+                <div class="arcade-save" role="group" aria-label="Local game progress">
+                  <p role="status">{{ saveMessage }}</p>
+                  <div v-if="!confirmDelete"><button class="arcade-save-save" @click="selectedGame==='breakout'?saveProgress():saveExtra()">Save progress</button><button class="arcade-save-delete" :disabled="selectedGame==='breakout'?!hasSave && !restored.message:!hasSave" @click="selectedGame==='breakout'?askDelete():(confirmDelete=true)">Delete saved progress</button></div>
+                  <div v-else><span>Delete this game’s local save and start fresh?</span><button class="arcade-save-confirm" @click="selectedGame==='breakout'?deleteProgress():deleteExtra()">Yes, delete save</button><button @click="keepSave">Keep save</button></div>
+                </div>
+              </div>
+            </details>
           </section>
         </div>
         <footer class="arcade-footer"><span>BUILT FOR SHORT BREAKS & LONG NIGHTS</span><span>37.98° N / 23.73° E</span></footer>
@@ -472,5 +559,92 @@ defineExpose({ open, show });
 .athens-arcade--focused .arcade-actions { flex: 0 0 auto; align-self: center; }
 .athens-arcade--focused .invaders-controls{flex:0 0 auto;margin:2px auto 0}.athens-arcade--focused .arcade-screen.invaders-screen{width:min(100%,calc((100dvh - 230px) * 720 / 440));max-height:calc(100dvh - 230px)}
 .athens-arcade--focused .snake-controls{grid-template-rows:auto 42px 42px;gap:3px;margin:2px auto 0}.athens-arcade--focused .snake-controls__hint{display:none}.athens-arcade--focused .snake-controls button{height:42px;min-height:42px;width:48px}
+
+/* One cabinet size and one predictable control layout across all games. */
+.athens-arcade { box-sizing: border-box; display: flex; flex-direction: column; width: min(1120px, calc(100vw - 28px)); height: min(900px, calc(100dvh - 28px)); max-height: calc(100dvh - 28px); overflow: hidden; }
+.athens-arcade:not([open]) { display: none; }
+.arcade-shell { box-sizing: border-box; display: flex; flex: 1; flex-direction: column; min-height: 0; height: 100%; padding: clamp(14px, 2.2vw, 26px); overflow: hidden; }
+.arcade-header { flex: 0 0 auto; padding-bottom: 14px; margin-bottom: 14px; }
+.arcade-layout { flex: 1; min-height: 0; grid-template-columns: 184px minmax(0, 1fr); gap: 18px; overflow: hidden; }
+.arcade-library { min-height: 0; overflow-y: auto; }
+.arcade-game-choice { min-height: 56px!important; margin-bottom: 6px!important; }
+.arcade-machine { display: flex; flex: 1; flex-direction: column; min-height: 0; gap: 9px; overflow-y: auto; scrollbar-color: #586377 #111723; scrollbar-width: thin; }
+.arcade-machine__title { flex: 0 0 auto; min-height: 20px; }
+.arcade-stats { flex: 0 0 auto; margin: 0; min-height: 26px; }
+.arcade-screen { box-sizing: border-box; flex: 0 0 auto; width: min(100%, calc((100dvh - 410px) * 720 / 440)); height: auto; max-height: calc(100dvh - 410px); align-self: center; aspect-ratio: 720 / 440; padding: 0; overflow: hidden; }
+.arcade-screen > svg { display: block; width: 100%; height: 100%; }
+.extra-screen { aspect-ratio: 720 / 440; }
+.arcade-action-bar { display: flex; align-items: center; justify-content: space-between; flex: 0 0 auto; min-height: 42px; gap: 12px; }
+.arcade-status { flex: 1; min-width: 0; min-height: 0; margin: 0; }
+.arcade-actions { flex: 0 0 auto; gap: 8px; }
+.arcade-actions button { min-height: 40px; padding: 8px 13px; }
+.arcade-primary span { margin-left: 10px; }
+.arcade-control-deck { box-sizing: border-box; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 10px; flex: 0 0 auto; min-height: 78px; padding: 9px 11px; border: 1px solid #384455; border-radius: 7px; background: linear-gradient(110deg, #131d2b, #171525); }
+.arcade-control-guide { display: grid; gap: 4px; min-width: 0; }
+.arcade-control-guide > div { display: grid; grid-template-columns: 68px minmax(0, 1fr); align-items: baseline; gap: 8px; min-width: 0; }
+.arcade-control-guide small { color: #9fe8df; font: 9px 'IBM Plex Mono', monospace; letter-spacing: .1em; }
+.arcade-control-guide span { overflow: hidden; color: #d5d9e5; font: 10px/1.35 'IBM Plex Sans', sans-serif; text-overflow: ellipsis; }
+.arcade-touch-buttons, .snake-controls, .invaders-controls { display: flex; flex: 0 0 auto; align-items: center; justify-content: center; gap: 6px; margin: 0; }
+.athens-arcade .arcade-control-deck button { min-width: 42px; min-height: 42px; padding: 6px 10px; color: #a4eee0; background: #202a3b; touch-action: none; user-select: none; }
+.athens-arcade .arcade-control-deck button:active { background: #315261; transform: translateY(1px); }
+.athens-arcade .arcade-control-deck .invaders-fire { min-width: 102px; border-color: #ffb4df; background: linear-gradient(120deg,#ffb4df,#f2d8a1); color: #10151c; font-weight: 700; }
+.athens-arcade .arcade-control-deck .snake-controls button { width: 42px; min-width: 42px; min-height: 36px; height: 36px; padding: 0; font-size: 18px; }
+.snake-controls > div { display: flex; gap: 5px; }
+.athens-arcade .arcade-control-deck .pinball-flip { min-width: 112px; border-color: #c49ae8; color: #f3d5ff; }
+.arcade-settings { flex: 0 0 auto; border: 1px solid #384455; border-radius: 6px; background: #111823; }
+.arcade-settings summary { display: flex; align-items: center; justify-content: space-between; min-height: 38px; padding: 0 12px; color: #dce4ef; cursor: pointer; font: 11px 'IBM Plex Mono', monospace; list-style-position: inside; }
+.arcade-settings summary span { color: #9eaabd; font: 10px 'IBM Plex Sans', sans-serif; }
+.arcade-settings-panel { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; border-top: 1px solid #303b4c; padding: 10px 12px; }
+.arcade-settings .arcade-audio { margin: 0; gap: 6px; align-content: start; }
+.arcade-settings .arcade-audio button { min-height: 36px; padding: 6px 9px; }
+.arcade-settings .arcade-audio label { min-height: 36px; }
+.arcade-settings .arcade-save { margin: 0; padding: 0 0 0 12px; border-top: 0; border-left: 1px solid #303b4c; }
+.arcade-settings .arcade-save button { min-height: 36px; padding: 6px 9px; }
+.arcade-footer { flex: 0 0 auto; margin-top: 10px; padding-top: 9px; }
+.athens-arcade--focused .arcade-shell { box-sizing: border-box; }
+.athens-arcade--focused .arcade-screen { width: min(100%, calc((100dvh - 250px) * 720 / 440)); height: auto; max-height: calc(100dvh - 250px); aspect-ratio: 720 / 440; }
+.athens-arcade--focused .arcade-action-bar { align-self: center; }
+.athens-arcade--focused .arcade-control-deck, .athens-arcade--focused .arcade-settings { display: none; }
+@media (max-width: 700px) {
+  .athens-arcade { width: calc(100vw - 20px); height: calc(100dvh - 20px); max-height: calc(100dvh - 20px); }
+  .arcade-shell { padding: 12px; }
+  .arcade-header { padding-bottom: 10px; margin-bottom: 10px; }
+  .arcade-layout { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr); gap: 8px; }
+  .arcade-library { display: flex; gap: 6px; overflow-x: auto; overflow-y: hidden; }
+  .arcade-library > .arcade-eyebrow { display: none; }
+  .arcade-game-choice { flex: 0 0 142px; grid-template-columns: 24px 1fr; min-height: 48px!important; margin: 0!important; padding: 6px 8px!important; }
+  .arcade-game-choice > span { font-size: 18px; }
+  .arcade-game-choice b { font-size: 11px; }
+  .arcade-game-choice small { font-size: 8px; }
+  .arcade-machine { gap: 7px; }
+  .arcade-machine__title > span { display: none; }
+  .arcade-stats { justify-content: flex-start; gap: 12px; font-size: 9px; }
+  .arcade-stats b { margin-left: 3px; }
+  .arcade-action-bar { align-items: flex-start; flex-direction: column; gap: 6px; }
+  .arcade-status { font-size: 11px; }
+  .arcade-actions { width: 100%; }
+  .arcade-actions button { flex: 1; }
+  .arcade-control-deck { grid-template-columns: minmax(0, 1fr) auto; min-height: 72px; gap: 6px; padding: 7px; }
+  .arcade-control-guide > div { grid-template-columns: 54px minmax(0, 1fr); gap: 5px; }
+  .arcade-control-guide small { font-size: 8px; }
+  .arcade-control-guide span { font-size: 9px; }
+  .arcade-touch-buttons, .snake-controls, .invaders-controls { gap: 4px; }
+  .athens-arcade .arcade-control-deck button { min-width: 36px; min-height: 38px; padding: 5px 7px; font-size: 11px; }
+  .athens-arcade .arcade-control-deck .invaders-fire { min-width: 86px; }
+  .athens-arcade .arcade-control-deck .snake-controls button { width: 34px; min-width: 34px; height: 34px; min-height: 34px; }
+  .arcade-settings summary { min-height: 36px; }
+  .arcade-settings summary span { display: none; }
+  .arcade-settings-panel { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .arcade-settings .arcade-save { padding: 8px 0 0; border-left: 0; border-top: 1px solid #303b4c; }
+  .arcade-footer { display: none; }
+}
+@media (max-width: 390px) {
+  .arcade-control-deck { grid-template-columns: minmax(0, 1fr); }
+  .arcade-touch-buttons, .snake-controls, .invaders-controls { justify-content: flex-end; }
+}
+@media (max-height: 760px) {
+  .arcade-header { margin-bottom: 8px; padding-bottom: 8px; }
+  .arcade-footer { display: none; }
+}
 </style>
   if (selectedGame.value !== 'breakout') { if (arcadeStatus.value === 'lost' || arcadeStatus.value === 'won') resetExtra(); arcadeStatus.value = 'playing'; if (!frame) frame = requestAnimationFrame(tick); return; }

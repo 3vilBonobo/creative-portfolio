@@ -2,10 +2,11 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { aimInvaderPlayer, createInvaders, deleteInvadersSave, fireInvaderShot, invaderEnemyVolleySize, INVADERS_SAVE_KEY, moveInvaderPlayer, readInvadersSave, saveInvaders, stepInvaders } from '../src/services/rooftopInvaders.ts';
 
-test('campaign has ten increasingly dense and faster waves', () => {
-  const first = createInvaders(1), last = createInvaders(10);
+test('formations grow to a screen-safe cap while wave pressure rises', () => {
+  const first = createInvaders(1), last = createInvaders(10), cap = createInvaders(11);
   assert.equal(first.enemies.length, 15);
   assert.equal(last.enemies.length, 45);
+  assert.equal(cap.enemies.length, 50);
   assert.ok(last.enemySpeed > first.enemySpeed);
   assert.ok(last.enemies.some(enemy => enemy.hp === 2));
 });
@@ -70,9 +71,9 @@ test('a hit clears a drone, awards points and builds the next wave', () => {
   assert.equal(game.level, 2); assert.equal(game.status, 'ready'); assert.equal(game.score, 125); assert.equal(game.enemies.length, 15);
 });
 
-test('final wave wins and the enemy line breaching the roof loses', () => {
+test('wave ten rolls into wave eleven and the enemy line breaching the roof loses', () => {
   const final = createInvaders(10); final.status='playing'; final.enemies=[{id:1,x:360,y:100,row:0,kind:'commander',hp:1}]; final.playerShots=[{x:360,y:100,vy:0}];
-  assert.deepEqual(stepInvaders(final,.01), ['hit','won']); assert.equal(final.status,'won');
+  assert.deepEqual(stepInvaders(final,.01), ['hit','wave']); assert.equal(final.level,11); assert.equal(final.status,'ready');
   const breach=createInvaders(); breach.status='playing'; breach.enemies[0].y=345;
   assert.deepEqual(stepInvaders(breach,.01),['lost']); assert.equal(breach.status,'lost');
 });
@@ -95,4 +96,12 @@ test('local save restores play paused and supports legacy, corruption and deleti
   assert.equal(readInvadersSave(storage).level,3);
   values.set(INVADERS_SAVE_KEY,'not json');assert.equal(readInvadersSave(storage),undefined);
   assert.equal(deleteInvadersSave(storage),true);assert.equal(readInvadersSave(storage),undefined);
+});
+
+test('generated waves remain saveable after wave ten', () => {
+  const values = new Map(), storage = { getItem: key => values.get(key) ?? null, setItem: (key, value) => values.set(key, value), removeItem: key => values.delete(key) };
+  const game = createInvaders(16, 1200); game.status = 'playing';
+  assert.equal(saveInvaders(storage, game), true);
+  const restored = readInvadersSave(storage);
+  assert.equal(restored.level, 16); assert.equal(restored.score, 1200); assert.equal(restored.enemies.length, 50);
 });

@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { BREAKOUT_LEVELS } from '../src/data/breakoutLevels.ts';
+import { breakoutLevel } from '../src/services/breakoutDifficulty.mjs';
 import { createBreakout } from '../src/services/neonBreakout.ts';
 import { BREAKOUT_SAVE_KEY, readArcadeProgress, saveArcadeProgress, deleteArcadeProgress } from '../src/services/arcadeProgress.ts';
 
@@ -24,4 +25,11 @@ test('malformed, incompatible and inconsistent saves fail safely', () => {
   assert.match(readArcadeProgress({getItem: () => '{broken'}, BREAKOUT_LEVELS).message, /could not/);
   assert.equal(saveArcadeProgress(undefined, game), false);
   assert.equal(deleteArcadeProgress({removeItem: () => { throw new Error(); }}), false);
+});
+
+test('generated progress beyond sector ten restores against its remixed board', () => {
+  const game = createBreakout(16, breakoutLevel(16, BREAKOUT_LEVELS)); game.score = 960; game.status = 'paused';
+  const storage = { getItem: () => JSON.stringify({ version: 1, game }) };
+  const restored = readArcadeProgress(storage, BREAKOUT_LEVELS).state;
+  assert.equal(restored.level, 16); assert.equal(restored.score, 960); assert.equal(restored.bricks.length, game.bricks.length);
 });

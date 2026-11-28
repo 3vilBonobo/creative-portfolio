@@ -1,4 +1,5 @@
 import type { BreakoutLevel } from '../data/breakoutLevels';
+import { breakoutLevel } from './breakoutDifficulty.mjs';
 import type { BreakoutState } from './neonBreakout';
 
 export const BREAKOUT_SAVE_KEY = 'athens-arcade:breakout:v1';
@@ -10,8 +11,8 @@ export function readArcadeProgress(storage: SaveStorage | undefined, levels: Bre
     const raw = storage.getItem(BREAKOUT_SAVE_KEY);
     if (!raw) return {};
     const data = JSON.parse(raw), state = data.game as BreakoutState;
-    if (data.version !== 1 || !state || !Number.isInteger(state.level) || !levels[state.level - 1]) throw new Error();
-    const definition = levels[state.level - 1]!;
+    if (data.version !== 1 || !state || !Number.isInteger(state.level) || state.level < 1 || state.level > 100000) throw new Error();
+    const definition = levels[state.level - 1] ?? breakoutLevel(state.level, levels);
     if (state.paddleWidth !== definition.paddleWidth || !finite(state.paddle, state.paddleWidth / 2, 720 - state.paddleWidth / 2)
       || !finite(state.x, 0, 720) || !finite(state.y, 0, 461) || !finite(state.vx, -600, 600) || !finite(state.vy, -600, 600)
       || Math.hypot(state.vx, state.vy) < 100 || Math.hypot(state.vx, state.vy) > 600
@@ -24,8 +25,7 @@ export function readArcadeProgress(storage: SaveStorage | undefined, levels: Bre
     const complete = state.bricks.every(brick => !brick.alive);
     if ((state.status === 'lost') !== (state.lives === 0)
       || complete !== ['cleared','won'].includes(state.status)
-      || state.status === 'won' && state.level !== levels.length
-      || state.status === 'cleared' && state.level === levels.length) throw new Error();
+      || state.status === 'won' && state.level !== 10) throw new Error();
     return { state: { ...state, status: state.status === 'playing' ? 'paused' : state.status } };
   } catch { return { message: 'Saved progress could not be loaded. Start a fresh game or delete the save.' }; }
 }

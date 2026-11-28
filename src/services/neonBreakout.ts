@@ -1,4 +1,5 @@
 import type { BreakoutLevel } from '../data/breakoutLevels';
+import { breakoutLevel } from './breakoutDifficulty.mjs';
 export const COURT = { width: 720, height: 440, paddleY: 398, radius: 7 } as const;
 export type BreakoutStatus = 'ready' | 'playing' | 'paused' | 'cleared' | 'lost' | 'won';
 export interface NeonBrick { x: number; y: number; alive: boolean; row: number; health: number }
@@ -21,14 +22,14 @@ export function movePaddle(state: BreakoutState, x: number) {
 export function launchBreakout(state: BreakoutState) {
   if (state.status === 'ready' || state.status === 'paused') state.status = 'playing';
 }
-export function advanceBreakout(state: BreakoutState, levels: BreakoutLevel[]) {
-  if (state.status !== 'cleared' || !levels[state.level]) return;
+export function advanceBreakout(state: BreakoutState, levels: BreakoutLevel[] = []) {
+  if (state.status !== 'cleared') return;
   const score = state.score, lives = state.lives;
-  Object.assign(state, createBreakout(state.level + 1, levels[state.level]));
+  Object.assign(state, createBreakout(state.level + 1, breakoutLevel(state.level + 1, levels)));
   state.score = score; state.lives = lives;
 }
 // Small steps prevent the ball crossing thin bricks between rendered frames.
-export function stepBreakout(state: BreakoutState, elapsed: number, totalLevels = 1) {
+export function stepBreakout(state: BreakoutState, elapsed: number, _totalLevels = 1) {
   if (state.status !== 'playing') return;
   let remaining = Math.min(Math.max(elapsed, 0), .05);
   while (remaining > 0 && state.status === 'playing') {
@@ -50,7 +51,7 @@ export function stepBreakout(state: BreakoutState, elapsed: number, totalLevels 
       if (oldY + 7 <= brick.y) { state.y = brick.y - 7; state.vy = -Math.abs(state.vy); }
       else if (oldY - 7 >= brick.y + 18) { state.y = brick.y + 25; state.vy = Math.abs(state.vy); }
       else { state.x = state.vx > 0 ? brick.x - 7 : brick.x + 77; state.vx *= -1; }
-      if (state.bricks.every(item => !item.alive)) state.status = state.level >= totalLevels ? 'won' : 'cleared';
+      if (state.bricks.every(item => !item.alive)) state.status = 'cleared';
       break;
     }
     if (state.y > 460) {

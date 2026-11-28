@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { computed, onBeforeUnmount, ref, useId, watch } from "vue";
+import { computed, onBeforeUnmount, onMounted, ref, useId, watch } from "vue";
 import { sampleMouseMotion } from "../../services/mouseMotion";
 
 const props = defineProps<{ active: boolean }>();
 const emit = defineEmits<{ ready: [] }>();
 const elapsed = ref(0);
+const preload = ref<HTMLImageElement>();
 const matteId = `mouse-matte-${useId()}`;
 const pose = computed(() => sampleMouseMotion(elapsed.value));
 // Source windows align the generated rows to a common paw baseline and keep
@@ -26,13 +27,19 @@ watch(() => props.active, (active) => {
   startedAt = undefined;
   if (active) animationFrame = requestAnimationFrame(tick);
 }, { immediate: true });
+onMounted(() => {
+  if (preload.value?.complete && preload.value.naturalWidth > 0) emit("ready");
+});
 onBeforeUnmount(() => cancelAnimationFrame(animationFrame));
 
 const runnerStyle = computed(() => ({
   // Bring the body in front of the opening before turning in place.
   left: `calc(${pose.value.approach * 100}% - ${pose.value.approach * 48}px - var(--mouse-size) * ${1 - pose.value.approach * .38})`,
   opacity: props.active ? pose.value.opacity : 0,
-  transform: `translateY(calc(var(--mouse-size) * ${pose.value.depthOffset} - var(--floor-depth) * ${1 - pose.value.approach})) scale(${pose.value.scale})`,
+  // Keep the runner anchored to the track's road-level baseline. Applying
+  // floor-depth here lifted the opening pose by up to 140px, making the mouse
+  // appear from the middle of the artwork before it reached the doorway.
+  transform: `translateY(calc(var(--mouse-size) * ${pose.value.depthOffset})) scale(${pose.value.scale})`,
 }));
 const spriteStyle = computed(() => {
   const column = pose.value.frame % 4;
@@ -55,7 +62,7 @@ const spriteStyle = computed(() => {
       </filter>
     </defs>
   </svg>
-  <img class="mouse-runner__preload" src="/contact/mouse/house-mouse-gait.png" alt="" @load="emit('ready')" />
+  <img ref="preload" class="mouse-runner__preload" src="/contact/mouse/house-mouse-gait.png" alt="" @load="emit('ready')" />
   <div class="mouse-runner" :style="runnerStyle" :data-pose="pose.frame" :data-phase="pose.phase" :data-entering="pose.entry > 0">
     <span class="mouse-runner__shadow" :style="{ opacity: .5 * (1 - pose.entry) }" />
     <span class="mouse-runner__sprite" :style="spriteStyle" />

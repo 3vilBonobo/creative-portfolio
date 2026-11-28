@@ -1,14 +1,17 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { createSnake, deleteSnakeSave, readSnakeSave, saveSnake, SNAKE_LEVELS, SNAKE_SAVE_KEY, SNAKE_TICK_SECONDS, snakeTickSeconds, steerSnake, stepSnake } from '../src/services/signalSnake.ts';
+import { createSnake, deleteSnakeSave, readSnakeSave, saveSnake, SNAKE_LEVELS, SNAKE_SAVE_KEY, SNAKE_TICK_SECONDS, snakeLevel, snakeTickSeconds, steerSnake, stepSnake } from '../src/services/signalSnake.ts';
 
-test('ten districts have distinct progressive route layouts', () => {
+test('ten handcrafted districts roll into procedural routes with rising packet goals', () => {
   assert.equal(SNAKE_LEVELS.length, 10);
   assert.deepEqual(SNAKE_LEVELS.map(level => level.target), [10,10,12,12,14,14,16,16,18,18]);
   assert.deepEqual(SNAKE_LEVELS.map(level => level.obstacles.length), [0,4,6,8,10,12,14,16,18,20]);
   assert.ok(SNAKE_LEVELS.every(level => level.target >= 10));
   assert.equal(SNAKE_LEVELS[0].obstacles.length, 0);
   assert.ok(SNAKE_LEVELS[9].obstacles.length > 0);
+  assert.equal(snakeLevel(11).name, 'Monastiraki 2');
+  assert.equal(snakeLevel(11).target, 18);
+  assert.ok(snakeLevel(30).target > snakeLevel(11).target);
 });
 
 test('opening district starts gently and later districts increase pace gradually', () => {
@@ -41,11 +44,11 @@ test('eating advances score, and only the moving tail cell is safely enterable',
   assert.equal(stepSnake(game), 'moved'); assert.deepEqual(game.body[0], {x:4,y:5});
 });
 
-test('collecting the sector quota advances districts, and the tenth district wins', () => {
+test('collecting district quotas advances beyond level ten without ending the run', () => {
   const game = createSnake(); game.status = 'playing'; game.snacksThisLevel = 9; game.food = {x:6,y:5};
   assert.equal(stepSnake(game, () => 0), 'sector'); assert.equal(game.level, 2); assert.equal(game.status, 'ready');
   game.level = 10; game.snacksThisLevel = 17; game.body = [{x:5,y:5},{x:4,y:5},{x:3,y:5}]; game.direction = game.queuedDirection = 'right'; game.food = {x:6,y:5}; game.status = 'playing';
-  assert.equal(stepSnake(game), 'won'); assert.equal(game.status, 'won');
+  assert.equal(stepSnake(game), 'sector'); assert.equal(game.level, 11); assert.equal(game.status, 'ready');
 });
 
 test('local save pauses active runs, restores valid progress, and deletes cleanly', () => {
@@ -59,4 +62,12 @@ test('local save pauses active runs, restores valid progress, and deletes cleanl
   const forged = createSnake(2); forged.obstacles = []; values.set(SNAKE_SAVE_KEY, JSON.stringify(forged));
   assert.equal(readSnakeSave(storage), undefined);
   assert.equal(deleteSnakeSave(storage), true); assert.equal(readSnakeSave(storage), undefined);
+});
+
+test('generated routes beyond level ten remain saveable', () => {
+  const values = new Map(), storage = { getItem: key => values.get(key) ?? null, setItem: (key, value) => values.set(key, value), removeItem: key => values.delete(key) };
+  const game = createSnake(16, 900); game.status = 'playing';
+  assert.equal(saveSnake(storage, game), true);
+  assert.equal(readSnakeSave(storage).level, 16);
+  assert.deepEqual(readSnakeSave(storage).obstacles, snakeLevel(16).obstacles);
 });

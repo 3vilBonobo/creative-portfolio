@@ -10,6 +10,7 @@ body:has(.app-shell[data-active-floor="office"] .hero--phone) { min-width: 0; }
   container-type: size; isolation: isolate;
 }
 .hero--portrait .office-studio-stage { height: min(38svh, 18rem); container-type: normal; }
+.hero--portrait .office-studio-stage:has(.mobile-studio-plate--full) { height: auto; }
 .hero--landscape .office-studio-stage { overflow: hidden; }
 .hero--landscape:not(.hero--immersive) .office-studio-stage {
   height: calc(100svh - 2.75rem);

@@ -1,7 +1,7 @@
 export const SNAKE_COLUMNS = 18;
 export const SNAKE_ROWS = 11;
 export const SNAKE_TICK_SECONDS = 0.22;
-export const snakeTickSeconds = (level: number) => Math.max(0.15, SNAKE_TICK_SECONDS - (level - 1) * 0.006);
+export const snakeTickSeconds = (level: number) => Math.max(0.145, SNAKE_TICK_SECONDS - (level - 1) * 0.004);
 export const SNAKE_SAVE_KEY = 'athens-arcade:snake:v1';
 
 export type SnakeDirection = 'up' | 'down' | 'left' | 'right';
@@ -33,7 +33,14 @@ const sectors = [
   { name: 'Athens', obstacles: [{x:2,y:3},{x:3,y:3},{x:14,y:7},{x:15,y:7},{x:5,y:2},{x:6,y:2},{x:11,y:8},{x:12,y:8},{x:8,y:3},{x:9,y:3},{x:8,y:7},{x:9,y:7},{x:2,y:7},{x:15,y:3},{x:5,y:8},{x:12,y:2},{x:6,y:7},{x:11,y:3},{x:4,y:7},{x:13,y:3}] },
 ] as const;
 export const SNAKE_LEVELS = sectors.map((sector, i) => ({ ...sector, number: i + 1, target: 10 + Math.floor(i / 2) * 2 }));
-export const snakeLevel = (level: number) => SNAKE_LEVELS[level - 1] ?? SNAKE_LEVELS[0]!;
+export const snakeLevel = (level: number) => {
+  const number = Math.max(1, Math.floor(level));
+  const template = SNAKE_LEVELS[(number - 1) % SNAKE_LEVELS.length]!;
+  if (number <= SNAKE_LEVELS.length) return template;
+  const cycle = Math.floor((number - 1) / SNAKE_LEVELS.length);
+  const obstacles = template.obstacles.map(({ x, y }) => ({ x: cycle % 2 ? SNAKE_COLUMNS - x - 1 : x, y }));
+  return { ...template, name: `${template.name} ${cycle + 1}`, number, obstacles, target: Math.min(40, 18 + Math.floor((number - 10) / 2) * 2) };
+};
 
 function makeFood(body: SnakeCell[], obstacles: SnakeCell[], random: () => number): SnakeCell {
   const occupied = new Set([...body, ...obstacles].map(cell => `${cell.x},${cell.y}`));
@@ -68,7 +75,6 @@ export function stepSnake(state: SnakeState, random = Math.random): 'moved' | 's
   state.score += 10;
   state.snacksThisLevel++;
   if (state.snacksThisLevel >= snakeLevel(state.level)!.target) {
-    if (state.level === SNAKE_LEVELS.length) { state.status = 'won'; return 'won'; }
     state.level++;
     state.obstacles = [...snakeLevel(state.level)!.obstacles];
     state.body = [{x:5,y:5},{x:4,y:5},{x:3,y:5}];
@@ -88,7 +94,7 @@ export function readSnakeSave(storage: SaveStorage | undefined): SnakeState | un
     if (!raw) return undefined;
     const state = JSON.parse(raw) as SnakeState;
     const validCell = (cell: SnakeCell) => cell && Number.isInteger(cell.x) && Number.isInteger(cell.y) && cell.x >= 0 && cell.x < SNAKE_COLUMNS && cell.y >= 0 && cell.y < SNAKE_ROWS;
-    if (!Number.isInteger(state.level) || state.level < 1 || state.level > 10 || !Number.isInteger(state.score) || state.score < 0 || state.score > 1e7
+    if (!Number.isInteger(state.level) || state.level < 1 || state.level > 100000 || !Number.isInteger(state.score) || state.score < 0 || state.score > 1e7
       || !Array.isArray(state.body) || state.body.length < 3 || state.body.length > SNAKE_COLUMNS * SNAKE_ROWS || !state.body.every(validCell)
       || !Array.isArray(state.obstacles) || !state.obstacles.every(validCell) || !validCell(state.food)
       || !['up','down','left','right'].includes(state.direction) || !['up','down','left','right'].includes(state.queuedDirection)

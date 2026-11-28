@@ -30,8 +30,9 @@ export const invaderWeaponLevelForWave = (level: number): 1 | 2 | 3 => level >= 
 export const invaderEnemyVolleySize = (level: number): 1 | 2 | 3 => level >= 8 ? 3 : level >= 4 ? 2 : 1;
 
 export function createInvaders(level = 1, score = 0, lives = 3, weaponLevel = invaderWeaponLevelForWave(level)): InvadersState {
-  const columns = 5 + Math.floor((level - 1) / 2);
-  const rows = 3 + Math.floor((level - 1) / 4);
+  const wave = Math.max(1, Math.floor(level));
+  const columns = Math.min(10, 5 + Math.floor((wave - 1) / 2));
+  const rows = Math.min(5, 3 + Math.floor((wave - 1) / 4));
   const gapX = 54, gapY = 42;
   const firstX = INVADERS_WIDTH / 2 - (columns - 1) * gapX / 2;
   const enemies: InvaderEnemy[] = [];
@@ -42,14 +43,14 @@ export function createInvaders(level = 1, score = 0, lives = 3, weaponLevel = in
       y: 76 + row * gapY,
       row,
       kind: row === 0 ? 'commander' : row === 1 ? 'glider' : 'scout',
-      hp: level >= 6 && row === 0 ? 2 : 1,
+      hp: wave >= 6 && row === 0 ? 2 : 1,
     });
   }
   return {
-    level, score, lives, weaponLevel: Math.max(weaponLevel, invaderWeaponLevelForWave(level)) as 1 | 2 | 3, playerX: INVADERS_WIDTH / 2,
+    level: wave, score, lives, weaponLevel: Math.max(weaponLevel, invaderWeaponLevelForWave(wave)) as 1 | 2 | 3, playerX: INVADERS_WIDTH / 2,
     enemies, playerShots: [], enemyShots: [], direction: 1,
-    enemySpeed: 34 + (level - 1) * 7,
-    fireCooldown: 0, enemyFireTimer: 1.2 - Math.min(level - 1, 9) * .055,
+    enemySpeed: 34 + Math.min(116, (wave - 1) * 4),
+    fireCooldown: 0, enemyFireTimer: 1.2 - Math.min(wave - 1, 9) * .055,
     invulnerability: 0, status: 'ready',
   };
 }
@@ -111,7 +112,7 @@ export function stepInvaders(state: InvadersState, dt: number, random = Math.ran
     const shooter = shooters[Math.min(shooters.length - 1, Math.floor(random() * shooters.length))]!;
     const enemyVolley = invaderEnemyVolleySize(state.level);
     const offsets = enemyVolley === 3 ? [-15, 0, 15] : enemyVolley === 2 ? [-10, 10] : [0];
-    for (const offset of offsets) state.enemyShots.push({ x: shooter.x + offset, y: shooter.y + 13, vy: 175 + state.level * 13 });
+    for (const offset of offsets) state.enemyShots.push({ x: shooter.x + offset, y: shooter.y + 13, vy: 175 + Math.min(145, state.level * 5) });
     state.enemyFireTimer = Math.max(.48, 1.2 - Math.min(state.level - 1, 9) * .055) * (.8 + random() * .4);
   }
   for (const shot of state.enemyShots) shot.y += shot.vy * dt;
@@ -131,15 +132,10 @@ export function stepInvaders(state: InvadersState, dt: number, random = Math.ran
   }
 
   if (state.enemies.length === 0) {
-    if (state.level >= 10) {
-      state.score += 500;
-      state.status = 'won'; events.push('won');
-    } else {
-      state.score += state.level * 100;
-      const next = createInvaders(state.level + 1, state.score, state.lives, state.weaponLevel);
-      Object.assign(state, next);
-      events.push('wave');
-    }
+    state.score += state.level * 100;
+    const next = createInvaders(state.level + 1, state.score, state.lives, state.weaponLevel);
+    Object.assign(state, next);
+    events.push('wave');
   }
   return events;
 }
@@ -154,11 +150,11 @@ export function readInvadersSave(storage: SaveStorage | undefined): InvadersStat
       const legacy = createInvaders(Math.max(1, Math.min(10, data.level!)), Math.max(0, data.score!));
       return { ...legacy, status: 'paused' };
     }
-    if (data.version !== 1 || !Number.isInteger(data.level) || data.level! < 1 || data.level! > 10
+    if (data.version !== 1 || !Number.isInteger(data.level) || data.level! < 1 || data.level! > 100000
       || !Number.isInteger(data.score) || data.score! < 0 || data.score! > 1e7
       || !Number.isInteger(data.lives) || data.lives! < 1 || data.lives! > 3
       || !finite(data.playerX, 28, INVADERS_WIDTH - 28)
-      || !Array.isArray(data.enemies) || data.enemies.length > 45
+      || !Array.isArray(data.enemies) || data.enemies.length > 50
       || data.weaponLevel !== undefined && (!Number.isInteger(data.weaponLevel) || data.weaponLevel < 1 || data.weaponLevel > 3)
       || !Array.isArray(data.playerShots) || data.playerShots.length > 9
       || !Array.isArray(data.enemyShots) || data.enemyShots.length > 20

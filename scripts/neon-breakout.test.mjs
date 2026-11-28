@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { advanceBreakout, createBreakout, launchBreakout, movePaddle, stepBreakout } from '../src/services/neonBreakout.ts';
 import { BREAKOUT_LEVELS } from '../src/data/breakoutLevels.ts';
+import { breakoutLevel } from '../src/services/breakoutDifficulty.mjs';
 
 test('paddle stays in bounds and carries the ball before launch', () => {
   const game = createBreakout();
@@ -18,11 +19,11 @@ test('wall and paddle collisions bounce toward the court', () => {
   game.x = 8; game.y = 250; game.vx = -170; stepBreakout(game, .02); assert.ok(game.vx > 0);
   game.x = game.paddle; game.y = 389; game.vy = 260; stepBreakout(game, .02); assert.ok(game.vy < 0);
 });
-test('a brick scores once and the last brick wins', () => {
+test('a brick scores once and the last brick clears the current level', () => {
   const game = createBreakout(); launchBreakout(game);
   game.bricks.forEach((brick, index) => brick.alive = index === 0);
   game.x = 70; game.y = 90; game.vx = 0; game.vy = -260;
-  stepBreakout(game, .05); assert.equal(game.score, 25); assert.equal(game.status, 'won');
+  stepBreakout(game, .05); assert.equal(game.score, 25); assert.equal(game.status, 'cleared');
   stepBreakout(game, .05); assert.equal(game.score, 25);
 });
 test('a missed ball consumes one life; the final miss ends the game', () => {
@@ -33,7 +34,7 @@ test('a missed ball consumes one life; the final miss ends the game', () => {
   assert.equal(game.lives, 0); assert.equal(game.status, 'lost');
 });
 
-test('all ten distinct sectors advance in order, preserve points and lives, and end in a win', () => {
+test('ten handcrafted sectors advance into endless generated remixes', () => {
   assert.equal(BREAKOUT_LEVELS.length, 10);
   assert.equal(new Set(BREAKOUT_LEVELS.map(level => level.layout.join(''))).size, 10);
   const game = createBreakout(1, BREAKOUT_LEVELS[0]); game.lives = 2;
@@ -46,10 +47,12 @@ test('all ten distinct sectors advance in order, preserve points and lives, and 
     target.alive = true; target.health = 1;
     game.x = target.x + 30; game.y = target.y + 28; game.vx = 0; game.vy = -260;
     launchBreakout(game); stepBreakout(game, .05, 10);
-    assert.equal(game.status, sector < 10 ? 'cleared' : 'won');
+    assert.equal(game.status, 'cleared');
     assert.equal(game.score, sector * 25); assert.equal(game.lives, 2);
-    if (sector < 10) advanceBreakout(game, BREAKOUT_LEVELS);
+    advanceBreakout(game, BREAKOUT_LEVELS);
   }
+  assert.equal(game.level, 11); assert.equal(game.status, 'ready'); assert.ok(game.bricks.length >= 32);
+  assert.ok(breakoutLevel(16, BREAKOUT_LEVELS).paddleWidth < BREAKOUT_LEVELS[9].paddleWidth); assert.ok(game.vx > 0);
 });
 test('reinforced signs require two distinct impacts', () => {
   const game = createBreakout(6, BREAKOUT_LEVELS[5]); launchBreakout(game);

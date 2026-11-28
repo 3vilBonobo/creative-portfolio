@@ -4,12 +4,16 @@ import { getWeatherEffectValues } from "../../services/weatherEffects";
 import type { EnvironmentState } from "../../types/environment";
 import { getMoonAppearance, getPreviewMoonAppearance } from "../../services/moonMath";
 
-const props = defineProps<{ state: EnvironmentState; paused?: boolean; previewPhase?: number | null; previewProgress?: number }>();
+const props = defineProps<{ state: EnvironmentState; paused?: boolean; previewPhase?: number | null; previewProgress?: number; photoSpace?: boolean }>();
 const now = ref(new Date());
 const moon = computed(() => props.previewPhase != null ? getPreviewMoonAppearance(props.previewPhase, props.previewProgress) : getMoonAppearance(now.value));
-const arcX = computed(() => 20.5 + moon.value.progress * 40.5);
-// The wide scene's glass starts at 19.5%; keep the apex below the frame.
-const arcY = computed(() => 42 - Math.sin(moon.value.progress * Math.PI) * 17);
+// Span the left-hand sky to the gap just before the right-hand glass towers.
+const arcX = computed(() => props.photoSpace ? 18 + moon.value.progress * 60 : 20.5 + moon.value.progress * 40.5);
+// Photo-space endpoints sit below the skyline by more than the moon's radius.
+// The legacy composition keeps its original path in full-scene coordinates.
+const arcY = computed(() => props.photoSpace
+  ? 55 - Math.sin(moon.value.progress * Math.PI) * 39
+  : 42 - Math.sin(moon.value.progress * Math.PI) * 17);
 const cloudiness = computed(() => getWeatherEffectValues(props.state).cloud);
 const moonOpacity = computed(() => {
   if (!moon.value.visible || (props.state.timePhase !== "night" && props.state.timePhase !== "dusk")) return 0;

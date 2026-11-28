@@ -40,6 +40,14 @@ prove an image is unused.
 - Hero uses `public/hero/loft-v2/` for wide day/night plates and masks, with the
   phone composition in `public/hero/loft-mobile-v1/`. Telescope artwork uses
   `public/hero/telescope/discoveries-v2/`.
+  `HeroExterior.vue` places the five owner-supplied views from
+  `public/hero/exterior/` inside separate wide/portrait window silhouettes.
+  Its nested photo coordinates keep the skyline masks, clouds, precipitation
+  and Acropolis lights registered together. The overcast photo has its own
+  silhouette and registration transform. `heroExterior.ts` selects the view
+  from the existing solar phase and weather; dawn shares the sunny reference.
+  Scene preview's Weather mask and Sky mask controls show these live apertures.
+  Effects pause offscreen, on tab hiding, and with reduced motion.
 - About uses `public/environments/floor-03-about-corridor/v004/` on desktop and
   `v003/` for mobile/tablet, including the registered geometry and apertures.
 - Projects and Experience use their matching `public/environments/` directories;

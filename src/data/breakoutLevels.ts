@@ -15,3 +15,4 @@ export const BREAKOUT_LEVELS: BreakoutLevel[] = [
   { name: 'Ancient circuit', district: 'Acropolis', layout: ['22222222','11111111','02022020','01011010','02022020','11111111'], speed: 390, paddleWidth: 92, colors: ['#ffe4a5','#f7bc86','#e9a2cf','#a8dadd'], sky: '#1c1813', city: '#38332a', landmark: 'temple' },
   { name: 'Athens afterglow', district: 'Citywide', layout: ['21211212','12122121','21111112','01122110','00122100','00022000'], speed: 400, paddleWidth: 88, colors: ['#ffd59b','#f7a7da','#c4b5ff','#93e9eb'], sky: '#171224', city: '#2c2945', landmark: 'temple' },
 ];
+

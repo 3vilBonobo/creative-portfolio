@@ -1,5 +1,11 @@
 # Asset credits and source material
 
+The five top-floor Athens exterior views (sunny, overcast, sunset, dusk and
+cyberpunk night) were supplied by the owner on 28 November 2026. Runtime JPEG
+encodings are under `public/hero/exterior/`; the supplied compositions and
+colours are preserved. Window and skyline silhouettes are code-defined SVG
+paths in `src/components/hero/HeroExterior.vue` and `src/services/heroExterior.ts`.
+
 The aquarium uses optimized derivatives of [Poly Haven](https://polyhaven.com/)
 assets distributed under CC0: `boulder_01`, `fern_02`, `moss_01`,
 `dead_tree_trunk_02`, `coast_land_rocks_03`, `calathea_orbifolia_01` and
