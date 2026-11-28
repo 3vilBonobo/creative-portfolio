@@ -11,7 +11,7 @@ const paused = computed(() => props.paused || hidden.value || offscreen.value);
 const nightOpacity = computed(
   () => ({ dawn: 0.02, day: 0, goldenHour: 0, dusk: 0.1, night: 0.3 })[state.value.timePhase],
 );
-const treeBrightness = computed(() => 1 - nightOpacity.value * 0.45);
+const treeBrightness = computed(() => 1 - nightOpacity.value * 1.5);
 const id = `christmas-${useId().replace(/:/g, "")}`;
 const placement = computed(() =>
   props.portrait ? "translate(-100 460) scale(.293)" : "translate(185 235) scale(.215)",
