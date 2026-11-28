@@ -1,5 +1,10 @@
 # Asset credits and source material
 
+The seasonal Christmas tree day/night transparent PNGs in
+`public/hero/christmas/` were created with the built-in image generation tool on
+28 November 2026. See [Christmas tree production notes](christmas-tree.md) for
+the prompts, placement, and seasonal behavior.
+
 The five top-floor Athens exterior views (sunny, overcast, sunset, dusk and
 cyberpunk night) were supplied by the owner on 28 November 2026. Runtime JPEG
 encodings are under `public/hero/exterior/`; the supplied compositions and

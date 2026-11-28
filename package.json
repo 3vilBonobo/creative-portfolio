@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "test": "node --experimental-strip-types --test scripts/chess-puzzle.test.mjs scripts/mouse-motion.test.mjs scripts/weather-effects.test.mjs scripts/hero-exterior.test.mjs scripts/floor-navigation.test.mjs scripts/projects-lamp.test.mjs scripts/experience-lamp.test.mjs scripts/experience-archive.test.mjs scripts/project-catalogue.test.mjs scripts/radio.test.mjs scripts/neon-breakout.test.mjs scripts/arcade-progress.test.mjs scripts/arcade-audio.test.mjs scripts/arcade-records.test.mjs scripts/signal-snake.test.mjs scripts/rooftop-invaders.test.mjs"
+    "test": "node --experimental-strip-types --test scripts/chess-puzzle.test.mjs scripts/mouse-motion.test.mjs scripts/weather-effects.test.mjs scripts/hero-exterior.test.mjs scripts/floor-navigation.test.mjs scripts/projects-lamp.test.mjs scripts/experience-lamp.test.mjs scripts/experience-archive.test.mjs scripts/project-catalogue.test.mjs scripts/radio.test.mjs scripts/neon-breakout.test.mjs scripts/arcade-progress.test.mjs scripts/arcade-audio.test.mjs scripts/arcade-records.test.mjs scripts/signal-snake.test.mjs scripts/rooftop-invaders.test.mjs scripts/christmas-season.test.mjs"
   },
   "dependencies": {
     "chess.js": "^1.4.0",
