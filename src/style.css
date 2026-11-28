@@ -7721,3 +7721,12 @@ body.aquarium-is-open {
   .experience-timeline { gap: .35rem; }
   .projects--windowed { height: var(--desktop-floor-height); }
 }
+
+/* Keep the About corridor at a room scale closer to the neighboring floors. */
+@media (min-width: 1101px) {
+  .about:not(.about--phone) {
+    background: #000;
+  }
+  .about:not(.about--phone) .about__scene { width: 88%; }
+  .experience__scene { background: #000; }
+}

@@ -159,6 +159,14 @@ onBeforeUnmount(() => {
 .experience-environment__attenuation { position: absolute; display: block; }
 .experience-environment__attenuation--wall { opacity: calc(1 - var(--experience-wall-intensity, 1)); }
 .experience-environment__attenuation--ceiling { opacity: calc(1 - var(--experience-ceiling-intensity, 1)); }
+@media (min-width: 1101px) {
+  .experience-environment {
+    left: 7%;
+    right: auto;
+    width: 86%;
+    background: #000;
+  }
+}
 /* Long document-flow layouts must never expose the painted floor halfway down. */
 @media (max-width: 760px), (max-height: 820px), (prefers-reduced-motion: reduce), (min-width: 761px) and (max-width: 1100px) and (orientation: portrait) {
   .experience-environment__plate { mask-image: linear-gradient(#000 50%, transparent 77%); }

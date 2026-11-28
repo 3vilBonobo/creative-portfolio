@@ -109,6 +109,20 @@ onBeforeUnmount(() => {
   inset: calc(var(--projects-scene-offset, 0px) + 100cqw * 1148 / 1370 - 110px) 0 0;
   background: url('/environments/floor-02-projects/floor-02-projects-wall-continuation-desktop.webp') center top / 100% auto repeat-y;
 }
+@media (min-width: 1101px) {
+  .projects-environment {
+    background: #000;
+  }
+  .projects-environment__plate,
+  .projects-environment__continuation {
+    left: 8%;
+    right: auto;
+    width: 84%;
+  }
+  .projects-environment__continuation {
+    top: calc(var(--projects-scene-offset, 0px) + 84cqw * 1148 / 1370 - 110px);
+  }
+}
 @media (max-width: 620px) {
   .projects-environment__plate {
     aspect-ratio: 768 / 2048;
