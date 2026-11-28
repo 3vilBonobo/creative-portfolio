@@ -2,7 +2,6 @@
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from "vue";
 import MobileStudioPlate from "../components/hero/MobileStudioPlate.vue";
 import { usePhoneLayout } from "../composables/usePhoneLayout";
-import { useEnvironment } from "../composables/useEnvironment";
 import "../floor04-mobile.css";
 import HeroCat from "../components/hero/HeroCat.vue";
 import HeroVisual from "../components/hero/HeroVisual.vue";
@@ -15,9 +14,10 @@ import { useRadio } from "../composables/useRadio";
 import { FLOOR } from "../config/floors";
 
 const { portrait, landscape, phone } = usePhoneLayout();
-const { state } = useEnvironment();
 const radio = useRadio();
 const hero = ref<HTMLElement>();
+const orientationDialog = ref<HTMLDialogElement>();
+const orientationPromptOpen = ref(false);
 const telescope = ref<InstanceType<typeof TelescopeExperience>>();
 const aquarium = ref<InstanceType<typeof AquariumExperience>>();
 const chess = ref<InstanceType<typeof DailyChessPuzzle>>();
@@ -28,7 +28,9 @@ const studioContained = ref(false);
 const portraitExpanded = ref(false);
 const immersive = computed(() => studioRequested.value && landscape.value);
 const discoveryOpen = computed(() => !!(telescope.value?.open || aquarium.value?.open || chess.value?.open || sudoku.value?.open));
-const weatherLabel = computed(() => ({ clear: "Clear", partlyCloudy: "Partly cloudy", cloudy: "Cloudy", fog: "Fog", rain: "Rain", storm: "Storm", snow: "Snow" })[state.value.weatherCondition]);
+const ORIENTATION_CHOICE_KEY = "portfolio-mobile-orientation-choice";
+let enterStudioAfterRotation = false;
+let mounted = false;
 let returnFocus: HTMLElement | null = null;
 let studioScroll = 0;
 let previousOverflow = "";
@@ -50,7 +52,35 @@ async function exitStudio() {
   await nextTick();
   hero.value?.querySelector<HTMLButtonElement>(".mobile-studio-enter")?.focus({ preventScroll: true });
 }
-watch(landscape, available => { if (!available) studioRequested.value = false; });
+function closeOrientationPrompt(choice: string) {
+  sessionStorage.setItem(ORIENTATION_CHOICE_KEY, choice);
+  orientationPromptOpen.value = false;
+  orientationDialog.value?.close();
+}
+function continuePortrait() { closeOrientationPrompt("portrait"); }
+function browseFloors() { closeOrientationPrompt("browse"); }
+async function chooseImmersive() {
+  closeOrientationPrompt("immersive");
+  await enterStudio();
+}
+function chooseLandscape() {
+  enterStudioAfterRotation = true;
+  closeOrientationPrompt("rotate");
+}
+async function openOrientationPrompt() {
+  if (!phone.value || sessionStorage.getItem(ORIENTATION_CHOICE_KEY) || orientationPromptOpen.value) return;
+  orientationPromptOpen.value = true;
+  await nextTick();
+  if (orientationPromptOpen.value && orientationDialog.value && !orientationDialog.value.open) orientationDialog.value.showModal();
+}
+watch(phone, available => { if (available && mounted) void openOrientationPrompt(); });
+watch(landscape, async available => {
+  if (!available) { studioRequested.value = false; return; }
+  if (enterStudioAfterRotation) {
+    enterStudioAfterRotation = false;
+    await enterStudio();
+  }
+});
 watch(immersive, async active => {
   if (active) {
     studioScroll = window.scrollY;
@@ -73,8 +103,8 @@ watch(discoveryOpen, async open => {
 });
 function keepDialogFocus(event: KeyboardEvent) {
   if (radio.opened.value) return;
-  if (!phone.value || (!discoveryOpen.value && !immersive.value) || event.key !== "Tab") return;
-  const dialog = discoveryOpen.value ? document.querySelector<HTMLElement>('.telescope-app, .aquarium-app, .puzzle-book, dialog[open].chess-dialog') : hero.value;
+  if (!phone.value || (!orientationDialog.value?.open && !discoveryOpen.value && !immersive.value) || event.key !== "Tab") return;
+  const dialog = orientationDialog.value?.open ? orientationDialog.value : discoveryOpen.value ? document.querySelector<HTMLElement>('.telescope-app, .aquarium-app, .puzzle-book, dialog[open].chess-dialog') : hero.value;
   const controls = dialog ? [...dialog.querySelectorAll<HTMLElement>('a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex="0"]')].filter(el => el.getClientRects().length && !el.closest('[inert]')) : [];
   const first = controls[0], last = controls[controls.length - 1];
   if (!first || !last) return;
@@ -120,6 +150,8 @@ function handleScroll() {
 }
 
 onMounted(() => {
+  mounted = true;
+  void openOrientationPrompt();
   document.addEventListener("keydown", keepDialogFocus);
   previousScrollY = window.scrollY;
   window.addEventListener("scroll", handleScroll, { passive: true });
@@ -145,29 +177,18 @@ onBeforeUnmount(() => {
         <AquariumExperience ref="aquarium" :hotspots="!portrait" />
         <RadioLaptop v-if="!portrait" />
       </div>
+      <button v-if="landscape && !immersive" class="mobile-studio-enter" type="button" @click.stop="enterStudio">Explore studio <span aria-hidden="true">↗</span></button>
     </div>
-    <div v-if="phone" class="mobile-office-copy" :inert="immersive">
-      <p class="mobile-office-eyebrow">Floor 04 / Athens studio</p>
+    <div v-if="phone" class="mobile-office-copy" :inert="immersive || landscape">
       <h1 id="mobile-hero-title"><span>Irinella Boutsika</span>Frontend developer.</h1>
-      <p class="mobile-office-lede">I turn complex problems into interfaces that make sense.</p>
-      <div class="mobile-office-actions">
-        <a class="mobile-office-primary" :href="`#${FLOOR.projects.id}`">View Projects <span aria-hidden="true">↗</span></a>
-        <a :href="`#${FLOOR.about.id}`">About me <span aria-hidden="true">↓</span></a>
-      </div>
-      <div class="mobile-office-rotation">
-        <img src="/hero/loft-mobile-v1/rotate-phone.svg" alt="" aria-hidden="true" width="32" height="32" />
-        <p><strong>Explore the full studio</strong><span>Rotate your phone sideways for the immersive experience.</span></p>
-      </div>
-      <button v-if="landscape" class="mobile-studio-enter" type="button" @click.stop="enterStudio">Enter immersive studio <span aria-hidden="true">↗</span></button>
-      <p class="mobile-office-background">My background in law taught me to question assumptions. Software engineering gave that curiosity something to build.</p>
+      <p class="mobile-office-lede">Projects, interactive scenes and hidden Easter eggs.</p>
     </div>
     <div v-if="phone" class="mobile-studio-tools">
       <div v-if="immersive" class="mobile-studio-toolbar">
         <button class="mobile-studio-return" type="button" aria-label="Return to portfolio" @click.stop="exitStudio">← Portfolio</button>
         <button class="mobile-studio-fit" type="button" :aria-pressed="studioContained" @click.stop="studioContained = !studioContained">{{ studioContained ? 'Fill the screen' : 'View entire studio' }}</button>
       </div>
-      <p class="mobile-office-weather">Athens <time :datetime="state.localTime">{{ state.localTime }}</time> · {{ weatherLabel }} · {{ Math.round(state.temperature) }}°C <small v-if="state.source === 'fallback'">Weather unavailable · fallback</small><small v-else-if="state.source === 'staleCache'">Last known weather</small><small v-else-if="state.source === 'preview'">Scene preview</small></p>
-      <details class="mobile-studio-discoveries" @click.stop>
+      <details v-if="portrait" class="mobile-studio-discoveries" @click.stop>
         <summary>Explore Studio <span aria-hidden="true">+</span></summary>
         <div class="mobile-studio-discoveries__actions">
           <button type="button" @click="discover('telescope', $event)">Telescope <span aria-hidden="true">↗</span></button>
@@ -179,6 +200,17 @@ onBeforeUnmount(() => {
         </div>
       </details>
     </div>
+    <dialog ref="orientationDialog" class="mobile-orientation-dialog" aria-labelledby="mobile-orientation-title" aria-describedby="mobile-orientation-copy" @cancel.prevent="browseFloors">
+      <p class="mobile-orientation-dialog__eyebrow">IMMERSIVE PORTFOLIO</p>
+      <h2 id="mobile-orientation-title">{{ landscape ? 'Explore the studio' : 'Turn your phone sideways' }}</h2>
+      <p id="mobile-orientation-copy">The interactive studio is best experienced sideways or on a desktop. Portrait browsing still works, and you can change orientation any time.</p>
+      <div class="mobile-orientation-dialog__actions">
+        <button v-if="portrait" type="button" class="mobile-orientation-dialog__primary" autofocus @click="continuePortrait">Continue in portrait</button>
+        <button v-else type="button" class="mobile-orientation-dialog__primary" autofocus @click="chooseImmersive">Enter interactive studio</button>
+        <button v-if="portrait" type="button" class="mobile-orientation-dialog__secondary" @click="chooseLandscape">I’ll rotate my phone</button>
+        <button v-else type="button" class="mobile-orientation-dialog__secondary" @click="browseFloors">Browse the floors</button>
+      </div>
+    </dialog>
     <div v-show="!phone" class="hero-copy-drawer" :class="{ 'hero-copy-drawer--closed': !showIntroduction }">
       <div
         id="hero-introduction"
@@ -189,21 +221,11 @@ onBeforeUnmount(() => {
         :inert="!showIntroduction"
         @click.stop>
         <h1 id="hero-title"><span>Irinella Boutsika</span>Frontend developer.</h1>
-        <p class="hero__lede">
-          I turn complex problems into interfaces that make sense. My background in law taught me to
-          question assumptions. Software engineering gave that curiosity something to build.
-        </p>
+        <p class="hero__lede">I build clear interfaces and interactive worlds.</p>
         <div class="hero__invitation">
-          <h2>Explore. There’s more<br />than meets the eye.</h2>
-          <p>
-            Five floors of my work, set in an interactive Athens. Some objects are more than scenery:
-            try them. There are games, hidden details and plenty of Easter eggs to discover.
-          </p>
-          <p class="hero__return">
-            <strong>Come back at a different hour. Or in different weather.</strong>
-            This world follows Athens’ real time and weather. Daylight, rain and late nights each
-            bring their own atmosphere.
-          </p>
+          <h2>Explore five floors of work.</h2>
+          <p>An immersive Athens studio that shifts with the local time and weather. Explore projects, playful interactions and hidden Easter eggs.</p>
+          <p>Each floor opens into its own illustrated space, with details that reward a closer look as you move through the building.</p>
         </div>
       </div>
       <button
@@ -229,7 +251,7 @@ onBeforeUnmount(() => {
 
 .hero-copy-drawer .hero__plate {
   width: 100%;
-  padding: 2.5rem clamp(1.25rem, 6cqi, 2rem) 1.75rem;
+  padding: clamp(1.1rem, 4cqi, 1.65rem) clamp(1.25rem, 6cqi, 2rem) clamp(1rem, 3cqi, 1.4rem);
   background: linear-gradient(135deg, #0d1110f5, #11120fee);
   text-shadow: none;
 }
@@ -248,22 +270,22 @@ onBeforeUnmount(() => {
 }
 
 .hero-copy-drawer p {
-  margin: 1rem 0 0;
-  font-size: clamp(1.0625rem, 3.6cqi, 1.1875rem);
-  line-height: 1.6;
+  margin: 0.75rem 0 0;
+  font-size: clamp(0.95rem, 3.2cqi, 1.08rem);
+  line-height: 1.45;
   color: #eee9e0;
   overflow-wrap: anywhere;
 }
 
 .hero-copy-drawer .hero__invitation {
-  margin-top: 1.25rem;
-  padding-top: 1.1rem;
+  margin-top: 0.9rem;
+  padding-top: 0.8rem;
   border-top: 1px solid #e8dfcf38;
 }
 
 .hero-copy-drawer .hero__invitation h2 {
   margin: 0;
-  font: 500 clamp(1.6rem, 6.5cqi, 2.1rem)/1.12 "Barlow Condensed", sans-serif;
+  font: 500 clamp(1.5rem, 6cqi, 1.9rem)/1.08 "Barlow Condensed", sans-serif;
   letter-spacing: 0.01em;
   text-transform: none;
   color: var(--cyan);
@@ -279,6 +301,8 @@ onBeforeUnmount(() => {
   color: #fff8eb;
   font-weight: 600;
 }
+
+.hero-copy-drawer .hero__invitation p { margin-top: 0.55rem; }
 
 .hero-copy-toggle {
   min-height: 8rem;

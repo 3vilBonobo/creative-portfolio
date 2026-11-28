@@ -13,10 +13,15 @@ const { phone, portrait, landscape } = usePhoneLayout();
 const archive = reactive(createExperienceArchive(phone.value));
 const { activeIndex, expanded, contributions } = toRefs(archive);
 const status = ref<HTMLElement>();
-const compactWidth = ref(matchMedia("(max-width: 980px)").matches);
+const compactWidth = ref(matchMedia("(max-width: 760px)").matches);
 const compact = computed(() => compactWidth.value || phone.value);
 let layoutQuery: MediaQueryList | undefined;
 const activeEntry = computed(() => experience[activeIndex.value]!);
+const skillGroups = [
+  { label: "Frontend & platform", icon: "⌘", items: [...new Set(experience.flatMap(entry => entry.technologies).concat("Java", "Spring Boot"))] },
+  { label: "Interface & delivery", icon: "✳", items: ["UX/UI redesign", "Responsive interfaces", "Accessible web", "Offline workflows", "Performance improvement", "SVG & web animation"] },
+  { label: "Analysis & communication", icon: "◇", items: ["Requirements analysis", "API troubleshooting", "Client communication", "Legal research", "Case analysis", "Teaching"] },
+] as const;
 
 function selectEntry(index: number) {
   selectExperienceChapter(archive, index, experience.length, compact.value);
@@ -35,7 +40,7 @@ function selectEntry(index: number) {
 }
 function updateLayout() { compactWidth.value = layoutQuery?.matches ?? false; }
 onMounted(() => {
-  layoutQuery = matchMedia("(max-width: 980px)");
+  layoutQuery = matchMedia("(max-width: 760px)");
   updateLayout();
   layoutQuery.addEventListener("change", updateLayout);
 });
@@ -54,15 +59,24 @@ onBeforeUnmount(() => layoutQuery?.removeEventListener("change", updateLayout));
       <div class="experience__content">
         <header class="experience__heading">
           <div class="experience__title-group"><p class="eyebrow">Professional experience <span aria-hidden="true">///</span></p><h2 id="experience-title">Experience</h2></div>
-          <p class="experience__intro">{{ phone ? 'An unconventional career across software engineering, law and creative technology.' : compact ? 'I build production web applications and interactive projects, informed by law, criminology, and community work.' : 'I build production web applications and interactive projects, informed by earlier work in law, criminology, and community organisations.' }}</p>
+          <p class="experience__intro">I turn complex requirements into clear, dependable web experiences. My work spans production software, creative frontend, and a decade in law, bringing technical delivery together with careful analysis and a strong understanding of people.</p>
         </header>
-        <div class="experience__toolbar"><p>Career chapters</p><p class="experience__progress"><span>{{ String(activeIndex + 1).padStart(2, '0') }}</span> / {{ String(experience.length).padStart(2, '0') }} <b>Select a role</b></p></div>
+        <div class="experience__toolbar"><p><span aria-hidden="true">↗</span> Career timeline</p><p class="experience__progress"><span>{{ String(activeIndex + 1).padStart(2, '0') }}</span> / {{ String(experience.length).padStart(2, '0') }} <b>Select a chapter</b></p></div>
         <ExperienceTimeline :entries="experience" :active-index="activeIndex" :accordion="compact" :expanded="expanded" @select="selectEntry">
           <template #detail="{ entry }"><ExperienceDetail :entry="entry" compact :phone="phone" :contributions-open="contributions[entry.id]" @contributions-toggle="contributions[entry.id] = $event" /></template>
         </ExperienceTimeline>
         <article v-if="!compact" :key="activeEntry.id" id="experience-detail" class="experience__details" aria-labelledby="experience-detail-title"><ExperienceDetail :entry="activeEntry" /></article>
+        <section class="experience__skills" aria-labelledby="experience-skills-title">
+          <div class="experience__skills-heading"><span aria-hidden="true">✳</span><h3 id="experience-skills-title">Skills I bring</h3><p>Engineering, craft, and the experience behind both.</p></div>
+          <div class="experience__skill-groups">
+            <section v-for="group in skillGroups" :key="group.label" class="experience__skill-group" :class="`experience__skill-group--${group.label.startsWith('Frontend') ? 'frontend' : group.label.startsWith('Interface') ? 'design' : 'analysis'}`">
+              <h4><span aria-hidden="true">{{ group.icon }}</span>{{ group.label }}</h4>
+              <ul><li v-for="item in group.items" :key="item">{{ item }}</li></ul>
+            </section>
+          </div>
+        </section>
         <details class="experience__community">
-          <summary>Community &amp; earlier work <span aria-hidden="true">+</span></summary>
+          <summary><span class="experience__community-title"><span aria-hidden="true">◎</span> Community, law &amp; teaching</span><span aria-hidden="true">+</span></summary>
           <ul>
             <li v-for="entry in communityExperience" :key="entry.id">
               <h3>{{ entry.role }} <span>— {{ entry.company }}</span></h3>
@@ -71,11 +85,7 @@ onBeforeUnmount(() => layoutQuery?.removeEventListener("change", updateLayout));
             </li>
           </ul>
         </details>
-        <p class="experience__projects-link"><template v-if="phone">Explore my work in </template><template v-else>I explore visual interaction, animation, and creative coding further in my </template><a href="#projects">Selected Projects <span aria-hidden="true">↗</span></a><template v-if="!phone">.</template></p>
-        <div v-if="portrait" class="mobile-office-rotation experience__rotation">
-          <img src="/hero/loft-mobile-v1/rotate-phone.svg" alt="" aria-hidden="true" width="32" height="32">
-          <p><strong>Explore the full career archive</strong><span>Rotate your phone sideways for the immersive experience.</span></p>
-        </div>
+        <p v-if="!phone" class="experience__projects-link">I explore visual interaction, animation, and creative coding further in my <a href="#projects">Selected Projects <span aria-hidden="true">↗</span></a>.</p>
       </div>
       <div ref="status" class="sr-only" aria-live="polite"></div>
     </div>

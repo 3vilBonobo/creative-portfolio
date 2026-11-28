@@ -72,6 +72,44 @@ const tabs = [
   { id: "toolkit", label: "Toolkit", icon: "m8 6-6 6 6 6m8-12 6 6-6 6m-3-15-2 18" },
   { id: "approach", label: "Approach", icon: "M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-5-4-2 6-6 2 2-6 6-2Z" },
 ] as const;
+const toolkitGroups = [
+  {
+    id: "frontend", label: "Frontend", accent: "#53c8ff", icon: "</>",
+    tools: [
+      { name: "Angular", mark: "A", color: "#dd3154", detail: "Component-driven application development" },
+      { name: "TypeScript", mark: "TS", color: "#3178c6", detail: "Typed JavaScript for maintainable applications" },
+      { name: "JavaScript", mark: "JS", color: "#c6a82a", detail: "Interactive browser experiences" },
+      { name: "Vue", mark: "V", color: "#42b883", detail: "Reactive interfaces and single-page applications" },
+      { name: "React", mark: "⚛", color: "#55d7f2", detail: "Reusable component-based interfaces" },
+      { name: "RxJS", mark: "Rx", color: "#c25ce5", detail: "Reactive event and data streams" },
+      { name: "NgRx", mark: "N", color: "#b45be0", detail: "Reactive state management for Angular" },
+      { name: "Signals", mark: "S", color: "#db53b0", detail: "Fine-grained reactive state" },
+      { name: "HTML5", mark: "5", color: "#f06b42", detail: "Accessible, semantic web structure" },
+      { name: "CSS3", mark: "3", color: "#4788ed", detail: "Responsive layouts and visual systems" },
+      { name: "Tailwind", mark: "≈", color: "#38c5d9", detail: "Utility-first interface styling" },
+    ],
+  },
+  {
+    id: "creative", label: "Design & creative", accent: "#d68aff", icon: "✳",
+    tools: [
+      { name: "Figma", mark: "◉", color: "#ed6a9e", detail: "Interface design and prototyping" },
+      { name: "Photoshop", mark: "Ps", color: "#47b8ff", detail: "Image editing and visual assets" },
+      { name: "Illustrator", mark: "Ai", color: "#ff9c43", detail: "Vector illustration and graphics" },
+      { name: "GSAP", mark: "G", color: "#8cda49", detail: "Motion design and interface animation" },
+      { name: "Framer Motion", mark: "Fm", color: "#ddd7ef", detail: "Motion for interactive interfaces" },
+      { name: "Sass", mark: "S", color: "#e77ab4", detail: "Structured CSS authoring" },
+    ],
+  },
+  {
+    id: "workflow", label: "Tools & workflow", accent: "#ffbd68", icon: ">_",
+    tools: [
+      { name: "Git", mark: "◆", color: "#f16a4d", detail: "Version control and collaboration" },
+      { name: "GitHub", mark: "GH", color: "#e6edf3", detail: "Code hosting and project workflows" },
+      { name: "VS Code", mark: "<> ", color: "#4daaf5", detail: "Everyday code editor" },
+      { name: "Linux", mark: "L", color: "#e9cf65", detail: "Command-line development environments" },
+    ],
+  },
+] as const;
 let context: gsap.Context | undefined;
 
 function selectTab(id: typeof activeTab.value, focus = false) {
@@ -138,6 +176,17 @@ onBeforeUnmount(() => {
             <section v-for="tab in tabs" :id="`about-panel-${tab.id}`" :key="tab.id" class="about__profile-panel" :class="{ 'is-active': activeTab === tab.id }" :inert="activeTab !== tab.id" :aria-hidden="activeTab !== tab.id" role="tabpanel" :aria-labelledby="`about-tab-${tab.id}`" tabindex="0">
               <h3>{{ aboutContent.panels[tab.id].title }}</h3>
               <p v-for="paragraph in aboutContent.panels[tab.id].paragraphs" :key="paragraph">{{ paragraph }}</p>
+              <div v-if="tab.id === 'toolkit'" class="about__toolkit" aria-label="Tools and technologies">
+                <section v-for="group in toolkitGroups" :key="group.id" class="about__toolkit-group" :style="{ '--toolkit-accent': group.accent }" :aria-labelledby="`about-toolkit-${group.id}`">
+                  <h4 :id="`about-toolkit-${group.id}`"><span aria-hidden="true">{{ group.icon }}</span>{{ group.label }}</h4>
+                  <ul>
+                    <li v-for="tool in group.tools" :key="tool.name" tabindex="0" :data-tooltip="tool.detail" :aria-label="`${tool.name}: ${tool.detail}`">
+                      <span class="about__tool-mark" :style="{ '--tool-color': tool.color }" aria-hidden="true">{{ tool.mark }}</span>
+                      <span class="about__tool-name">{{ tool.name }}</span>
+                    </li>
+                  </ul>
+                </section>
+              </div>
             </section>
           </div>
         </div>

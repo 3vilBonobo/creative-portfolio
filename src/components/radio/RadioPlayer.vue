@@ -6,7 +6,7 @@ import RadioArtwork from "./RadioArtwork.vue";
 import "../../radio.css";
 
 const radio = useRadio();
-const { state, station, track, opened, playing, busy, audible, statusLabel, stations } = radio;
+const { state, station, track, opened, discovered, playing, busy, audible, statusLabel, stations } = radio;
 const dialog = ref<HTMLDialogElement>();
 const shortcuts = ref(false);
 const utilityHost = ref<HTMLElement | null>(null);
@@ -57,9 +57,10 @@ onBeforeUnmount(() => { modalObserver?.disconnect(); window.removeEventListener(
 
 <template>
   <Teleport :to="utilityHost ?? 'body'">
-    <div class="radio-global" role="group" aria-label="Athens radio controls" :data-active="state.activated" :style="{ '--radio-accent': station.accent }">
+    <div v-if="discovered" class="radio-global" role="group" aria-label="Athens radio controls" :data-active="state.activated" :style="{ '--radio-accent': station.accent }">
       <button class="radio-global__open" type="button" aria-label="Open Athens radio" aria-haspopup="dialog" :aria-expanded="opened" :disabled="!!utilityHost" @click="radio.show"><RadioArtwork :station="station" /><span>{{ state.activated ? station.name : 'Athens On Air' }}<small>{{ state.activated ? statusLabel : 'Find your frequency' }}</small></span></button>
       <button v-if="state.activated" class="radio-global__play" type="button" :aria-label="playing || busy ? 'Pause radio' : 'Resume radio'" :disabled="!track" @click="radio.togglePlayback"><RadioIcon :name="playing || busy ? 'pause' : 'play'" /></button>
+      <button v-if="state.activated && track" type="button" aria-label="Next track" title="Next track" @click="radio.nextTrack"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 5v14M5 5l10 7-10 7Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg></button>
       <button type="button" :aria-label="state.muted || state.volume === 0 ? 'Unmute radio' : 'Mute radio'" :aria-pressed="state.muted" @click="radio.toggleMute"><RadioIcon :name="state.muted || state.volume === 0 ? 'muted' : 'sound'" /></button>
     </div>
   </Teleport>

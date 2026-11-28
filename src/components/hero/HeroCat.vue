@@ -111,7 +111,8 @@ defineExpose({ pet });
     :data-cat-spot="catScene.spot.id"
     :data-cat-pose="catScene.pose"
     :data-cat-reaction="reaction">
-    <g :transform="placement">
+    <g>
+      <g :transform="placement">
       <ellipse
         :cx="catScene.pose === 'sitting' ? 13 : 0"
         cy="-1"
@@ -178,6 +179,7 @@ defineExpose({ pet });
         @pointerleave="lastPoint = undefined">
         <title>{{ catScene.pose === "sleeping" ? "Pet gently… Yannos is sleeping" : "Pet Yannos" }}</title>
       </rect>
+      </g>
     </g>
   </svg>
   <span class="cat-live-status" role="status" aria-live="polite">{{ responseText }}</span>

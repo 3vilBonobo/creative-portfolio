@@ -10,6 +10,7 @@
 .experience--phone .experience__heading { display: grid; gap: .65rem; padding: 0; }
 .experience--phone .experience__heading h2 { font-size: 2.6rem; letter-spacing: .08em; overflow-wrap: anywhere; }
 .experience--phone .experience__heading .eyebrow { font-size: .6rem; margin-bottom: .25rem; }
+.experience--phone .experience__heading .eyebrow, .experience--phone .experience__toolbar { display: none; }
 .experience--phone .experience__intro { margin: 0; max-width: 35rem; font-size: .95rem; line-height: 1.5; }
 .experience--phone .experience__level { display: none; }
 .experience--phone .experience__shade { inset: 6rem 0 0; background: linear-gradient(#08111344, #081113df 27rem); }
@@ -46,13 +47,11 @@
 .experience--phone .experience__community li > p { font-size: .95rem; line-height: 1.55; }
 .experience--phone .experience__projects-link { font-size: .95rem; line-height: 1.5; }
 .experience--phone .experience__projects-link a { display: inline-block; min-height: 44px; align-content: center; }
-.experience--phone .experience__rotation { grid-column: 1 / -1; margin: 0; padding: .75rem 0; }
-.experience--phone .experience__rotation p { font-size: .8rem; line-height: 1.5; }
 .app-shell[data-active-floor="experience"]:has(.experience--phone) > .floor-nav,
 .app-shell[data-active-floor="experience"]:has(.experience--phone) > .environment-preview-toggle { display: none; }
 body:has(.experience--phone) { min-width: 0; }
-.experience--landscape .experience__content { padding-top: 5rem; padding-left: max(1rem, env(safe-area-inset-left)); container: career-archive / inline-size; }
-.experience--landscape .experience__heading { margin-left: 14%; }
+.experience--landscape .experience__content { padding-top: 1rem; padding-left: max(1rem, env(safe-area-inset-left)); container: career-archive / inline-size; }
+.experience--landscape .experience__heading { margin-left: 0; }
 .experience--landscape .experience__heading h2 { font-size: 2.25rem; }
 .experience--landscape .experience__intro { max-width: 42rem; }
 /* Reflow the same list and panel nodes: native disclosures survive rotation.

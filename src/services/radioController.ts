@@ -67,9 +67,7 @@ export function createRadioController(stations: readonly RadioStation[], options
     });
     listen("error", () => { if (media.error) fail("This transmission could not be loaded. Try again or choose another station."); });
     listen("ended", () => {
-      if (!media.ended || !wanted) return;
-      state.trackIndex = (state.trackIndex + 1) % (station()?.playlist.length ?? 1);
-      release(); void play();
+      if (media.ended && wanted) nextTrack();
     });
     unbind = () => listeners.forEach(([name, listener]) => media.removeEventListener(name, listener));
     loadedTrack = current.id; media.src = url; media.load();
@@ -98,6 +96,18 @@ export function createRadioController(stations: readonly RadioStation[], options
     wanted = false; operation++; audio?.pause();
     state.status = track() ? "paused" : "offline"; publish();
   }
+  function nextTrack() {
+    const playlist = station()?.playlist ?? [];
+    if (disposed || playlist.length === 0) return;
+    const resume = wanted;
+    wanted = false;
+    release();
+    state.trackIndex = (state.trackIndex + 1) % playlist.length;
+    state.error = null;
+    state.status = track() ? "idle" : "offline";
+    publish();
+    if (resume && track()) void play();
+  }
   function selectStation(id: string) {
     if (disposed || id === state.stationId || !stations.some(station => station.id === id)) return;
     const resume = wanted;
@@ -115,7 +125,7 @@ export function createRadioController(stations: readonly RadioStation[], options
   return {
     getState: () => ({ ...state }),
     subscribe(listener: (value: RadioState) => void) { subscribers.add(listener); listener({ ...state }); return () => { subscribers.delete(listener); }; },
-    play, pause, selectStation, cycle,
+    play, pause, selectStation, cycle, nextTrack,
     togglePlayback() { if (wanted) pause(); else void play(); },
     setVolume(value: number) {
       if (!Number.isFinite(value)) return;

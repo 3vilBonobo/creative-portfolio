@@ -416,7 +416,7 @@ defineExpose({ open, show: show });
 <style scoped>
 .chess-hotspot-map {
   position: absolute;
-  z-index: 9;
+  z-index: 13;
   inset: 0;
   width: 100%;
   height: 100%;

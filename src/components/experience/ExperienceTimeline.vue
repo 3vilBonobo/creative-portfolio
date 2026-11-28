@@ -18,6 +18,7 @@ const emit = defineEmits<{ select: [index: number] }>();
         @click="emit('select', index)"
       >
         <span class="experience-entry__node" aria-hidden="true"></span>
+        <span class="experience-entry__icon" aria-hidden="true">{{ entry.category === 'legal' ? '§' : entry.category === 'consulting' ? '✳' : '⌘' }}</span>
         <span class="experience-entry__copy"><span class="experience-entry__date">{{ entry.dateLabel }}</span><span class="experience-entry__role">{{ entry.role }}</span><span class="experience-entry__company">{{ entry.company }}</span></span>
         <span class="experience-entry__arrow" aria-hidden="true">{{ accordion && index === activeIndex && expanded !== false ? '⌄' : '›' }}</span>
       </button>

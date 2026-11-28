@@ -20,7 +20,7 @@ const base = "/hero/loft-mobile-v1/";
 </template>
 
 <style scoped>
-.mobile-studio-plate { position: relative; margin: 0; width: 100%; height: 44svh; min-height: 12rem; }
+.mobile-studio-plate { position: relative; margin: 0; width: 100%; height: min(38svh, 18rem); min-height: 12rem; }
 .mobile-studio-plate img { display: block; width: 100%; height: 100%; aspect-ratio: 941 / 1672; object-fit: cover; object-position: center 44%; }
 .mobile-studio-plate--full { height: auto; }
 .mobile-studio-plate--full img { height: auto; }

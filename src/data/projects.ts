@@ -8,7 +8,7 @@ export const projects: Project[] = [
     "categoryLabel": "Games & Interactive Experiences",
     "status": "In Development",
     "genre": "Psychological tech-horror \u00b7 Investigative mystery \u00b7 Interactive fiction",
-    "shortDescription": "A browser-based psychological horror investigation into the fictional Meridian Systems corporation. Question MOTHER, examine records and follow contradictions through a retro computer terminal.",
+    "shortDescription": "A psychological tech-horror investigation inside fictional Meridian Systems. Question MOTHER, examine company records, and follow contradictions through a retro terminal.",
     "role": "Frontend and game-system development",
     "technologies": [
       "Angular 21",
@@ -83,7 +83,7 @@ export const projects: Project[] = [
     "category": "professional",
     "categoryLabel": "Software Engineering & Productivity Tools",
     "status": "Live Application",
-    "shortDescription": "An offline-first planning application that turns personal projects into manageable steps, recommends the next action and keeps project progress on the user's device.",
+    "shortDescription": "An offline-first planner that breaks personal goals into manageable steps, recommends a next action and keeps progress on your device.",
     "role": "Product engineering and frontend development",
     "technologies": [
       "Angular 20",
@@ -113,7 +113,7 @@ export const projects: Project[] = [
     "title": "Enterprise Traceability Platform",
     "displayTitle": "Engineering Complex Enterprise Software",
     "categoryLabel": "Professional Engineering \u00b7 Production B2B Software",
-    "shortDescription": "Contributing to the development and modernization of a production enterprise platform built around complex operational workflows, data-intensive forms, tables, and interconnected business processes.",
+    "shortDescription": "I help evolve a production traceability platform with data-heavy forms, searchable tables and connected operational workflows.",
     "role": "Frontend Engineering \u00b7 UX/UI Modernization \u00b7 Backend Contributions",
     "technologies": [
       "Angular",
@@ -194,7 +194,7 @@ export const projects: Project[] = [
     "category": "professional",
     "categoryLabel": "Professional Web Development · Audio & Media",
     "status": "Live Application",
-    "shortDescription": "A Greek-first podcast application for discovering and listening to Dumb & Dahmer episodes, with searchable archives, a listening queue, favourites and locally saved progress.",
+    "shortDescription": "A Greek-first podcast app for finding and listening to Dumb & Dahmer episodes. Search the archive, build a queue, and keep favourites and playback progress on your device.",
     "cardDescription": "A podcast listening app with searchable episodes, a personal queue, favourites and saved listening progress.",
     "role": "Frontend development and UX/UI implementation",
     "technologies": ["Angular 21", "TypeScript", "Transloco", "HTML Audio", "Browser persistence"],
@@ -219,7 +219,7 @@ export const projects: Project[] = [
     "category": "professional",
     "categoryLabel": "Professional Web Development",
     "industry": "Mental Health & Psychotherapy",
-    "shortDescription": "A professional website developed for a psychotherapy practice in Athens, presenting its therapeutic services, professional identity and physical space through an accessible and responsive digital experience.",
+    "shortDescription": "A responsive Athens psychotherapy website that introduces the practice, explains its services and brings the therapy space into an accessible online experience.",
     "role": "Frontend development, responsive web design and UX/UI implementation",
     "skills": [
       "Frontend development",
@@ -252,7 +252,7 @@ export const projects: Project[] = [
     "id": "orthobyron",
     "title": "Orthobyron",
     "displayTitle": "Orthodontic Practice Website",
-    "shortDescription": "A responsive Greek-language website for an orthodontic practice, presenting clinics, treatments, patient information and contact options.",
+    "shortDescription": "A Greek-language orthodontic website that helps patients explore treatments, clinic locations and practical information, with clear ways to get in touch.",
     "role": "Frontend development and interface implementation",
     "technologies": [
       "React",
@@ -286,7 +286,7 @@ export const projects: Project[] = [
     "displayTitle": "Building an Interactive Athens",
     "category": "creative",
     "categoryLabel": "Creative Frontend & Interactive Experiences",
-    "shortDescription": "A five-floor interactive portfolio set in a cyberpunk Athens building. Built with Vue 3, TypeScript and Vite, it combines layered scene artwork with responsive HTML interfaces, GSAP animation and focused Three.js experiences.",
+    "shortDescription": "An interactive five-floor portfolio set in a cyberpunk Athens studio. Scene artwork shifts with local time and weather, while projects, playful interactions and hidden discoveries invite exploration.",
     "cardDescription": "An interactive five-floor Athens portfolio combining atmospheric scenes, responsive interfaces and playful discoveries.",
     "role": "Creative direction, frontend architecture and interaction development",
     "technologies": ["Vue 3", "TypeScript", "Vite", "GSAP", "Three.js", "CSS"],
@@ -309,7 +309,7 @@ export const projects: Project[] = [
     "id": "iss-tracker",
     "title": "Where Is the ISS Now?",
     "displayTitle": "Live ISS Tracker",
-    "shortDescription": "A live International Space Station tracker displaying its current position and flight information on an interactive map.",
+    "shortDescription": "Track the International Space Station on a live map, with its current position and flight information together in one view.",
     "role": "Frontend development, API integration and animated interface",
     "technologies": [
       "JavaScript",
@@ -344,7 +344,7 @@ export const projects: Project[] = [
     "displayTitle": "Interactive Digital Poetry",
     "category": "creative",
     "categoryLabel": "Creative Technology & Digital Art",
-    "shortDescription": "An interactive digital poetry experience that explores the intersection of literature, technology and artistic expression, using the browser as a medium for experiencing poetry beyond traditional written formats.",
+    "shortDescription": "A digital poem that reshapes its words and phrases over time, inviting visitors to read literature as a changing browser experience.",
     "role": "Creative frontend development and interaction implementation",
     "skills": [
       "Creative frontend development",
@@ -389,7 +389,7 @@ export const projects: Project[] = [
     "id": "magic-herbs",
     "title": "Magic Herbs",
     "displayTitle": "Magic Herbs SVG Animation",
-    "shortDescription": "An interactive illustrated scene created with custom SVG artwork and GSAP animation.",
+    "shortDescription": "A hand-illustrated SVG landscape brought to life with motion and playful interactions.",
     "role": "SVG illustration, interaction design and frontend animation",
     "technologies": [
       "SVG",
@@ -416,7 +416,7 @@ export const projects: Project[] = [
     "id": "fashion-show",
     "title": "Fashion Show",
     "displayTitle": "Fashion Show SVG Animation",
-    "shortDescription": "An interactive fashion-show animation built with custom SVG parts created in Affinity Designer and animated with GSAP.",
+    "shortDescription": "An illustrated runway animation built from custom SVG pieces, with movement choreographed in GSAP.",
     "role": "SVG asset creation, visual design and frontend animation",
     "technologies": [
       "SVG",
@@ -444,7 +444,7 @@ export const projects: Project[] = [
     "id": "tip-calculator",
     "title": "Tip Calculator",
     "displayTitle": "Tip Calculator App",
-    "shortDescription": "A responsive tip calculator that calculates tip and total amounts per person from bill, percentage and group-size inputs.",
+    "shortDescription": "Split a bill with a chosen tip and group size. The calculator updates the tip, total and per-person amount as you go.",
     "role": "Frontend implementation and interaction logic",
     "technologies": [
       "Vanilla JavaScript",

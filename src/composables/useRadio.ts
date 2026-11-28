@@ -16,6 +16,7 @@ function createRadio() {
   const state = shallowRef(controller.getState());
   const unsubscribe = controller.subscribe(value => { state.value = value; });
   const opened = shallowRef(false);
+  const discovered = shallowRef(false);
   let opener: Element | null = null;
   const station = computed(() => RADIO_STATIONS.find(item => item.id === state.value.stationId)!);
   const track = computed(() => station.value.playlist[state.value.trackIndex]);
@@ -30,9 +31,9 @@ function createRadio() {
     return state.value.status === "paused" ? "Paused" : "Ready when you are";
   });
   return {
-    state: readonly(state), station, track, busy, playing, audible, statusLabel, opened: readonly(opened), stations: RADIO_STATIONS,
+    state: readonly(state), station, track, busy, playing, audible, statusLabel, opened: readonly(opened), discovered: readonly(discovered), stations: RADIO_STATIONS,
     ...controller,
-    show() { if (!opened.value) { opener = document.activeElement; opened.value = true; } },
+    show() { discovered.value = true; if (!opened.value) { opener = document.activeElement; opened.value = true; } },
     hide() { opened.value = false; if (opener instanceof HTMLElement || opener instanceof SVGElement) opener.focus({ preventScroll: true }); opener = null; },
     dispose() { unsubscribe(); controller.dispose(); },
   };

@@ -65,7 +65,6 @@ onBeforeUnmount(() => {
       </div>
       <WeatherEffects class="contact-scene__precipitation" mode="precipitation" :state="state" :intensity="previewIntensity" :paused="paused" />
       <div class="contact-scene__layout">
-        <p class="contact-level">Level {{ FLOOR.street.number }} · Athens · Street level</p>
         <div ref="panel" class="contact-panel" :style="{ '--contact-top-warp': topWarp }">
           <span v-for="corner in ['tl', 'tr', 'bl', 'br']" :key="corner" class="contact-panel__bolt" :class="`contact-panel__bolt--${corner}`" aria-hidden="true" />
           <div class="contact-screen">
@@ -73,27 +72,17 @@ onBeforeUnmount(() => {
               <filter id="contact-glass-grit"><feTurbulence type="fractalNoise" baseFrequency=".72" numOctaves="3" stitchTiles="stitch" /><feColorMatrix type="saturate" values="0" /></filter>
               <rect width="400" height="600" filter="url(#contact-glass-grit)" />
             </svg>
-            <div class="contact-screen__header">
-              <p class="contact-screen__eyebrow">Contact / 00</p>
-              <span class="contact-screen__station" aria-hidden="true">ATH—GR</span>
-            </div>
             <h2 id="contact-title" class="contact-screen__title"><span class="sr-only">Contact. </span>Good ideas start<br>with a <em>hello.</em></h2>
-            <p class="contact-screen__copy">{{ phone ? 'Building something interesting? Tell me what you’re working on.' : 'A product that needs clarity. An interface with a stubborn problem. Or something a little unusual. Tell me what you’re working on.' }}</p>
-            <a class="contact-email" href="mailto:3vilbonobo@gmail.com"><span>Start a conversation</span><span aria-hidden="true">↗</span><small>3vilbonobo@gmail.com</small></a>
+            <p class="contact-screen__copy">I build thoughtful interfaces and immersive web experiences. Have something in mind? Let’s talk.</p>
+            <a class="contact-email" href="mailto:3vilbonobo@gmail.com"><span>Email Irinella</span><span aria-hidden="true">↗</span><small>3vilbonobo@gmail.com</small></a>
             <nav id="contact-socials" class="contact-socials" aria-label="Irinella's social profiles">
               <a href="https://x.com/Irinella_b" target="_blank" rel="noopener noreferrer" aria-label="Visit Irinella on X"><span>X</span><span aria-hidden="true">↗</span></a>
               <a href="https://www.instagram.com/irinella_b/" target="_blank" rel="noopener noreferrer" aria-label="Visit Irinella on Instagram"><span>Instagram</span><span aria-hidden="true">↗</span></a>
               <a href="https://www.linkedin.com/in/irinella-boutsika/" target="_blank" rel="noopener noreferrer" aria-label="Visit Irinella on LinkedIn"><span>LinkedIn</span><span aria-hidden="true">↗</span></a>
             </nav>
-            <p class="contact-screen__signature"><span aria-hidden="true">✦</span> Irinella Boutsika <span>Frontend / Creative web</span></p>
+            <p class="contact-screen__signature"><span aria-hidden="true">✦</span> Irinella Boutsika</p>
           </div>
-          <div class="contact-panel__label" aria-hidden="true"><i /> DIRECT LINE <span>ATHENS · FLOOR 00</span></div>
         </div>
-        <div v-if="portrait" class="mobile-office-rotation contact-rotation">
-          <img src="/hero/loft-mobile-v1/rotate-phone.svg" alt="" aria-hidden="true" width="32" height="32">
-          <p><strong>Explore the full street</strong><span>Rotate your phone sideways for the immersive experience.</span></p>
-        </div>
-        <a v-if="phone" class="contact-rooftop" :href="`#${FLOOR.office.id}`">Back to the rooftop</a>
         <a class="exit-door" :href="`#${FLOOR.office.id}`" aria-label="Enter the building and return to the rooftop"><span class="sr-only">Return to rooftop</span></a>
         <MouseEasterEgg />
       </div>
@@ -132,7 +121,6 @@ onBeforeUnmount(() => {
 .contact-scene[data-phase="night"] .contact-practical { animation: contact-lamp 19s ease-in-out infinite; animation-play-state: v-bind('paused ? "paused" : "running"'); }
 @keyframes contact-lamp { 0%, 76%, 84%, 100% { opacity: .04; } 78%, 81% { opacity: .65; } 79.5%, 82% { opacity: .15; } }
 .contact-scene__layout { position: absolute; inset: 0; display: block; padding: 0; min-height: 0; }
-.contact-level { position: absolute; left: 4%; top: 3%; display: block; width: auto; min-height: 0; margin: 0; padding: .4rem .65rem; background: #081113d9; color: #d0dcdb; font: 400 clamp(10px, .75cqi, 14px)/1.5 "IBM Plex Mono", monospace; letter-spacing: .08em; text-transform: uppercase; }
 .exit-door { left: 10%; top: 28%; width: 14%; height: 58%; padding: 0; border: 0; background: transparent; box-shadow: none; cursor: pointer; }
 .exit-door:hover { background: transparent; box-shadow: none; }
 :deep(.mouse-world) { position: absolute; inset: 0; height: auto; margin: 0; background: none; border: 0; --hole-x: 41%; --floor-y: 94%; }
@@ -169,7 +157,6 @@ onBeforeUnmount(() => {
   .contact-practical { left: 35%; top: 27%; width: 19%; height: 7%; }
   .contact-scene[data-phase="night"] .contact-practical { left: 35%; top: 27%; }
   .contact-scene__layout { position: relative; inset: auto; height: auto; display: flex; flex-direction: column; padding: calc(1672 / 941 * 100% + 16px) 20px 28px; }
-  .contact-level { top: 16px; left: 20px; font-size: 10px; }
   .exit-door { position: absolute; left: 9%; top: 0; margin-top: 103%; width: 17%; height: 33cqi; }
   :deep(.mouse-world) { position: relative; inset: auto; width: 100%; height: 90px; margin: 0; background: none; border: 0; --hole-x: 50%; --floor-y: 82%; --mouse-size: 52px; }
   :deep(.mouse-world) { background: linear-gradient(#0a101155, #0a101122), url('/environments/floor-00-contact/floor00-mobile-day.webp') center bottom / 100% auto; }
@@ -256,10 +243,6 @@ onBeforeUnmount(() => {
     linear-gradient(177deg, transparent 0 87%, #b6dce509 87.1%, transparent 87.4%);
 }
 .contact-screen > * { flex-shrink: 0; }
-.contact-screen__header { display: flex; align-items: center; justify-content: space-between; gap: .5rem; padding-bottom: .5cqi; border-bottom: 1px solid #7ec6ba30; }
-.contact-screen__eyebrow, .contact-screen__station { margin: 0; font: 400 clamp(9px, .65cqi, 14px)/1.3 "IBM Plex Mono", monospace; letter-spacing: .12em; text-transform: uppercase; }
-.contact-screen__eyebrow { color: #65e3ed; text-shadow: 0 0 8px #4bdeef52; }
-.contact-screen__station { color: #819f97; }
 .contact-screen__title { margin: 0; color: #abf5ff; font: 500 clamp(28px, 2.6cqi, 68px)/.98 "Barlow Condensed", sans-serif; text-transform: uppercase; letter-spacing: .015em; text-shadow: 0 0 2px #c8f3fb88, 0 0 8px #2fbedf66, 0 0 20px #22a9d02e, 0 1px 1px #000; }
 .contact-screen__title em { color: #ff8ec8; font-style: normal; text-shadow: 0 0 3px #ffd6e866, 0 0 10px #ee358d66, 0 0 22px #dd318a33; }
 .contact-screen__copy { margin: 0; max-width: none; color: #c5d8d1; font-size: clamp(12px, .85cqi, 18px); line-height: 1.5; }
@@ -267,24 +250,21 @@ onBeforeUnmount(() => {
 .contact-email small { grid-column: 1/-1; color: #a5cdbd; overflow-wrap: anywhere; font: 400 clamp(10px, .7cqi, 15px)/1.4 "IBM Plex Mono", monospace; }
 .contact-email:hover { background: #26455780; box-shadow: 0 2px 12px #73d4ea29; }
 .contact-socials { display: flex; flex-wrap: wrap; gap: .35cqi; }
-.contact-socials a { position: static; display: flex; align-items: center; justify-content: space-between; gap: .35rem; flex: 1; min-width: 44px; width: auto; height: auto; min-height: 50px; padding: .3rem .45rem; border: 1px solid transparent; border-bottom-color: #8eabb43d; border-radius: 0; background: #060b1533; color: #b8dcd0; box-shadow: none; text-shadow: none; text-decoration: none; font: 400 clamp(10px, .7cqi, 15px)/1.4 "IBM Plex Mono", monospace; transition: border-color .2s, background .2s; }
+.contact-socials a { position: static; display: flex; align-items: center; justify-content: space-between; gap: .35rem; flex: 1; min-width: 44px; width: auto; height: auto; min-height: 50px; padding: .3rem .45rem; border: 1px solid color-mix(in srgb, var(--social-neon) 56%, transparent); border-radius: 3px; background: color-mix(in srgb, var(--social-neon) 8%, #060b15); color: var(--social-neon); box-shadow: inset 0 0 10px color-mix(in srgb, var(--social-neon) 10%, transparent), 0 0 8px color-mix(in srgb, var(--social-neon) 18%, transparent); text-shadow: 0 0 7px color-mix(in srgb, var(--social-neon) 60%, transparent); text-decoration: none; font: 400 clamp(10px, .7cqi, 15px)/1.4 "IBM Plex Mono", monospace; transition: border-color .2s, background .2s, box-shadow .2s, transform .2s; }
 .contact-socials a > span { position: static; width: auto; height: auto; overflow: visible; clip: auto; }
-.contact-socials a:nth-child(2) { color: #ebbad1; }
-.contact-socials a:nth-child(3) { color: #accfe8; }
-.contact-socials a:hover { transform: none; box-shadow: 0 2px 7px #79c4df13; border-color: #83cbd63f; background: #25415155; }
+.contact-socials a:nth-child(1) { --social-neon: #eafaff; }
+.contact-socials a:nth-child(2) { --social-neon: #ff8ec8; }
+.contact-socials a:nth-child(3) { --social-neon: #76caff; }
+.contact-socials a:hover { transform: translateY(-1px); box-shadow: inset 0 0 12px color-mix(in srgb, var(--social-neon) 18%, transparent), 0 0 13px color-mix(in srgb, var(--social-neon) 42%, transparent); border-color: var(--social-neon); background: color-mix(in srgb, var(--social-neon) 16%, #080b14); }
 .contact-socials a:focus-visible, .contact-email:focus-visible, .exit-door:focus-visible { outline: 2px solid #d8ffec; outline-offset: 3px; }
 .contact-screen__signature { display: flex; align-items: center; flex-wrap: wrap; gap: .35rem; margin: 0; color: #87afa1; font: 400 clamp(8px, .54cqi, 12px)/1.4 "IBM Plex Mono", monospace; }
 .contact-screen__signature > span:first-child { color: #ecaac7; }
 .contact-screen__signature > span:last-child { margin-left: auto; color: #7c9c90; }
-.contact-panel__label { display: flex; align-items: center; gap: .35cqi; padding-top: .4cqi; color: #a1afa1; font: 400 clamp(7px, .48cqi, 10px)/1.4 "IBM Plex Mono", monospace; letter-spacing: .07em; }
-.contact-panel__label > span { margin-left: auto; color: #7e8e80; }
-.contact-panel__label i { width: 3px; height: 3px; border-radius: 50%; background: #78c8ab; box-shadow: 0 0 4px #85cfa580; }
 @media (min-width: 1800px) and (min-aspect-ratio: 2/1) {
   .contact-panel { left: 25%; top: 21.5%; width: 26.2%; height: 50.7%; transform: perspective(70cqi) rotateY(15deg) skewY(5deg) var(--contact-top-warp); }
   .contact-screen { gap: .3cqi; padding: .7cqi; }
   .contact-screen__title { font-size: clamp(30px, 1.8cqi, 60px); }
   .contact-screen__copy { font-size: clamp(12px, .64cqi, 16px); }
-  .contact-screen__eyebrow, .contact-screen__station { font-size: clamp(9px, .5cqi, 12px); }
   .contact-email { font-size: clamp(14px, .7cqi, 18px); padding: .45cqi .6cqi; }
   .contact-email small { font-size: clamp(10px, .55cqi, 13px); }
 }
@@ -301,8 +281,6 @@ onBeforeUnmount(() => {
 @media (max-width: 900px) {
   .contact-panel { --rim-side: 10px; --rim-top: 10px; --rim-bottom: 27px; position: relative; inset: auto; width: 100%; height: auto; max-width: 600px; align-self: center; margin: 0; padding: 10px 10px 7px; transform: none; border-radius: 5px; }
   .contact-screen { padding: clamp(16px, 4vw, 30px); gap: 18px; border-radius: 2px; }
-  .contact-screen__header { padding-bottom: 10px; }
-  .contact-screen__eyebrow, .contact-screen__station { font-size: 11px; }
   .contact-screen__title { font-size: clamp(34px, 7vw, 52px); }
   .contact-screen__copy { font-size: 14px; }
   .contact-email { font-size: 15px; padding: 12px; }
@@ -311,7 +289,6 @@ onBeforeUnmount(() => {
   .contact-socials a { font-size: 10px; }
   .contact-screen__signature { font-size: 9px; }
   .contact-screen__signature > span:last-child { display: none; }
-  .contact-panel__label { padding-top: 7px; gap: 6px; font-size: 8px; }
 }
 @media (prefers-reduced-motion: reduce) { .contact-email, .contact-socials a { transition: none; } }
 
@@ -359,7 +336,6 @@ onBeforeUnmount(() => {
   position: relative; display: flex; flex-direction: column; gap: 0;
   padding: calc(var(--street-art-height) + 12px) max(16px, env(safe-area-inset-right)) 0 max(16px, env(safe-area-inset-left));
 }
-.contact-scene--phone .contact-level { top: 10px; left: 16px; font-size: 10px; }
 .contact-scene--phone .contact-panel {
   --rim-side: 7px; --rim-top: 7px; --rim-bottom: 23px;
   position: relative; inset: auto; transform: none; width: 100%; max-width: 600px;
@@ -367,21 +343,14 @@ onBeforeUnmount(() => {
   box-shadow: inset 1px 1px #61e5ed40, 2px 3px #020507, 4px 5px 4px #000c, 7px 9px 12px #0007;
 }
 .contact-scene--phone .contact-screen { padding: 14px; gap: 12px; }
-.contact-scene--phone .contact-screen__header { padding-bottom: 6px; }
 .contact-scene--phone .contact-screen__title { font-size: clamp(32px, 8.7vw, 40px); }
 .contact-scene--phone .contact-screen__copy { font-size: 16px; line-height: 1.4; }
-.contact-scene--phone .contact-screen__eyebrow,
-.contact-scene--phone .contact-screen__station { font-size: 11px; }
 .contact-scene--phone .contact-email { padding: 10px; min-height: 60px; font-size: 16px; }
 .contact-scene--phone .contact-email small { font-size: 12px; }
 .contact-scene--phone .contact-socials { gap: 4px; }
 .contact-scene--phone .contact-socials a { min-height: 44px; font-size: 12px; padding: 4px; }
 .contact-scene--phone .contact-screen__signature { font-size: 10px; }
-.contact-scene--phone .contact-panel__label { padding-top: 5px; font-size: 8px; }
 .contact-scene--phone .exit-door { left: 10%; top: 0; margin-top: calc(var(--street-art-height) * .28); width: 14%; height: calc(var(--street-art-height) * .58); }
-.contact-rotation { max-width: 600px; width: 100%; align-self: center; margin: 14px 0 0; padding-block: 10px; }
-.contact-rooftop { display: flex; align-items: center; align-self: center; min-height: 44px; padding: 8px 12px; color: #bce8e8; font: 14px/1.5 "IBM Plex Mono", monospace; text-underline-offset: 4px; }
-.contact-rooftop:focus-visible { outline: 2px solid #d8ffec; outline-offset: 3px; }
 /* A local wall threshold replaces the duplicated photograph of the pavement.
    The original mouse and accessible hatch retain their lifecycle and dialog. */
 .contact-scene--phone :deep(.mouse-world) {
@@ -397,7 +366,7 @@ onBeforeUnmount(() => {
   font-size: 10px; line-height: 1.5;
 }
 .contact-scene--phone :deep(.alley-footer p:last-child) { display: none; }
-.contact-scene--phone :deep(.alley-footer__environment) { display: block; }
+.contact-scene--phone :deep(.alley-footer__environment) { display: none; }
 :global(.app-shell:has(.contact-scene--phone)[data-active-floor="street"] > .floor-nav) { display: none; }
 :global(.app-shell:has(.contact-scene--phone)[data-active-floor="street"] > .environment-preview-toggle) { top: 3.75rem; bottom: auto; right: 8px; font-size: 9px; padding: 7px 9px; }
 
@@ -408,11 +377,10 @@ onBeforeUnmount(() => {
 .contact-scene--landscape .exit-door { margin-top: calc(var(--street-art-height) * .25); width: 13%; height: calc(var(--street-art-height) * .65); }
 .contact-scene--landscape .contact-panel { max-width: none; }
 .contact-scene--landscape .contact-screen { display: grid; grid-template-columns: 1fr 1fr; align-items: start; gap: 10px 24px; }
-.contact-scene--landscape .contact-screen__header { grid-column: 1 / -1; }
-.contact-scene--landscape .contact-screen__title { grid-column: 1; grid-row: 2; font-size: 34px; }
-.contact-scene--landscape .contact-screen__copy { grid-column: 1; grid-row: 3 / 5; }
-.contact-scene--landscape .contact-email { grid-column: 2; grid-row: 2; }
-.contact-scene--landscape .contact-socials { grid-column: 2; grid-row: 3; }
-.contact-scene--landscape .contact-screen__signature { grid-column: 2; grid-row: 4; }
+.contact-scene--landscape .contact-screen__title { grid-column: 1; grid-row: 1; font-size: 34px; }
+.contact-scene--landscape .contact-screen__copy { grid-column: 1; grid-row: 2 / 4; }
+.contact-scene--landscape .contact-email { grid-column: 2; grid-row: 1; }
+.contact-scene--landscape .contact-socials { grid-column: 2; grid-row: 2; }
+.contact-scene--landscape .contact-screen__signature { grid-column: 2; grid-row: 3; }
 
 </style>
