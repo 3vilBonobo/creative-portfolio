@@ -22,7 +22,7 @@
   box-sizing: border-box;
 }
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
   background: var(--night);
 }
 body {
@@ -50,6 +50,7 @@ button:focus-visible {
   overflow: clip;
   background: var(--night);
 }
+
 .skip-link {
   position: fixed;
   z-index: 100;
@@ -7662,6 +7663,22 @@ body.aquarium-is-open {
     width: min(84rem, calc(100% - 2 * var(--space)));
   }
 }
+
+/* The desktop camera moves the existing floor and infrastructure artwork as one building. */
+@media (min-width: 1101px) and (prefers-reduced-motion: no-preference) {
+  html.cinematic-mode { overflow: hidden; }
+  html.cinematic-mode body { overflow: hidden; }
+  html.cinematic-mode #main-content { position: fixed; inset: 0 auto auto 0; width: 100%; will-change: transform; }
+  html.cinematic-mode #main-content > .floor-section { height: 100svh; min-height: 100svh; overflow-y: auto; overscroll-behavior-y: contain; scrollbar-width: thin; }
+  html.cinematic-mode #main-content > .floor-section:not([data-camera-active]),
+  html.cinematic-mode.camera-travelling #main-content > .floor-section { pointer-events: none; }
+  html.cinematic-mode .about__heading, html.cinematic-mode .about__statement,
+  html.cinematic-mode .about__introduction, html.cinematic-mode .about__secondary { opacity: 1 !important; transform: none !important; }
+}
+.floor-nav__motion { display: none; margin-top: .65rem; padding: .35rem .45rem; border: 1px solid #8ed8d088; background: #101b1dcc; color: var(--cyan); font: .55rem "IBM Plex Mono", monospace; text-transform: uppercase; letter-spacing: .06em; cursor: pointer; }
+@media (min-width: 1101px) and (prefers-reduced-motion: no-preference) {
+  .floor-nav__motion { display: block; }
+}
 @media (min-width: 761px) and (max-width: 1100px) {
   .floor-nav {
     left: 50%;
@@ -7687,4 +7704,20 @@ body.aquarium-is-open {
   .alley-footer {
     padding-bottom: 5.25rem;
   }
+}
+
+/* Shared desktop floor target. Long content retains its natural document flow. */
+@media (min-width: 1101px) {
+  :root { --desktop-floor-height: 100svh; }
+  html.elevator-active { scroll-behavior: auto; }
+  main > .floor-section { min-height: var(--desktop-floor-height); scroll-margin-top: 0; }
+  .hero, .projects, .contact-scene { min-height: var(--desktop-floor-height); }
+  .about__layout { min-height: calc(var(--desktop-floor-height) - 2px); }
+  .experience__scene { min-height: var(--desktop-floor-height); }
+  .floor-nav a[data-elevator-destination], .site-nav a[data-elevator-destination], .wordmark[data-elevator-destination] { color: var(--text); background: #8ed8d025; outline: 1px solid var(--cyan); }
+  .hero { padding-top: clamp(3.5rem, 7svh, 5rem); padding-bottom: clamp(2rem, 4svh, 3rem); }
+  .experience__content { width: calc(84% - 5rem); margin-left: 16%; padding-top: clamp(2rem, 4svh, 3rem); padding-bottom: 1rem; gap: .75rem clamp(1.25rem, 2vw, 2.5rem); }
+  .experience-entry__select { min-height: 5rem; padding-block: .65rem; }
+  .experience-timeline { gap: .35rem; }
+  .projects--windowed { height: var(--desktop-floor-height); }
 }

@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Athens Cyberpunk — Navigation Prototype</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body data-mode="cinematic">
+    <a class="skip" href="#floor-0">Skip to floors</a>
+    <header class="chrome">
+      <div><strong>ATHENS / CYBERPUNK</strong><span>Independent navigation study</span></div>
+      <button id="mode-toggle" type="button" aria-pressed="false">Native scrolling</button>
+    </header>
+    <nav class="elevator" aria-label="Elevator floors">
+      <button type="button" data-floor="0" aria-current="location"><b>04</b><span>Rooftop</span></button>
+      <button type="button" data-floor="1"><b>03</b><span>About</span></button>
+      <button type="button" data-floor="2"><b>02</b><span>Projects</span></button>
+      <button type="button" data-floor="3"><b>01</b><span>Experience</span></button>
+      <button type="button" data-floor="4"><b>00</b><span>Street</span></button>
+    </nav>
+    <div class="camera" id="camera">
+      <main class="building" id="building">
+        <section class="floor floor--roof" id="floor-0" aria-label="Rooftop floor" data-index="0">
+          <div class="floor__structure"><span>ROOFTOP / 04</span><span>ATHENS · NIGHT</span></div>
+          <div class="floor__content" data-native-scroll>
+            <p class="eyebrow">LEVEL 04 · ROOFTOP OFFICE</p>
+            <h1>Above the<br />electric city.</h1>
+            <p>Five floors of work, ideas and atmospheric infrastructure. Wheel down to enter the building.</p>
+            <p class="hint">Wheel / trackpad / elevator · ↑ ↓ arrow keys</p>
+          </div>
+          <div class="skyline" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        </section>
+        <div class="shaft" aria-hidden="true"><span>UTILITY SHAFT · POWER / DATA / WATER</span></div>
+        <section class="floor floor--about" id="floor-1" aria-label="About floor" data-index="1">
+          <div class="floor__structure"><span>RESIDENTIAL / 03</span><span>STUDIO WINDOWS</span></div>
+          <div class="floor__content" data-native-scroll>
+            <p class="eyebrow">LEVEL 03 · ABOUT</p><h2>Questions become<br />systems.</h2>
+            <p>A room for investigation, engineering, and the stranger possibilities of interactive work.</p>
+            <p>Scroll inside this floor. When its content reaches the edge, the next gesture travels through the building.</p>
+            <div class="note-grid"><span>RESEARCH</span><span>FRONTEND</span><span>CREATIVE CODE</span><span>INTERACTION</span></div>
+          </div>
+        </section>
+        <div class="shaft" aria-hidden="true"><span>UTILITY SHAFT · POWER / DATA / WATER</span></div>
+        <section class="floor floor--projects" id="floor-2" aria-label="Projects floor" data-index="2">
+          <div class="floor__structure"><span>ARCHIVE / 02</span><span>INTERNAL SCROLL TEST</span></div>
+          <div class="floor__content floor__content--projects" data-native-scroll>
+            <p class="eyebrow">LEVEL 02 · PROJECTS</p><h2>Selected work.</h2>
+            <p>The project window scrolls natively. A gesture at its top or bottom boundary changes floors.</p>
+            <div class="project-list" aria-label="Project collection">
+              <article><span>01 / INTERACTIVE</span><h3>Athens Cyberpunk</h3><p>Scene architecture, atmosphere and playful discoveries.</p></article>
+              <article><span>02 / PRODUCT</span><h3>Project Companion</h3><p>A calm planning tool for projects that need a next step.</p></article>
+              <article><span>03 / ENGINEERING</span><h3>Traceability Platform</h3><p>Data-heavy interfaces for operational workflows.</p></article>
+              <article><span>04 / CREATIVE CODE</span><h3>Where Is the ISS?</h3><p>Tracking an orbit in real time.</p></article>
+              <article><span>05 / EXPERIMENT</span><h3>Nerve Ending</h3><p>Investigation inside a fictional system.</p></article>
+            </div>
+          </div>
+        </section>
+        <div class="shaft" aria-hidden="true"><span>UTILITY SHAFT · POWER / DATA / WATER</span></div>
+        <section class="floor floor--experience" id="floor-3" aria-label="Experience floor" data-index="3">
+          <div class="floor__structure"><span>WORKSHOP / 01</span><span>PRODUCTION SYSTEMS</span></div>
+          <div class="floor__content" data-native-scroll>
+            <p class="eyebrow">LEVEL 01 · EXPERIENCE</p><h2>Built in the<br />real world.</h2>
+            <p>Production interfaces, complex forms, resilient workflows and human-readable systems.</p>
+            <div class="note-grid"><span>2025 — NOW</span><span>ENGINEERING</span><span>2022 — 2025</span><span>WEB DEVELOPMENT</span></div>
+          </div>
+        </section>
+        <div class="shaft" aria-hidden="true"><span>UTILITY SHAFT · POWER / DATA / WATER</span></div>
+        <section class="floor floor--street" id="floor-4" aria-label="Street floor" data-index="4">
+          <div class="floor__structure"><span>STREET / 00</span><span>ATHENS AT GROUND LEVEL</span></div>
+          <div class="floor__content" data-native-scroll>
+            <p class="eyebrow">LEVEL 00 · CONTACT</p><h2>Back on<br />the street.</h2>
+            <p>The journey ends at street level. Wheel upward or use the elevator to travel back through every shaft.</p>
+            <p class="hint">PROTOTYPE ONLY · NO PORTFOLIO INTEGRATION</p>
+          </div>
+          <div class="street-lights" aria-hidden="true"><i></i><i></i><i></i></div>
+        </section>
+      </main>
+    </div>
+    <div class="status" role="status" aria-live="polite"><span id="status-floor">04 / ROOFTOP</span><span id="status-state">READY</span></div>
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>

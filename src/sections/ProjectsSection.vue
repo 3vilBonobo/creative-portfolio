@@ -51,16 +51,9 @@ function updateContentClearance() {
   windowed.value = !phone.value
     && window.matchMedia("(min-width: 1024px) and (min-height: 600px) and (hover: hover) and (pointer: fine)").matches
     && available >= 200;
-  paneHeight.value = Math.max(0, windowed.value
-    ? Math.floor(Math.min(available * 1.5, window.innerHeight - headerBottom - 32))
-    : available);
+  paneHeight.value = Math.max(0, available);
   if (windowed.value) {
-    const contentBottom = footer.getBoundingClientRect().bottom - section.getBoundingClientRect().top;
-    const expandedHeight = 1.5 * (window.innerHeight - (parseFloat(style.scrollMarginTop) || 0));
-    const bottomPadding = (parseFloat(style.paddingBottom) || 0) + (parseFloat(style.borderBottomWidth) || 0);
-    // Halve the original unused space without changing the catalogue viewport.
-    // Use the original height so observer updates cannot repeatedly halve it.
-    sectionHeight.value = contentBottom + Math.max(bottomPadding, (expandedHeight - contentBottom) / 2);
+    sectionHeight.value = window.innerHeight;
   }
 }
 onMounted(() => {
@@ -363,12 +356,12 @@ function onBackdropClick(event: MouseEvent) { if (event.target === detailDialog.
 .projects-showcase__metadata { display: none; }
 .projects-showcase__results { min-width: 0; padding: .75rem .75rem 2rem; border: clamp(.75rem, 1.2vw, 1.25rem) solid transparent; outline: 1px solid #a98d644d; border-radius: 3px; background: var(--projects-surface); }
 .projects--windowed { height: var(--projects-section-height, calc(150dvh - 1.5rem)); min-height: 0; scroll-margin-top: 1rem; }
-.projects--windowed .projects-showcase__rail { position: static; max-height: var(--projects-pane-height); overflow-y: auto; overscroll-behavior-y: contain; scrollbar-width: thin; }
+.projects--windowed .projects-showcase__rail { position: static; max-height: var(--projects-pane-height); overflow-y: auto; overscroll-behavior-y: auto; scrollbar-width: thin; }
 .projects--windowed .projects-showcase__results {
   height: auto;
   max-height: var(--projects-pane-height);
   overflow-y: auto;
-  overscroll-behavior-y: contain;
+  overscroll-behavior-y: auto;
   scrollbar-gutter: stable;
   scrollbar-color: var(--projects-amber-border) #10171a;
   scroll-padding-block: .75rem;

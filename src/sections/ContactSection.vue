@@ -105,6 +105,16 @@ onBeforeUnmount(() => {
 <style scoped>
 .contact-scene--athens { color: #e0eeee; background: #0a1011; }
 .contact-scene__stage { width: 100%; aspect-ratio: 1448/814; min-height: 0; }
+@media (min-width: 1101px) {
+  .contact-scene:not(.contact-scene--phone) .contact-scene__stage {
+    width: min(100%, calc((100svh - 4.25rem) * 1448 / 814));
+  }
+}
+@media (min-width: 1800px) and (min-aspect-ratio: 2/1) {
+  .contact-scene:not(.contact-scene--phone) .contact-scene__stage {
+    width: min(100%, calc((100svh - 4.25rem) * 1916 / 821));
+  }
+}
 .contact-scene__art { inset: 0; }
 .contact-scene__plate { width: 100%; height: 100%; object-fit: cover; object-position: center; transition: none; }
 .contact-sky, .contact-night-veil { position: absolute; inset: 0; pointer-events: none; }
